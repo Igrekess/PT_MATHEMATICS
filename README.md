@@ -6,7 +6,14 @@ Five self-contained articles presenting the mathematical foundations of the Theo
 
 Each article includes companion scripts that verify every theorem numerically.
 
-**Monograph:** Senez, Y. (2026). *The Theory of Persistence: A Complete Monograph.* [doi:10.5281/zenodo.18726591](https://zenodo.org/records/19520809)
+
+## To go further
+
+-> To explore the physics derived from this framework: [*PT-PHYSICS (PTP)*](https://github.com/Igrekess/PT_PHYSICS)  
+-> To explore the chemistry derived from this framework: [*PT-CHEMISTRY (PTC)*](https://github.com/Igrekess/PT_CHEMISTRY)  
+-> To explore a color theory derived from Persistence Theory: [*Simplex Color Space (SCS)*](https://github.com/Igrekess/SimplexColorSpace)  
+-> For the full theoretical framework: [Senez, Y. (2026). *The Theory of Persistence: A Complete Monograph (2026)*](https://zenodo.org/records/19520809)
+
 
 ---
 
