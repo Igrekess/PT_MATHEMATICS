@@ -1,0 +1,248 @@
+{
+  "total": 40,
+  "pass": 40,
+  "fail": 0,
+  "score": "40/40",
+  "results": [
+    {
+      "tag": "U1",
+      "description": "T1 forbidden: 2-rough mod 5",
+      "status": "PASS",
+      "details": "T[r][r]=0 for r!=0"
+    },
+    {
+      "tag": "U2",
+      "description": "T1 forbidden: 3-rough mod 7",
+      "status": "PASS",
+      "details": "T[r][r]=0 for r!=0"
+    },
+    {
+      "tag": "U3",
+      "description": "Lucky numbers FAIL T1 mod 3",
+      "status": "PASS",
+      "details": "No forbidden transitions"
+    },
+    {
+      "tag": "U4",
+      "description": "Composites FAIL T1 mod 3",
+      "status": "PASS",
+      "details": "No forbidden transitions"
+    },
+    {
+      "tag": "U5",
+      "description": "Fixed point mu*=15 self-consistent",
+      "status": "PASS",
+      "details": "active=[3, 5, 7], sum=15"
+    },
+    {
+      "tag": "U6",
+      "description": "mu*=15 is the UNIQUE fixed point in [5,50]",
+      "status": "PASS",
+      "details": "none found"
+    },
+    {
+      "tag": "H1",
+      "description": "sin^2 = delta*(2-delta) algebraic identity",
+      "status": "PASS",
+      "details": "max_err=0.00e+00"
+    },
+    {
+      "tag": "H2",
+      "description": "Full circle integral = 0",
+      "status": "PASS",
+      "details": "max_err=4.00e-16"
+    },
+    {
+      "tag": "H3",
+      "description": "alpha = prod sin^2 = survival probability",
+      "status": "PASS",
+      "details": "alpha=0.00733792"
+    },
+    {
+      "tag": "H4",
+      "description": "G/alpha = 2*pi (bare)",
+      "status": "PASS",
+      "details": "ratio=6.2831853072, 2pi=6.2831853072"
+    },
+    {
+      "tag": "H5",
+      "description": "pi from Euler product (24 primes)",
+      "status": "PASS",
+      "details": "pi_approx=3.138178, err=0.1087%"
+    },
+    {
+      "tag": "B1",
+      "description": "q_stat(15) = 13/15",
+      "status": "PASS",
+      "details": "q_stat=0.8666666666666667"
+    },
+    {
+      "tag": "B2",
+      "description": "q_therm(15) = exp(-1/15)",
+      "status": "PASS",
+      "details": "q_therm=0.9355069850"
+    },
+    {
+      "tag": "B3",
+      "description": "q_stat != q_therm (bifurcation exists)",
+      "status": "PASS",
+      "details": "|q_stat - q_therm| = 0.068840"
+    },
+    {
+      "tag": "B4",
+      "description": "Bifurcation gap > 0 for all active primes",
+      "status": "PASS",
+      "details": "gaps={3: np.float64(0.10195982526068832), 5: np.float64(0.08380143089365877), 7: np.float64(0.06890625529327588)}"
+    },
+    {
+      "tag": "B5",
+      "description": "sin^2(3,stat) > sin^2(3,therm)",
+      "status": "PASS",
+      "details": "stat=0.219155, therm=0.117195"
+    },
+    {
+      "tag": "D1",
+      "description": "gamma_3 > 0.5 (p=3 active)",
+      "status": "PASS",
+      "details": "gamma_3=0.807614"
+    },
+    {
+      "tag": "D2",
+      "description": "gamma_5 > 0.5 (p=5 active)",
+      "status": "PASS",
+      "details": "gamma_5=0.696316"
+    },
+    {
+      "tag": "D3",
+      "description": "gamma_7 > 0.5 (p=7 active)",
+      "status": "PASS",
+      "details": "gamma_7=0.595468"
+    },
+    {
+      "tag": "D4",
+      "description": "gamma_11 < 0.5 (p=11 inactive/ghost)",
+      "status": "PASS",
+      "details": "gamma_11=0.425733"
+    },
+    {
+      "tag": "D5",
+      "description": "Exactly 3 active primes at mu*=15",
+      "status": "PASS",
+      "details": "active=[(3, '0.8076'), (5, '0.6963'), (7, '0.5955')]"
+    },
+    {
+      "tag": "D6",
+      "description": "(N_c+1)!/(N_c+3) = 2^(N_spatial-1) for N_c=3",
+      "status": "PASS",
+      "details": "4!/6=4.0, 2^2=4"
+    },
+    {
+      "tag": "C1",
+      "description": "GFT exact: log2(6) = D_KL + H",
+      "status": "PASS",
+      "details": "residual=0.00e+00"
+    },
+    {
+      "tag": "C2",
+      "description": "GFT exact: log2(30) = D_KL + H",
+      "status": "PASS",
+      "details": "residual=0.00e+00"
+    },
+    {
+      "tag": "C3",
+      "description": "GFT exact: log2(210) = D_KL + H",
+      "status": "PASS",
+      "details": "residual=0.00e+00"
+    },
+    {
+      "tag": "C4",
+      "description": "alpha(particles) = alpha(survival)",
+      "status": "PASS",
+      "details": "diff=0.00e+00"
+    },
+    {
+      "tag": "C5",
+      "description": "G = 2*pi*alpha (bare holonomy)",
+      "status": "PASS",
+      "details": "G=0.04610553"
+    },
+    {
+      "tag": "C6",
+      "description": "beta_0 = 23/3 (sieve theorem)",
+      "status": "PASS",
+      "details": "beta_0=7.666667"
+    },
+    {
+      "tag": "C7",
+      "description": "mu* + 2^N_spatial = 23 = beta_0_num",
+      "status": "PASS",
+      "details": "both=23"
+    },
+    {
+      "tag": "C8",
+      "description": "CRT super-additivity: D(15) > D(3)+D(5)",
+      "status": "PASS",
+      "details": "D(15)=0.4222, D(3)+D(5)=0.0556, excess=0.3665"
+    },
+    {
+      "tag": "F1",
+      "description": "All 6 bridge axioms PASS for primes",
+      "status": "PASS",
+      "details": "{'BA0_sieve': True, 'BA1_modular': True, 'BA2_GFT': True, 'BA3_holonomy': True, 'BA4_selection': True, 'BA5_coupling': True}"
+    },
+    {
+      "tag": "F2",
+      "description": "alpha(mu*) ~ 1/137 (bare)",
+      "status": "PASS",
+      "details": "alpha=0.007338, 1/alpha=136.28"
+    },
+    {
+      "tag": "F3",
+      "description": "Lucky numbers fail T1 at mod 5 AND mod 7",
+      "status": "PASS",
+      "details": "mod5=False, mod7=False"
+    },
+    {
+      "tag": "F4",
+      "description": "Composites fail T1 (no forbidden transitions)",
+      "status": "PASS",
+      "details": "T[r][r] != 0"
+    },
+    {
+      "tag": "F5",
+      "description": "gamma_p strictly decreasing (depth hierarchy)",
+      "status": "PASS",
+      "details": "gammas=[(3, '0.8076'), (5, '0.6963'), (7, '0.5955'), (11, '0.4257'), (13, '0.3562')]"
+    },
+    {
+      "tag": "T1",
+      "description": "CRT: D_KL(105) >= D_KL(3)+D_KL(5)+D_KL(7) (super-additive)",
+      "status": "PASS",
+      "details": "D(105)=2.4654, sum=0.0966, excess=2.3689"
+    },
+    {
+      "tag": "T2",
+      "description": "k=1 is unique power giving 1/alpha in [100,200]",
+      "status": "PASS",
+      "details": "valid_k=[1]"
+    },
+    {
+      "tag": "T3",
+      "description": "Tensor product: prod sin^2 = alpha_sieve (exact)",
+      "status": "PASS",
+      "details": "diff=0.00e+00"
+    },
+    {
+      "tag": "T4",
+      "description": "Born rule: sin^2 = delta*(2-delta) = |<u|psi>|^2",
+      "status": "PASS",
+      "details": "algebraic identity exact"
+    },
+    {
+      "tag": "T5",
+      "description": "Multiplicativity: f(105) = f(3)*f(5)*f(7) = alpha",
+      "status": "PASS",
+      "details": "alpha=0.0073379236"
+    }
+  ]
+}

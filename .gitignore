@@ -1,0 +1,30 @@
+.DS_Store
+._*
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.toc
+*.synctex.gz
+*.synctex(busy)
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.venv/
+superpowers/
