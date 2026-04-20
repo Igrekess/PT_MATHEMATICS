@@ -196,14 +196,18 @@ is the exact mod-3 transfer matrix, $s = 1/2$ is the stationary
 occupation, and the GFT identity $\log_2 m = \DKL + H$ holds exactly.
 
 What this chapter addresses is the question of \emph{rate}: does the
-measured quantity $\alpha_k = n_{12}(k) / N(k)$---the fraction of
-transitions from residue 1 to residue 2---actually converge to
-$s = 1/2$? At finite sieve level $k$, $\alpha_k$ oscillates around
-$1/2$ with an amplitude that empirically decreases. The question is
-whether this decrease can be guaranteed algebraically.
+\emph{symmetry parameter}
+$\alpha_k = n_{12}(k) / [n_{12}(k) + n_{21}(k)]$---the conditional
+fraction of $1 \to 2$ transitions among all off-diagonal transitions
+at sieve level $k$---actually converge to $s = 1/2$?  The same symbol
+$\alpha_k$ is used consistently throughout this chapter with this
+single definition; see Definition~\ref{def:alpha_k} below for the
+formal statement.  At finite sieve level $k$, $\alpha_k$ oscillates
+around $1/2$ with an amplitude that empirically decreases. The
+question is whether this decrease can be guaranteed algebraically.
 
 The answer comes in layers. At the finite level, exact recurrences
-and a spectacular polynomial factorization give a completely
+together with a polynomial factorization give a completely
 rigorous contraction argument. The remaining correlation control is closed by the
 spectral annihilation argument $r_2(0) = 0$, which
 shows that the dominant spectral mode is structurally absent from
@@ -230,7 +234,44 @@ to one of these), count:
   n_{10}(k) &= \text{number of transitions } 1 \to 0 \text{ (removed at level } k\text{)}, \\
   D(k)      &= n_{12}(k) - n_{10}(k) = \text{singleton imbalance}.
 \end{align}
-The symmetry parameter is $\alpha_k = n_{12}(k) / (n_{12}(k) + n_{21}(k))$.
+\begin{definition}[Symmetry parameter $\alpha_k$]
+\label{def:alpha_k}
+The \emph{symmetry parameter} at sieve level~$k$ is
+\begin{equation}
+  \alpha_k \;=\; \frac{n_{12}(k)}{n_{12}(k) + n_{21}(k)},
+  \label{eq:alpha_k_def}
+\end{equation}
+the conditional probability that an off-diagonal mod-$3$ transition
+is of type $1 \to 2$ rather than $2 \to 1$.  This single definition
+is used throughout the article.  Note that $\alpha_k$ is \emph{not}
+the self-transition fraction $T_{00}$
+(see Remark~\ref{rem:alpha_vs_T00}).
+\end{definition}
+
+\begin{remark}[$\alpha_k$ vs self-transition fraction $T_{00}$]
+\label{rem:alpha_vs_T00}
+Two distinct quantities are sometimes confused in discussions of~T4.
+\begin{itemize}[nosep]
+\item \textbf{The symmetry parameter $\alpha_k$}
+  (Definition~\ref{def:alpha_k}): a conditional probability among
+  off-diagonal transitions. By Dirichlet's theorem on primes in
+  arithmetic progressions, $n_{12} = n_{21}$ exactly at the
+  primorial-sieve level, so $\alpha_k = 1/2$ is an \emph{exact
+  identity} at every level $k \geq 2$. T4 states that the deviation
+  from $1/2$ at the prime level decays to zero as $k \to \infty$.
+\item \textbf{The self-transition fraction $T_{00}(N)$}: the empirical
+  probability that two consecutive primes $\leq N$ share the same
+  residue class mod~3. This quantity is \emph{not} zero at finite $N$
+  (it is of order $1/\ln N$, reaching $\sim 0.40$ up to $N = 10^6$).
+  It converges to zero only asymptotically (as $N \to \infty$).
+  T1 states that $T_{00}$ vanishes at the \emph{sieve level}
+  (6-rough integers), not at the prime level.
+\end{itemize}
+Both quantities approach zero asymptotically but through different
+mechanisms. ``Self-transition fraction converges to zero'' means
+$T_{00}(N) \to 0$, \emph{not} $\alpha_k \to 0$ (which would be
+false: $\alpha_k \to 1/2$).
+\end{remark}
 
 \subsubsection{The recurrence theorem}
 
@@ -1046,6 +1087,34 @@ in the proportion.}{Francis Bacon}
   arithmetic theorem.
 \end{statusbox}
 
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,
+  title=\textbf{Anticipated objections (Section~\ref{sec:fixed_point})}]
+\label{box:m3_objections}
+Two objections a reader is most likely to raise, with pointers to
+their discussion.
+\begin{itemize}[nosep,leftmargin=1.2em]
+\item \emph{``$p = 2$ satisfies the activity criterion $\gamma_2 > 1/2$
+  at $\mu = 15$ (numerically $\gamma_2 \approx 0.867$), so excluding
+  it from the cascade sum is ad hoc.''}
+  The exclusion rests on condition~\textbf{I1} in
+  Definition~\ref{def:binary_infrastructure}: $T_2$ is the unique
+  $1 \times 1$ transfer matrix among all primes, a property no odd
+  prime shares.  The motivation is the algebraic singularity of
+  $p = 2$, not the target value of $\mustar$; see the structural
+  commitment discussion in the monograph~\cite{SenezMonograph2026}
+  (Remarks on $p = 2$ in Chapter~8).
+\item \emph{``$\mustar = 15$ is not unique: $\mu = 10$ and $\mu = 17$
+  are also fixed points.''}
+  Correct.  Theorem~\ref{thm:T5a} identifies $\mu = 10$ and $\mu = 17$
+  as the \emph{raw} fixed points (over the full prime set); the
+  reduced cascade equation (after the infrastructure quotient for
+  $p = 2$) yields $\mustar = 15$ as its unique solution
+  (Theorem~\ref{thm:T5b}).  The three values are organised as a
+  cosmogonic sequence $\mu = 10 \to \mu = 17 \to \mustar = 15$
+  (Remark~\ref{rem:cosmogonic}).
+\end{itemize}
+\end{tcolorbox}
+
 % ============================================================
 \subsection{Intuition: why should the sieve have a preferred scale?}
 \label{sec:ch8_intuition}
@@ -1596,11 +1665,17 @@ $\{2\}$                 & $2$  & void        & 0  & Parity alone \\
 $\{2,3\}$               & $5$  & collapse    & 0  & $\gamp{3}(5) = 0.47 < 1/2$ \\
 $\{2,3,5\}$             & $10$ & collapse    & 0  & Unstable: $10 \to 8 \to 3 \to 0$ \\
 $\{2,3,5,7\}$           & $17$ & $\mustar = 15$ & 3  & \textbf{Stable: our universe} \\
-$\{2,3,5,7,11\}$        & $28$ & $\mustar = 6079$ & 53 & Dimensional explosion \\
-$\{2,3,5,7,11,13\}$     & $41$ & $\mustar = 6079$ & 53 & Same explosion \\
-$\{2,3,5,7,\ldots,19\}$ & $77$ & $\mustar = 6079$ & 53 & Same explosion \\
+$\{2,3,5,7,11\}$        & $28$ & divergent$^\dagger$ & $\to\infty$ & Dimensional explosion \\
+$\{2,3,5,7,11,13\}$     & $41$ & divergent$^\dagger$ & $\to\infty$ & Same explosion \\
+$\{2,3,5,7,\ldots,19\}$ & $77$ & divergent$^\dagger$ & $\to\infty$ & Same explosion \\
 \bottomrule
 \end{tabular}
+\smallskip
+\par\noindent\footnotesize
+$^\dagger$ Conditional fixed point at $\mu^* = 6079$ ($53$~actives,
+$\sum_{3\leq p \leq 251} p = 6079$) under the natural truncation
+$p \leq 251$; under the unrestricted iteration the cascade
+diverges without finite fixed point.
 \end{table}
 
 The table exhibits a sharp trichotomy:
@@ -1610,8 +1685,10 @@ The table exhibits a sharp trichotomy:
 \item \textbf{Stable 3D point} ($\mathcal{B} = \{2,3,5,7\}$): the
   iteration converges to $\mustar = 15$ with active set $\{3,5,7\}$.
 \item \textbf{Dimensional explosion} ($\mathcal{B} \supseteq
-  \{2,3,5,7,11\}$): the iteration runs away to $\mustar = 6079$
-  with 53~active primes.
+  \{2,3,5,7,11\}$): the iteration runs away with no finite fixed
+  point ($|A(\mu)|/\pi(\mu) \to 1$ as $\mu \to \infty$).  Truncated
+  to $p \leq 251$, it stabilises conditionally at
+  $\mustar = 6079$ with 53~active primes.
 \end{itemize}
 
 \subsubsection{The iteration cascade}
@@ -1642,10 +1719,14 @@ in one step.
 At $\mu = 28$: $p = 11$ becomes active ($\gamp{11}(28) = 0.557
 > 1/2$).  Its activation adds 11 to the sum, which in turn raises
 the scale enough to activate $p = 13$, then $p = 17$, and so on
-in a runaway cascade.  The iteration stabilises only at
-$\mustar = 6079$, where the first 53 odd primes are all
-simultaneously active.  This is not a physical universe: it has
-53~effective spatial dimensions.
+in a runaway cascade.  Under the unrestricted iteration the cascade
+\emph{never stabilises}: $|A(\mu)|/\pi(\mu) \to 1$ as $\mu \to \infty$
+(verified numerically up to $p \leq 2 \cdot 10^4$, attractor
+$\sim 2.1 \cdot 10^7$).  Imposing the natural truncation $p \leq 251$
+(53 odd primes from $3$ to $251$, summing to $6079$) yields the
+conditional fixed point $\mustar = 6079$ with 53 simultaneously
+active primes---a 53-dimensional effective space, manifestly
+non-physical.
 
 \subsubsection{The critical bifurcation}
 \label{sec:ch8_critical_bifurcation}
@@ -1661,17 +1742,21 @@ boundary lies at $\mu_0 = 18$:
 $\mu_0$ & Cascade fate & Active set at fixed point \\
 \midrule
 $17$ & $\mustar = 15$ & $\{3,5,7\}$ \quad (3 active primes) \\
-$18$ & $\mustar = 6079$ & 53 active primes \\
+$18$ & divergent (no finite $\mustar$) & every prime $p \leq \mu$
+  asymptotically active \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 At $\mu_0 = 17$, $\gamp{11}(17) = 0.478 < 1/2$: the prime
-$p = 11$ is a ghost, and the cascade converges.  At $\mu_0 = 18$,
-$\gamp{11}(18) = 0.503 > 1/2$: the prime $p = 11$ crosses the
-activity threshold, triggering the runaway cascade that terminates
-at 53~dimensions.  The bifurcation is \emph{sharp}: a single unit
-step in $\mu_0$ separates 3D stability from 53D catastrophe.
+$p = 11$ is a ghost, and the cascade converges to $\mustar = 15$.
+At $\mu_0 = 18$, $\gamp{11}(18) = 0.503 > 1/2$: the prime $p = 11$
+crosses the activity threshold, triggering a runaway cascade with
+no finite fixed point under the unrestricted iteration.  Imposing
+the truncation $p \leq 251$ yields the conditional 53-dimensional
+catastrophe $\mu^* = 6079$.  The bifurcation is \emph{sharp}: a
+single unit step in $\mu_0$ separates 3D stability from
+asymptotic divergence.
 
 \subsubsection{The dimensional firewall}
 \label{sec:ch8_firewall}
@@ -1698,10 +1783,14 @@ If $\gamp{11}$ were to cross the threshold $1/2$ from below, the
 cascade dynamics would change qualitatively.  The activation of
 $p = 11$ would raise the self-consistent scale to a value high enough
 to activate $p = 13$, then $p = 17$, and so on in a runaway cascade
-terminating at $\mustar = 6079$ with 53~active primes---a
-53-dimensional effective space.  The ghost primes are therefore
-the \emph{price} of three-dimensional stability: they are present
-as perturbative corrections (NLO and NNLO counter-terms, see
+\emph{without finite fixed point}: the active fraction
+$|A(\mu)|/\pi(\mu) \to 1$ as $\mu \to \infty$ (verified numerically
+up to $p \leq 2 \cdot 10^4$).  Imposing the natural truncation
+$p \leq 251$ yields the conditional fixed point $\mustar = 6079$
+with 53~active primes (a 53-dimensional effective space, manifestly
+non-physical).  The ghost primes are therefore the \emph{price} of
+three-dimensional stability: they are present as perturbative
+corrections (NLO and NNLO counter-terms, see
 \eqref{eq:ghost_correction} and \cite{companion_physics})
 \emph{without} destabilising the dimensional count.
 \end{remark}
@@ -1745,7 +1834,9 @@ exactly one non-trivial stable fixed point:
 \end{equation}
 All other initial conditions lead either to collapse
 ($\mu \to 0$, no active primes) or to dimensional explosion
-($\mustar = 6079$, 53 active primes).
+(divergent cascade with no finite fixed point under the unrestricted
+iteration; conditionally $\mustar = 6079$ with 53 active primes
+under the truncation $p \leq 251$).
 
 \begin{proof}
 Combine the exhaustive scan of
@@ -1762,15 +1853,17 @@ fixed point) with the iteration cascades exhibited above:
 \item For $\mathcal{B} \supseteq \{2,3,5,7,11\}$: $\mu_0 \geq 28$.
   At $\mu_0 = 28$, $\gamp{11}(28) = 0.557 > 1/2$, so the sum
   $\sum_{\text{active odd}} p \geq 3 + 5 + 7 + 11 = 26$.  Since
-  $\gamp{13}(26) > 1/2$, the cascade continues upward.  The unique
-  fixed point of this runaway branch is $\mustar = 6079$ (verified by
-  exhaustive scan up to $\mu = 10^4$).
+  $\gamp{13}(26) > 1/2$, the cascade continues upward.  Under the
+  unrestricted iteration there is no finite fixed point on this
+  branch; under the natural truncation $p \leq 251$ it stabilises
+  conditionally at $\mustar = 6079$.
 \end{enumerate}
 Stability of $\mustar = 15$ follows from
 Theorem~\ref{thm:stability} ($|F'(15)| < 1$).
-The point $\mustar = 6079$ is formally a fixed point but is
-\emph{not} accessible from $\mathcal{B} = \{2,3,5,7\}$; it requires
-at least 11 to be present in the initial base.
+The point $\mustar = 6079$ is formally a fixed point only
+under the truncation $p \leq 251$ and is \emph{not} accessible from
+$\mathcal{B} = \{2,3,5,7\}$; it requires at least 11 to be present
+in the initial base.
 \end{proof}
 
 \noindent\textbf{[THM/COMP].}\;
@@ -2472,7 +2565,9 @@ The cosmogonic sequence (Section~\ref{sec:ch8_cosmogonic_sequence})
 shows that $\mustar = 15$ is the unique non-trivial stable fixed
 point accessible from any initial base of consecutive primes.  Bases
 smaller than $\{2,3,5,7\}$ collapse; bases larger than $\{2,3,5,7\}$
-explode to $\mustar = 6079$ (53~active primes).  The prime $p = 7$ is
+explode into a divergent cascade with no finite fixed point under the
+unrestricted iteration (conditionally $\mustar = 6079$ with 53~active
+primes under the truncation $p \leq 251$).  The prime $p = 7$ is
 the critical threshold: without it, the cascade has no stable
 attractor.  The margin $\Delta_\gamma = 0.074$ (15\% below threshold)
 between $\gamp{7} = 0.595$ and $\gamp{11} = 0.426$ constitutes a

@@ -161,6 +161,30 @@ naturality chain N1--N4.
   Any physical claim.
 \end{statusbox}
 
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,
+  title=\textbf{Anticipated objections (Section~\ref{sec:sieve})}]
+\label{box:m1_objections}
+Three objections arise at a first reading of~T1; each is addressed
+by a named remark in this article.
+\begin{itemize}[nosep,leftmargin=1.2em]
+\item \emph{``T1 is trivial: for 6-rough integers the mod-3 residue
+  alternates by construction.''} Correct at the sieve level; see
+  Remark~\ref{rem:T0_scope}, which states that T1 fixes $T_3$ at the
+  sieve level only, and that the empirical $T_3$ at the prime level
+  has nonzero diagonal entries of order $O(1/\ln N)$.
+\item \emph{``Consecutive primes can share a mod-3 residue
+  (e.g.\ $61, 67$), so T1 does not apply to primes.''}
+  Correct; see Corollary~\ref{cor:T1_primes} and the scope
+  Remark~\ref{rem:T0_scope}. All downstream derivations use the
+  sieve-level matrix, not the empirical prime-level matrix.
+\item \emph{``The stationary value $s = 1/2$ looks like a definition,
+  not a derivation.''} It is derived from T1 $+$ stationarity $+$
+  Dirichlet exchange symmetry; see Theorem~\ref{thm:T1}
+  and its corollaries. The monograph~\cite{Senez2026monograph} provides a
+  second independent proof via the rotating triangle.
+\end{itemize}
+\end{tcolorbox}
+
 \begin{remark}[What PT does \emph{not} claim]
 \label{rem:ch1_limits}
 Before proceeding, we state explicitly what lies \emph{outside}
@@ -998,7 +1022,7 @@ sieve compatible with these properties? The answer (T6) is yes.
 \section{Why Eratosthenes Is the Natural Sieve}
 \label{sec:uniqueness}
 
-\epigraph{The laws of nature are but the mathematical thoughts of God.}{Euclid}
+\epigraph{Geometry is one and eternal, shining in the mind of God.}{Johannes Kepler, \textit{Harmonices Mundi}, Book~IV, ch.~1 (1619)}
 
 % ---- Status Box (R1) ----------------------------------------
 \begin{statusbox}
