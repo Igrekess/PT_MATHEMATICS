@@ -16,6 +16,7 @@ numerically. M1–M5 are now bilingual (EN + FR).
 → Physics derived from this framework: [*PT-PHYSICS (PTP)*](https://github.com/Igrekess/PT_PHYSICS)
 → Chemistry derived from this framework: [*PT-CHEMISTRY (PTC)*](https://github.com/Igrekess/PT_CHEMISTRY)
 → Color theory derived from this framework: [*Simplex Color Space (SCS)*](https://github.com/Igrekess/SimplexColorSpace)
+→ Lean 4 formalisation (kernel-verified proofs): [*PT_LEAN*](https://github.com/Igrekess/PersistenceTheory/tree/main/pt_lean)
 → Full theoretical framework: [Senez, Y. (2026). *The Theory of Persistence: A Complete Monograph (2026)*](https://zenodo.org/records/19655984)
 
 ---
@@ -49,7 +50,7 @@ M5 : physics            (BA0–BA5, α_EM = 1/137, Lemmas E/F/G: all bridges clo
 
 ### Key results
 
-- **M1** — The forbidden-transition theorem (T1) forces s = 1/2. The transfer matrix T₃ = antidiag(1,1) is unique. The GFT identity log₂(m) = D_KL + H holds exactly.
+- **M1** — The forbidden-transition theorem (T1) forces s = 1/2. The transfer matrix T₃ = antidiag(1,1) is unique. The GFT identity log₂(m) = D_KL + H holds exactly. *(Companion file [`M1/T1ForbiddenTransitions.lean`](M1/T1ForbiddenTransitions.lean) is a standalone Lean 4 proof of T1; the full and current Lean formalisation of M1–M5 lives in [PT_LEAN](https://github.com/Igrekess/PersistenceTheory/tree/main/pt_lean).)*
 - **M2** — D_KL is the unique f-divergence (G1, Shore–Johnson). The Fisher metric is the unique monotone Riemannian metric (G3, Čencov). The holonomy angle sin²θ_p = δ_p(2−δ_p) is an algebraic identity.
 - **M3** — The spectral convergence α_k → 1/2 is proved via Gordin decomposition (T4). The unique fixed point μ* = 3+5+7 = 15 is proved by exhaustion (T5). The dynamical field theorem T0 promotes BA0 from postulate to theorem.
 - **M4** — 32 computational tools verified (659/659 PASS). Predictive Mathematics: each prime adds exactly 1 DOF (L1). Theorem H: decoherence monotonicity = 2nd law of the sieve.
