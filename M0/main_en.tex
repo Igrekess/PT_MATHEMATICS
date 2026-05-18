@@ -1,0 +1,236 @@
+\input{preamble_en}
+
+\title{The Theory of Persistence: a reader's map}
+\author{Yan Senez}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+The Theory of Persistence (PT) derives the full phenomenology of the Standard Model from a single formal input, the arithmetic parameter $\sper = 1/2$. This preface gives the reader's map of the program: statements of the seven structural theorems $\Tzero$--$\Tsix$, of the six bridge axioms $\BAzero$--$\BAfive$, of the fixed point $\mustar = 3 + 5 + 7 = 15$, of the prime taxonomy (active $\{3,5,7\}$, echoes $\{11,13\}$, super-echoes $\{17,19,23\}$), of the arithmetic cascade principle, and of the canonical application to the fine-structure constant $1/\alpha_{\rm EM} = 137{,}035\,999\,083$ at $0{,}004$~ppb. No proof is given here; every statement points to the M1--M5 articles where the full derivation appears. This article serves as the pedagogical entry point of the series.
+\end{abstract}
+
+\tableofcontents
+
+% ============================================================
+\section{Motivation: why a sieve?}
+\label{sec:motivation}
+
+The Standard Model of particle physics involves about twenty numerical parameters without theoretical derivation: three gauge couplings, the Higgs vacuum expectation value and its self-coupling, nine charged masses, three CKM mixing angles and one phase, plus the analogous neutrino-sector parameters~\cite{PDG2024}. These numbers are measured, not predicted.
+
+The Theory of Persistence proposes that they all follow from a single arithmetic structure: the Eratosthenes sieve read as a dynamical system on the sequence $\{g_n\}_{n \geq 1}$ of consecutive prime gaps. The unique formal input of the theory is a rational number,
+\[
+\sper \;=\; \dfrac{1}{2},
+\]
+called the \emph{persistence parameter}. It quantifies the symmetric fraction of information preserved by a system under successive constraints; its exact value $1/2$ coincides with the spectral gap of the primorial transfer matrix (theorem $\Ttwo$).
+
+From this single number, PT derives seven structural theorems $\Tzero$--$\Tsix$, six proved bridge axioms $\BAzero$--$\BAfive$, an arithmetic fixed point $\mustar = 15$, and the zero-parameter derivation of every accessible constant of the Standard Model. The program is laid out in five companion articles:
+\begin{description}[nosep,leftmargin=*]
+\item[M1~\cite{companion_M1}] the sieve as a dynamical field: $\Tone, \Tthree, \Tsix$, lemma $\Lzero$, Gap Fundamental Theorem.
+\item[M2~\cite{companion_M2}] information geometry: Fisher metric, holonomy $\BAthree$, activation criterion $\BAfour$.
+\item[M3~\cite{companion_M3}] convergence and fixed point: $\Ttwo, \Tfour, \Tfive$, closing $\BAzero \to \Tzero$.
+\item[M4~\cite{companion_M4}] extended structures: sieve algebra, complex mechanics, predictive mathematics.
+\item[M5~\cite{companion_M5}] bridge to physics: $\BAfive$, Pontryagin identification, reconstruction lemmas E/F/G, $\alpha_{\rm EM} = 1/137{,}036$.
+\end{description}
+This preface gives the map. Two extension articles complete the program: \cite{PT_GeoSpectral} for the geometric-spectral readings (persistence curve, Ricci soliton), and \cite{PT_RH} for the spectral-arithmetic RH-PT conjecture.
+
+% ============================================================
+\section{The PT sieve and its fixed point}
+\label{sec:crible}
+
+\subsection{Minimal formal framework}
+\label{sec:crible:cadre}
+
+Let $L^{0}$ be the category of finite pointed sets over ZFC, equipped with cardinal additivity. The \emph{maximum entropy lemma} $\Lzero$ (\cite{companion_M1}) asserts that the unique distribution on $\mathbb N$ under a finite-mean constraint is the geometric distribution, parameterised by a real $q \in (0, 1)$. This distribution is precisely the asymptotic measure of the gaps $\{g_n\}$ between consecutive primes on the 6-rough sieve.
+
+At the arithmetic fixed point $\mustar$ (introduced in \ref{sec:crible:mustar}), the same geometric law admits \emph{two equivalent canonical parametrisations}, related by the vertex--edge involution of the sieve graph:
+\begin{equation}
+\qplus \;=\; 1 - \dfrac{2}{\mustar} \;=\; \dfrac{13}{15}
+\qquad\text{(vertex branch, max-entropy)},
+\label{eq:qplus_en}
+\end{equation}
+\begin{equation}
+\qminus \;=\; e^{-1/\mustar} \;=\; e^{-1/15}
+\qquad\text{(edge branch, Gibbs)}.
+\label{eq:qminus_en}
+\end{equation}
+The letter $q$ is here the standard parameter of the geometric distribution in elementary statistics; the subscripts $\pm$ distinguish the two parametrisations.
+
+\subsection{The seven structural theorems T0--T6}
+\label{sec:crible:Tn}
+
+Table~\ref{tab:Tn_en} lists the seven theorems of the arithmetic core of PT, in the canonical order of the series' nomenclature map. All are \textsc{[Thm]}: unconditionally proved.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lp{5cm}p{5cm}c@{}}
+\toprule
+Code & Name & Short statement & Article \\
+\midrule
+$\Tzero$ & Dynamical Field Theorem & $\{g_n\}$ is the unique field consistent with conditions $U_1$--$U_4$ & M3 \\
+$\Tone$ & Forbidden Transitions mod 3 & $T_3[1,1] = T_3[2,2] = 0$ on 6-rough integers & M1 \\
+$\Ttwo$ & Spectral Conservation & $|\lambda_2(T_{30})| = 1/4 = \sper^{2}$ & M1 \\
+$\Tthree$ & Antidiagonal Transfer & $T_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, spectrum $\{1,-1\}$ & M1 \\
+$\Tfour$ & Spectral Convergence & $\alpha_k \to 1/2$ as sieve depth $k \to \infty$ & M3 \\
+$\Tfive$ & Unique Fixed Point & $\mustar = 3 + 5 + 7 = 15$ & M3 \\
+$\Tsix$ & Complete Uniqueness & Eratosthenes sieve unique (T6a + T6b + T6c) & M1 \\
+\bottomrule
+\end{tabular}
+\caption{The seven structural theorems of the PT arithmetic core.}
+\label{tab:Tn_en}
+\end{table}
+
+\subsection{The fixed point \texorpdfstring{$\mustar = 15$}{μ*=15}}
+\label{sec:crible:mustar}
+
+Theorem $\Tfive$ proves that the cascade equation $\mu = \sum_{p \in \mathcal A(\mu)} p$, where $\mathcal A(\mu)$ is the set of primes $p$ satisfying $\gammap{p}(\mu) > 1/2$ (activation criterion, $\BAfour$), admits a unique positive integer solution:
+\[
+\boxed{\;\mustar \;=\; 3 + 5 + 7 \;=\; 15.\;}
+\]
+At this value, $\mathcal A = \{3, 5, 7\}$ and the three anomalous dimensions are
+\[
+\gammathree = 0{,}808, \qquad \gammafive = 0{,}696, \qquad \gammaseven = 0{,}595.
+\]
+The detailed proof and linear stability of the fixed point are in M3~\cite{companion_M3}.
+
+% ============================================================
+\section{Bridge axioms and prime taxonomy}
+\label{sec:bridge}
+
+\subsection{The six bridge axioms \texorpdfstring{$\BAzero$--$\BAfive$}{BA0-BA5}}
+\label{sec:bridge:BAn}
+
+Above the arithmetic core $\Tzero$--$\Tsix$, PT rests on six \emph{bridge axioms} relating the sieve structure to physical phenomenology. Though historically named ``axioms'', all are proved \textsc{[Thm]}. Table~\ref{tab:BAn_en} summarises.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lp{4.5cm}p{4.5cm}c@{}}
+\toprule
+Code & Name & Short statement & Article \\
+\midrule
+$\BAzero$ & Field axiom & Field $= \{g_n\}$, $\Tzero$ promoted & M3, M5 \\
+$\BAone$ & Observable axiom & Observables $= g_n \bmod m$ (gauge connection) & M5 \\
+$\BAtwo$ & GFT (fundamental identity) & $\log_2 m = D_{\rm KL}(P\,\|\,U_m) + H(P)$ & M1 \\
+$\BAthree$ & Holonomy formula & $\sinp{p} = \delta_p(2 - \delta_p)$, $\delta_p = (1 - q^p)/p$ & M2 \\
+$\BAfour$ & Active prime criterion & $\gammap{p}(\mu) > \sper = 1/2$ selects $\mathcal A$ & M2 \\
+$\BAfive$ & Pontryagin product & $\alpha_{\rm sieve} = \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus)$ & M5 \\
+\bottomrule
+\end{tabular}
+\caption{The six bridge axioms of PT (all proved as theorems).}
+\label{tab:BAn_en}
+\end{table}
+
+\subsection{Prime taxonomy}
+\label{sec:bridge:taxonomie}
+
+The activation criterion $\BAfour$, applied at the fixed point $\mustar = 15$, partitions the primes into four canonical classes (plus the parity channel $p = 2$).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Class & Primes & $\gammap{p}(\mustar)$ or role & Reference \\
+\midrule
+Parity channel & $\{2\}$ & antipodal involution $D$ & $\BAtwo$, $\Tthree$ \\
+\textbf{Active} & $\{3, 5, 7\}$ & $\gammap{p} > 1/2$, cascade & $\BAfour$, $\Tfive$ \\
+\textbf{Echoes} & $\{11, 13\}$ & $\gammap{} \in (0, 1/2)$, universal vacuum-polarisation & M2, M3 \\
+\textbf{Super-echoes} & $\{17, 19, 23\}$ & scale-dependent corrections (hadronic) & M3, M5 \\
+\textbf{Inactive} & $\{p \geq 29\}$ & $F_{\rm inactive}(\mustar) \approx 10^{-4}$ & M3 \\
+\bottomrule
+\end{tabular}
+\caption{Complete taxonomy of primes in PT, at the fixed point $\mustar = 15$.}
+\label{tab:taxonomie_en}
+\end{table}
+
+\textbf{Strict canonical convention} (cf.~\cite{companion_M2,companion_M3}):
+\begin{itemize}[nosep,leftmargin=*]
+\item Primes $\{11, 13\}$ are the \emph{echoes}, and only the echoes. Never super-echoes.
+\item Primes $\{17, 19, 23\}$ are the \emph{super-echoes}, never $\{11, 13\}$.
+\item For the sum of echo + super-echo contributions, the term \emph{extended $\beta_{\rm echo}$} is used.
+\end{itemize}
+
+% ============================================================
+\section{The arithmetic cascade principle}
+\label{sec:cascade}
+
+\subsection{Definition}
+
+The \emph{canonical cascade} of PT is the ordered sequence of modular refinements on the three active primes:
+\[
+\mathcal C_0 \;\xrightarrow{\;\gammathree\;}\; \mathcal C_3
+\;\xrightarrow{\;\gammafive\;}\; \mathcal C_{3,5}
+\;\xrightarrow{\;\gammaseven\;}\; \mathcal C_{3,5,7}.
+\]
+Each arrow weights the pattern by the corresponding anomalous dimension $\gammap{p}$. The cumulative amplitude at stage $j$ is $\Gamma_j = \prod_{i=1}^{j} \gammap{p_{(i)}}$; for the canonical cascade:
+\[
+\Gamma_1 = 0{,}808, \qquad
+\Gamma_2 = 0{,}562, \qquad
+\Gamma_3 = 0{,}335.
+\]
+The effective depth $\sum_{p \in \mathcal A} p = 3 + 5 + 7$ coincides with the fixed point $\mustar = 15$; this is the geometric reading of theorem $\Tfive$.
+
+\subsection{Local forcing}
+
+The two intra-PT bridge theorems $\mathrm{BT}_7$ (Gram-isotropy of pure roles $\{\tau, f_3, f_5, f_7\}$) and $\mathrm{BT}_9$ (local forcing by activation threshold) guarantee that the canonical cascade is \emph{the unique} ordered sequence compatible with $\BAfour$ and $\Tfive$. Details are in M4~\cite{companion_M4}.
+
+% ============================================================
+\section{Canonical application: the fine-structure constant}
+\label{sec:alphaem}
+
+The complete chain, with no adjustable parameter, leads from $\sper = 1/2$ to the numerical value of $\alpha_{\rm EM}$:
+\[
+\sper = 1/2 \;\xrightarrow{\Tone\text{--}\Tsix}\; \mustar = 15
+\;\xrightarrow{\BAthree}\; \sinp{p}(\qplus)
+\;\xrightarrow{\BAfive}\; \alpha_{\rm bare} \;=\; \prod_{p\in\{3,5,7\}}\sinp{p}(\qplus).
+\]
+The numerical values (computed in M5~\cite{companion_M5}) are
+\[
+\sinp{3}(\qplus) = 0{,}2192, \qquad
+\sinp{5}(\qplus) = 0{,}1940, \qquad
+\sinp{7}(\qplus) = 0{,}1726,
+\]
+giving the \emph{bare coupling}
+\[
+\alpha_{\rm bare} \;=\; 0{,}2192 \times 0{,}1940 \times 0{,}1726
+\;=\; \dfrac{1}{136{,}28}.
+\]
+The correction by the parity channel ($p = 2$) --- binary leakage, spiral retroaction, screening by echoes $\{11, 13\}$, two-loop vacuum polarisation --- closes the gap to the measured value. The final result, with no adjustable parameter~\cite{companion_M5}:
+\[
+\boxed{\;\dfrac{1}{\alpha_{\rm EM}^{\rm PT}} \;=\; 137{,}035\,999\,083 \quad\text{(deviation: $0{,}004$~ppb).}\;}
+\]
+The measured value from the quantum Hall effect and electron anomalous magnetic moment~\cite{PDG2024} is
+\[
+\dfrac{1}{\alpha_{\rm EM}^{\rm exp}} \;=\; 137{,}035\,999\,084(21),
+\]
+agreement to experimental precision ($0{,}15$~ppb).
+
+% ============================================================
+\section{Reading plan}
+\label{sec:plan}
+
+\textbf{Level~1 (reference arithmetic corpus)}: the series M1$\to$M5 develops the complete theory with proofs. It is designed for sequential reading.
+\begin{itemize}[nosep,leftmargin=*]
+\item M1~\cite{companion_M1}: dynamical sieve, $\Tone, \Tthree, \Tsix, \Lzero,$ GFT.
+\item M2~\cite{companion_M2}: information geometry, holonomy $\BAthree$, active primes.
+\item M3~\cite{companion_M3}: convergence $\Tfour$, fixed point $\Tfive$, closing $\Tzero$.
+\item M4~\cite{companion_M4}: extended structures, predictive mathematics.
+\item M5~\cite{companion_M5}: arithmetic-to-physics bridge, $\BAfive$, reconstruction lemmas E/F/G, $\alpha_{\rm EM}$.
+\end{itemize}
+
+\textbf{Level~2 (thematic extensions)}:
+\begin{itemize}[nosep,leftmargin=*]
+\item \cite{PT_GeoSpectral}: geometric and spectral readings --- algebraic persistence curve of genus $\mustar - 1 = 14$, Fisher--Bianchi metric as Ricci quasi-soliton, spectral identities K2 and A6.
+\item \cite{PT_RH}: spectral-arithmetic RH-PT conjecture, residual survival operator.
+\end{itemize}
+
+\textbf{Epistemic status.} The seven theorems $\Tzero$--$\Tsix$ and the six bridge axioms $\BAzero$--$\BAfive$ are all proved (\textsc{[Thm]}). The PT program closed in April~2026 its ten critical structural commitments (counter \emph{C1--C10}, $10/10\;\textsc{[Thm]}$ after the C2/C4/C5/C7 promotions of 26 April 2026). The only remaining conditional step at the program level is external peer review; this article series constitutes its input material.
+
+\printbibliography
+
+\end{document}

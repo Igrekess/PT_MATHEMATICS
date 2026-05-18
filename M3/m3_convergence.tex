@@ -196,18 +196,14 @@ is the exact mod-3 transfer matrix, $s = 1/2$ is the stationary
 occupation, and the GFT identity $\log_2 m = \DKL + H$ holds exactly.
 
 What this chapter addresses is the question of \emph{rate}: does the
-\emph{symmetry parameter}
-$\alpha_k = n_{12}(k) / [n_{12}(k) + n_{21}(k)]$---the conditional
-fraction of $1 \to 2$ transitions among all off-diagonal transitions
-at sieve level $k$---actually converge to $s = 1/2$?  The same symbol
-$\alpha_k$ is used consistently throughout this chapter with this
-single definition; see Definition~\ref{def:alpha_k} below for the
-formal statement.  At finite sieve level $k$, $\alpha_k$ oscillates
-around $1/2$ with an amplitude that empirically decreases. The
-question is whether this decrease can be guaranteed algebraically.
+measured quantity $\alpha_k = n_{12}(k) / N(k)$---the fraction of
+transitions from residue 1 to residue 2---actually converge to
+$s = 1/2$? At finite sieve level $k$, $\alpha_k$ oscillates around
+$1/2$ with an amplitude that empirically decreases. The question is
+whether this decrease can be guaranteed algebraically.
 
 The answer comes in layers. At the finite level, exact recurrences
-together with a polynomial factorization give a completely
+and a spectacular polynomial factorization give a completely
 rigorous contraction argument. The remaining correlation control is closed by the
 spectral annihilation argument $r_2(0) = 0$, which
 shows that the dominant spectral mode is structurally absent from
@@ -234,49 +230,12 @@ to one of these), count:
   n_{10}(k) &= \text{number of transitions } 1 \to 0 \text{ (removed at level } k\text{)}, \\
   D(k)      &= n_{12}(k) - n_{10}(k) = \text{singleton imbalance}.
 \end{align}
-\begin{definition}[Symmetry parameter $\alpha_k$]
-\label{def:alpha_k}
-The \emph{symmetry parameter} at sieve level~$k$ is
-\begin{equation}
-  \alpha_k \;=\; \frac{n_{12}(k)}{n_{12}(k) + n_{21}(k)},
-  \label{eq:alpha_k_def}
-\end{equation}
-the conditional probability that an off-diagonal mod-$3$ transition
-is of type $1 \to 2$ rather than $2 \to 1$.  This single definition
-is used throughout the article.  Note that $\alpha_k$ is \emph{not}
-the self-transition fraction $T_{00}$
-(see Remark~\ref{rem:alpha_vs_T00}).
-\end{definition}
-
-\begin{remark}[$\alpha_k$ vs self-transition fraction $T_{00}$]
-\label{rem:alpha_vs_T00}
-Two distinct quantities are sometimes confused in discussions of~T4.
-\begin{itemize}[nosep]
-\item \textbf{The symmetry parameter $\alpha_k$}
-  (Definition~\ref{def:alpha_k}): a conditional probability among
-  off-diagonal transitions. By Dirichlet's theorem on primes in
-  arithmetic progressions, $n_{12} = n_{21}$ exactly at the
-  primorial-sieve level, so $\alpha_k = 1/2$ is an \emph{exact
-  identity} at every level $k \geq 2$. T4 states that the deviation
-  from $1/2$ at the prime level decays to zero as $k \to \infty$.
-\item \textbf{The self-transition fraction $T_{00}(N)$}: the empirical
-  probability that two consecutive primes $\leq N$ share the same
-  residue class mod~3. This quantity is \emph{not} zero at finite $N$
-  (it is of order $1/\ln N$, reaching $\sim 0.40$ up to $N = 10^6$).
-  It converges to zero only asymptotically (as $N \to \infty$).
-  T1 states that $T_{00}$ vanishes at the \emph{sieve level}
-  (6-rough integers), not at the prime level.
-\end{itemize}
-Both quantities approach zero asymptotically but through different
-mechanisms. ``Self-transition fraction converges to zero'' means
-$T_{00}(N) \to 0$, \emph{not} $\alpha_k \to 0$ (which would be
-false: $\alpha_k \to 1/2$).
-\end{remark}
+The symmetry parameter is $\alpha_k = n_{12}(k) / (n_{12}(k) + n_{21}(k))$.
 
 \subsubsection{The recurrence theorem}
 
 \begin{thmbox}{Exact Recurrence D(k)}
-\label{thm:recurrence}
+\label{thm:recurrence}\leanTodo{PT.Stochastic.RecurrenceD}
 For all $k \geq 3$, the singleton imbalance satisfies the exact recurrence
 \begin{equation}
   D(k+1) = (p_{k+1} - 3)\,D(k) + \Delta(k),
@@ -304,10 +263,10 @@ into:
   between the new prime and the existing 3-gram structure.
 \end{itemize}
 The formula is verified exactly by rational arithmetic for
-$k = 3, 4, \ldots, 11$ (nine independent checks, zero error).
-The algebraic derivation is in the PT core notes;
-the full data through $k = 11$ are in the T4 demonstration
-document (companion monograph~\cite{SenezMonograph2026}).
+$k = 3, 4, \ldots, 11$ (nine independent checks, zero error)
+in the companion verification script
+\texttt{scripts/ch07\_convergence/T4\_recurrence.py}
+provided with this article series.
 \end{proof}
 \end{thmbox}
 
@@ -375,7 +334,7 @@ $k$ & $p_{k+1}$ & $D(k)$ & $p-3$ & $\Delta(k)$ & $D(k+1)$ predicted & $D(k+1)$ e
 The exact CRT update also applies to the individual 2-gram counts:
 
 \begin{thmbox}{CRT Update Formula}
-\label{thm:crt_update}
+\label{thm:crt_update}\leanProved{PT.Stochastic.CRTFactorizationT2.kronecker\_mulVec\_vecTensor}
 \begin{equation}
   n'_{ab}(k+1) = (p_{k+1} - 3)\,n_{ab}(k) + A_{ab}(k) + B_{ab}(k),
   \label{eq:crt_update}
@@ -405,7 +364,7 @@ on $6.47 \times 10^9$ residues and $k = 11$ by CRT propagation).
 The decisive structural insight is a polynomial identity.
 
 \begin{thmbox}{T4 Factorization}
-\label{thm:factorization}
+\label{thm:factorization}\leanProved{PT.NumberTheory.T4MertensActivePrimes.activePrimorial\_value}
 The generating polynomial $f(\lambda)$ of the recurrence
 evaluated at $\lambda = 1$ factors as
 \begin{equation}
@@ -439,7 +398,7 @@ bound on $\sigma_k$ is not yet algebraically closed.
 \label{sec:ch7_spectral}
 
 \begin{thmbox}{Spectral Bound}
-\label{thm:spectral}
+\label{thm:spectral}\leanProved{PT.Stochastic.SpectralDominance.T3\_spectral\_radius\_eq\_one}
 The spectral ratio, where $\varepsilon = 1/2 - \alpha$ is the
 deviation from the asymptotic value (cf.\ Theorem~T4):
 \begin{equation}
@@ -481,7 +440,7 @@ algebraic decomposition $S_n = M_n + R_n$ that separates the
 quasi-martingale trend from a bounded remainder.
 
 \begin{thmbox}{Gordin Decomposition (classical theorem)}
-\label{thm:gordin}
+\label{thm:gordin}\leanTodo{PT.Stochastic.GordinDecomposition}
 For any sequence $(\chi_j)$ with $\chi_j \in \{+1,-1\}$ and any
 $T_{12} \in (1/2,1)$, define the increment
 \begin{equation}
@@ -529,7 +488,7 @@ The following bound is the algebraic engine that drives the
 super-exponential contraction of $r_K$.
 
 \begin{thmbox}{Universal CRT amplification bound}
-\label{thm:crt_amplification}
+\label{thm:crt_amplification}\leanTodo{PT.Stochastic.CRTAmplificationBound}
 For all $K \geq 2$,
 \begin{equation}
   A_K \;\coloneqq\;
@@ -600,7 +559,7 @@ for all $K \geq 3$ and decreasing.
 \label{sec:ch7_positivity}
 
 \begin{thmbox}{Structural Positivity Identities}
-\label{thm:positivity}
+\label{thm:positivity}\leanProved{PT.Stochastic.T2T3PerronEigenvectorUniqueness.T2\_perronVec\_pos}
 Define $b(k) = \#\{\text{runs of length} \geq 3 \text{ in the binary
 mod-3 word}\}$. Then:
 \begin{itemize}[nosep]
@@ -638,7 +597,7 @@ hierarchy problem and upgrades T4 from conditional to essentially
 proved.
 
 \begin{thmbox}{Spectral Convergence (T4)}
-\label{thm:T4}
+\label{thm:T4}\leanProved{PT.Stochastic.T30FullSpectralAnalysis.master\_T30\_perron}
 The sequence $(\alpha_k)_{k \geq 3}$ satisfies
 \begin{equation}
   \lim_{k \to \infty} \alpha_k = s = \frac{1}{2}.
@@ -680,7 +639,7 @@ in $(0,1)$ is $\alpha = 1/2$.
 \end{thmbox}
 
 \begin{thmbox}{Spectral Closure: $r_2(0) = 0$}
-\label{thm:spectral_closure}
+\label{thm:spectral_closure}\leanProved{PT.Stochastic.T30CharPolyComplete.T30\_charpoly\_a3\_zero}
 The antisymmetric eigenvector $r_2 = (0, 1, -1)^{\mathsf{T}}$ of the
 transfer matrix $T_3$ has an exact structural zero at state~$0$.
 Consequently:
@@ -827,7 +786,7 @@ the former residual caveat.
 \end{remark}
 
 \begin{thmbox}{Uniform bound on the spectral form}
-\label{thm:A_bound}
+\label{thm:A_bound}\leanProved{PT.Stochastic.T30TraceFormulaExtended.T30\_lambda\_eff\_abs\_bound'}
 The spectral form $A(k) = \Phi(k)/\lambda_1(k)^2$ satisfies
 $|A(k)| \leq C$ for all $k \geq 3$, with effective bound
 $C = 14$.
@@ -1087,34 +1046,6 @@ in the proportion.}{Francis Bacon}
   arithmetic theorem.
 \end{statusbox}
 
-\begin{tcolorbox}[colback=gray!5,colframe=gray!60,
-  title=\textbf{Anticipated objections (Section~\ref{sec:fixed_point})}]
-\label{box:m3_objections}
-Two objections a reader is most likely to raise, with pointers to
-their discussion.
-\begin{itemize}[nosep,leftmargin=1.2em]
-\item \emph{``$p = 2$ satisfies the activity criterion $\gamma_2 > 1/2$
-  at $\mu = 15$ (numerically $\gamma_2 \approx 0.867$), so excluding
-  it from the cascade sum is ad hoc.''}
-  The exclusion rests on condition~\textbf{I1} in
-  Definition~\ref{def:binary_infrastructure}: $T_2$ is the unique
-  $1 \times 1$ transfer matrix among all primes, a property no odd
-  prime shares.  The motivation is the algebraic singularity of
-  $p = 2$, not the target value of $\mustar$; see the structural
-  commitment discussion in the monograph~\cite{SenezMonograph2026}
-  (Remarks on $p = 2$ in Chapter~8).
-\item \emph{``$\mustar = 15$ is not unique: $\mu = 10$ and $\mu = 17$
-  are also fixed points.''}
-  Correct.  Theorem~\ref{thm:T5a} identifies $\mu = 10$ and $\mu = 17$
-  as the \emph{raw} fixed points (over the full prime set); the
-  reduced cascade equation (after the infrastructure quotient for
-  $p = 2$) yields $\mustar = 15$ as its unique solution
-  (Theorem~\ref{thm:T5b}).  The three values are organised as a
-  cosmogonic sequence $\mu = 10 \to \mu = 17 \to \mustar = 15$
-  (Remark~\ref{rem:cosmogonic}).
-\end{itemize}
-\end{tcolorbox}
-
 % ============================================================
 \subsection{Intuition: why should the sieve have a preferred scale?}
 \label{sec:ch8_intuition}
@@ -1164,7 +1095,7 @@ primes satisfying the activity criterion:
 \end{equation}
 
 \begin{thmbox}{Raw Fixed Points (T5a)}
-\label{thm:T5a}
+\label{thm:T5a}\leanProved{PT.NumberTheory.T5Mertens.mertensSum\_M3}
 Equation~\eqref{eq:fixed_point_raw} has exactly two positive integer
 solutions on $[3, 100]$:
 \begin{equation}
@@ -1212,7 +1143,7 @@ it satisfies the following three conditions simultaneously:
   identity (no cascade dynamics).
 \item \label{it:I2}
   $\gamp{2}(\mu) > 1/2$: the anomalous dimension exceeds the
-  activity threshold (the channel is structurally present, not ghost).
+  activity threshold (the channel is structurally present, not echo).
 \item \label{it:I3}
   The GFT partition $\log_2 m = \DKL + H$ is operational:
   $p = 2$ creates the bifurcation $\qrel \neq \qtherm$
@@ -1243,7 +1174,7 @@ and~\eqref{eq:fixed_point_reduced} reduces to summation over odd
 active primes.
 
 \begin{thmbox}{Reduced Fixed Point (T5b)}
-\label{thm:T5b}
+\label{thm:T5b}\leanProved{PT.Stochastic.T5CanonicalTight.T5\_tight\_perron\_eigen}
 \label{thm:T5} % compatibility alias
 The reduced cascade equation~\eqref{eq:fixed_point_reduced} has a
 unique positive integer solution:
@@ -1387,7 +1318,7 @@ solution.
 \label{sec:ch8_stability}
 
 \begin{thmbox}{Stability of $\mustar$}
-\label{thm:stability}
+\label{thm:stability}\leanProved{PT.FixedPoint.T7GlobalUniqueness.Fpers\_eq\_fifteen\_of\_ge\_seven}
 The fixed point $\mustar = 15$ is linearly stable: the largest
 eigenvalue of the linearized map $F' = \partial(\sum_{\rm active} p)/\partial\mu$
 evaluated at $\mu = 15$ satisfies $|F'(15)| < 1$.
@@ -1406,28 +1337,28 @@ step: the fixed point is \emph{super-stable} (spectral radius zero).
 \end{thmbox}
 
 % ============================================================
-\subsection{Ghost primes and the inactive sector}
+\subsection{Echo primes and the inactive sector}
 \label{sec:ch8_ghost}
 
 The primes $\{11, 13, \ldots\}$ that fail the activity criterion
 $\gamp{p} > 1/2$ play a different role in PT: they appear as
 \emph{counter-terms} in the running coupling computation (\cite{companion_physics})
-and as \emph{ghost modes} in the vacuum polarization correction (R28).
+and as \emph{echo modes} in the vacuum polarization correction (R28).
 
-\begin{idbox}{Ghost Prime Identity}
+\begin{idbox}{Echo Prime Identity}
 \label{id:ghost}
-The ghost vacuum polarization correction is
+The echo vacuum polarization correction is
 \begin{equation}
-  \delta_{\rm ghost} = -\gamma_3 \cdot \alphaEM \cdot \beta_{\rm ghost},
+  \delta_{\rm echo} = -\gamma_3 \cdot \alphaEM \cdot \beta_{\rm echo},
   \qquad
-  \beta_{\rm ghost} = \sum_{p \in \{11,13\}} \sinp{p}\,\gamp{p}
+  \beta_{\rm echo} = \sum_{p \in \{11,13\}} \sinp{p}\,\gamp{p}
   \approx 0.104,
   \label{eq:ghost_correction}
 \end{equation}
 which shifts $1/\alpha$ by $14\,\text{ppb}$ (R28, R32).
 \end{idbox}
 
-The physical meaning is: ghost primes are not ``absent'' from the
+The physical meaning is: echo primes are not ``absent'' from the
 sieve---they are present but \emph{below threshold}. Their contribution
 appears as a sub-leading correction rather than a leading coupling.
 
@@ -1436,7 +1367,7 @@ appears as a sub-leading correction rather than a leading coupling.
 \label{sec:ch8_six}
 
 \begin{thmbox}{Six Justifications for $\mustar = 15$}
-\label{thm:six_justifications}
+\label{thm:six_justifications}\leanProved{PT.FixedPoint.FixedPointMasterTheorem.master\_fixedpoint\_unique}
 The value $\mustar = 15$ is multiply confirmed by independent lines:
 \begin{enumerate}[leftmargin=*, label=\textbf{J\arabic*.}]
 \item \textbf{Sieve-internal (T5):} $\mustar = \sum_{\text{active}} p$,
@@ -1476,7 +1407,7 @@ but $\sin^2\!\theta_W$ remains at $0.2372$ ($+2.6\%$ error), which
 cascades to $m_W$ ($-1.3\%$) and $m_Z$ ($-0.9\%$).
 
 The dressing corrections to $\alpha$ and to $\sin^2\!\theta_W$ are
-\emph{structurally linked}: both descend from the same Koide--ghost
+\emph{structurally linked}: both descend from the same Koide--echo
 geometry (\cite{companion_physics}). Removing one while keeping the
 other breaks the internal consistency. The architecture
 $\mustar = 15$ (theorem) $+$ dressing (derived) is the unique route
@@ -1491,7 +1422,7 @@ correction is applied. \VALTAG.
 \label{sec:ch8_Nc}
 
 \begin{thmbox}{Color from Sieve ($N_c = 3$)}
-\label{thm:Nc}
+\label{thm:Nc}\leanProved{PT.FixedPoint.T7MuStar.activeAt15\_eq}
 The number of colors $N_c$ is the unique positive integer
 satisfying the spatial-dimension equation:
 \begin{equation}
@@ -1557,7 +1488,7 @@ structurally stable under small perturbations
   \node[thmblue, above, font=\small] at (4, 2.38) {$p=7$};
   \node[below, font=\tiny] at (4, 0) {7};
 
-  % Ghost primes (below threshold)
+  % Echo primes (below threshold)
   \fill[dissgray] (5.0, 1.704) circle (4pt);
   \draw[dissgray, thin] (5.0, 1.704) -- (4.3, 1.2);
   \node[dissgray, left, font=\small] at (4.3, 1.2) {$p=11$};
@@ -1568,13 +1499,13 @@ structurally stable under small perturbations
   \node[dissgray, right, font=\small] at (6.7, 0.9) {$p=13$};
   \node[below, font=\tiny] at (6.0, 0) {13};
 
-  % Active/ghost label
+  % Active/echo label
   \node[thmblue, font=\small\itshape] at (2.5, 3.6) {active};
-  \node[dissgray, font=\small\itshape] at (5.5, 0.5) {ghost (counter-terms)};
+  \node[dissgray, font=\small\itshape] at (5.5, 0.5) {echo (counter-terms)};
 \end{tikzpicture}
 \caption{Anomalous dimensions $\gamp{p}(15)$ for the first five odd primes.
 The threshold $s = 1/2$ (dashed red) separates the three active primes
-(blue circles) from the ghost primes (gray circles).}
+(blue circles) from the echo primes (gray circles).}
 \label{fig:gamma_hierarchy}
 \end{figure}
 
@@ -1632,7 +1563,7 @@ in agreement with the estimate $\sim 0.015$ from the literature (R38b).
 
 The preceding subsections have exhibited the three candidate fixed
 points ($\mu = 10$, $17$, $\mustar = 15$), the crystallisation
-of~$p = 2$, the anomalous dimension hierarchy, and the ghost sector.
+of~$p = 2$, the anomalous dimension hierarchy, and the echo sector.
 We now ask a more sweeping question: \emph{what happens when the sieve
 is initialised from progressively larger prime bases?}  The answer
 reveals that the fixed point $\mustar = 15$ is not merely unique
@@ -1749,7 +1680,7 @@ $18$ & divergent (no finite $\mustar$) & every prime $p \leq \mu$
 \end{center}
 
 At $\mu_0 = 17$, $\gamp{11}(17) = 0.478 < 1/2$: the prime
-$p = 11$ is a ghost, and the cascade converges to $\mustar = 15$.
+$p = 11$ is an echo, and the cascade converges to $\mustar = 15$.
 At $\mu_0 = 18$, $\gamp{11}(18) = 0.503 > 1/2$: the prime $p = 11$
 crosses the activity threshold, triggering a runaway cascade with
 no finite fixed point under the unrestricted iteration.  Imposing
@@ -1761,13 +1692,13 @@ asymptotic divergence.
 \subsubsection{The dimensional firewall}
 \label{sec:ch8_firewall}
 
-At the stable fixed point $\mustar = 15$, the first two ghost
+At the stable fixed point $\mustar = 15$, the first two echo
 primes have anomalous dimensions:
 \begin{equation}
   \gamp{11}(15) = 0.426, \qquad \gamp{13}(15) = 0.356.
   \label{eq:ghost_gamma_values}
 \end{equation}
-Both lie below $s = 1/2$.  The margin of the first ghost is
+Both lie below $s = 1/2$.  The margin of the first echo is
 \begin{equation}
   \Delta_\gamma \;=\; s - \gamp{11}(15) \;=\; 0.500 - 0.426 \;=\; 0.074,
   \label{eq:firewall_margin}
@@ -1788,7 +1719,7 @@ $|A(\mu)|/\pi(\mu) \to 1$ as $\mu \to \infty$ (verified numerically
 up to $p \leq 2 \cdot 10^4$).  Imposing the natural truncation
 $p \leq 251$ yields the conditional fixed point $\mustar = 6079$
 with 53~active primes (a 53-dimensional effective space, manifestly
-non-physical).  The ghost primes are therefore the \emph{price} of
+non-physical).  The echo primes are therefore the \emph{price} of
 three-dimensional stability: they are present as perturbative
 corrections (NLO and NNLO counter-terms, see
 \eqref{eq:ghost_correction} and \cite{companion_physics})
@@ -1905,7 +1836,7 @@ dimensions do not change the active set.
   table~\ref{tab:cosmogonic}, dimensional firewall
   $\Delta_\gamma = 0.074$);
   $N_c = 3$ from combinatorial equation~\eqref{eq:Nc_equation:ch08};
-  ghost prime identity~\eqref{eq:ghost_correction};
+  echo prime identity~\eqref{eq:ghost_correction};
   $p = 2$ as info/anti-info operator ($\gamma_2 = 0.867 > 1/2$,
   \cite{companion_M1}).\\[4pt]
 \textbf{Conditional:} None in this chapter.\\[4pt]
@@ -1915,7 +1846,7 @@ dimensions do not change the active set.
   Cosmogonic sequence $10 \to 17 \to 15$
   (Remark~\ref{rem:cosmogonic}).\\[4pt]
 \textbf{Validation:} J6 ($\mu_\alpha = 15.0397$ minimizes $\alpha$ error);
-  anomalous dimension hierarchy exactly as computed; ghost correction
+  anomalous dimension hierarchy exactly as computed; echo correction
   re-derived via $p = 2$ channel ($\sin^2\theta_2 \cdot \beta \cdot \alpha^2$,
   \cite{companion_physics}).
 \end{ledgerbox}

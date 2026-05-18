@@ -1,0 +1,283 @@
+\section{Proofs of the main results}
+\label{sec:proofs}
+
+The two theorems of this section share the same algebraic skeleton ---
+both reduce a question about mutual information to a statement about
+the joint law of two modular coordinates --- but they apply to two
+different measures and have, accordingly, two different conclusions.
+Theorem~\ref{thm:empirical_invariance} states that the mutual
+information under the empirical measure is independent of the
+parameter~$\mu$ that selects the Bianchi-I geometry $G(\mu)$;
+Theorem~\ref{thm:ruelle_zero} states that the mutual information
+under the Ruelle measure is exactly zero. Together they pin down the
+arithmetic origin of the residual
+$\mathcal{I}_{p,q}$: it is independent of any geometric reparametrisation
+of the active primes (Theorem~\ref{thm:empirical_invariance}) and it
+vanishes for the idealised Ruelle measure
+(Theorem~\ref{thm:ruelle_zero}), so it must be attributable to the
+arithmetic structure of the gap field $\{g_n\}$ alone. The closed-form
+expression in Section~\ref{sec:closed_form} confirms this from a
+constructive angle.
+
+\subsection{Theorem~4.1: Geometric Decoupling Theorem (empirical form)}
+\label{ssec:thm_4_1_proof}
+
+\begin{theorem}[Geometric Decoupling Theorem, empirical form]
+\label{thm:empirical_invariance}
+\footnote{Formally verified in Lean~4 + Mathlib as
+\texttt{PT.CrtDecoupling.Empirical.empirical\_invariance}
+(hypothesis form),
+\texttt{SpectralReduction.empirical\_invariance\_closed}
+(finite-state closed form),
+\texttt{Phase3.empirical\_invariance\_infinite}
+(infinite-state form via Birkhoff--Hopf), and
+\texttt{Phase4.sieve\_empirical\_invariance}
+(sieve-specific closure); see Section~\ref{ssec:formal_verification}.}
+Let $p, q \in \{3, 5, 7\}$ be distinct active primes, and let
+$\Phi_p \in \mathcal{A}_p$, $\Phi_q \in \mathcal{A}_q$ be bounded
+observables on the corresponding modular $\sigma$-algebras. The
+function
+\begin{equation}
+  \mathcal{I}_{p,q}(\mu)
+  \;:=\;
+  I_{\pi_m^{\mathrm{emp}}}\!\bigl(\Phi_p \,;\, \Phi_q \,\big|\, G(\mu)\bigr)
+  \label{eq:Ipq_def}
+\end{equation}
+is constant on $\mu \in [\mu_c, \infty)$.
+\end{theorem}
+
+The conditional mutual information in~\eqref{eq:Ipq_def} is taken in
+the sense of Cover and Thomas~\cite[\S~2.5]{CoverThomas2006}: writing
+$G$ for a random variable taking the value $G(\mu)$, we have
+$I(\Phi_p; \Phi_q \mid G) = \mathbb{E}\bigl[I_{G}(\Phi_p; \Phi_q)\bigr]$,
+where $I_{G}$ denotes the mutual information under the conditional
+law given $G$. For our purposes, the only fact we need is the standard
+identity~\cite[Eq.~(2.66)]{CoverThomas2006}: if $G$ is $\mu$-a.s.\
+constant under the measure of interest, then
+$I(\Phi_p; \Phi_q \mid G) = I(\Phi_p; \Phi_q)$.
+
+\begin{proof}
+The proof proceeds in four steps.
+
+\textbf{Step 1 (Empirical measure is geometry-independent).}
+The gap sequence $\{g_n\}$ is defined by the Eratosthenes sieve, a
+purely arithmetic algorithm that takes no reference to any continuous
+parameter $\mu$ nor to any metric on a continuum. Consequently the
+empirical stationary measure
+$\pi_m^{\mathrm{emp}}$ in Definition~\ref{def:pi_emp} is a functional
+of $\{g_n\}$ alone, and is independent of both~$\mu$ and the family
+$G(\mu)$. This is the content of Remark~\ref{rmk:residual_arithmetic}
+in the setup.
+
+\textbf{Step 2 ($G(\mu)$ is spectrally measurable).}
+By Lemma~\ref{lem:G_measurable} of Section~\ref{sec:geometric_fiber},
+each component of $G(\mu)$ is a measurable functional of the spectrum
+of $T_m$:
+\[
+  G(\mu) \;\in\; \sigma\bigl(\mathrm{Spec}(T_m)\bigr)
+  \qquad \text{for every } \mu \in [\mu_c, \infty).
+\]
+Since $\mathrm{Spec}(T_m)$ is fixed by the modular reduction
+$r_n^{(m)} \mapsto r_{n+1}^{(m)}$ --- it is a property of the matrix
+$T_m$ on $\mathcal{S}_m$, not of the trajectory ---
+$\sigma(\mathrm{Spec}(T_m))$ is contained in the shift-invariant
+$\sigma$-algebra $\mathcal{I} = \{A \in \mathcal{F} : T^{-1}A = A\}$
+on the path space $\Omega$. We therefore have
+$G(\mu) \in \mathcal{I}$.
+
+\textbf{Step 3 (Ergodicity $\Rightarrow$ a.s.\ constancy).}
+Proposition~\ref{prop:ergodic} of Section~\ref{sec:ergodic} states
+that the shift $T$ on $\Omega$ is ergodic with respect to
+$\pi_m^{\mathrm{emp}}$, by the Birkhoff--Hopf ergodic
+theorem~\cite[Thm.~1.6]{Walters1982} applied to the spectral-gap
+estimate of Theorem~T4 in~\cite[Ch.~7]{PT_Monograph}.
+Corollary~\ref{cor:trivial} then asserts that the invariant
+$\sigma$-algebra is $\pi_m^{\mathrm{emp}}$-trivial:
+$\mathcal{I} = \{\emptyset, \Omega\} \pmod{\pi_m^{\mathrm{emp}}}$.
+Combined with Step~2, this gives
+\[
+  G(\mu) \in \mathcal{I}
+  \;\Longrightarrow\;
+  G(\mu) \text{ is } \pi_m^{\mathrm{emp}}\text{-a.s.\ constant},
+\]
+which is Corollary~\ref{cor:G_constant}.
+
+\textbf{Step 4 (Conditioning on a constant is trivial).}
+By the standard identity recalled above the proof
+(cf.~\cite[\S~2.5]{CoverThomas2006}), conditioning the joint law of
+$(\Phi_p, \Phi_q)$ on a random variable that is almost surely
+constant under the relevant measure does not change the joint
+information content:
+\begin{equation}
+  \mathcal{I}_{p,q}(\mu)
+  \;=\; I_{\pi_m^{\mathrm{emp}}}(\Phi_p\,;\,\Phi_q \mid G(\mu))
+  \;=\; I_{\pi_m^{\mathrm{emp}}}(\Phi_p\,;\,\Phi_q).
+  \label{eq:Ipq_reduced}
+\end{equation}
+The right-hand side depends only on the gap field and the modular
+$\sigma$-algebras $\mathcal{A}_p, \mathcal{A}_q$. Since both of these
+objects are independent of~$\mu$ (Step~1),
+$\mathcal{I}_{p,q}(\mu)$ is independent of~$\mu$.
+\end{proof}
+
+\paragraph{What the proof is, and what it is not.}
+The mathematical content of Steps~1--4 is fairly mild: an
+arithmetically-defined object cannot depend on a continuous parameter
+that does not enter its construction, and conditioning on a constant
+removes the conditioning. What the proof does \emph{not} say is that
+the inter-channel mutual information~$\mathcal{I}_{p,q}$ vanishes; it
+only says that, whatever value $\mathcal{I}_{p,q}$ takes, it is the
+same value at every $\mu \in [\mu_c, \infty)$. The actual numerical
+value is computed in Section~\ref{sec:closed_form}
+(Corollary~\ref{cor:closed_form}), where the closed form is fitted to
+the corpus values $0.138$ bits and $0.283$ bits of
+Remark~\ref{rmk:marginal_vs_joint}. The non-trivial epistemic claim
+is therefore not that $\mathcal{I}_{p,q}$ is computable, but that it
+is \emph{geometric-invariant} despite the appearance of $G(\mu)$ in
+the conditioning of~\eqref{eq:Ipq_def}: the emergent geometry does
+not couple the modular fibres. We return to this point in
+Section~\ref{sec:applications}.
+
+\subsection{Theorem~4.2: Geometric Decoupling Theorem (Ruelle form)}
+\label{ssec:thm_4_2_proof}
+
+\begin{theorem}[Geometric Decoupling Theorem, Ruelle form]
+\label{thm:ruelle_zero}
+\footnote{Formally verified in Lean~4 + Mathlib as
+\texttt{PT.CrtDecoupling.Main.geometric\_decoupling\_ruelle};
+see Section~\ref{ssec:formal_verification}.}
+Under the Ruelle measure $\pi_m^{\mathrm{Ruelle}}$ of the
+transfer matrix $T_m$, for all distinct active primes $p, q$ and
+bounded observables $\Phi_p, \Phi_q$:
+\begin{equation}
+  I_{\pi_m^{\mathrm{Ruelle}}}\!\bigl(\Phi_p \,;\, \Phi_q\bigr)
+  \;=\; 0
+  \qquad (\text{exact}).
+  \label{eq:ruelle_zero}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:crt_tensor} of
+Section~\ref{sec:crt_factor}, the CRT identification
+$\mathbb{Z}/pq\mathbb{Z} \cong \mathbb{Z}/p\mathbb{Z} \times
+\mathbb{Z}/q\mathbb{Z}$ lifts to the tensor decomposition
+$T_{pq} = T_p \otimes T_q$. By Lemma~\ref{lem:pi_factor} of the same
+section, the unique left Perron eigenvector
+$\pi_{pq}^{\mathrm{Ruelle}}$ of $T_{pq}$ for the simple eigenvalue
+$\lambda_0 = 1$ factorises as
+\begin{equation}
+  \pi_{pq}^{\mathrm{Ruelle}}
+  \;=\; \pi_{p}^{\mathrm{Ruelle}} \otimes \pi_{q}^{\mathrm{Ruelle}},
+  \label{eq:pi_factor_recall}
+\end{equation}
+where uniqueness of the Perron eigenvalue (and hence of the
+eigenvector) on each factor is guaranteed by the spectral gap of
+$T_p$ established in~\eqref{eq:Tp_spectrum}.
+Equation~\eqref{eq:pi_factor_recall} is exactly the independence
+condition for the joint law of $(r^{(p)}, r^{(q)})$ on
+$\mathcal{S}_p \times \mathcal{S}_q$, so for any bounded
+observables $\Phi_p \in \mathcal{A}_p$, $\Phi_q \in \mathcal{A}_q$,
+\begin{equation}
+  D_{\mathrm{KL}}\!\bigl(\pi_{pq}^{\mathrm{Ruelle}}
+       \,\|\, \pi_{p}^{\mathrm{Ruelle}} \otimes \pi_{q}^{\mathrm{Ruelle}}\bigr)
+  \;=\; 0,
+  \label{eq:KL_zero}
+\end{equation}
+and the mutual information
+$I_{\pi_{pq}^{\mathrm{Ruelle}}}(\Phi_p; \Phi_q) =
+D_{\mathrm{KL}}\bigl(\mathbb{P}_{\Phi_p, \Phi_q} \,\|\,
+\mathbb{P}_{\Phi_p} \otimes \mathbb{P}_{\Phi_q}\bigr)$ inherits the
+vanishing from~\eqref{eq:KL_zero} by the data-processing
+inequality~\cite[\S~2.8]{CoverThomas2006}: passing from
+$(r^{(p)}, r^{(q)})$ to the deterministic image
+$(\Phi_p, \Phi_q)$ cannot increase information content, and the
+source already has zero mutual information.
+\end{proof}
+
+\paragraph{Numerical confirmation of~\eqref{eq:pi_factor_recall}.}
+The factorisation~\eqref{eq:pi_factor_recall} is verified numerically
+in Appendix~\ref{app:numerics}. With $m = pq = 15$, the script
+\texttt{scripts/test\_crt\_decoupling.py} computes the left Perron
+eigenvector $\pi_{15}^{\mathrm{Ruelle}}$ of $T_{15}$ directly by
+solving $\pi T_{15} = \pi$ at \texttt{mpmath} precision
+$50$~digits, and compares it to the Kronecker product
+$\pi_3^{\mathrm{Ruelle}} \otimes \pi_5^{\mathrm{Ruelle}}$. The
+observed discrepancy is
+\begin{equation}
+  \bigl\| \pi_{15}^{\mathrm{Ruelle}}
+        - \pi_3^{\mathrm{Ruelle}} \otimes \pi_5^{\mathrm{Ruelle}}
+  \bigr\|_2
+  \;=\; 5.88 \times 10^{-53},
+  \label{eq:T2_value}
+\end{equation}
+i.e.\ machine-precision zero at $50$~dps. Sampling
+$N = 10^6$ i.i.d.~draws from
+$\pi_3^{\mathrm{Ruelle}} \otimes \pi_5^{\mathrm{Ruelle}}$ and
+estimating the empirical mutual information yields
+$1.45 \times 10^{-6}$ bits, consistent with the
+$O(1/\sqrt{N})$ statistical noise floor and not with a non-zero
+signal. The two checks confirm Theorem~\ref{thm:ruelle_zero} both
+algebraically (Eq.~\eqref{eq:T2_value}) and statistically.
+
+\subsection{Remarks on the two theorems together}
+\label{ssec:both_thms}
+
+We collect three observations that orient the rest of the paper.
+
+\paragraph{(i) Identifying the residual.}
+Define the empirical residual on disjoint active channels by
+\begin{equation}
+  \mathcal{I}_{p,q}
+  \;:=\;
+  I_{\pi_m^{\mathrm{emp}}}\bigl(r^{(p)}\,;\, r^{(q)}\bigr)
+  \;-\;
+  I_{\pi_m^{\mathrm{Ruelle}}}\bigl(r^{(p)}\,;\, r^{(q)}\bigr).
+  \label{eq:residual_def}
+\end{equation}
+Theorem~\ref{thm:ruelle_zero} forces the second term to vanish
+identically, so $\mathcal{I}_{p,q} =
+I_{\pi_m^{\mathrm{emp}}}(r^{(p)}; r^{(q)})$.
+Theorem~\ref{thm:empirical_invariance} forces the first term to be
+independent of the geometric parameter~$\mu$, so $\mathcal{I}_{p,q}$
+is a single number per pair $(p, q)$. The corpus
+values~\eqref{eq:MI_corpus} are
+\begin{equation}
+  \mathcal{I}_{3,5} \;=\; 0.138 \text{ bits},
+  \qquad
+  \mathcal{I}_{3,7} \;=\; 0.283 \text{ bits}.
+  \label{eq:residual_values}
+\end{equation}
+
+\paragraph{(ii) The residual is arithmetic, not geometric.}
+Step~1 of the proof of Theorem~\ref{thm:empirical_invariance}
+identifies the empirical measure as a functional of the gap field
+alone. The non-vanishing of $\mathcal{I}_{p,q}$ relative to the
+Ruelle baseline must therefore be sourced by the arithmetic
+constraints on consecutive prime gaps that the Ruelle Markov chain
+does not see --- in particular by the multi-modular correlations
+between $g_n \bmod p$ and $g_n \bmod q$ that survive once one
+restricts attention to the trajectory $\omega^\ast$ generated by the
+actual primes. The closed-form expression of
+Corollary~\ref{cor:closed_form} in the next section provides a
+quantitative model of this residual, fitted to the corpus
+values~\eqref{eq:residual_values}.
+
+\paragraph{(iii) Consequence for non-locality.}
+The combination of the two theorems is the precise statement, at the
+level of measure theory and information theory, that the emergent
+Bianchi-I geometry $G(\mu)$ does not couple the disjoint modular
+fibres of the prime sieve. Whatever inter-channel correlations the
+empirical measure carries, they are arithmetic in origin and
+unchanged by every choice of $\mu \in [\mu_c, \infty)$, including the
+canonical fixed point $\mu^\ast = 15$. This is the technical input
+required by the companion foundational
+paper~\cite{PT_HOLONOMY_NONLOCALITY}, where it is used to argue that
+the observed Bell-type correlations between space-like separated
+detectors are inherited from the modular structure of the underlying
+sieve, not transported by a spatial light-cone of the emergent
+geometry. We say more about this in Section~\ref{sec:applications};
+the technical lifting from the present finite-dimensional setting to
+the infinite-dimensional CRT product $\mathcal{H}_\infty$ is the
+content of Lemma~G in the
+website corpus~\cite[Lemma G]{PT_Monograph}.

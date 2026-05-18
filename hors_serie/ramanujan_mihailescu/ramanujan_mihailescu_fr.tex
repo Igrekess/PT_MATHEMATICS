@@ -1,0 +1,235 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{csquotes}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,citecolor=blue!50!black}
+\onehalfspacing
+
+\newtheorem{theoreme}{Théorème}
+\newtheorem{lemme}[theoreme]{Lemme}
+\newtheorem{proposition}[theoreme]{Proposition}
+\newtheorem*{remarque}{Remarque}
+
+\title{\textbf{De l'unique identité de Catalan dans la famille des radicaux emboîtés de Ramanujan}}
+\author{Yan Senez\\\texttt{yan.senez@protonmail.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Pour tout entier $n \geq 1$, l'identité de Ramanujan en radical emboîté
+\[
+n + 1 \;=\; \sqrt{\,1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}}\,}
+\]
+est vérifiée, avec déploiement de premier niveau $(n+1)^2 = 1 + n(n+2)$. Nous
+montrons que le cas $n = 2$, donnant $3^2 - 2^3 = 1$, est l'unique membre de
+la famille pour lequel la quantité $n(n+2)$ est une puissance parfaite non
+triviale. La preuve se réduit à deux observations élémentaires et à une
+application du théorème de Mihailescu~\cite{Mihailescu2004}, qui résout la
+conjecture de Catalan. Nous commentons ce que cela dit de la place du cas
+$n = 2$ au sein de la famille de Ramanujan.
+\end{abstract}
+
+\section*{1. Introduction}
+
+Dans un problème soumis au \emph{Journal of the Indian Mathematical
+Society}~\cite{Ramanujan1911}, Ramanujan demande au lecteur d'évaluer
+\begin{equation}
+\sqrt{\,1 + 2\sqrt{1 + 3\sqrt{1 + 4\sqrt{1 + 5\sqrt{1 + \cdots}}}}\,},
+\label{eq:Rama-3}
+\end{equation}
+donnant la réponse $3$. Ce radical emboîté est l'une des identités les plus
+célèbres de l'arithmétique élémentaire. C'est en fait un cas particulier de
+la formule générale consignée dans les \emph{Notebooks} de
+Ramanujan~\cite[chap.~12]{Berndt1985}~:
+\begin{equation}
+n + 1 \;=\; \sqrt{\,1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}}\,},
+\qquad n \in \mathbb{N}_{\geq 1}.
+\label{eq:Rama-general}
+\end{equation}
+La convergence du membre de droite, vue comme limite de troncatures finies,
+a été établie par Vijayaraghavan~\cite{Vijayaraghavan1929} et
+Herschfeld~\cite{Herschfeld1935}~; l'identité algébrique elle-même découle de
+la relation récursive $f(n)^2 = 1 + n \cdot f(n+1)$ avec $f(n) = n+1$, puisque
+$(n+1)^2 - 1 = n(n+2)$.
+
+Le cas $n = 2$ dans~(\ref{eq:Rama-general}) redonne~(\ref{eq:Rama-3}). Au-delà
+de son élégance visuelle, il est naturel de se demander si $n = 2$ jouit
+d'une singularité \emph{intrinsèque} au sein de la famille
+(\ref{eq:Rama-general}). À première vue, non~: l'identité est paramétrique,
+et tout $n \geq 1$ produit un radical emboîté parfaitement valide. Dans cette
+note, nous observons que, lorsque l'on regarde le développement au premier
+niveau
+\begin{equation}
+(n+1)^2 \;=\; 1 + n(n+2),
+\label{eq:first-level}
+\end{equation}
+le cas $n = 2$ jouit bel et bien d'une propriété singulière~: c'est l'\emph{unique}
+valeur de $n$ pour laquelle $n(n+2)$ est une puissance parfaite non triviale,
+et par conséquent l'unique valeur pour laquelle (\ref{eq:first-level}) est
+elle-même une identité de type Catalan
+\begin{equation}
+3^2 - 2^3 \;=\; 1.
+\label{eq:Catalan-3-2}
+\end{equation}
+
+Le cœur de l'observation est que cette unicité n'est pas seulement empirique~:
+elle est une conséquence du théorème de Mihailescu~\cite{Mihailescu2004}, la
+preuve de la conjecture de Catalan. L'objet de cette note est de consigner
+cette remarque, d'en donner une preuve propre, et de discuter ce que cela
+dit de la place de $n = 2$ dans la famille de Ramanujan.
+
+\section*{2. Le résultat}
+
+\begin{theoreme}\label{thm:main}
+Pour $n \in \mathbb{Z}_{\geq 1}$, l'entier $n(n+2)$ est une puissance
+parfaite non triviale, c'est-à-dire qu'il existe $b, q \in \mathbb{Z}_{\geq 2}$
+tels que
+\[
+n(n+2) \;=\; b^{q},
+\]
+si et seulement si $n = 2$, auquel cas $(b, q) = (2, 3)$ et
+l'identité~(\ref{eq:first-level}) se réduit à $3^{2} - 2^{3} = 1$.
+\end{theoreme}
+
+\begin{proof}
+Nous distinguons selon la valeur de $q \geq 2$.
+
+\medskip
+\noindent\textbf{Cas 1~: $q = 2$.} Supposons $n(n+2) = b^2$ pour un certain
+$b \geq 2$. Avec $n(n+2) = (n+1)^2 - 1$, ceci équivaut à
+\begin{equation}
+(n+1)^2 - b^2 \;=\; 1,
+\quad\text{i.e.,}\quad
+\bigl((n+1) - b\bigr)\bigl((n+1) + b\bigr) \;=\; 1.
+\label{eq:diff-squares}
+\end{equation}
+Comme $b \geq 2$ et $n \geq 1$, les deux facteurs du membre de gauche
+de~(\ref{eq:diff-squares}) sont des entiers strictement positifs~; or
+l'unique factorisation de $1$ dans $\mathbb{Z}_{>0}$ est $1 \cdot 1$, ce qui
+impose $(n+1) - b = (n+1) + b = 1$, donc $b = 0$ et $n + 1 = 1$, en
+contradiction avec $b \geq 2$ et $n \geq 1$. Ainsi aucun $n \geq 1$ ne rend
+$n(n+2)$ carré parfait.
+
+(De manière équivalente~: $(n+1)^2 - 1$ se situe strictement entre les
+carrés consécutifs $n^2$ et $(n+1)^2$ pour $n \geq 1$, donc n'est pas un
+carré.)
+
+\medskip
+\noindent\textbf{Cas 2~: $q \geq 3$.} Supposons $n(n+2) = b^q$ pour un
+$b \geq 2$ et un $q \geq 3$. Alors
+\begin{equation}
+(n+1)^2 - b^q \;=\; 1,
+\label{eq:cat-shape}
+\end{equation}
+ce qui est l'équation de Catalan $a^p - b^q = 1$ avec les paramètres
+$(a, p, q) = (n+1, 2, q)$. D'après le théorème de
+Mihailescu~\cite{Mihailescu2004}, l'unique solution en entiers strictement
+positifs à
+\[
+a^p - b^q = 1, \qquad a, b, p, q \geq 2,
+\]
+est $(a, b, p, q) = (3, 2, 2, 3)$. En spécialisant à notre cas
+($p = 2$, $q \geq 3$), il vient $a = n+1 = 3$, $b = 2$, $q = 3$, et donc
+$n = 2$ avec $n(n+2) = 2 \cdot 4 = 8 = 2^3$.
+
+\medskip
+En combinant les deux cas, $n(n+2) = b^q$ avec $b, q \geq 2$ impose
+$n = 2$, $b = 2$, $q = 3$, et (\ref{eq:first-level}) devient l'identité
+$3^2 - 2^3 = 1$. Réciproquement, $n = 2$ fournit évidemment une telle
+représentation.
+\end{proof}
+
+\section*{3. Remarques}
+
+\subsection*{3.1.\ Profondeur du théorème versus simplicité de l'application.}
+
+Le théorème~\ref{thm:main} se réduit à une application en une ligne du
+théorème de Mihailescu~\cite{Mihailescu2004}, mais le théorème sous-jacent
+est profond~: sa preuve repose sur la théorie des unités cyclotomiques et
+des racines primaires dans les corps cyclotomiques, en s'appuyant sur des
+réductions antérieures dues à Cassels, Inkeri et d'autres. Ce qui est
+nouveau ici n'est pas la profondeur, mais l'observation que cette
+profondeur se manifeste dans un contexte entièrement élémentaire, celui
+des radicaux emboîtés de Ramanujan. Le théorème est, en un sens, une
+traduction de Mihailescu dans la famille de Ramanujan.
+
+\subsection*{3.2.\ Niveaux plus profonds du radical.}
+
+Le développement au premier niveau (\ref{eq:first-level}) est particulier.
+À la profondeur $k$, des déploiements répétés donnent
+\[
+(n+1)^2 \;=\; 1 + n \, f(n+1)
+\;=\; 1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}},
+\]
+et les valeurs apparaissant à l'intérieur n'ont plus la structure de
+$(n+1)^2 - 1$. Savoir si un niveau \emph{plus profond} du radical pour un
+autre $n$ produit une identité de type Catalan est une question distincte~;
+nous ne l'abordons pas ici, mais notons qu'elle exigerait une identité de
+puissance parfaite non élémentaire dans
+$\sqrt{1 + (n+1)\sqrt{\cdots}}$, dont aucune occurrence n'est connue.
+
+\subsection*{3.3.\ Lien avec la conjecture de Pillai.}
+
+La conjecture de Pillai affirme que pour tout $k \geq 1$, l'équation
+$a^p - b^q = k$ admet un nombre fini de solutions $(a, b, p, q)$ avec
+$a, b, p, q \geq 2$. Le cas $k = 1$ de Catalan est désormais établi
+(Mihailescu)~; les $k$ supérieurs restent ouverts. Notre observation se
+reformule ainsi~: \emph{au sein de la famille de Ramanujan}~(\ref{eq:Rama-general}),
+la différence de puissances parfaites $|a^p - b^q|$ au premier niveau
+atteint la valeur $1$ exactement une fois, en $n = 2$. Savoir si cela
+reste vrai pour des écarts plus grands $|a^p - b^q| = k$, $k \geq 2$,
+dépend des solutions paramétriques de $n(n+2) - b^q = \pm k$, où des
+résultats partiels (par exemple Bilu, Bugeaud) s'appliquent, mais aucun
+analogue général du théorème de Mihailescu n'est disponible.
+
+\subsection*{3.4.\ Interprétation visuelle.}
+
+Le théorème~\ref{thm:main} peut se paraphraser ainsi. La famille
+(\ref{eq:Rama-general}) réalise tout entier strictement positif $n+1$ comme
+radical emboîté~; parmi ceux-ci, l'entier $3$ est le seul dont le
+\emph{produit définissant le plus interne} ($2 \cdot 4$) s'effondre
+multiplicativement en une unique puissance parfaite ($2^3$). C'est ce qui
+fait du cas $n = 2$, parmi tous les cas visuellement semblables de la
+famille, un cas arithmétiquement singulier.
+
+\begin{thebibliography}{9}
+
+\bibitem{Berndt1985}
+B.\ C.\ Berndt,
+\emph{Ramanujan's Notebooks, Part~II},
+Springer-Verlag, New York, 1989.
+
+\bibitem{Herschfeld1935}
+A.\ Herschfeld,
+\emph{On infinite radicals},
+Amer.\ Math.\ Monthly \textbf{42} (1935), no.\ 7, 419--429.
+
+\bibitem{Mihailescu2004}
+P.\ Mihailescu,
+\emph{Primary cyclotomic units and a proof of Catalan's conjecture},
+J.\ reine angew.\ Math.\ \textbf{572} (2004), 167--195.
+
+\bibitem{Ramanujan1911}
+S.\ Ramanujan,
+\emph{Question 289},
+J.\ Indian Math.\ Soc.\ \textbf{3} (1911), 90~;
+\emph{Solution to Question 289},
+J.\ Indian Math.\ Soc.\ \textbf{4} (1912), 226.
+
+\bibitem{Vijayaraghavan1929}
+T.\ Vijayaraghavan,
+\emph{On certain infinite series and convergent integrals},
+Proc.\ London Math.\ Soc.\ (2) \textbf{29} (1929), 281--294.
+
+\end{thebibliography}
+
+\end{document}

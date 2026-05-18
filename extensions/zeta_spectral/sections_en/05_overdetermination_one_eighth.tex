@@ -1,0 +1,203 @@
+\section{Cohomological Overdetermination of the Residue $1/8$}
+\label{sec:surdetermination_un_huitieme}
+
+The semi-classical PT density differs from the Riemann--von Mangoldt
+density by a constant $1/8$ (\S\ref{sec:densite_semi_classique}).
+\citeauthor{BerryKeating1999} \citeyear{BerryKeating1999} identify
+this constant as the fine Maslov phase of the corners of the double
+barrier, without dynamical interpretation. PT provides a \emph{triple
+cohomological identification} that converges, overdetermined by the
+coherence of the three readings.
+
+\subsection{K2 --- Algebraic identity: $1/8 = \sper^{2}/2 = \lambdaH$}
+\label{sec:K2}
+
+The scalar Higgs self-coupling in the PT sector is derived in the
+monograph (ch.~15, depth $d = 3$) \cite{PT_Foundations}:
+\begin{equation}
+\lambdaH \;=\; \dfrac{\sper^{2}}{2}.
+\label{eq:lambdaH}
+\end{equation}
+At $\sper = 1/2$, $\lambdaH = 1/8$. This identity is structurally
+tied to the two-branch bifurcation $\qplus/\qminus$: $\lambdaH$ is
+the square of the bifurcation parameter divided by the number of
+scalar branches.
+
+\paragraph{Associated algebraic identifications.}
+Two other algebraic identifications coincide:
+\[
+\dfrac{1}{8} \;=\; \bigg(\dfrac{1}{2}\bigg)^{3}
+\quad \text{(cube of the scalar unit, \cite{PT_M5})},
+\]
+\[
+\dfrac{1}{8} \;=\; \dfrac{1}{2 N_{\mathrm{gen}} + 2}
+\quad \text{(at $N_{\mathrm{gen}} = 3$, exact)}.
+\]
+
+\paragraph{Rejected naive candidates.}
+Several candidates are rejected by numerical incompatibility:
+$1/N_{\mathrm{Weyl}} = 1/15 \ne 1/8$,
+$\chi(\Sigma_{\mathrm{pers}})/Z = -26/Z \ne 1/8$,
+$\gammathree \gammafive \gammaseven \approx 0.335 \ne 1/8$,
+$\alpha_{\mathrm{bare}} \approx 1/136 \ne 1/8$. The $1/8$ is not a
+topological invariant of the persistence surface, but a scalar
+invariant of the bifurcation $\qplus/\qminus$.
+
+\subsection{K3 --- Cohomological identity: $1/8 = c_1/N_{\mathrm{corners}}$}
+\label{sec:K3}
+
+The relevant cohomological structure is constructed in the PT corpus.
+The doubled Fisher manifold
+\begin{equation}
+\mathcal{M}_m^{\mathrm{db}} \;=\; \mathcal{M}_m \times \mathcal{M}_m, \qquad
+g(p,q) \;=\; g_{\mathrm{Fisher}}(p) \,\oplus\, g_{\mathrm{Fisher}}(p),
+\label{eq:Mdoub}
+\end{equation}
+(the \emph{same} base point $p$ in both blocks --- canonical
+Dombrowski 1962 construction on the tangent bundle of a Hessian
+manifold), equipped with the complex structure $J_{\mathrm{PT}}(u, v) = (-v, u)$
+is a K\"ahler manifold (theorem~\texttt{kahler\_fisher},
+\cite{PT_M5}). Its K\"ahler potential is the negative Shannon
+entropy $K(p) = \sum_k p_k \log p_k$ (canonical Hessian potential of
+the Fisher metric, Amari--Nagaoka 2000). The chiral projectors
+\begin{equation}
+P_{\pm} \;=\; \tfrac{1}{2}(I \mp i J_{\mathrm{PT}})
+\label{eq:Pchir}
+\end{equation}
+decompose $H^{*}(BG_m; \Cplx)$ into $\pm i$ eigenspaces and are
+identified with the spinor projector $\qplus/\qminus$ of the sieve
+(\cite{PT_M5}, \texttt{def:chiral\_projectors}).
+
+\begin{theoreme}[First Chern class of the PT spinor bundle, \texttt{berry\_3pi}]
+\label{thm:berry_3pi}
+The first Chern class of the spinor bundle over
+$\mathcal{M}_m^{\mathrm{db}}$ equals
+\begin{equation}
+c_1 \;=\; \sper \;=\; \dfrac{1}{2}.
+\label{eq:c1}
+\end{equation}
+The holonomy of the $N_{\mathrm{gen}}$-fold cover is
+$\exp(2\pi i\,c_1\,N_{\mathrm{gen}}) = \exp(3\pi i)$ (origin of the
+\texttt{berry\_3pi} theorem of the monograph, app.~P, \S~C7).
+\end{theoreme}
+
+The algebraic sub-statement $c_1 = 1/2$ is \textbf{[Thm]}
+unconditional; full APS rigour of the calculation
+$1/8 = c_1/N_{\mathrm{corners}}$ on the cornered manifold remains
+partially open (\S\ref{sec:limites_ouvertures}), status
+\textbf{[Der]/[partial]}.
+
+\begin{proposition}[Cohomological computation of the residue $1/8$]
+\label{prop:c1_sur_N}
+In the canonical phase space $(u, p_u)$, the BK double barrier is a
+symplectic quarter-plane
+$Q_\star = \{u \ge u_\star,\, p_u \ge p_\star,\, u_\star\,p_\star = 2\pi\}$.
+The boundary admits two edges meeting at the corner. With the Weyl
+symmetrisation and the two mirror branches identified by the
+antiperiodicity $T_3$ (\S\ref{sec:bord_antiperiodique}), one obtains
+\begin{equation}
+N_{\mathrm{corners}} \;=\; 4
+\label{eq:Ncoins}
+\end{equation}
+distinct corners on the complete cell. The Berry phase contributed by
+each corner, measured on the quarter-turn joining the two adjacent
+edges, is
+\begin{equation}
+\gamma_{\mathrm{corner}} \;=\; -\dfrac{2\pi\,c_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{\pi}{4},
+\label{eq:gamma_corner}
+\end{equation}
+and the associated Bohr--Sommerfeld density is
+\begin{equation}
+\boxed{\;N_{\mathrm{corner}} \;=\; \dfrac{\gamma_{\mathrm{corner}}}{2\pi} \;=\; -\dfrac{c_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{1}{8}.\;}
+\label{eq:c1_sur_N}
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Sketch]
+The symplectic quarter-plane admits 2 edges ($u = u_\star$ and
+$p_u = p_\star$) that meet at the corner
+$(u_\star, p_\star) = (\sqrt{2\pi}, \sqrt{2\pi})$. The Weyl
+symmetrisation (involution $(u, p_u) \leftrightarrow (p_u, u)$)
+creates the mirror sector, doubling the edges and producing two
+additional corners. The antiperiodicity $\theta = \pi$
+(proposition~\ref{prop:antiperiodicite}) identifies two pairs of
+corners into two, giving $N_{\mathrm{corners}} = 4$ in total (without
+the identification, one would have $N = 8$ and $c_1/N = 1/16$,
+contradicting the observed residue~\eqref{eq:residu_un_huitieme}).
+The Berry phase per corner is computed by parallel transport on the
+inner quarter-turn: in local polar variables centred on the corner,
+$\gamma_{\mathrm{corner}} = \oint A = -2\pi\,c_1/N_{\mathrm{corners}} = -\pi/4$
+with $c_1 = 1/2$. The passage to the Bohr--Sommerfeld density divides
+by $2\pi$: $N_{\mathrm{corner}} = -1/8$. Numerical verification:
+machine precision $1.68 \cdot 10^{-14}$ via the script
+\texttt{pt\_k3\_cohomological\_maslov.py}.
+\end{proof}
+
+The identification $1/8 = c_1/N_{\mathrm{corners}}$ therefore yields
+the Berry--Keating $-\pi/8$ per corner, but \emph{derived} from the
+PT cohomological structure, not as an opaque geometric artefact.
+
+\subsection{Berry phase per corner: $1/8 = \sper/4$}
+\label{sec:phase_berry}
+
+At the equator of the Bloch sphere ($\theta = \pi/2$), the Berry
+connection of a spin-$\sper$ is constant:
+$A_\varphi = -\sin^{2}(\pi/4) = -1/2 = -\sper$ per unit azimuthal
+angle. Over a complete equatorial cycle, the Berry phase is
+$\gamma_1 = -\pi = -2\pi\,\sper$. Divided by the four
+corners~\eqref{eq:Ncoins}:
+\begin{equation}
+\dfrac{\gamma_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{\pi}{4} \;=\; -2\pi \cdot \dfrac{\sper}{4},
+\label{eq:s_sur_4}
+\end{equation}
+that is, $-1/8$ per corner in area count. The corresponding algebraic
+identity is
+\begin{equation}
+\dfrac{1}{8} \;=\; \dfrac{\sper}{4}.
+\label{eq:un_huitieme_sur_4}
+\end{equation}
+
+\subsection{Overdetermination by coherence}
+\label{sec:surdetermination_coherence}
+
+The three identifications converge to the same number at $\sper = 1/2$:
+\begin{equation}
+\boxed{\;
+\dfrac{1}{8} \;=\; \underbrace{\dfrac{\sper^{2}}{2}}_{\text{K2, Higgs}} \;=\; \underbrace{\dfrac{c_1}{N_{\mathrm{corners}}}}_{\text{K3, Chern}} \;=\; \underbrace{\dfrac{\sper}{4}}_{\text{Berry per corner}}.\;}
+\label{eq:triple_identification}
+\end{equation}
+The algebraic coherence between K2 and the Berry phase per corner
+reduces to
+\begin{equation}
+\dfrac{\sper^{2}}{2} \;=\; \dfrac{\sper}{4} \quad\Longleftrightarrow\quad \sper\,(2\sper - 1) \;=\; 0.
+\label{eq:coherence_K2_Berry}
+\end{equation}
+The only solutions are $\sper = 0$ (trivial, no active parameter,
+excluded by $\Tone$) and $\sper = 1/2$ (theorem $\Tone$). \textbf{The
+coherence of the three cohomological readings overdetermines
+$\sper = 1/2$ modulo the assumed $\Tone$ axiom}; it does not derive
+$\sper = 1/2$ independently of $\Tone$. It is a structural signature
+of $\Tone$ from the HP-PT zone of the corpus, not a substitute for
+$\Tone$.
+
+\subsection{Index-theorem reading}
+\label{sec:indice_APS}
+
+The final assembly is interpreted as a formal
+Atiyah--Patodi--Singer index theorem \cite{APS1975} on the cornered
+manifold $\square$:
+\begin{equation}
+\mathrm{ind}\!\big(D_+|_\square\big) \;=\; \int_{\square} \mathrm{ch}(E)\,\mathrm{Td}(\square) \,+\, \dfrac{1}{2}\,\big(\eta_{\partial} + \dim \ker D_\partial\big) \,+\, \sum_{\mathrm{coins}} \dfrac{\delta_{\mathrm{coin}}}{2}.
+\label{eq:APS}
+\end{equation}
+With $c_1(E) = 1/2$ and $\delta_{\mathrm{coin}} = \pi/2$ for a right
+corner, the per-corner contribution is $\pi/2 / (2 \cdot 2\pi) = 1/8$,
+in agreement with the direct Berry calculation. The equivalent
+identification via Chern--Simons:
+$\exp(2\pi i\,c_1/N_{\mathrm{corners}}) = \exp(i\pi/4)$, whose argument
+$\pi/4$ gives in density $1/8$ per corner.
+
+Formal rigour in the strict APS sense (beyond the area calculation
+and numerical verification) remains to be developed
+(\S\ref{sec:limites_ouvertures}). The cohomological mechanism is
+nonetheless explicitly identified.

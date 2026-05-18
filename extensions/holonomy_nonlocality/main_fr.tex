@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+\IfFileExists{pt-common-fr.sty}{\usepackage{pt-common-fr}}{\usepackage{../shared/pt-common-fr}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Environnement Prédiction (utilisé en §5 ; partage le compteur de theoreme)
+\newtheorem{prediction}[theoreme]{Prédiction}
+
+\title{\textbf{Holonomie sans potentiel :\\
+la Théorie de la Persistance et le débat\\
+Aharonov--Bohm / non-localité}}
+\author{Yan Senez\\
+\texttt{yan.senez@protonmail.com}}
+\date{Mai 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Le débat fondationnel opposant la réalité du potentiel vecteur
+(position de Bohm--Hiley), la non-localité intrinsèque du champ
+(lectures fortes d'EPR/Bell), et la primauté de l'holonomie
+(position de Wu--Yang--Healey) n'admet, dans le cadre classique de
+la théorie des champs sur variété, aucune prédiction expérimentale
+qui le tranche. La Théorie de la Persistance (PT), dérivée
+intégralement à partir du paramètre de symétrie $s = 1/2$, fait
+émerger cette résolution à partir d'un théorème structurel et
+d'une prédiction falsifiable.
+
+Nous démontrons que (i) le champ dynamique fondamental est unique
+(la suite des écarts entre premiers consécutifs, BA0/T0) ;
+(ii) le couple potentiel-champ classique $A_\mu \leftrightarrow
+F_{\mu\nu}$ est entièrement dérivé du gradient et du Hessien du
+potentiel scalaire de persistance $S = -\ln \alpha$, donc
+secondaire ; (iii) l'objet primitif est l'angle d'holonomie
+modulaire $\theta_p$, jauge-invariant et topologique ; et (iv) la
+corrélation $I(\Phi_p\,;\,\Phi_q\,|\,G(\mu))$ entre canaux
+modulaires distincts est invariante sous la famille géométrique
+émergente $G(\mu)$ (théorème démontré dans l'article companion
+\cite{PT_CRT_DECOUPLING}). Cette invariance reclassifie la
+non-localité spatiale apparente de Bell--EPR comme une corrélation
+arithmétique CRT intra-canal, et la phase Aharonov--Bohm comme un
+invariant topologique du canal $\theta_3$ indépendant de la
+métrique. La prédiction QH1a (information mutuelle invariante par
+géométrie spatiale) est testable sur plateformes d'atomes froids,
+ions piégés, et molécules diatomiques.
+
+Les Théorèmes~4.1 et~4.2 ainsi que leur cadre structurel sont
+formellement vérifiés en Lean~4 + Mathlib sous le namespace
+\texttt{PT.CrtDecoupling} de l'article companion
+\cite{PT_CRT_DECOUPLING} (Phases~1 à~4.1, 0~\texttt{sorry},
+0~\texttt{axiom}).
+\end{abstract}
+
+\tableofcontents
+
+\input{sections_fr/01_debat}
+\input{sections_fr/02_champ_connexion_pt}
+\input{sections_fr/03_holonomie_primitive}
+\input{sections_fr/04_decouplage_crt}
+\input{sections_fr/05_prediction_qh1a}
+\input{sections_fr/06_consequences_bell_ab_epr}
+\input{sections_fr/07_lectures_ontologiques}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

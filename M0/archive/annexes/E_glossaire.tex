@@ -1,0 +1,106 @@
+\section{Glossaire et table récapitulative}
+\label{app:glossaire}
+
+Cette annexe rassemble, pour référence rapide, (i)~la liste des théorèmes structurants $\Tzero$--$\Tsix$ et axiomes de pont $\BAzero$--$\BAfive$, (ii)~les constantes et valeurs numériques canoniques de la PT à $\mustar = 15$, et (iii)~une correspondance bilingue physique\,\textendash\,mathématique étendue.
+
+\subsection*{A.1. Sept théorèmes structurants $\Tzero$--$\Tsix$}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Code & Énoncé court & Chapitre \\
+\midrule
+\Tzero{} & $\{a_n\}$ satisfaisant $U_1$--$U_4$ $\Longrightarrow$ $\{a_n\} = \{g_n\}$ & ch.~25 \\
+\Tone{} & $T_3[1,1] = T_3[2,2] = 0$ sur les entiers $6$-rugueux & ch.~01 \\
+\Ttwo{} & $|\lambda_2(T_{30})| = 1/4 = \sper^2$ & ch.~03 \\
+\Tthree{} & $T_3 = \mathrm{antidiag}(1,1)$, spectre $\{1, -1\}$ & ch.~01 \\
+\Tfour{} & $\alpha_k \to \sper = 1/2$ quand $k \to \infty$ & ch.~07 \\
+\Tfive{} & $\mustar = 3 + 5 + 7 = 15$, unique solution entière positive & ch.~08 \\
+\Tsix{} & Unicité complète du crible d'Ératosthène (T6a + T6b + T6c) & ch.~02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{A.2. Six axiomes de pont $\BAzero$--$\BAfive$ (tous prouvés)}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Code & Énoncé court & Chapitre \\
+\midrule
+$\BAzero$ & Champ dynamique fondamental $= \{g_n\}$ (promu en \Tzero) & ch.~25 \\
+$\BAone$ & Observables $= g_n \bmod m$ (connexion de jauge) & ch.~09 \\
+$\BAtwo$ & $\log_2 m = D_{\rm KL}(P \,\|\, U_m) + H(P)$ (GFT) & ch.~09 \\
+$\BAthree$ & $\sinp{p} = \delta_p(2 - \delta_p)$, $\delta_p = (1 - q^p)/p$ & ch.~06 \\
+$\BAfour$ & $\gammap{p}(\mustar) > 1/2 \Leftrightarrow p \in \{3, 5, 7\}$ & ch.~06 \\
+$\BAfive$ & $\alpha_{\rm sieve} = \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus)$ & ch.~09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{A.3. Constantes et valeurs numériques canoniques}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Symbole & Valeur & Description \\
+\midrule
+$\sper$ & $1/2$ & Paramètre de persistance \\
+$\mustar$ & $15$ & Point fixe arithmétique ($= 3 + 5 + 7$) \\
+$\qplus$ & $13/15 \approx 0{,}867$ & Branche-sommet (rationnelle) \\
+$\qminus$ & $e^{-1/15} \approx 0{,}935$ & Branche-arête (transcendante) \\
+$\alpha_{\rm cons}$ & $1/4 = \sper^2$ & Exposant de conservation spectrale (\Ttwo) \\
+\midrule
+$\gammathree(\mustar)$ & $0{,}808$ & Dim.~anomale du premier actif $3$ \\
+$\gammafive(\mustar)$ & $0{,}696$ & Dim.~anomale du premier actif $5$ \\
+$\gammaseven(\mustar)$ & $0{,}595$ & Dim.~anomale du premier actif $7$ \\
+$\gamma_{11}(\mustar)$ & $0{,}426$ & Dim.~anomale de l'écho $11$ \\
+$\gamma_{13}(\mustar)$ & $0{,}356$ & Dim.~anomale de l'écho $13$ \\
+\midrule
+$\sinp{3}(\qplus)$ & $0{,}2192$ & Holonomie du premier actif $3$ \\
+$\sinp{5}(\qplus)$ & $0{,}1940$ & Holonomie du premier actif $5$ \\
+$\sinp{7}(\qplus)$ & $0{,}1726$ & Holonomie du premier actif $7$ \\
+\midrule
+$1/\alpha_{\rm bare}$ & $136{,}28$ & Couplage nu via $\BAfive$ \\
+$1/\alpha_{\rm EM}^{\rm PT}$ & $137{,}035\,999\,083$ & Valeur prédite finale (\ref{eq:alpha_EM_final}) \\
+$1/\alpha_{\rm EM}^{\rm exp}$ & $137{,}035\,999\,084(21)$ & Valeur expérimentale~\cite{PDG2024} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{A.4. Correspondance bilingue étendue}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}p{3.7cm}p{5cm}p{5cm}@{}}
+\toprule
+Objet PT & Lecture mathématique & Lecture en physique théorique \\
+\midrule
+$\sper = 1/2$ & Paramètre de persistance, racine du gap spectral de $T_{30}$ & Exposant critique \\
+$\mustar = 15$ & Point fixe d'auto-cohérence du crible & Échelle d'équilibre \\
+$L^0$ & Catégorie d'ensembles pointés (ZFC, additivité) & Espace des configurations admissibles \\
+$\Lzero$ (lemme) & Distribution géométrique unique sous moyenne fixée & Principe de maximum d'entropie de Shannon \\
+$\{g_n\}$ & Suite des écarts entre premiers consécutifs & Champ dynamique fondamental \\
+Crible mod $p$ & Projection $\pi_p$ sur $\mathbb{Z}/p\mathbb{Z}$ & Filtre d'échelle au niveau $p$ \\
+$T_m$ & Matrice de transfert au modulus $m$ & Opérateur d'évolution stochastique \\
+$\thetap{p}$ & Phase cyclique mod $p$ & Angle de mélange \\
+$\sinp{p}$ & Amplitude de caractère au carré & Probabilité d'holonomie \\
+$\delta_p(q)$ & $(1 - q^p)/p$, défaillance cyclique & Défaut de bouclage \\
+$\gammap{p}(\mu)$ & Dimension anomale au niveau $p$ & Biais de persistance \\
+$\qplus = 13/15$ & Branche max-entropie (rationnelle) & Branche-sommet du graphe du crible \\
+$\qminus = e^{-1/15}$ & Branche de Gibbs (transcendante) & Branche-arête du graphe du crible \\
+Involution $D$ & $D : \qplus \leftrightarrow \qminus$, symétrie $\mathbb{Z}_2$ & Bifurcation sommet-arête \\
+$\alpha_{\rm sieve}$ & Fonctionnelle multiplicative de Pontryagin & Couplage scalaire du crible \\
+$\alpha_{\rm EM}$ & Couplage électromagnétique mesuré & Constante de structure fine \\
+$\beta_{\rm echo}$ & Coefficient des échos $\{11, 13\}$ & Correction IR universelle \\
+Cascade $\gammap{p}$ & Suite de raffinements $\mathcal C_j$ & Flot d'échelle discret \\
+\bottomrule
+\end{tabular}
+\end{table}

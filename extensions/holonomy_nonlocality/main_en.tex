@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+\IfFileExists{pt-common.sty}{\usepackage{pt-common}}{\usepackage{../shared/pt-common}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% Prediction environment (used in §5; shares the theorem counter)
+\newtheorem{prediction}[theorem]{Prediction}
+
+\title{\textbf{Holonomy without Potential:\\
+Persistence Theory and the\\
+Aharonov--Bohm / Non-Locality Debate}}
+\author{Yan Senez\\
+\texttt{yan.senez@protonmail.com}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The foundational debate between (a) the reality of the vector
+potential (Bohm--Hiley), (b) the intrinsic non-locality of the
+field (strong readings of EPR/Bell), and (c) the primacy of
+holonomy (Wu--Yang--Healey), admits, within the classical
+field-on-manifold framework, no experimental prediction that
+adjudicates between them. Persistence Theory (PT), derived
+entirely from the symmetry parameter $s = 1/2$, supplies a
+structural theorem and a falsifiable prediction that do so.
+
+We show that (i) the fundamental dynamical field is unique
+(the prime-gap sequence, BA0/T0); (ii) the classical potential-field
+pair $A_\mu \leftrightarrow F_{\mu\nu}$ is entirely derived from
+the gradient and Hessian of the scalar persistence potential
+$S = -\ln \alpha$, and is therefore secondary; (iii) the primitive
+object is the modular holonomy angle $\theta_p$, gauge-invariant
+and topological; and (iv) the correlation $I(\Phi_p\,;\,\Phi_q\,|\,
+G(\mu))$ between distinct modular channels is invariant under the
+emergent geometric family $G(\mu)$ (theorem proved in the companion
+paper \cite{PT_CRT_DECOUPLING}). This invariance reclassifies the
+apparent spatial non-locality of Bell--EPR as an arithmetic
+intra-channel CRT correlation, and the Aharonov--Bohm phase as a
+topological invariant of the $\theta_3$ channel independent of the
+metric. Prediction QH1a (mutual information invariant under spatial
+geometry) is testable on cold-atom, trapped-ion, and diatomic
+molecular platforms.
+
+Theorems~4.1 and~4.2, together with their structural framework, are
+formally verified in Lean~4 + Mathlib under the namespace
+\texttt{PT.CrtDecoupling} of the companion paper
+\cite{PT_CRT_DECOUPLING} (Phases~1 to~4.1, 0~\texttt{sorry},
+0~\texttt{axiom}).
+\end{abstract}
+
+\tableofcontents
+
+\input{sections_en/01_debate}
+\input{sections_en/02_field_connection_pt}
+\input{sections_en/03_holonomy_primitive}
+\input{sections_en/04_crt_decoupling}
+\input{sections_en/05_qh1a_prediction}
+\input{sections_en/06_bell_ab_epr_consequences}
+\input{sections_en/07_ontological_readings}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,143 @@
+\section{Vérifications numériques}
+\label{sec:verifications_numeriques}
+
+Cette section synthétise les vérifications numériques principales du
+programme. Chaque ligne renvoie à la section qui en porte la
+démonstration ou la description.
+
+\subsection{Tableau récapitulatif}
+\label{sec:verif_table}
+
+\begin{longtable}{@{}p{6.5cm}p{4.5cm}p{3cm}@{}}
+\toprule
+\textbf{Test} & \textbf{Précision / score} & \textbf{Référence}\\
+\midrule
+\endhead
+Identité Fredholm $\det(I - \DRop)^{-1} = \Rres(s)$, $\Reop(s) > 1$
+ & $\sim 2 \cdot 10^{-12}$ & \S\ref{sec:fredholm}\\
+Formule de trace $-d\log \Rres/ds = \sum_p (\log p)[1/(p^s-1) + \Ap p^{-s}]$
+ & $\sim 10^{-26}$ & thm.~\ref{thm:trace_formula}\\
+Différence $\NPT - N_{\mathrm{RvM}} = 1/8$ constante sur 4 décades
+ & $\sim 10^{-15}$ & \S\ref{sec:densite_semi_classique}\\
+Symétrie spectrale $\{\gamma_n, -\gamma_n\}$ (BC AP, $\theta = \pi$)
+ & $5 \cdot 10^{-12}$ & prop.~\ref{prop:antiperiodicite}\\
+Phase de Berry par coin $-\pi/4$, densité $-1/8$
+ & $1{,}68 \cdot 10^{-14}$ & prop.~\ref{prop:c1_sur_N}\\
+$\epsstar^{\mathrm{geom}}$ vs optimum empirique $W = 24$
+ & $\sim 5\,\%$ global, $\sim 1\,\%$ au régime $M = 1155, W = 24$
+ & lem.~\ref{lem:epsstar_geom}\\
+Pôles de $|\Treg(1/2 + it)|$ (formule brute) sur $t \in [10, 70]$
+ & $17/17$ à $|\Delta| < 1{,}5$
+ & \S\ref{sec:trace_reg}\\
+Pôles de $|\Treg(1/2 + it)|$ (formule brute) sur $t \in [10, 200]$
+ & $74/79$ à $|\Delta| < 1{,}5$ (sat.~$P_{\max} = 3\,000$)
+ & \S\ref{sec:trace_reg}\\
+Pôles de $|\Treg(1/2 + it)|$ avec $R_1(\eps = 0{,}2)$ sur $t \in [10, 200]$
+ & $77/79$ à $|\Delta| < 1{,}5$, \textbf{$75/79$ à $|\Delta| < 0{,}5$}, $47/79$ à $|\Delta| < 0{,}1$
+ & \S\ref{sec:trace_reg}\\
+Pôles de $|\Treg(1/2 + it)|$ avec $R_1(\eps = 0{,}2)$ sur $t \in [10, 500]$
+ & $267/269$ ($99{,}3\,\%$), \textbf{$242/269$ ($90{,}0\,\%$) à $|\Delta| < 0{,}5$}, $139/269$ ($51{,}7\,\%$) à $|\Delta| < 0{,}1$
+ & \S\ref{sec:verif_smearing}\\
+\bottomrule
+\caption{Vérifications numériques principales du programme HP-PT.}
+\label{tab:verifs_numeriques}
+\end{longtable}
+
+\subsection{Forme fonctionnelle exacte de $\NPT$}
+\label{sec:verif_NPT}
+
+Vérification de \eqref{eq:NPT} sur
+$\gamma \in \{14, 21, 30, 50, 100, 200, 500, 1000\}$~:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+$\gamma$ & $\NPT$ & $N_{\mathrm{RvM}}$ & différence\\
+\midrule
+$14{,}13$ & $0{,}5737$ & $0{,}4487$ & $0{,}1250$\\
+$21{,}02$ & $1{,}6945$ & $1{,}5695$ & $0{,}1250$\\
+$50{,}00$ & $9{,}5478$ & $9{,}4228$ & $0{,}1250$\\
+$100$ & $29{,}1273$ & $29{,}0023$ & $0{,}1250$\\
+$500$ & $269{,}7117$ & $269{,}5867$ & $0{,}1250$\\
+$1\,000$ & $648{,}7412$ & $648{,}6162$ & $0{,}1250$\\
+\bottomrule
+\end{tabular}
+\caption{Différence $\NPT - N_{\mathrm{RvM}}$ constante à $1/8$ sur quatre
+décades, à précision machine ($\le 10^{-15}$).}
+\label{tab:verif_residu}
+\end{table}
+
+\subsection{Capture distributionnelle des zéros}
+\label{sec:verif_capture}
+
+Test sur $t \in [10, 70]$ avec régularisation Abel--Hadamard $p^{-\eps}$.
+Pour $\eps \in \{0{,}6,\,0{,}4,\,0{,}2\}$, le module $|F_\eps(t)|$ croît
+systématiquement de $2{,}7\times$ à $3{,}3\times$ aux zéros de $\zeta$
+quand $\eps$ passe de $0{,}6$ à $0{,}2$ (signature d'un pôle), contre
+$1{,}4\times$ à $2{,}3\times$ aux points neutres (régularité). Sur
+$t \in [10, 70]$, $dt = 0{,}1$, on détecte 41-52 pics locaux selon
+$P_{\max} \in [3\,000,\, 100\,000]$ ; les 17 zéros de référence sont
+tous à moins de $1{,}5$ unité d'un pic ($|\Delta| < 1{,}5$) dès
+$P_{\max} = 3\,000$.
+
+\paragraph{Saturation $P_{\max}$.}
+La capture sature au-delà de $P_{\max} = 3\,000$~: la médiane $|\Delta|$
+décroît de $0{,}49$ ($P_{\max} = 3\,000$) à $0{,}36$ ($P_{\max} = 30\,000$)
+puis stagne. La même statistique étendue à $t \in [10, 200]$ donne
+$74/79$ zéros (94\,\%) à $|\Delta| < 1{,}5$, $38$ à $|\Delta| < 0{,}5$,
+$7$ à $|\Delta| < 0{,}1$. Les 5 zéros manqués appartiennent à des paires
+$(\gamma_n, \gamma_{n+1})$ avec écart inférieur à la largeur intrinsèque
+d'un pic non régularisé ($\sim 2\pi/\log\gamma$), fusionnées en un pic
+unique. Cas extrême de précision~: $\gamma = 146{,}001$ capturé à
+$|\Delta| = 0{,}001$. L'amélioration sub-$0{,}1$ systématique requiert
+d'appliquer la régularisation explicite $R_1$ ou $R_2$, et non
+l'augmentation de $P_{\max}$.
+
+\subsection{Régularisation par smearing gaussien et range étendu}
+\label{sec:verif_smearing}
+
+Avec $\phi_\eps(t) = (\eps \sqrt{2\pi})^{-1} \exp(-t^{2} / 2\eps^{2})$ et
+$\eps \in \{2,\,1,\,0{,}5\}$, le contraste pôle/neutre est plus marqué~:
+$8\times$ à $10\times$ aux zéros contre $2\times$ à $3\times$ aux points
+neutres. La régularisation gaussienne et la régularisation Abel sont
+équivalentes au sens distributionnel (différence de noyaux régularisants),
+mais la première est plus sensible numériquement.
+
+\paragraph{Range étendu $t \in [10, 500]$ (269 zéros).}
+$R_1$ avec $\eps = 0{,}2$ capture $267/269$ zéros à $|\Delta| < 1{,}5$,
+$242/269$ à $|\Delta| < 0{,}5$ et $139/269$ à $|\Delta| < 0{,}1$. La
+décomposition par bande de 100 unités est~:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Bande} & \textbf{Zéros} & \textbf{Capture $|\Delta| < 0{,}5$}\\
+\midrule
+$[10,\,100]$ & 38 & $100{,}0\,\%$\\
+$[100,\,200]$ & 41 & $92{,}0\,\%$\\
+$[200,\,300]$ & 50 & $89{,}8\,\%$\\
+$[300,\,400]$ & 67 & $87{,}5\,\%$\\
+$[400,\,500]$ & 73 & $86{,}6\,\%$\\
+\bottomrule
+\end{tabular}
+\caption{Capture par sous-bande de $100$ unités, $R_1$ smearing gaussien
+$\eps = 0{,}2$. Dégradation monotone mais bornée : la performance ne
+s'effondre pas avec $T$.}
+\label{tab:bandes}
+\end{table}
+
+Le plancher à $86{,}6\,\%$ est cohérent avec la limite structurelle de
+$55$ paires fusionnées (gap $< 2\pi/\log\gamma$) sur $269$ zéros, soit
+$20{,}4\,\%$ des zéros appartenant à une paire au-dessous de la
+résolution intrinsèque du modèle.
+
+\paragraph{Stratégie $\eps$-adaptative testée.}
+Une stratégie $\eps$-adaptative ($\eps \propto 1/\log\gamma$) a été
+testée sous deux formes~: convolution sur $|F|$ brut (effondrement des
+pics, falsifiée) et convolution sur $F$ complexe (compromis marginal~:
+médiane $|\Delta|$ réduite à $0{,}080$ mais couverture réduite à
+$76\,\%$ à $|\Delta| < 1{,}5$). La régularisation à poids spectral
+fixe ($R_1$, $\eps = 0{,}2$) reste l'\textbf{optimum global}.
+

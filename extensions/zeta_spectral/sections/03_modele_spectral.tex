@@ -1,0 +1,265 @@
+\section{Modèle spectral des zéros}
+\label{sec:modele_spectral}
+
+Cette section présente l'armature analytique et opératorielle. Quatre
+résultats principaux~: expression close des amplitudes $(\kappap)$,
+représentation Fredholm exacte de $\Rres$, opérateur canalisé pour le
+couplage intra-cascade, et formule de trace explicite.
+
+\subsection{Expression close des amplitudes $\kappap(s)$}
+\label{sec:kappa_p}
+
+\begin{definition}
+\label{def:kappa_p}
+Pour chaque premier $p$ et chaque $s \in \Cplx$, on pose
+\begin{equation}
+\boxed{\;\kappap(s) \;=\; 1 \,-\, \big(1 - p^{-s}\big)\,\exp\!\big(\Ap\,p^{-s}\big)\;}
+\label{eq:kappa_p}
+\end{equation}
+\end{definition}
+
+\noindent Par construction,
+\[
+1 \,-\, \kappap(s) \;=\; \big(1 - p^{-s}\big)\,\exp\!\big(\Ap\,p^{-s}\big),
+\]
+et le développement asymptotique pour $p \to \infty$ donne
+\begin{equation}
+\kappap(s) \;=\; (1 - \Ap)\,p^{-s} \,+\, O\!\big(p^{-2s}\big).
+\label{eq:kappa_asymp}
+\end{equation}
+
+\paragraph{Interprétation.}
+Le scalaire fondamental de la cascade n'est ni $p^{-s}$ (terme d'Euler)
+ni $\exp(\Ap p^{-s})$ (compensation bifurquée), mais leur écart $\kappap$.
+On a la lecture
+\[
+1 \,-\, \kappap \;=\; \text{survie résiduelle},
+\qquad
+\kappap \;=\; \text{amplitude spectrale du résidu}.
+\]
+
+\subsection{Représentation Fredholm exacte}
+\label{sec:fredholm}
+
+Soit $\DRop(s)$ l'opérateur diagonal sur $\ell^{2}(\Primes)$ ($\Primes$
+l'ensemble des premiers) défini par $\DRop(s)\,e_p = \kappap(s)\,e_p$.
+
+\begin{theoreme}[Représentation Fredholm de $\Rres$]
+\label{thm:fredholm}
+Pour $\Reop(s) > 1$, l'opérateur $\DRop(s)$ est de classe trace, et
+\begin{equation}
+\boxed{\;\det\!\big(I - \DRop(s)\big)^{-1} \;=\; \Rres(s)\;.}
+\label{eq:fredholm}
+\end{equation}
+\end{theoreme}
+
+\begin{proof}
+Pour $\Reop(s) > 1$, $\sum_p |\kappap(s)| < \infty$ par le développement
+asymptotique~\eqref{eq:kappa_asymp} ; l'opérateur diagonal est donc de
+classe trace. Le calcul direct donne
+\begin{align*}
+\det\!\big(I - \DRop(s)\big)^{-1}
+&= \prod_p (1 - \kappap)^{-1}
+= \prod_p (1 - p^{-s})^{-1}\,\exp(-\Ap\,p^{-s})\\
+&= \zeta(s)\,\exp\!\Big(-\sum_p \Ap\,p^{-s}\Big)
+= \Rres(s),
+\end{align*}
+en utilisant le produit eulérien classique pour $\zeta$ et la définition
+de $\Rres$ en~\eqref{eq:Rres_def}.
+\end{proof}
+
+\paragraph{Portée de la représentation.}
+La preuve est algébrique directe~: \eqref{eq:fredholm} est une
+\emph{réécriture déterminantielle} de la définition de $\Rres$. Sa valeur
+est de fournir la \emph{cible spectrale} que tout opérateur PT canonique
+candidat doit reproduire ; ce n'est pas un argument indépendant pour la
+structure spectrale de $\Rres$.
+
+\paragraph{Vérification numérique.}
+Pour $s = 1.3 + 14.134725\,i$, $P = 10^{6}$ premiers tronqués, l'erreur
+résiduelle entre $\Rres(s)$ calculée par le produit Fredholm
+\eqref{eq:fredholm} et $\Rres(s)$ calculée à partir de $\zeta$ par
+\texttt{mpmath} est de l'ordre de $2.0 \cdot 10^{-12}$. À $\sigma = 1.1$
+la précision tombe à $\sim 1.3 \cdot 10^{-3}$, ce qui reflète l'approche
+de la frontière de convergence absolue, non un défaut de la
+représentation.
+
+\begin{remarque}[Hypothèse de non-annulation]
+\label{rem:non_annulation}
+L'identification $\mathrm{z\acute{e}ros}(\Rres) = \mathrm{z\acute{e}ros}(\zeta)$
+utilisée dans toute la suite suppose
+$\zetaplus(s)\,\zetaminus(s) \neq 0$ sur les zones d'intérêt (en
+particulier la ligne critique). Cette hypothèse est vérifiée
+numériquement sur les zones testées mais n'est pas démontrée ; elle est
+\textbf{conjecturale} et doit être traitée comme telle
+(cf.~\S\ref{sec:limites_ouvertures}).
+\end{remarque}
+
+\subsection{Opérateur canalisé pour le couplage $\sum_p \Ap p^{-s}$}
+\label{sec:operateur_canalise}
+
+Pour modéliser le couplage intra-cascade (la somme $\sum_p \Ap p^{-s}$)
+comme spectre d'un opérateur canonique \emph{sans paramètre ajustable},
+on construit
+\begin{equation}
+\Hilb_{\mathrm{PT}}
+\;=\;
+L^{2}(\Sigma_{\mathrm{pers}}, du) \,\otimes\, L^{2}\!\big(\widehat{\Integers/M\Integers}\big).
+\label{eq:H_PT_def}
+\end{equation}
+La première composante est la coordonnée de Mellin continue sur
+$\Sigma_{\mathrm{pers}}$ (surface de persistance, de genre $14$ dans le
+corpus PT \cite{PT_GeoSpectral}) ; la seconde est discrète, sur les
+caractères du groupe multiplicatif modulo $M$ (cascade par théorème
+chinois des restes, $M$ produit primorial). Le couplage inter-fenêtre est
+construit par noyau de Bergman régularisé
+\begin{equation}
+B_{\mathrm{BF}}(z_i, z_j)
+\;=\;
+\frac{\eps_i\,\eps_j}{|z_i - z_j|^{2} + \eps_i\,\eps_j},
+\qquad
+\eps_i \;=\; \frac{\epsstar}{\rho_i}.
+\label{eq:Bergman_BF}
+\end{equation}
+
+\begin{lemme}[Détermination géométrique de $\epsstar$]
+\label{lem:epsstar_geom}
+La covariance de Bergman régularisée à résolution maximale
+($\eps_{\mathrm{reg}} = 10^{-3}$, paquets de taille premier individuel)
+sur la mesure atomique $\pi_{\log}$ de la coordonnée de Mellin donne
+\begin{equation}
+\epsstar^{\mathrm{geom}} \;=\; 1{,}51.
+\label{eq:epsstar_geom}
+\end{equation}
+\end{lemme}
+
+\begin{proof}[Esquisse]
+La covariance Bergman régularisée du noyau~\eqref{eq:Bergman_BF} sur la
+mesure atomique $\pi_{\log} = \sum_p \delta(u - \log p)$ est, à la
+résolution $\eps_{\mathrm{reg}}$, la moyenne pondérée
+$\mathrm{Cov}(\eps_{\mathrm{reg}}) = \int\!\!\int B_{\mathrm{BF}}(u, u')^{2}\,
+\pi_{\log}(du)\,\pi_{\log}(du')$. Le sweep numérique sur les valeurs de
+$\eps_{\mathrm{reg}}$ par paliers $10^{-3}, 10^{-2}, 10^{-1}, 1$ donne
+une covariance respectivement de $0{,}0252$, $0{,}0794$, $0{,}2408$ et
+$0{,}680$, soit un facteur $\epsstar^{\mathrm{geom}} = 1{,}51$ à la
+résolution maximale (référence naturelle du modèle continu). C'est la
+valeur canonique injectée dans l'opérateur canalisé.
+\end{proof}
+
+\paragraph{Performance.}
+Avec $\epsstar^{\mathrm{geom}}$ injecté sans ajustement, l'erreur médiane
+sur $\sum_p \Ap\,p^{-s}$ est $0{,}085$ à $M = 1155$, $W = 24$ --- soit un
+facteur $\sim 85$ au-dessus du baseline scalaire lissé adaptatif
+($0{,}001$, qui utilise un $\beta$ tuné). L'apport n'est pas la précision
+absolue mais l'\textbf{absence de paramètre libre}~: \eqref{eq:epsstar_geom}
+remplace un tuning empirique par une covariance géométrique canonique.
+
+\subsection{Formule de trace explicite}
+\label{sec:trace_formula}
+
+\begin{theoreme}[Formule de trace explicite]
+\label{thm:trace_formula}
+Pour tout $s$ avec $\Reop(s) > 1$,
+\begin{equation}
+\boxed{\;
+-\,\dfrac{d}{ds} \log \Rres(s)
+\;=\; \sum_{p} \dfrac{\kappap'(s)}{1 - \kappap(s)}
+\;=\; \sum_{p} (\log p)\,\Big[\dfrac{1}{p^s - 1} \,+\, \Ap\,p^{-s}\Big]\,.\;}
+\label{eq:trace_formula}
+\end{equation}
+\end{theoreme}
+
+\begin{proof}
+Par dérivation logarithmique de
+$1 - \kappap(s) = (1 - p^{-s}) \exp(\Ap p^{-s})$. Posons $z = p^{-s}$,
+de sorte que $dz/ds = -\log p \cdot z$. Un calcul direct donne
+\[
+\dfrac{\kappap'(s)}{1 - \kappap(s)}
+\;=\; -(\log p)\,\Big[\Ap\,z - \dfrac{z}{1 - z}\Big]
+\;=\; -(\log p)\,\Big[\Ap\,p^{-s} - \dfrac{1}{p^s - 1}\Big].
+\]
+En sommant sur $p$ et en changeant le signe global on obtient la formule
+annoncée. Un \emph{sanity check} via $-\zeta'/\zeta(s) = \sum_n
+\Lambda(n)\,n^{-s} = \sum_p (\log p)/(p^s - 1)$ donne la même expression
+pour le premier terme.
+\end{proof}
+
+\paragraph{Vérification numérique.}
+À $s = \sigma + 14.134725\,i$ avec $\sigma \in \{1.2,\,1.5,\,2,\,3\}$ et
+$2\,000$ premiers tronqués, l'écart entre les deux formes
+de~\eqref{eq:trace_formula} est de l'ordre de $10^{-26}$ (précision
+\texttt{mpmath} 25 chiffres). L'identité est donc exacte au sens
+algébrique.
+
+\paragraph{Lecture Berry--Keating.}
+L'opérateur de dilatation
+$\HPTBK = (u\,p_u + p_u\,u)/2 = -i(u\partial_u + 1/2)$ engendre le flot
+$e^{-it\HPTBK} f(u) = e^{-t/2}\,f(e^{-t}u)$. Sur la mesure atomique
+$\nu = \sum_p \delta(u - \log p)$, les orbites périodiques du flot issu
+de $\log p_0$ ont pour longueurs $\ell_p = k \log p_0$, $k \ge 1$,
+correspondant aux puissances $p_0^{k}$. Le terme
+$(\log p)/(p^s - 1) = \sum_{k \ge 1} (\log p)\,p^{-ks}$ s'identifie alors
+à la somme sur ces orbites, et $\Ap\,p^{-s}$ représente la contribution
+de couplage holonomique $\qplus/\qminus$ par premier.
+
+\subsection{Trace régularisée opératorielle}
+\label{sec:trace_reg}
+
+L'écriture compacte de la formule de trace~\eqref{eq:trace_formula} en
+termes de la résolvante de $\HPTBK$ et de l'opérateur $\DRop$ utilise une
+projection de Mellin atomique
+\begin{equation}
+\Pi : L^{2}([\umin, \umax], du) \,\to\, \ell^{2}(\Primes_\gamma),
+\qquad \Pi(f)_p \;=\; f(\log p)\,\sqrt{\log p},
+\label{eq:Pi_def}
+\end{equation}
+où $\Primes_\gamma = \{p \text{ premier} : \umin \le \log p \le
+\umax(\gamma)\}$. Le facteur $\sqrt{\log p}$ est la racine de la mesure
+atomique de Haar multiplicative. La trace régularisée s'écrit alors
+\begin{equation}
+\boxed{\;
+\Treg(s) \;:=\; \Tr_{\mathrm{reg}}\!\Big[(s - i\HPTBK)^{-1}\,\DRop(s)\Big]
+\;=\; \sum_{p \in \Primes_\gamma} \kappap(s)\,(\log p)\,\Big[\dfrac{1}{p^s - 1} + \Ap\,p^{-s}\Big]\,.\;}
+\label{eq:Treg}
+\end{equation}
+Dans $\Reop(s) > 1$, $\Treg(s) \equiv -d \log \Rres/ds$. Sur la ligne
+critique $\Reop(s) = 1/2$, la somme prime n'est pas absolument
+convergente ; elle est néanmoins distributionnellement convergente comme
+élément de $\mathcal{S}'(\Reals_t)$, et la régularisation de Hadamard
+donne un sens fonctionnel à $\Treg(1/2 + it)$.
+
+\paragraph{Trois régularisations équivalentes.}
+On utilisera trois régularisations interchangeables au sens distributionnel.
+\begin{description}[nosep,leftmargin=*]
+\item[($R_1$) Smearing par fonction test.] Pour $\phi_\eps$ une approximation
+de l'unité de support compact à largeur $\eps$, on pose
+$I_\eps(\gamma_0) := \int \phi_\eps(t - \gamma_0)\,F(1/2 + it)\,dt$.
+Les pics $I_\eps(\gamma_n)$ se comportent comme $c/\eps$ quand $\eps \to 0^{+}$
+(régularisation par lissage).
+\item[($R_2$) Sommation Abel-Hadamard.] Avec poids $p^{-\eps}$, $\eps > 0$,
+$F_\eps(t) := \sum_p (\log p)\,p^{-\eps}\,[1/(p^{1/2+it} - 1) + \Ap\,p^{-1/2-it}]$.
+Par transformée de Fourier, $F_\eps$ est la convolution de $F$ par la
+gaussienne $\phi_\eps$~: $R_2$ est équivalente à $R_1$ modulo le choix
+de noyau régularisant.
+\item[($R_3$) Soustraction du pôle principal.] $\widetilde F(s) := F(s) - 1/(s - 1)$
+isole le pôle simple en $s = 1$ et applique l'extraction Hadamard à la
+partie restante.
+\end{description}
+
+Les trois régularisations coïncident au sens distributionnel sur les
+pôles de $\Rres$. La démonstration fonctionnelle stricte du prolongement
+analytique de $\Treg$ à la ligne critique --- au-delà de la convergence
+distributionnelle --- reste ouverte (\S\ref{sec:limites_ouvertures}).
+
+\paragraph{Auto-correction : G\_HP4.d falsifié.}
+Un premier test posait l'identité naïve « spectre direct de $\HPTBK$
+borné par double barrière $= \{\gamma_n\}$ ». Ce test a été
+falsifié~: le spectre direct est régulier (Bohr-Sommerfeld
+asymptotiquement linéaire), alors que les $\gamma_n$ sont irréguliers, et
+le ratio entre les deux spectres diverge. Cette falsification a motivé
+le passage à la trace régularisée distributionnelle~: les zéros de
+$\zeta$ sont des \emph{pôles distributionnels} de $\Treg(s)$, pas des
+valeurs propres directes de $\HPTBK$. La discipline de falsifiabilité du
+programme inclut cette correction au même titre que la falsification
+Dirichlet de la \S\ref{sec:auto_correction_dirichlet}.
+

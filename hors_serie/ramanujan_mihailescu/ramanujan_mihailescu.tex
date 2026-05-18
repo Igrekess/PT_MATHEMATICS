@@ -1,0 +1,228 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,citecolor=blue!50!black}
+\onehalfspacing
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{remark}{Remark}
+
+\title{\textbf{On the Unique Catalan Identity in Ramanujan's Nested Radical Family}}
+\author{Yan Senez\\\texttt{yan.senez@protonmail.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For each integer $n \geq 1$, Ramanujan's nested radical identity
+\[
+n + 1 \;=\; \sqrt{\,1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}}\,}
+\]
+holds, with first-level unfolding $(n+1)^2 = 1 + n(n+2)$.  We show
+that the case $n = 2$, yielding $3^2 - 2^3 = 1$, is the unique member
+of the family for which the quantity $n(n+2)$ is a non-trivial perfect
+power.  The proof reduces to two elementary observations and an
+application of Mihailescu's theorem~\cite{Mihailescu2004}, the
+resolution of Catalan's conjecture.  We comment on what this says
+about the place of the case $n=2$ within the Ramanujan family.
+\end{abstract}
+
+\section*{1. Introduction}
+
+In a problem submitted to the \emph{Journal of the Indian Mathematical
+Society}~\cite{Ramanujan1911}, Ramanujan asked the reader to evaluate
+\begin{equation}
+\sqrt{\,1 + 2\sqrt{1 + 3\sqrt{1 + 4\sqrt{1 + 5\sqrt{1 + \cdots}}}}\,},
+\label{eq:Rama-3}
+\end{equation}
+giving the answer $3$.  This nested radical is one of the most famous
+identities in elementary arithmetic.  It is in fact a special case of
+the general formula recorded in Ramanujan's
+\emph{Notebooks}~\cite[Ch.~12]{Berndt1985}:
+\begin{equation}
+n + 1 \;=\; \sqrt{\,1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}}\,},
+\qquad n \in \mathbb{N}_{\geq 1}.
+\label{eq:Rama-general}
+\end{equation}
+The convergence of the right-hand side as a limit of finite truncations
+was settled by Vijayaraghavan~\cite{Vijayaraghavan1929} and
+Herschfeld~\cite{Herschfeld1935}; the algebraic identity itself follows
+from the recursive relation $f(n)^2 = 1 + n \cdot f(n+1)$ with $f(n) = n+1$,
+since $(n+1)^2 - 1 = n(n+2)$.
+
+The case $n = 2$ in (\ref{eq:Rama-general}) recovers (\ref{eq:Rama-3}).
+Setting aside its visual elegance, it is natural to ask whether $n = 2$
+enjoys any \emph{intrinsic} singularity within the family
+(\ref{eq:Rama-general}).  At first glance, no: the identity is
+parametric, and every $n \geq 1$ produces a perfectly valid nested
+radical.  In this note we observe that, when one looks at the
+first-level expansion
+\begin{equation}
+(n+1)^2 \;=\; 1 + n(n+2),
+\label{eq:first-level}
+\end{equation}
+the case $n = 2$ does enjoy a singular property: it is the
+\emph{unique} value of $n$ for which $n(n+2)$ is a non-trivial perfect
+power, and accordingly the unique value for which (\ref{eq:first-level})
+is itself a Catalan-type identity
+\begin{equation}
+3^2 - 2^3 \;=\; 1.
+\label{eq:Catalan-3-2}
+\end{equation}
+
+The core of the observation is that this uniqueness is not merely
+empirical: it is a consequence of Mihailescu's
+theorem~\cite{Mihailescu2004}, the proof of Catalan's conjecture.  The
+purpose of this note is to record this remark, give a clean proof, and
+discuss what it says about the place of $n=2$ in the Ramanujan family.
+
+\section*{2. The Result}
+
+\begin{theorem}\label{thm:main}
+For $n \in \mathbb{Z}_{\geq 1}$, the integer $n(n+2)$ is a non-trivial
+perfect power, i.e.\ there exist $b, q \in \mathbb{Z}_{\geq 2}$ with
+\[
+n(n+2) \;=\; b^{q},
+\]
+if and only if $n = 2$, in which case $(b, q) = (2, 3)$ and the
+identity~(\ref{eq:first-level}) reduces to
+$3^{2} - 2^{3} = 1$.
+\end{theorem}
+
+\begin{proof}
+We split according to the value of $q \geq 2$.
+
+\medskip
+\noindent\textbf{Case 1: $q = 2$.}  Suppose $n(n+2) = b^2$ for some
+$b \geq 2$.  Using $n(n+2) = (n+1)^2 - 1$, this is
+\begin{equation}
+(n+1)^2 - b^2 \;=\; 1,
+\quad\text{i.e.,}\quad
+\bigl((n+1) - b\bigr)\bigl((n+1) + b\bigr) \;=\; 1.
+\label{eq:diff-squares}
+\end{equation}
+Since $b \geq 2$ and $n \geq 1$, both factors on the left of
+(\ref{eq:diff-squares}) are positive integers; the only factorisation
+of $1$ in $\mathbb{Z}_{>0}$ is $1 \cdot 1$, forcing
+$(n+1) - b = (n+1) + b = 1$, hence $b = 0$ and $n + 1 = 1$,
+contradicting $b \geq 2$ and $n \geq 1$.  Thus no $n \geq 1$ makes
+$n(n+2)$ a perfect square.
+
+(Equivalently: $(n+1)^2 - 1$ lies strictly between the consecutive
+squares $n^2$ and $(n+1)^2$ for $n \geq 1$, hence is not a square.)
+
+\medskip
+\noindent\textbf{Case 2: $q \geq 3$.}  Suppose $n(n+2) = b^q$ for some
+$b \geq 2$ and $q \geq 3$.  Then
+\begin{equation}
+(n+1)^2 - b^q \;=\; 1,
+\label{eq:cat-shape}
+\end{equation}
+which is the Catalan equation $a^p - b^q = 1$ with parameters
+$(a, p, q) = (n+1, 2, q)$.  By Mihailescu's theorem
+\cite{Mihailescu2004}, the unique solution in positive integers to
+\[
+a^p - b^q = 1, \qquad a, b, p, q \geq 2,
+\]
+is $(a, b, p, q) = (3, 2, 2, 3)$.  Specialising to our case
+($p = 2$, $q \geq 3$) yields $a = n+1 = 3$, $b = 2$, $q = 3$, and
+therefore $n = 2$ with $n(n+2) = 2 \cdot 4 = 8 = 2^3$.
+
+\medskip
+Combining the two cases, $n(n+2) = b^q$ with $b, q \geq 2$ forces
+$n = 2$, $b = 2$, $q = 3$, and (\ref{eq:first-level}) becomes the
+identity $3^2 - 2^3 = 1$.  Conversely, $n = 2$ obviously gives such a
+representation.
+\end{proof}
+
+\section*{3. Remarks}
+
+\subsection*{3.1.\ Depth of the theorem versus simplicity of the application.}
+
+Theorem~\ref{thm:main} reduces to a one-line application of
+Mihailescu~\cite{Mihailescu2004}, but the underlying theorem is deep:
+its proof rests on the theory of cyclotomic units and primary roots
+in cyclotomic fields, building on earlier reductions by Cassels,
+Inkeri and others.  What is novel here is not the depth, but the
+observation that this depth manifests itself in an entirely elementary
+context, that of Ramanujan's nested radicals.  The theorem is, in a
+sense, a translation of Mihailescu into the Ramanujan family.
+
+\subsection*{3.2.\ Higher levels of the radical.}
+
+The first-level expansion (\ref{eq:first-level}) is special.  At depth
+$k$, repeated unfolding gives
+\[
+(n+1)^2 \;=\; 1 + n \, f(n+1)
+\;=\; 1 + n\sqrt{1 + (n+1)\sqrt{1 + (n+2)\sqrt{\cdots}}},
+\]
+and the values appearing inside no longer have the structure of
+$(n+1)^2 - 1$.  Whether some \emph{deeper} level of the radical for
+some other $n$ produces a Catalan-type identity is a separate
+question; we do not address it here, but note that it would require a
+non-elementary perfect-power identity in $\sqrt{1 + (n+1)\sqrt{\cdots}}$,
+which is not known to occur.
+
+\subsection*{3.3.\ Connection to Pillai's conjecture.}
+
+Pillai's conjecture asserts that for every $k \geq 1$, the equation
+$a^p - b^q = k$ has finitely many solutions in $(a, b, p, q)$ with
+$a, b, p, q \geq 2$.  The Catalan case $k = 1$ is now known
+(Mihailescu); higher $k$ remain open.  Our observation can be
+rephrased as: \emph{within the Ramanujan family}~(\ref{eq:Rama-general}),
+the perfect-power difference $|a^p - b^q|$ at the first level reaches
+the value $1$ exactly once, at $n = 2$.  Whether the same can be said
+for higher gap values $|a^p - b^q| = k$, $k \geq 2$, depends on
+parametric solutions of $n(n+2) - b^q = \pm k$, where partial results
+(e.g.\ Bilu, Bugeaud) apply but no general analogue of Mihailescu's
+theorem is available.
+
+\subsection*{3.4.\ Visual interpretation.}
+
+Theorem~\ref{thm:main} can be paraphrased as follows.  The family
+(\ref{eq:Rama-general}) realises every positive integer $n+1$ as a
+nested radical; among these, the integer $3$ is the only one whose
+\emph{innermost defining product} ($2 \cdot 4$) collapses
+multiplicatively into a single perfect power ($2^3$).  This is what
+makes the case $n=2$, of all the visually similar cases in the family,
+arithmetically singular.
+
+\begin{thebibliography}{9}
+
+\bibitem{Berndt1985}
+B.\ C.\ Berndt,
+\emph{Ramanujan's Notebooks, Part~II},
+Springer-Verlag, New York, 1989.
+
+\bibitem{Herschfeld1935}
+A.\ Herschfeld,
+\emph{On infinite radicals},
+Amer.\ Math.\ Monthly \textbf{42} (1935), no.\ 7, 419--429.
+
+\bibitem{Mihailescu2004}
+P.\ Mihailescu,
+\emph{Primary cyclotomic units and a proof of Catalan's conjecture},
+J.\ reine angew.\ Math.\ \textbf{572} (2004), 167--195.
+
+\bibitem{Ramanujan1911}
+S.\ Ramanujan,
+\emph{Question 289},
+J.\ Indian Math.\ Soc.\ \textbf{3} (1911), 90;
+\emph{Solution to Question 289},
+J.\ Indian Math.\ Soc.\ \textbf{4} (1912), 226.
+
+\bibitem{Vijayaraghavan1929}
+T.\ Vijayaraghavan,
+\emph{On certain infinite series and convergent integrals},
+Proc.\ London Math.\ Soc.\ (2) \textbf{29} (1929), 281--294.
+
+\end{thebibliography}
+
+\end{document}

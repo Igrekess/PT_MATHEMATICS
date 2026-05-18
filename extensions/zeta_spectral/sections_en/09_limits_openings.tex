@@ -1,0 +1,192 @@
+\section{Limits and Openings}
+\label{sec:limites_ouvertures}
+
+\subsection{What is solidly established}
+\label{sec:acquis}
+
+The HP-PT programme, in its current state, provides:
+\begin{itemize}[nosep,leftmargin=*]
+\item the closed-form expression of the amplitudes $\kappap(s)$ and
+the exact Fredholm representation of $\Rres(s)$
+(thm.~\ref{thm:fredholm});
+\item the canalized operator $\Hilb_{\mathrm{PT}}$ for the coupling
+with canonical $\epsstar^{\mathrm{geom}}$ without free parameter
+(lem.~\ref{lem:epsstar_geom});
+\item the dynamical cut-off $\umax(\gamma) = \gamma/\sqrt{2\pi}$
+forced by the symplectic Planck cell
+(prop.~\ref{prop:cellule_planck});
+\item the exact semi-classical density
+$\NPT(\gamma) = N_{\mathrm{RvM}}(\gamma) + 1/8$ (identical functional
+form) (prop.~\ref{prop:densite_NPT});
+\item the defect indices $(1, 1)$ and the antiperiodic boundary
+condition forced by $T_3$ (prop.~\ref{prop:antiperiodicite});
+\item the exact analytic trace formula $-d \log \Rres/ds$
+(thm.~\ref{thm:trace_formula});
+\item the operatorial regularised trace $\Treg(s)$ with
+distributional poles at the zeros of $\Rres$
+(\S\ref{sec:trace_reg});
+\item the triple cohomological identification of the residue $1/8$
+(\eqref{eq:triple_identification});
+\item the structural Higgs $\leftrightarrow \zeta$ duality
+(conjecture~\ref{conj:K4}).
+\end{itemize}
+
+\paragraph{Summary table of epistemic statuses.}
+
+\begin{longtable}{@{}p{8cm}p{2.5cm}p{4cm}@{}}
+\toprule
+\textbf{Result} & \textbf{Status} & \textbf{Source}\\
+\midrule
+\endhead
+$\sper = 1/2$ ($\Tone$) & \textbf{[Thm]} & \cite{PT_M1}\\
+$\det(I - \DRop)^{-1} = \Rres(s)$, $\Reop(s) > 1$ & \textbf{[Thm]} & thm.~\ref{thm:fredholm}\\
+Trace formula $-d\log \Rres/ds$ in $\Reop(s) > 1$ & \textbf{[Thm]} & thm.~\ref{thm:trace_formula}\\
+Defect indices $(1,1)$ and AP BC $\theta = \pi$ & \textbf{[Thm]} & prop.~\ref{prop:antiperiodicite}\\
+$c_1 = 1/2$ on spinor bundle $\qplus/\qminus$ & \textbf{[Thm]} & thm.~\ref{thm:berry_3pi}\\
+Density $\NPT = N_{\mathrm{RvM}} + 1/8$ (asymptotic identity) & \textbf{[Der]} & prop.~\ref{prop:densite_NPT}\\
+$1/8 = c_1/N_{\mathrm{corners}}$ (strict APS rigour) & \textbf{[Thm partial]} & prop.~\ref{prop:c1_sur_N}\\
+$\zetaplus\,\zetaminus \ne 0$ on critical line & \textbf{[Conj]} & rem.~\ref{rem:non_annulation}\\
+Strict analytic continuation of $\Rres(s)$ outside $\Reop(s) > 1$ & \textbf{[Open]} & op.~1 below\\
+Distributional poles of $\Treg(s)$ on $\Reop(s) = 1/2$ only & \textbf{[Open]} ($\equiv$~RH) & op.~2 below\\
+Canonical choice of $u_\star$ ($\sqrt{2\pi}$ vs $\log 3$) & \textbf{[Open]} & op.~4 below\\
+Structural Higgs $\leftrightarrow \zeta$ duality (K4) & \textbf{[Strong Conj]} & conj.~\ref{conj:K4}\\
+$\Delta_N(L \bmod q) = 1/(8q)$ for Dirichlet (P3) & \textbf{[Falsified, $T \le 200$]} & \S\ref{sec:M1bis}\\
+$G_{\mathrm{HP4.d}}$: direct spectrum = $\{\gamma_n\}$ & \textbf{[Falsified]} & \S\ref{sec:trace_reg}\\
+\bottomrule
+\caption{Epistemic statuses of the programme's results.}
+\label{tab:statuts}
+\end{longtable}
+
+\subsection{What remains open}
+\label{sec:ouvertures}
+
+Four structural openings, plus an underlying non-vanishing
+hypothesis.
+
+\paragraph{Opening 1 (G\_HP3.a).}
+Analytic continuation of $\Rres(s)$ outside $\Reop(s) > 1$. The trace
+$\Treg(s)$ is defined by series in $\Reop(s) > 1$ and then extended
+distributionally to $\Reop(s) = 1/2$; the intermediate region
+$1/2 < \Reop(s) < 1$ requires classical analysis of $\Rres$. This is
+essentially the classical problem of $\zeta$ continuation.
+
+\paragraph{Opening 2 (strict RH).}
+Prove that \textbf{all} distributional poles of $\Treg(s)$ lie on
+$\Reop(s) = 1/2$. The programme establishes that the structure
+favours this line (four equivalent mechanisms,
+\S\ref{sec:localisation_critique}), but does not prove the strict
+exclusion of off-line poles. This is essentially RH.
+
+\paragraph{Opening 3 (strict APS K3).}
+Formal Atiyah--Patodi--Singer rigour for the cornered manifold of
+the BK double barrier, beyond the area calculation and numerical
+verification. The cohomological mechanism is identified
+(\S\ref{sec:indice_APS}), its strict formalisation remains to be
+developed.
+
+\paragraph{Opening 4 (K1, canonical choice of $u_\star$).}
+The lower barrier $u_\star$ admits two natural candidates:
+$u_\star = \sqrt{2\pi}$ (fixed point of the involution
+$u \leftrightarrow p_u$, chosen here) and $u_\star = \log 3$
+(first PT active prime, arithmetic choice). Both produce the same
+asymptotic density $N(\gamma)$ but different $O(1/\gamma)$
+corrections. The canonical status of the choice between them remains
+open. The article retains $u_\star = \sqrt{2\pi}$ by involution
+symmetry, without claiming to close K1.
+
+\paragraph{Underlying \textbf{[Conj]} hypothesis: non-vanishing $\zetaplus\,\zetaminus \ne 0$.}
+The identification between zeros of $\Rres$ and zeros of $\zeta$
+used throughout the article relies on this non-vanishing. It is
+verified numerically on the tested zones but not proved
+(rem.~\ref{rem:non_annulation}). A partial failure would introduce
+extra zeros (zeros of $\zeta_\pm$) which would translate into extra
+poles of $\Treg(s)$; these possible zeros must be treated as
+conjecturally absent.
+
+\subsection{Canonical position of the programme}
+\label{sec:position_canonique}
+
+The HP-PT programme is a precise operatorial framework for the
+zeros of $\zeta$. It provides:
+\begin{enumerate}[nosep,leftmargin=*]
+\item a closed-form expression for the zeros via $\kappap(s)$
+(intermediary $\DRop$);
+\item a canonical regularised trace formula $\Treg(s)$;
+\item four equivalent mechanisms for $\Reop(s) = 1/2$;
+\item a continuous/discrete dictionary unified by persistence;
+\item a structural explanation of the known numerical coincidences
+($2\pi$, $7/8$, $1/8$, critical line).
+\end{enumerate}
+
+It does not bring:
+\begin{enumerate}[nosep,leftmargin=*]
+\item a strict proof of classical RH;
+\item a shortcut to the distributional analysis of the regularised
+trace.
+\end{enumerate}
+
+This distinction is maintained throughout the programme: one seeks
+to \textbf{understand} the zero structure, not to \textbf{prove}
+them on the critical line. The passage to formal proof requires
+fine Schwartz analysis on $\Treg(s)$, which is no easier than the
+classical RH proof.
+
+\subsection{Comparison with Berry--Keating--Connes}
+\label{sec:comparaison_BKC}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{3cm}p{4.5cm}p{5cm}@{}}
+\toprule
+\textbf{Aspect} & \textbf{Berry--Keating--Connes} & \textbf{PT}\\
+\midrule
+Phase space & $(x, p) \in \Reals_+^{2}$ & $(u, p_u)$, $u = \log p$\\
+Operator & $H = xp + 1/2$ & $\HPTBK = (u\,p_u + p_u\,u)/2$\\
+Measure & $dx\,dp / 2\pi$ & $du\,dp_u / 2\pi$\\
+Cut-off & $x \ge \ell_x$, $p \ge \ell_p$, $\ell_x \ell_p = 2\pi$ & $u_\star\,p_\star = 2\pi$ (PT Planck cell)\\
+Regularisation & adelic (Connes) & atomic PT\\
+Trace & $\Tr(K) = \sum_\rho h(\gamma_\rho)$ (Weil) & $\Tr_{\mathrm{reg}} = \sum_p \kappap [\text{Euler + coupling}]$\\
+Holonomic coupling & none (zeta only) & $\kappap$ (bifurcation $\qplus/\qminus$)\\
+$2\pi$ & not structurally interpreted & $[u, p_u] = i$, canonical Liouville\\
+$1/8$ & corner Maslov phase (artefact) & $\sper^{2}/2 = c_1/4 = \sper/4$ (spinor cohomology)\\
+Spin $\sper = 1/2$ & postulated & overdetermined by $\sper^{2}/2 = \sper/4$ modulo $\Tone$\\
+\bottomrule
+\end{tabular}
+\caption{Berry--Keating--Connes vs PT comparison: the main
+contribution of PT is intrinsic enrichment (no number is posited ad
+hoc).}
+\label{tab:comparaison_BKC}
+\end{table}
+
+\paragraph{Historical clarifications.}
+The original operator of \citeauthor{BerryKeating1999} (1999) is
+$H = xp$; the form $H = xp + 1/2$ appears in the later formalisation
+of \citeauthor{Sierra2008} (2008) and Sierra--Townsend, which
+regularises $xp$ via a Planck cell and exhibits the symmetric
+ordering. The regularisation of \citeauthor{Connes1996}
+(\citeyear{Connes1996}, \citeyear{Connes1999}) is of a different
+nature: it operates on the adelic space of id\`ele classes, by a
+non-commutative trace formula. The PT formulation is atomic on the
+primes: neither adelic nor continuous on $\Reals_+$.
+
+\subsection{Perspectives}
+\label{sec:perspectives}
+
+Three natural extensions.
+
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Other $L$-functions.} The Dirichlet prediction having
+been falsified, the extension to $L$-functions must be rethought.
+The cohomology of the spinor bundle under \emph{twist} by $\chi$
+completely modifies $c_1$; a proper cohomological reformulation is
+open.
+\item \textbf{Maslov phase in continuous Berry phase.}
+The hypothesis proposes that $1/(8q)$ exists at the level of the
+continuous Berry phase along the spectral flow, but does not
+manifest in the zero count. To be tested.
+\item \textbf{Strict APS rigour.} Develop the formal index theorem
+on the cornered manifold of the double barrier (strict K3). Not
+urgent for the operatorial framework, important for structural
+coherence.
+\end{itemize}

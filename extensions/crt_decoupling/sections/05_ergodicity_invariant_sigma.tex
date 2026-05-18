@@ -1,0 +1,163 @@
+\section{Ergodicity and the invariant $\sigma$-algebra}
+\label{sec:ergodic}
+
+This section establishes the ergodic-theoretic input to the proof
+of Theorem~\ref{thm:empirical_invariance}: the shift~$T$ on the
+path space $\Omega$ is ergodic with respect to the empirical
+measure $\pi_m^{\mathrm{emp}}$, the invariant $\sigma$-algebra is
+trivial, and the geometry $G(\mu)$ is therefore almost surely
+constant. The proofs use only the spectral gap of $T_m$ and the
+Birkhoff--Hopf ergodic theorem; all the technical heavy lifting
+takes place at the level of the gap field $\{g_n\}$ and is
+inherited from chapters~7 and~8 of the
+monograph~\cite{PT_Monograph}.
+
+\subsection{The shift dynamical system on trajectories}
+\label{ssec:shift}
+
+Recall that the path space $\Omega = \mathbb{N}^{\mathbb{N}}$ is
+equipped with the cylindrical $\sigma$-algebra $\mathcal{F}$ and
+the canonical shift $T : \Omega \to \Omega$,
+$T(\omega)_n = \omega_{n+1}$. The canonical trajectory
+$\omega^\ast = (g_1, g_2, g_3, \ldots)$ identifies $\Omega$ with
+the orbit closure of $\omega^\ast$ under $T$. For each squarefree
+integer $m$ and each $n \in \mathbb{N}$, the modular coordinate
+$r_n^{(m)} = g_n \bmod m$ defines a finite-valued random variable
+on $\Omega$; the joint process $(r_n^{(m)})_{n \geq 1}$ is a
+Markov chain with transition matrix $T_m$, by the definition of
+the sieve.
+
+For each prime~$p$, the trajectory $\sigma$-algebra
+$\mathcal{A}_p = \sigma(\{r_n^{(p)} : n \in \mathbb{N}\})$
+introduced in Eq.~\eqref{eq:Ap_def} is the smallest
+sub-$\sigma$-algebra of $\mathcal{F}$ that contains every
+finite-dimensional cylinder built from the mod-$p$ residue
+coordinates. By construction, $\mathcal{A}_p$ is $T$-invariant in
+the weak sense $T^{-1} \mathcal{A}_p \subseteq \mathcal{A}_p$,
+but not in the strict sense $T^{-1} \mathcal{A}_p =
+\mathcal{A}_p$; we will not need this distinction. What we will
+need is the shift-invariant $\sigma$-algebra
+\begin{equation}
+  \mathcal{I}
+  \;:=\;
+  \bigl\{ A \in \mathcal{F} : T^{-1} A = A \bigr\}
+  \;\subset\; \mathcal{F},
+  \label{eq:I_def}
+\end{equation}
+the family of measurable subsets of $\Omega$ that are exactly
+invariant under the shift.
+
+\subsection{Ergodicity of the prime-sieve flow}
+\label{ssec:ergodicity}
+
+\begin{proposition}[Sieve Ergodicity]
+\label{prop:ergodic}
+The shift $T$ on $\Omega$ is ergodic with respect to
+$\pi_m^{\mathrm{emp}}$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The argument has two ingredients. The first is the spectral-gap
+estimate of Theorem~T4 in the
+monograph~\cite[Ch.~7,~Thm.~T4]{PT_Monograph}: the second-largest
+eigenvalue of the per-prime transfer matrix $T_p$ on the active
+subspace satisfies $|\lambda^{(p)}_1| = 1/(p-2) < 1$ for $p \geq 5$
+and $|\lambda^{(3)}_1| = 1$ with antiperiodic structure. The
+tensor decomposition~\eqref{eq:Tm_tensor} propagates the spectral
+gap to the joint matrix $T_m$, so that on the active subspace
+$\mathcal{S}_m$ the difference
+$\|T_m^n \nu - \pi_m^{\mathrm{Ruelle}}\|_{\mathrm{TV}}$ decays
+geometrically for any initial distribution~$\nu$ with positive
+support on $\mathcal{S}_m$.
+
+The second ingredient is the Mertens-type estimate of
+Section~7.4 of the monograph~\cite{PT_Monograph}, which
+establishes that the empirical measure $\pi_m^{\mathrm{emp}}$ of
+the canonical trajectory $\omega^\ast$ converges to
+$\pi_m^{\mathrm{Ruelle}}$ in total variation:
+$\|\pi_m^{\mathrm{emp}} - \pi_m^{\mathrm{Ruelle}}\|_{\mathrm{TV}} \to 0$
+as the trajectory is extended to infinity, up to a residual term
+controlled by the multiplicative constant of Mertens' third
+theorem~\cite[Ch.~22]{Davenport2000}.
+
+These two ingredients together imply that
+$(\Omega, \mathcal{F}, \pi_m^{\mathrm{emp}}, T)$ is a measure-preserving
+dynamical system with the same invariant statistics as the
+irreducible aperiodic Markov chain on $\mathcal{S}_m$ defined by
+$T_m$. The Birkhoff--Hopf ergodic
+theorem~\cite[Thm.~1.6]{Walters1982} then applies, and gives
+ergodicity of $T$ with respect to $\pi_m^{\mathrm{emp}}$.
+\end{proof}
+
+\begin{remark}[On the precise sense of ergodicity]
+\label{rmk:precise_ergodicity}
+Proposition~\ref{prop:ergodic} requires a slight reading of the
+notion of ergodicity, because $\pi_m^{\mathrm{emp}}$ is defined
+through a long-time average rather than an a priori invariant
+measure. The standard fix~\cite[Ch.~1.6,~Remark~1]{Walters1982} is
+to verify that $\pi_m^{\mathrm{emp}}$ is shift-invariant
+(immediate from the definition~\eqref{eq:pi_emp_def}) and that
+every shift-invariant subset of $\Omega$ has measure $0$ or $1$
+under $\pi_m^{\mathrm{emp}}$. The latter property follows from the
+spectral-gap estimate above, by a standard Birkhoff--Hopf-style
+argument that we do not reproduce here; the canonical reference is
+chapter~6 of Krengel's monograph~\cite{KrengelBook}.
+\end{remark}
+
+\subsection{Triviality of the invariant $\sigma$-algebra}
+\label{ssec:trivial_inv}
+
+\begin{corollary}[Invariant Triviality (Birkhoff--Hopf)]
+\label{cor:trivial}
+The $T$-invariant $\sigma$-algebra
+$\mathcal{I} = \{A : T^{-1}A = A\}$ is trivial modulo
+$\pi_m^{\mathrm{emp}}$:
+$\mathcal{I} = \{\emptyset, \Omega\} \pmod{\pi_m^{\mathrm{emp}}}$.
+\end{corollary}
+
+\begin{proof}
+This is the standard equivalence between ergodicity and triviality
+of the invariant $\sigma$-algebra; see Theorem~1.6 (iv)
+of~\cite{Walters1982}. Given Proposition~\ref{prop:ergodic}, the
+result follows immediately.
+\end{proof}
+
+\subsection{Spectral measurability $\Rightarrow$ a.s.\ constancy
+of $G(\mu)$}
+\label{ssec:G_as_constant}
+
+\begin{corollary}[Geometric A.S.\ Constancy]
+\label{cor:G_constant}
+For every $\mu \in [\mu_c, \infty)$, the geometry $G(\mu)$ is
+$\pi_m^{\mathrm{emp}}$-almost-surely constant.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:G_measurable}, $G(\mu) \in
+\sigma(\mathrm{Spec}(T_m)) \subseteq \mathcal{I}$. By
+Corollary~\ref{cor:trivial}, any $\mathcal{I}$-measurable function
+is $\pi_m^{\mathrm{emp}}$-almost-surely constant.
+\end{proof}
+
+\paragraph{Why this is the substantive content.}
+At a first reading, the conclusion of Corollary~\ref{cor:G_constant}
+might appear vacuous: $G(\mu)$ is, after all, a deterministic
+function of $\mu$, and ``almost surely constant'' looks like an
+empty statement about deterministic objects. The substance lies in
+the role that $G(\mu)$ plays in the conditional mutual
+information $I(\Phi_p; \Phi_q \mid G(\mu))$: even though
+$G(\mu)$ is deterministic as a function of $\mu$, the random
+variable $G$ in the conditioning is being interpreted as a
+$\mathcal{F}$-measurable random variable on the path space $\Omega$,
+and its $\Omega$-measurable image is what matters for the
+information-theoretic identity used in Step~4 of the proof of
+Theorem~\ref{thm:empirical_invariance}. The triviality of
+$\mathcal{I}$ modulo $\pi_m^{\mathrm{emp}}$ collapses this
+$\Omega$-measurable image to a single point, after which the
+identity
+$I(\Phi_p; \Phi_q \mid G) = I(\Phi_p; \Phi_q)$ becomes available.
+The point of the corollary is not the deterministic statement that
+$G(\mu)$ is a fixed matrix; it is the measure-theoretic statement
+that, viewed as a random variable on the path space, $G(\mu)$
+contributes nothing to the joint information content of the modular
+fibres.

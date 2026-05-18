@@ -1,0 +1,153 @@
+\section{Prédiction QH1a falsifiable}
+\label{sec:prediction_qh1a}
+
+Les Sections~\ref{sec:champ_connexion}--\ref{sec:decouplage_crt}
+établissent la position structurelle de la PT par rapport au
+débat fondationnel : l'angle d'holonomie est primitif, les
+objets classiques sont dérivés, les corrélations entre canaux
+modulaires sont arithmétiques et invariantes par la géométrie
+émergente. Cette position n'est pas qu'interprétative : elle
+implique une prédiction expérimentale précise, falsifiable sur
+plusieurs plateformes existantes, et structuralement
+distinguable de toute prédiction d'une physique standard sur
+variété courbe.
+
+\subsection{Énoncé de la prédiction}
+\label{ssec:qh1a_enonce}
+
+\begin{prediction}[QH1a : invariance géométrique de la MI]
+\label{pred:qh1a}
+Dans un système atomique multi-électronique sondé par
+spectroscopie CRT (canaux $p = 3, 5, 7$), l'information mutuelle
+$I(n^{(p)}\,;\,n^{(q)})$ entre nombres d'occupation modulaires :
+\begin{enumerate}[label=(\roman*),nosep]
+  \item est non-nulle et donnée par la formule fermée du
+  Corollaire~\ref{cor:closed_form_fr} (test arithmétique) ;
+  \item est invariante sous toute transformation géométrique
+  du système (déplacement nucléaire, déformation de la maille
+  cristalline, séparation des détecteurs) (test géométrique).
+\end{enumerate}
+\end{prediction}
+
+La condition (i) est le contenu quantitatif de
+Corollaire~\ref{cor:closed_form_fr} : la MI prend les valeurs
+$\mathcal{I}_{3,5} = 0{,}138$ bits et
+$\mathcal{I}_{3,7} = 0{,}283$ bits (valeurs corpus), prédictibles
+au $\pm 20\%$ près par la formule fermée à un seul paramètre
+entier $k_{p,q}$ par paire. Toute mesure qui ne reproduit pas ces
+valeurs (à la précision statistique de l'expérience) invalide la
+prédiction.
+
+La condition (ii) est le contenu structurel de
+Théorème~\ref{thm:invariance_geom} : la MI doit rester constante
+sous toute reparamétrisation de la géométrie spatiale. Toute
+mesure qui détecte une dépendance de la MI en la séparation des
+détecteurs, la distance internucléaire, ou tout autre paramètre
+géométrique, invalide la prédiction.
+
+\subsection{Critère de falsification}
+\label{ssec:qh1a_falsification}
+
+Soit $G_0, G_1$ deux configurations géométriques distinctes d'un
+même système quantique, et soient
+$\mathcal{I}_{p,q}(G_0), \mathcal{I}_{p,q}(G_1)$ les valeurs de
+l'information mutuelle mesurée sous chacune. Définissons
+\begin{equation}
+  \Delta\mathcal{I}_{p,q}
+  \;:=\;
+  \mathcal{I}_{p,q}(G_1) - \mathcal{I}_{p,q}(G_0)
+  \label{eq:Delta_I_def}
+\end{equation}
+et soit $\epsilon_{\rm stat}$ l'incertitude statistique de
+$\Delta\mathcal{I}_{p,q}$ telle qu'évaluée par la procédure de
+mesure. La PT prédit
+\begin{equation}
+  \bigl|\Delta\mathcal{I}_{p,q}\bigr| \;<\; \epsilon_{\rm stat}
+  \qquad \text{pour toute paire } (G_0, G_1).
+  \label{eq:QH1a_predict}
+\end{equation}
+\emph{Critère de falsification.} Si une expérience mesure
+$|\Delta\mathcal{I}_{p,q}| > 5 \epsilon_{\rm stat}$ pour une
+paire de configurations géométriques distinctes, la prédiction
+QH1a est falsifiée, et avec elle le théorème
+d'invariance~\ref{thm:invariance_geom}. Une telle falsification
+serait également une réfutation directe de la PT, puisque
+$\theta_p$ et $\mathcal{A}_p$ sont des objets structuraux de la
+théorie et ne peuvent être ajustés pour absorber un signal
+géométrique.
+
+\subsection{Plateformes expérimentales candidates}
+\label{ssec:qh1a_plateformes}
+
+Trois plateformes contemporaines offrent l'accès aux nombres
+d'occupation modulaires $n^{(p)}$ avec contrôle indépendant de la
+géométrie spatiale.
+
+\paragraph{(a) Atomes froids dans réseaux optiques.}
+Un réseau optique à espacement variable permet de scanner la
+distance entre puits de potentiel adjacents tout en mesurant la
+distribution d'occupation modulaire des niveaux internes par
+spectroscopie de fluorescence. La géométrie est contrôlée par la
+longueur d'onde du laser de piégeage ; les nombres d'occupation
+$n^{(p)}$ sont accessibles par mesure résonante au niveau du
+résidu modulaire. Précision attendue : $\epsilon_{\rm stat}
+\sim 10^{-3}$ bits sur $\mathcal{I}_{3,5}$ pour
+$N \sim 10^4$ atomes piégés, soit une sensibilité largement
+suffisante pour falsifier QH1a à $5\sigma$ en présence d'un
+couplage géométrique.
+
+\paragraph{(b) Ions piégés à séparations contrôlées.}
+Une chaîne d'ions Yb$^+$ ou Be$^+$ permet de varier la séparation
+inter-ion avec une précision micrométrique, tout en mesurant les
+corrélations inter-canaux par tomographie d'état. La structure
+hyperfine des niveaux internes fournit les nombres d'occupation
+modulaires pour $p = 3$ (canal de couleur SU(3) effectif) et
+$p = 5$ (canal de saveur dans les configurations à plusieurs
+électrons de valence). Précision attendue : $\epsilon_{\rm stat}
+\sim 10^{-4}$ bits, soit la plateforme la plus contraignante.
+
+\paragraph{(c) Molécules diatomiques à distance internucléaire ajustable.}
+Une molécule diatomique sondée par spectroscopie laser à
+résolution sub-MHz permet de varier la distance internucléaire
+$R$ via un champ électrique externe (effet Stark) et de mesurer
+simultanément les nombres d'occupation modulaires des niveaux
+électroniques. La signature recherchée est l'absence de
+dépendance de $\mathcal{I}_{3,5}$ en $R$ sur une plage de
+plusieurs angstroms. Précision attendue : $\epsilon_{\rm stat}
+\sim 5 \times 10^{-3}$ bits, plus modeste mais structuralement
+complémentaire (le couplage géométrique attendu d'une théorie
+standard est ici dominé par la variation du potentiel
+vibrationnel).
+
+\subsection{Contraste avec la physique standard}
+\label{ssec:qh1a_contraste}
+
+Une théorie quantique standard sur variété courbe prédit
+génériquement $|d\mathcal{I}_{p,q}/dG| \neq 0$. La raison
+structurelle est que les champs de matière sont, dans le
+formalisme standard, des sections de fibrés au-dessus de la
+variété courbe, et leurs corrélations héritent de la structure
+métrique de la base par les couplages gravitationnels minimaux.
+L'effet est typiquement faible (suppression par $1/M_{\rm Pl}^2$
+ou par le couplage gravitationnel local), mais il est
+\emph{non-nul} et calculable.
+
+La PT, au contraire, prédit $d\mathcal{I}_{p,q}/dG = 0$
+identiquement. La raison est que les canaux modulaires
+$\mathcal{A}_p$ sont définis avant la métrique $G$ et lui sont
+mesurablement antérieurs. Aucune fonction de la métrique
+n'apparaît dans la formule
+fermée~\eqref{eq:closed_form_fr} ; la dérivée par rapport à $G$
+est exactement zéro.
+
+Ce contraste rend QH1a un test discriminant fort entre les deux
+cadres. Une mesure positive ($|d\mathcal{I}/dG| > 5\epsilon$)
+falsifie la PT et confirme le cadre standard ; une mesure nulle
+($|d\mathcal{I}/dG| < \epsilon$) confirme la PT au niveau
+structurel et exclut tout couplage géométrique minimal au-dessus
+de la précision atteinte. Aucune des plateformes actuelles n'a
+encore réalisé la mesure complète --- en particulier, aucune
+n'a scanné la dépendance géométrique de la MI sur plusieurs ordres
+de grandeur de séparation. C'est la principale lacune
+expérimentale à combler pour soumettre la PT à un test
+falsificationniste réel.

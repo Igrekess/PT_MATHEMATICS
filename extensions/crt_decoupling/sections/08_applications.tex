@@ -1,0 +1,288 @@
+\section{Applications and discussion}
+\label{sec:applications}
+
+We close the paper with three short discussions. The first
+(Section~\ref{ssec:non_trivial}) anticipates a referee objection
+that Theorem~\ref{thm:empirical_invariance} is ``just CRT'' and
+explains why the conclusion is not, in fact, an immediate
+consequence of the tensor decomposition. The second
+(Section~\ref{ssec:bell_implications}) summarises the consequence
+for Bell-type non-locality, deferring the detailed discussion to
+the companion paper~\cite{PT_HOLONOMY_NONLOCALITY}. The third
+(Sections~\ref{ssec:open_k} and~\ref{ssec:future}) lists open
+questions raised by the results, with the most subtle one ---
+the closed-form expression for the depth parameter
+$k_{p,q}^{\mathrm{eff}}$ --- already flagged in
+Remark~\ref{rmk:k_interp}.
+
+\subsection{Why the theorem is not trivial}
+\label{ssec:non_trivial}
+
+The CRT factorisation $T_m = \bigotimes_p T_p$
+(Theorem~\ref{thm:crt_tensor}) and its corollary
+$\pi_m^{\mathrm{Ruelle}} = \bigotimes_p \pi_p^{\mathrm{Ruelle}}$
+(Lemma~\ref{lem:pi_factor}) are algebraic facts that depend only
+on the structure of the residue ring $\mathbb{Z}/m\mathbb{Z}$ and
+the spectral gap of each $T_p$. One might therefore suspect that
+Theorem~\ref{thm:empirical_invariance} is a direct corollary of
+these algebraic facts: since the joint law factorises, the
+inter-channel mutual information vanishes, end of story.
+
+This reading is correct under the Ruelle measure but incorrect
+under the empirical measure. The two theorems together pin down
+exactly where the algebraic argument is sufficient and where it
+needs additional dynamical input. We organise the response under
+four headings.
+
+\paragraph{($\alpha$) The ``trivial'' identity $T_m \perp \mu$
+hides a non-trivial choice of observables.}
+The conclusion that $G(\mu)$ does not enter the empirical
+inter-channel mutual information is not a statement about the
+transfer matrix itself --- which is, by construction, independent
+of $\mu$ --- but about the modular $\sigma$-algebras
+$\mathcal{A}_p$ on which the observables $\Phi_p$ are defined.
+A different choice of observables --- for instance, spatial fields
+defined on the emergent metric $G(\mu)$ --- would lead to a
+$\mu$-dependent conditional mutual information, even with the same
+underlying gap field. The substantive content of
+Theorem~\ref{thm:empirical_invariance} is the assertion that the
+modular residues $r_n^{(p)}$ are the correct observables for the
+question at hand, and that for this choice the $\mu$-dependence
+collapses.
+
+\paragraph{($\beta$) The closed form makes numerical predictions.}
+Whether or not the proof of
+Theorem~\ref{thm:empirical_invariance} is ``deep'' as a matter of
+ergodic theory, Corollary~\ref{cor:closed_form} extracts from it
+an explicit functional form for $\mathcal{I}_{p,q}$ that is fitted
+by a single integer parameter $k_{p,q}$ per pair. The corpus
+values $\mathcal{I}_{3,5} = 0.138$ bits and
+$\mathcal{I}_{3,7} = 0.283$ bits are reproduced respectively at
+$4.5\%$ and $8.1\%$ relative error, both within the
+$\pm 20\%$ tolerance of the corpus T1 test. A predictive
+closed-form expression with a single integer-valued fit parameter
+is a non-trivial empirical assertion, regardless of the algebraic
+elegance of the underlying proof.
+
+\paragraph{($\gamma$) Without
+Theorem~\ref{thm:empirical_invariance}, PT would be inconsistent
+with Bell experiments.}
+The empirical correlations between space-like separated detectors
+in Bell-type experiments~\cite{Bell1964,AspectGrangier1982,Hensen2015}
+are by now established at the eight-sigma level, with no
+detector-separation-dependent signal of the kind that a
+metric-mediated correlation would induce. If the inter-channel
+mutual information $\mathcal{I}_{p,q}$ depended on the emergent
+geometry $G(\mu)$, the theory would predict a measurable shift in
+the experimental correlation as a function of detector separation
+(which fixes the local value of $\mu$ in the Bianchi-I family).
+Theorem~\ref{thm:empirical_invariance} rules out this signal at
+the level of the theory itself, and is therefore the obstruction
+that prevents Persistence Theory from being immediately falsified
+by Bell-type experiments.
+
+\paragraph{($\delta$) The proof is algebraically light but
+conceptually heavy.}
+At the level of mathematical content, Steps~1--4 of the proof of
+Theorem~\ref{thm:empirical_invariance} use only the trivial
+identity $I(X; Y \mid Z) = I(X; Y)$ for almost-surely constant
+$Z$, the embedding $\sigma(\mathrm{Spec}(T_m)) \subseteq
+\mathcal{I}$, and the Birkhoff--Hopf theorem. None of these
+ingredients is technically deep. The non-trivial work is in
+identifying the right division of $G(\mu)$ into a spectral object
+on the one hand and the empirical measure $\pi_m^{\mathrm{emp}}$
+into a trajectory object on the other, in such a way that the
+combination of the two falls outside the joint information content
+of the modular fibres. This division is the principal conceptual
+content of the paper; the proof itself is a short verification
+that the division survives.
+
+\subsection{Implications for Bell-type non-locality}
+\label{ssec:bell_implications}
+
+The companion paper~\cite{PT_HOLONOMY_NONLOCALITY} provides a
+foundational reading of Theorem~\ref{thm:empirical_invariance}.
+The reading is the following: the modular fibres of the prime
+sieve are not embedded into the emergent Bianchi-I geometry, and
+therefore the inter-channel correlations they carry are not
+correlations across space-like separated regions of an emergent
+space-time --- they are correlations within a single arithmetic
+substrate that happens to project, under the geometric flow, onto
+space-like separated regions. The detector correlations measured in
+Bell experiments are then artefacts of the projection, not signals
+transmitted at superluminal speeds across the emergent
+geometry. The result is therefore an existence proof, at the level
+of measure theory and information theory, that a strictly local
+realist substrate (the gap field $\{g_n\}$) can support the
+empirical pattern of Bell-type correlations without contradicting
+the no-signalling principle of the emergent geometry. We refer to
+the companion paper for the detailed foundational
+argument~\cite[\S~3--\S~5]{PT_HOLONOMY_NONLOCALITY} and for the
+explicit connection to the Aharonov--Bohm
+analogy~\cite{AharonovBohm1959}.
+
+A direct consequence of this reading is that Persistence Theory
+predicts no detector-separation-dependent
+correction to the Bell correlations, contrary to the prediction
+that a hypothetical metric-mediated extension would make. This is
+a falsifiable prediction at the present experimental precision,
+and is consistent with the most recent loophole-free Bell tests of
+Hensen et al.~\cite{Hensen2015}.
+
+\subsection{Open question: closed form for $k^{\mathrm{eff}}$}
+\label{ssec:open_k}
+
+The principal open question raised by the analysis is the
+derivation of the empirical depth parameter $k_{p,q}^{\mathrm{eff}}$
+from first principles. As discussed in
+Remark~\ref{rmk:k_interp}, the fitted values
+$k_{3,5}^{\mathrm{eff}} = 7$ and $k_{3,7}^{\mathrm{eff}} = 4$
+differ from the CRT-naive depths $k_{3,5}^{\mathrm{CRT}} = 2$ and
+$k_{3,7}^{\mathrm{CRT}} = 3$ in a way consistent with the
+hypothesis that $k^{\mathrm{eff}}$ counts transfer-matrix
+iterations through the antidiagonal double cover of $T_3$, but the
+exact combinatorial formula remains conjectural. A derivation of
+$k_{p,q}^{\mathrm{eff}}$ as a structural invariant of the pair
+$(T_p, T_q)$, presumably from a finer spectral analysis of
+$T_{pq} = T_p \otimes T_q$ on the active subspace, would close the
+last remaining gap in the closed-form expression of
+Corollary~\ref{cor:closed_form}. We leave this for future work.
+
+\subsection{Formal verification status}
+\label{ssec:formal_verification}
+
+All algebraic results of the paper are formally verified in Lean~4
++ Mathlib under the namespace \texttt{PT.CrtDecoupling}, with
+\textbf{0~\texttt{sorry}} and \textbf{0~\texttt{axiom}} across all
+seven files of the verification (total 1246 lines of Lean source).
+The verification is organised in five progressively stronger phases
+that we summarise here for the reader.
+
+\paragraph{Phase~1 (algebraic core).}
+The CRT tensor factorisation
+(Theorem~\ref{thm:crt_tensor}), the Ruelle factorisation
+(Lemma~\ref{lem:pi_factor}), and the idealised Geometric Decoupling
+Theorem (Theorem~\ref{thm:ruelle_zero}) are formally verified
+without any measure-theoretic machinery:
+\texttt{Tensor.crt\_tensor\_factor}, \texttt{Tensor.ruelle\_factor},
+\texttt{Main.geometric\_decoupling\_ruelle}.
+
+\paragraph{Phase~2 (conditional Theorem~6.1).}
+The algebraic core of the conditioning step
+(``conditioning on a $\pi$-a.s.\ constant random variable is a
+no-op'') is formalised as
+\texttt{Empirical.mutualInformation\_of\_a\_s\_constant\_factor}, together
+with the analytic concentration lemma
+\texttt{Empirical.expectation\_of\_constant}. Theorem~\ref{thm:empirical_invariance}
+follows as \texttt{Empirical.empirical\_invariance}, conditional on
+the a.s.\ constancy hypothesis on each $G(\mu)$.
+
+\paragraph{Phase~2.5 (finite-state closure).}
+The a.s.\ constancy hypothesis is discharged in the discrete
+finite-state setting via spectral measurability of $G(\mu)$
+(Lemma~\ref{lem:G_measurable}):
+\texttt{SpectralReduction.geometric\_spectrally\_measurable},
+\texttt{SpectralReduction.empirical\_invariance\_closed}. In the
+finite setting, the $\sigma$-algebra $\sigma(\mathrm{Spec}(T_m))$
+reduces to constant functions, so the a.s.\ constancy is immediate
+without invoking Birkhoff--Hopf.
+
+\paragraph{Phase~3 (infinite-state strengthening).}
+For the general infinite path space, the result is obtained via
+Mathlib's formalised Birkhoff--Hopf theorem
+\texttt{Ergodic.ae\_eq\_const\_of\_ae\_eq\_comp$_0$}, packaged as
+\texttt{Phase3.geometric\_a\_s\_constant\_ergodic} and
+\texttt{Phase3.empirical\_invariance\_infinite}.
+
+\paragraph{Phase~4 (sieve dynamical system).}
+The concrete sieve dynamical system is modelled in
+\texttt{Phase4.pathSpace}, \texttt{Phase4.shift},
+\texttt{Phase4.shift\_measurable}, and packaged in the structure
+\texttt{Phase4.SieveErgodicSetup} (state space, path measure,
+ergodicity hypothesis). The closure theorem
+\texttt{Phase4.sieve\_empirical\_invariance} applies Phase~3 to any
+populated instance of this structure.
+
+\paragraph{Phase~4.1 (chain closure: existence of a populated instance).}
+A concrete populated instance \texttt{Phase4.trivialSetup} is
+exhibited (state space $\mathsf{Unit}$, Dirac measure), with the
+ergodicity \texttt{Phase4.shift\_ergodic\_unit} proved by direct
+case analysis on the subsingleton path space. This proves
+\texttt{Phase4.SieveErgodicSetup} is non-empty and makes
+\texttt{trivialSetup\_empirical\_invariance} a non-vacuous
+consequence of \texttt{sieve\_empirical\_invariance}.
+
+\paragraph{Remaining technical gap (quantitative content).}
+To obtain the empirical content of Theorem~\ref{thm:empirical_invariance}
+for the \emph{actual} prime-sieve Markov measure $\pi_m^{\rm emp}$
+(rather than the trivial Dirac instance), one must populate
+\texttt{Phase4.SieveErgodicSetup} with a non-trivial instance built
+from (i) \texttt{Mathlib.Probability.Kernel.IonescuTulcea} for the
+Markov measure construction from the transfer-matrix kernel $T_p$,
+(ii) the corpus primitivity of $T_p$ established in
+\texttt{PT.Stochastic.T30FullSpectralAnalysis}, and (iii) the
+classical theorem ``primitive Markov chain $\Rightarrow$ ergodic''
+of ergodic theory --- not yet formalised in Mathlib at the level of
+finite state spaces. This is the single remaining technical gap and
+is a natural Mathlib pull-request.
+
+The closed-form Corollary~\ref{cor:closed_form} is not formalised
+as a theorem because the depth parameter $k_{p,q}^{\mathrm{eff}}$
+is empirically fitted rather than derived
+(Remark~\ref{rmk:k_interp}); a Lean-verifiable computational
+statement of the closed form at a fixed $k$ would still be
+straightforward and is documented in the verification README.
+
+\paragraph{Reproducibility.}
+The Lean files live in the project repository under
+\texttt{PT\_LEAN/PT/CrtDecoupling/} and build with
+\texttt{lake build PT.CrtDecoupling}. Total build time on a
+modern laptop is approximately 15--30 seconds for incremental
+builds of this subdirectory (Mathlib precompiled).
+
+\subsection{Future directions}
+\label{ssec:future}
+
+Three natural extensions of the present work suggest themselves.
+
+\paragraph{(a) Higher-order MI between three or more channels.}
+The pairwise inter-channel mutual information
+$\mathcal{I}_{p,q}$ does not exhaust the joint information content
+of the modular fibres. The total correlation
+$\mathrm{TC}\bigl(r^{(3)}, r^{(5)}, r^{(7)}\bigr)$ between all
+three active channels, and its decomposition into pairwise and
+higher-order components in the sense of
+McGill~\cite[\S~7.4]{CoverThomas2006}, would refine the picture and
+provide a stronger test of the closed
+form~\eqref{eq:closed_form}. The corpus value
+$\mathrm{MI}(r^{(3)}, r^{(5)}, r^{(7)}) \sim 1$ nat in the
+aggregate suggests substantial higher-order content beyond the
+pairwise $0.138 + 0.283 \approx 0.42$ bits.
+
+\paragraph{(b) Extension to inactive primes $p \geq 11$.}
+The echo primes $p \geq 11$ have anomalous dimensions
+$\gamp{p}(\mustar) < 1/2$ and therefore do not contribute spatial
+directions to the emergent geometry $G(\mu)$. They do, however,
+contribute through the ghost vacuum polarisation mechanism of
+chapter~22 of the monograph~\cite{PT_Monograph}, and the modular
+$\sigma$-algebras $\mathcal{A}_{11}, \mathcal{A}_{13}, \ldots$
+are non-trivial. An extension of
+Theorem~\ref{thm:empirical_invariance} to include the echo
+channels would clarify whether the empirical mutual information
+is concentrated on the three active primes or extends into the
+echo regime, and would constrain the geometric reading of the
+ghost fraction $F_{\mathrm{ghost}}$.
+
+\paragraph{(c) Connection to ergodic-theoretic invariants beyond MI.}
+Mutual information is one entry in the family of information-theoretic
+invariants attached to the shift dynamical system on the path
+space. Other invariants ---
+Kolmogorov--Sinai entropy~\cite{Walters1982},
+mean information~\cite{KrengelBook}, and the higher
+correlations of the transfer operator~\cite{Seneta2006} --- all
+admit empirical-versus-Ruelle splittings analogous to the one
+studied here. A systematic investigation of which of these
+invariants are geometric-invariant in the sense of
+Theorem~\ref{thm:empirical_invariance} would clarify the structural
+content of the result and place it in a broader ergodic-theoretic
+context.

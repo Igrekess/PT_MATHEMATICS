@@ -1,0 +1,72 @@
+\section{Introduction et rappels}
+\label{sec:intro2}
+
+\subsection{Pourquoi des lectures géométrique et spectrale ?}
+\label{sec:intro2:why}
+
+L'article compagnon~\cite{PT_Article1_Foundations} expose les fondations purement arithmétiques de la Théorie de la Persistance (PT) : un unique axiome $\sper = 1/2$, sept théorèmes structurants $\Tzero$--$\Tsix$, trois axiomes de pont prouvés $\BAthree$--$\BAfive$, un point fixe $\mustar = 15$ et une cascade canonique sur les premiers actifs $\{3,5,7\}$. Cette structure produit, sans paramètre ajustable, des observables physiques telles que la constante de structure fine $\alpha_{\rm EM}$ à $0{,}004$~ppb.
+
+Une fois ce socle arithmétique posé, trois questions naturelles se posent.
+\begin{enumerate}[nosep,leftmargin=*]
+\item \emph{La cascade est-elle un objet algébro-géométrique~?} La séquence $\gammathree \to \gammathree\gammafive \to \gammathree\gammafive\gammaseven$ admet-elle une réalisation comme courbe algébrique dont l'invariant topologique encode $\mustar$~?
+\item \emph{La cascade est-elle un objet géométrique différentiel~?} La structure de l'information induit-elle une métrique riemannienne canonique sur l'espace des paramètres, et cette métrique vérifie-t-elle une équation de Ricci~?
+\item \emph{La cascade est-elle un objet spectral~?} L'axiome $\sper = 1/2$, qui fixe la valeur propre dominante de la matrice de transfert primorielle (\Ttwo), produit-il des signatures spectrales identifiables dans la phénoménologie physique ou dans la structure des zéros de Riemann~?
+\end{enumerate}
+Cet article répond positivement aux trois questions, en présentant un résultat principal par lecture.
+
+\subsection{Rappels minimaux}
+\label{sec:intro2:rappels}
+
+Le lecteur qui n'aurait pas lu~\cite{PT_Article1_Foundations} trouvera ci-dessous les éléments strictement nécessaires à la suite. Pour la justification, on se reportera à l'article compagnon.
+
+\paragraph{Axiome et point fixe.} L'unique entrée formelle de la PT est $\sper = 1/2$. Le point fixe arithmétique du crible primoriel, déterminé par le théorème~\Tfive, vaut
+\[
+\mustar \;=\; 3 + 5 + 7 \;=\; 15.
+\]
+L'ensemble des nombres premiers se partage canoniquement en quatre classes :
+\[
+\underbrace{\{3, 5, 7\}}_{\text{actifs}}, \quad
+\underbrace{\{11, 13\}}_{\text{échos}}, \quad
+\underbrace{\{17, 19, 23\}}_{\text{super-échos}}, \quad
+\underbrace{\{p \geq 29\}}_{\text{inactifs}},
+\]
+plus le canal de parité $\{2\}$.
+
+\paragraph{Cascade canonique.} La cascade canonique de la PT (\cite[\S{}5]{PT_Article1_Foundations}) est la séquence ordonnée
+\[
+\mathcal C_0 \;\xrightarrow{\;\gammathree\;}\; \mathcal C_3
+\;\xrightarrow{\;\gammafive\;}\; \mathcal C_{3,5}
+\;\xrightarrow{\;\gammaseven\;}\; \mathcal C_{3,5,7},
+\]
+où $\gammap{p}(\mu) = 1 - 2/(p(1 - q^{p}))$, $q = 1 - 2/\mu$, sont les \emph{dimensions anomales}. À $\mustar = 15$, on a $\gammathree = 0{,}808$, $\gammafive = 0{,}696$, $\gammaseven = 0{,}595$.
+
+\paragraph{Holonomie et secteurs.} La formule d'holonomie ($\BAthree$) donne, pour chaque premier actif,
+\[
+\sinp{p}(q) \;=\; \delta_p(q)\,\bigl(2 - \delta_p(q)\bigr), \qquad \delta_p(q) = \dfrac{1 - q^{p}}{p}.
+\]
+Les deux paramétrisations canoniques de la loi géométrique au point fixe sont $\qplus = 13/15$ (branche-sommet, rationnelle, max-entropie) et $\qminus = e^{-1/15}$ (branche-arête, transcendante, Gibbs), reliées par une involution $D$.
+
+\paragraph{Produit de Pontryagin.} La fonctionnelle de couplage du crible, au point fixe $\mustar$, prend la forme produit ($\BAfive$),
+\[
+\alpha_{\rm sieve} \;=\; \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus).
+\]
+
+\subsection{Plan, statut épistémique}
+\label{sec:intro2:plan}
+
+La suite est organisée en cinq sections complémentaires.
+\begin{itemize}[nosep,leftmargin=*]
+\item La section~\ref{sec:courbe} établit le \emph{théorème de la courbe de persistance} : la cascade canonique admet une unique courbe algébrique dans la classe de Kontsevich--Norbury, satisfaisant trois conditions d'holonomie, de seuil et d'auto-cohérence. Son genre vaut $\genus = \mustar - 1 = 14$.
+\item La section~\ref{sec:soliton} établit le \emph{théorème du quasi-soliton de Ricci} : la métrique de Fisher--Bianchi $\gPT$ induite par la cascade vérifie $\Ric(\gPT) + \Hess(f) = \lambda(\mu)\, \gPT$ avec $\lambda(\mu) = -1/\mu^{4} + O(1/\mu^{5})$, coefficient $-1$ exact.
+\item La section~\ref{sec:spectrales} démontre l'\emph{identité spectrale K2} : $1/8 = \sper^{2}/2 = \lambdaH = \DeltaMaslov$, identifiant la phase de Maslov des zéros de Riemann avec le couplage de Higgs et l'axiome de la PT, et l'\emph{identité de trace A6} vérifiée numériquement à $10^{-26}$.
+\item La section~\ref{sec:programme} esquisse le programme spectral-arithmétique plus ambitieux (\emph{conjecture RH-PT}) dont les identités K2 et A6 sont les premières pierres.
+\item La section~\ref{sec:conclusion2} synthétise les trois lectures et trace les perspectives.
+\end{itemize}
+
+\textbf{Statut épistémique.} Les résultats de cet article se répartissent en trois statuts distincts qu'il convient de ne pas confondre.
+\begin{description}[nosep,leftmargin=*]
+\item[Théorèmes prouvés inconditionnellement] : courbe de persistance et calcul du genre (\ref{sec:courbe}, d'après \cite{PT_GeoFlow_PersistenceCurve}), quasi-soliton de Ricci asymptotique (\ref{sec:soliton}, d'après \cite{PT_GeoFlow_RicciSoliton}).
+\item[Identités prouvées] : K2 et A6 sont des identités exactes (la première structurelle, vérifiée à toutes les précisions disponibles ; la seconde algébrique en $\Re(s) > 1$, vérifiée numériquement à $10^{-26}$). Leur prolongement à la ligne critique reste ouvert.
+\item[Programme conjectural] : la conjecture RH-PT, qui prolongerait A6 et K2 à $\Re(s) = 1/2$, est un programme actif, non un théorème.
+\end{description}
+Cette différenciation est maintenue tout au long de l'article.

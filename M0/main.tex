@@ -1,0 +1,236 @@
+\input{preamble}
+
+\title{La Théorie de la Persistance : carte du programme}
+\author{Yan Senez}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+La Théorie de la Persistance (PT) dérive l'ensemble de la phénoménologie du Modèle Standard à partir d'une unique entrée formelle, le paramètre arithmétique $\sper = 1/2$. Cette préface fournit la carte du programme : énoncés des sept théorèmes structurants $\Tzero$--$\Tsix$, des six axiomes de pont $\BAzero$--$\BAfive$, du point fixe $\mustar = 3 + 5 + 7 = 15$, de la taxonomie des nombres premiers (actifs $\{3,5,7\}$, échos $\{11,13\}$, super-échos $\{17,19,23\}$), du principe de cascade arithmétique, et de l'application canonique au calcul de la constante de structure fine $1/\alpha_{\rm EM} = 137{,}035\,999\,083$ à $0{,}004$~ppb. Aucune preuve n'est donnée ici ; chaque énoncé renvoie aux articles M1--M5 où la démonstration complète figure. Cet article sert d'entrée pédagogique à la série.
+\end{abstract}
+
+\tableofcontents
+
+% ============================================================
+\section{Motivation : pourquoi un crible ?}
+\label{sec:motivation}
+
+Le Modèle Standard de la physique des particules comporte une vingtaine de paramètres numériques sans dérivation théorique : trois constantes de couplage, la valeur attendue du Higgs et son auto-couplage, neuf masses chargées, trois angles de mélange CKM et une phase, plus les analogues du secteur neutrino~\cite{PDG2024}. Ces nombres sont mesurés, non prédits.
+
+La Théorie de la Persistance propose qu'ils découlent tous d'une structure arithmétique unique : le crible d'Ératosthène lu comme système dynamique sur la suite $\{g_n\}_{n \geq 1}$ des écarts entre nombres premiers consécutifs. L'unique entrée formelle de la théorie est un nombre rationnel,
+\[
+\sper \;=\; \dfrac{1}{2},
+\]
+appelé \emph{paramètre de persistance}. Il quantifie la fraction symétrique d'information qu'un système conserve sous l'action de contraintes successives ; sa valeur exacte $1/2$ s'identifie au gap spectral de la matrice de transfert primorielle (théorème $\Ttwo$).
+
+À partir de ce seul nombre, la PT déroule sept théorèmes structurants $\Tzero$--$\Tsix$, six axiomes de pont prouvés $\BAzero$--$\BAfive$, un point fixe arithmétique $\mustar = 15$, et la dérivation à zéro paramètre ajusté de toutes les constantes accessibles du Modèle Standard. Le programme est exposé en cinq articles compagnons :
+\begin{description}[nosep,leftmargin=*]
+\item[M1~\cite{companion_M1}] le crible comme champ dynamique : $\Tone, \Tthree, \Tsix$, lemme $\Lzero$, théorème fondamental des écarts.
+\item[M2~\cite{companion_M2}] géométrie de l'information : métrique de Fisher, holonomie $\BAthree$, critère d'activation $\BAfour$.
+\item[M3~\cite{companion_M3}] convergence et point fixe : $\Ttwo, \Tfour, \Tfive$, fermeture $\BAzero \to \Tzero$.
+\item[M4~\cite{companion_M4}] structures étendues : algèbre du crible, mécanique complexe, mathématiques prédictives.
+\item[M5~\cite{companion_M5}] pont à la physique : $\BAfive$, identification de Pontryagin, lemmes E/F/G de reconstruction, $\alpha_{\rm EM} = 1/137{,}036$.
+\end{description}
+Cette préface en donne la carte. Deux articles d'extension complètent le programme : \cite{PT_GeoSpectral} pour les lectures géométrique-spectrale (courbe de persistance, soliton de Ricci), et \cite{PT_RH} pour la conjecture spectrale-arithmétique RH-PT.
+
+% ============================================================
+\section{Le crible PT et son point fixe}
+\label{sec:crible}
+
+\subsection{Cadre formel minimal}
+\label{sec:crible:cadre}
+
+Soit $L^{0}$ la catégorie des ensembles pointés finis sur ZFC, munie de l'additivité des cardinaux. Le \emph{lemme d'entropie maximale} $\Lzero$ (\cite{companion_M1}) affirme que la distribution unique sur $\mathbb N$ sous contrainte de moyenne finie est la distribution géométrique, paramétrée par un réel $q \in (0, 1)$. Cette distribution est précisément la mesure asymptotique des écarts $\{g_n\}$ entre nombres premiers consécutifs sur le crible 6-rugueux.
+
+Au point fixe arithmétique $\mustar$ (introduit en \ref{sec:crible:mustar}), la même loi géométrique admet \emph{deux paramétrisations canoniques équivalentes}, reliées par l'involution sommet--arête du graphe du crible :
+\begin{equation}
+\qplus \;=\; 1 - \dfrac{2}{\mustar} \;=\; \dfrac{13}{15}
+\qquad\text{(branche-sommet, max-entropie)},
+\label{eq:qplus}
+\end{equation}
+\begin{equation}
+\qminus \;=\; e^{-1/\mustar} \;=\; e^{-1/15}
+\qquad\text{(branche-arête, Gibbs)}.
+\label{eq:qminus}
+\end{equation}
+La lettre $q$ est ici le paramètre standard de la loi géométrique en statistique élémentaire ; les subscripts $\pm$ distinguent les deux paramétrisations.
+
+\subsection{Les sept théorèmes structurants T0--T6}
+\label{sec:crible:Tn}
+
+Le tableau~\ref{tab:Tn} récapitule les sept théorèmes du noyau arithmétique de la PT, dans l'ordre canonique de la carte de nomenclature de la série. Tous sont \textsc{[Thm]} : démontrés inconditionnellement.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lp{5cm}p{5cm}c@{}}
+\toprule
+Code & Nom & Énoncé court & Article \\
+\midrule
+$\Tzero$ & Théorème du champ dynamique & $\{g_n\}$ est l'unique champ compatible avec les conditions $U_1$--$U_4$ & M3 \\
+$\Tone$ & Transitions interdites mod~3 & $T_3[1,1] = T_3[2,2] = 0$ sur les entiers 6-rugueux & M1 \\
+$\Ttwo$ & Conservation spectrale & $|\lambda_2(T_{30})| = 1/4 = \sper^{2}$ & M1 \\
+$\Tthree$ & Transfert antidiagonal & $T_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, spectre $\{1,-1\}$ & M1 \\
+$\Tfour$ & Convergence spectrale & $\alpha_k \to 1/2$ quand profondeur $k \to \infty$ & M3 \\
+$\Tfive$ & Point fixe unique & $\mustar = 3 + 5 + 7 = 15$ & M3 \\
+$\Tsix$ & Unicité complète & Crible d'Ératosthène unique (T6a + T6b + T6c) & M1 \\
+\bottomrule
+\end{tabular}
+\caption{Les sept théorèmes structurants du noyau arithmétique de la PT.}
+\label{tab:Tn}
+\end{table}
+
+\subsection{Le point fixe \texorpdfstring{$\mustar = 15$}{μ*=15}}
+\label{sec:crible:mustar}
+
+Le théorème $\Tfive$ démontre que l'équation cascade $\mu = \sum_{p \in \mathcal A(\mu)} p$, où $\mathcal A(\mu)$ est l'ensemble des premiers $p$ vérifiant $\gammap{p}(\mu) > 1/2$ (critère d'activation, $\BAfour$), admet une unique solution entière positive :
+\[
+\boxed{\;\mustar \;=\; 3 + 5 + 7 \;=\; 15.\;}
+\]
+À cette valeur, $\mathcal A = \{3, 5, 7\}$ et les trois dimensions anomales valent
+\[
+\gammathree = 0{,}808, \qquad \gammafive = 0{,}696, \qquad \gammaseven = 0{,}595.
+\]
+La démonstration détaillée et la stabilité linéaire du point fixe sont dans M3~\cite{companion_M3}.
+
+% ============================================================
+\section{Axiomes de pont et taxonomie des nombres premiers}
+\label{sec:bridge}
+
+\subsection{Les six axiomes de pont \texorpdfstring{$\BAzero$--$\BAfive$}{BA0-BA5}}
+\label{sec:bridge:BAn}
+
+Au-dessus du noyau arithmétique $\Tzero$--$\Tsix$, la PT s'appuie sur six \emph{axiomes de pont} qui relient la structure du crible à la phénoménologie physique. Bien que nommés historiquement « axiomes », tous sont des \textsc{[Thm]} prouvés. Le tableau~\ref{tab:BAn} récapitule.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lp{4.5cm}p{4.5cm}c@{}}
+\toprule
+Code & Nom & Énoncé court & Article \\
+\midrule
+$\BAzero$ & Axiome de champ & Champ $= \{g_n\}$, $\Tzero$ promu & M3, M5 \\
+$\BAone$ & Axiome d'observable & Observables $= g_n \bmod m$ (connexion de jauge) & M5 \\
+$\BAtwo$ & GFT (identité fondamentale) & $\log_2 m = D_{\rm KL}(P\,\|\,U_m) + H(P)$ & M1 \\
+$\BAthree$ & Formule d'holonomie & $\sinp{p} = \delta_p(2 - \delta_p)$, $\delta_p = (1 - q^p)/p$ & M2 \\
+$\BAfour$ & Critère d'activation & $\gammap{p}(\mu) > \sper = 1/2$ sélectionne $\mathcal A$ & M2 \\
+$\BAfive$ & Produit de Pontryagin & $\alpha_{\rm sieve} = \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus)$ & M5 \\
+\bottomrule
+\end{tabular}
+\caption{Les six axiomes de pont de la PT (tous démontrés).}
+\label{tab:BAn}
+\end{table}
+
+\subsection{Taxonomie des nombres premiers}
+\label{sec:bridge:taxonomie}
+
+Le critère d'activation $\BAfour$, appliqué au point fixe $\mustar = 15$, partage l'ensemble des nombres premiers en quatre classes canoniques (plus le canal de parité $p = 2$).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Classe & Premiers & $\gammap{p}(\mustar)$ ou rôle & Référence \\
+\midrule
+Canal de parité & $\{2\}$ & involution antipodale $D$ & $\BAtwo$, $\Tthree$ \\
+\textbf{Actifs} & $\{3, 5, 7\}$ & $\gammap{p} > 1/2$, cascade & $\BAfour$, $\Tfive$ \\
+\textbf{Échos} & $\{11, 13\}$ & $\gammap{} \in (0, 1/2)$, polarisation du vide universelle & M2, M3 \\
+\textbf{Super-échos} & $\{17, 19, 23\}$ & corrections dépendantes d'échelle (hadronique) & M3, M5 \\
+\textbf{Inactifs} & $\{p \geq 29\}$ & $F_{\rm inactive}(\mustar) \approx 10^{-4}$ & M3 \\
+\bottomrule
+\end{tabular}
+\caption{Taxonomie complète des nombres premiers en PT, au point fixe $\mustar = 15$.}
+\label{tab:taxonomie}
+\end{table}
+
+\textbf{Convention canonique stricte} (cf.~\cite{companion_M2,companion_M3}) :
+\begin{itemize}[nosep,leftmargin=*]
+\item Les premiers $\{11, 13\}$ sont les \emph{échos}, et seulement les échos. Jamais super-échos.
+\item Les premiers $\{17, 19, 23\}$ sont les \emph{super-échos}, jamais $\{11, 13\}$.
+\item Lorsque l'on parle de la somme des contributions échos $+$ super-échos, on emploie l'expression \og $\beta_{\rm echo}$ étendu \fg.
+\end{itemize}
+
+% ============================================================
+\section{Le principe de cascade arithmétique}
+\label{sec:cascade}
+
+\subsection{Définition}
+
+La \emph{cascade canonique} de la PT est la séquence ordonnée de raffinements modulaires sur les trois premiers actifs :
+\[
+\mathcal C_0 \;\xrightarrow{\;\gammathree\;}\; \mathcal C_3
+\;\xrightarrow{\;\gammafive\;}\; \mathcal C_{3,5}
+\;\xrightarrow{\;\gammaseven\;}\; \mathcal C_{3,5,7}.
+\]
+Chaque flèche pondère le motif par la dimension anomale $\gammap{p}$ correspondante. L'amplitude cumulative à l'étage $j$ est $\Gamma_j = \prod_{i=1}^{j} \gammap{p_{(i)}}$ ; pour la cascade canonique :
+\[
+\Gamma_1 = 0{,}808, \qquad
+\Gamma_2 = 0{,}562, \qquad
+\Gamma_3 = 0{,}335.
+\]
+La profondeur effective $\sum_{p \in \mathcal A} p = 3 + 5 + 7$ coïncide avec le point fixe $\mustar = 15$ ; c'est la lecture géométrique du théorème $\Tfive$.
+
+\subsection{Forcing local}
+
+Les deux théorèmes de pont intra-PT $\mathrm{BT}_7$ (Gram-isotropie des rôles purs $\{\tau, f_3, f_5, f_7\}$) et $\mathrm{BT}_9$ (forcing local par seuil d'activation) garantissent que la cascade canonique est \emph{l'unique} séquence ordonnée compatible avec $\BAfour$ et $\Tfive$. Les détails sont dans M4~\cite{companion_M4}.
+
+% ============================================================
+\section{Application canonique : la constante de structure fine}
+\label{sec:alphaem}
+
+L'enchaînement complet, sans paramètre ajustable, conduit de $\sper = 1/2$ à la valeur numérique de $\alpha_{\rm EM}$ :
+\[
+\sper = 1/2 \;\xrightarrow{\Tone\text{--}\Tsix}\; \mustar = 15
+\;\xrightarrow{\BAthree}\; \sinp{p}(\qplus)
+\;\xrightarrow{\BAfive}\; \alpha_{\rm bare} \;=\; \prod_{p\in\{3,5,7\}}\sinp{p}(\qplus).
+\]
+Les valeurs numériques (calculées en M5~\cite{companion_M5}) sont
+\[
+\sinp{3}(\qplus) = 0{,}2192, \qquad
+\sinp{5}(\qplus) = 0{,}1940, \qquad
+\sinp{7}(\qplus) = 0{,}1726,
+\]
+d'où le \emph{couplage nu}
+\[
+\alpha_{\rm bare} \;=\; 0{,}2192 \times 0{,}1940 \times 0{,}1726
+\;=\; \dfrac{1}{136{,}28}.
+\]
+La correction par le canal de parité ($p = 2$) --- fuite binaire, rétro-action en spirale, écrantage par les échos $\{11, 13\}$, polarisation du vide à deux boucles --- ferme l'écart à la valeur mesurée. Le résultat final, sans aucun paramètre ajustable~\cite{companion_M5} :
+\[
+\boxed{\;\dfrac{1}{\alpha_{\rm EM}^{\rm PT}} \;=\; 137{,}035\,999\,083 \quad\text{(écart : $0{,}004$~ppb).}\;}
+\]
+La valeur mesurée par effet Hall quantique et moment magnétique anomal de l'électron~\cite{PDG2024} est
+\[
+\dfrac{1}{\alpha_{\rm EM}^{\rm exp}} \;=\; 137{,}035\,999\,084(21),
+\]
+soit un accord à la précision expérimentale ($0{,}15$~ppb).
+
+% ============================================================
+\section{Plan de lecture}
+\label{sec:plan}
+
+\textbf{Niveau~1 (corpus arithmétique de référence)} : la série M1$\to$M5 développe la théorie complète avec les démonstrations. Elle est conçue pour être lue séquentiellement.
+\begin{itemize}[nosep,leftmargin=*]
+\item M1~\cite{companion_M1} : crible dynamique, $\Tone, \Tthree, \Tsix, \Lzero,$ GFT.
+\item M2~\cite{companion_M2} : géométrie de l'information, holonomie $\BAthree$, premiers actifs.
+\item M3~\cite{companion_M3} : convergence $\Tfour$, point fixe $\Tfive$, fermeture $\Tzero$.
+\item M4~\cite{companion_M4} : structures étendues, mathématiques prédictives.
+\item M5~\cite{companion_M5} : pont arithmétique-physique, $\BAfive$, lemmes de reconstruction E/F/G, $\alpha_{\rm EM}$.
+\end{itemize}
+
+\textbf{Niveau~2 (extensions thématiques)} :
+\begin{itemize}[nosep,leftmargin=*]
+\item \cite{PT_GeoSpectral} : lectures géométrique et spectrale --- courbe algébrique de persistance de genre $\mustar - 1 = 14$, métrique Fisher--Bianchi comme quasi-soliton de Ricci, identités spectrales K2 et A6.
+\item \cite{PT_RH} : conjecture spectrale-arithmétique RH-PT, opérateur de survie résiduel.
+\end{itemize}
+
+\textbf{Statut épistémique.} Les sept théorèmes $\Tzero$--$\Tsix$ et les six axiomes de pont $\BAzero$--$\BAfive$ sont tous démontrés (\textsc{[Thm]}). Le programme PT a clôturé en avril~2026 ses dix engagements structurels critiques (compteur \emph{C1--C10}, $10/10\;\textsc{[Thm]}$ après les promotions C2/C4/C5/C7 du 26 avril 2026). La seule étape conditionnelle qui subsiste à l'échelle du programme est la peer review externe ; cette série d'articles en constitue le matériel d'entrée.
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,101 @@
+\section{Algebro-geometric reading: the persistence curve}
+\label{sec:courbe}
+
+The canonical PT cascade (\ref{sec:intro2:rappels}) is a purely combinatorial sequence of arithmetic refinements. This section shows that it admits a unique algebro-geometric realisation: there exists an algebraic curve in the Kontsevich--Norbury class which encodes exactly the active-prime cascade, and its fundamental topological invariant --- the genus --- is given by the remarkable formula $\genus = \mustar - 1 = 14$. All results in this section are rigorously proved in~\cite{PT_GeoFlow_PersistenceCurve}; we give the statements and proof ideas.
+
+\subsection{Preliminaries: Kontsevich--Norbury spectral curves}
+\label{sec:courbe:KN}
+
+A \emph{spectral curve} in the sense of the Eynard--Orantin topological recursion~\cite{EynardOrantin2007} is a quadruple $(\Sigma, x, y, B)$ where $\Sigma$ is a Riemann surface, $x$ and $y$ are two meromorphic functions on $\Sigma$, and $B$ is a bilinear form (the \emph{Bergman kernel}). The Kontsevich--Norbury class~\cite{Kontsevich1992,Norbury2017}, denoted $\mathcal{KN}$, is the subclass of spectral curves whose univariate form $\omega_{0,1} = y\, dx$ determines, via topological recursion, the full set of Weil--Petersson invariants of the moduli space $\overline{\mathcal M}_{g,n}$ of pointed Riemann surfaces. The archetypical case is Mirzakhani's Airy curve~\cite{Mirzakhani2007}, whose univariate form exhibits the constant $2\pi^{2}/3$ characteristic of Weil--Petersson volumes.
+
+\subsection{Three self-consistency conditions}
+\label{sec:courbe:conditions}
+
+To a cascade $S = \{p_{(1)}, \dots, p_{(k)}\} \subseteq \mathbb N^{*}$ with $\mustar(S) := \sum_{p \in S} p > 2$ we naturally associate a family of candidate curves in $\mathcal{KN}$, parametrised by a complex variable $z$ via
+\begin{equation}
+\mu_S(z) \;=\; \dfrac{\mustar(S)}{1 - z^{2}},
+\qquad
+q_S(z) \;=\; 1 - \dfrac{2}{\mu_S(z)},
+\label{eq:param_curve_en}
+\end{equation}
+and the function $y$ defined by the cascade product
+\begin{equation}
+y_S(z) \;=\; \dfrac{z}{2\pi} \prod_{n \in S} \sin\thetap{n}\bigl(\mu_S(z)\bigr),
+\qquad
+\omega_{0,1}^{\mathcal C_S} \;=\; y_S(z)\,z\,dz.
+\label{eq:y_S_en}
+\end{equation}
+The parametrisation~\eqref{eq:param_curve_en} is rational even in $z$, has simple poles at $z = \pm 1$, and satisfies $\mu_S(0) = \mustar(S)$. The point $z = 0$ is therefore the \emph{self-consistency point}: the value of the parameter $\mu$ there is precisely the arithmetic fixed point.
+
+For such a curve to authentically encode the PT cascade, three structural conditions must be simultaneously imposed.
+
+\begin{definition}[ACA$_\mathcal N$ cascade conditions]
+\label{def:ABC_en}
+Let $\mathcal N \subseteq \mathbb N^{*}$ be a sieve (typically $\mathcal N = \{$primes$\}$, but other choices are admissible), and let $(S, \mu)$ with $S \subseteq \mathcal N$ finite and $\mu : \mathbb C \to \widehat{\mathbb C}$ rational even.
+\begin{enumerate}[nosep,label=\textbf{(\Alph*)}]
+\item \emph{Polynomial holonomy.} For each $n \in S$, the cyclic phase satisfies $\sinp{n} = \delta_n(q)(2 - \delta_n(q))$ with $\delta_n(q) = (1 - q^{n})/n$ (PT bridge axiom $\BAthree$).
+\item \emph{Activation threshold.} The subset $S$ coincides with the elements of $\mathcal N$ for which $\gammap{n}(\mustar) > \sper = 1/2$ (axiom $\BAfour$).
+\item \emph{Self-consistency.} The parameter satisfies $\mu(0) = \mustar(S) := \sum_{n \in S} n$ (theorem~$\Tfive$).
+\end{enumerate}
+\end{definition}
+
+On the prime sieve $\mathcal N = \mathcal P$, conditions (A), (B), (C) are precisely the algebraic translation of Article~1's theorems and bridge axioms. The principal theorem of this section asserts that these three conditions select a \emph{unique} subset $S$ and that the associated curve is algebraic.
+
+\subsection{Uniqueness theorem and classification}
+\label{sec:courbe:classification}
+
+\begin{theoreme}[Universal classification, simplified version]
+\label{thm:courbe_classification_en}
+Let $\mathcal P$ be the set of prime numbers. Among the subsets $S \subseteq \mathcal P$ satisfying conditions ACA$_{\mathcal P}$ (\ref{def:ABC_en}), there is \emph{exactly one} $S$ with $|S| \geq 2$ and $\mustar(S) \leq 200$: it is
+\[
+S \;=\; \{3, 5, 7\}, \qquad \mustar(S) \;=\; 15.
+\]
+\end{theoreme}
+
+\textbf{Idea of proof.} Condition (B), $\gammap{n}(\mustar) > 1/2$, is highly constraining: combined with the decreasing monotonicity of $\gammap{n}(\mu)$ with $n$ proved in the companion article~\cite{companion_M2}, it forces $S$ to be contained in an initial segment of the primes. Condition (C), $\mustar(S) = \sum_{n \in S} n$, then balances the effect: an $S$ too small fails to saturate the sum, an $S$ too large violates the threshold. Exhaustive numerical search over all $2406$ compatible subsets up to $\mustar \leq 200$ identifies $S = \{3, 5, 7\}$ as the unique solution with $|S| \geq 2$~\cite[\S 5]{PT_GeoFlow_PersistenceCurve}. The analytic proof completes the argument for $\mustar > 200$ via prime number theorem bounds.
+
+\subsection{Explicit algebraic form}
+\label{sec:courbe:forme}
+
+\begin{theoreme}[Algebraicity of the persistence curve]
+\label{thm:algebraicite_PT_en}
+The curve $\mathcal C_S$ defined by~\eqref{eq:param_curve_en}--\eqref{eq:y_S_en} with $S = \{3, 5, 7\}$ is algebraic: the function $y^{2}$ is a rational fraction of $x = z^{2}/2$. Explicitly, setting $q(x) = (\mustar - 2 + 4x)/\mustar$,
+\begin{equation}
+Y^{2} \;=\; \dfrac{2x}{4\pi^{2}} \prod_{n \in S} \dfrac{(1 - q(x)^{n})\,(2n - 1 + q(x)^{n})}{n^{2}} \;=\; \dfrac{N_S(x)}{2\pi^{2}\,D_S},
+\label{eq:Y_squared_en}
+\end{equation}
+with $D_S \in \mathbb N$ and $N_S \in \mathbb Z[x]$ of degree $2 \mustar + 1$. The polynomial $N_S$ has $x$ as factor (multiplicity~$1$, from the prefactor $z^{2} = 2x$) and $(2x - 1)$ as factor (multiplicity $|S|$, simultaneous vanishing of the $|S|$ factors $(1 - q^{n})$ at $q = 1$).
+\end{theoreme}
+
+\textbf{Idea of proof.} Since $\mu_S(z)$ is rational even, $q_S(z) = 1 - 2/\mu_S(z)$ is too. Each $\sin^{2}\thetap{n}(\mu_S(z)) = \delta_n(2 - \delta_n)$ with $\delta_n = (1 - q^{n})/n$ is rational in $q^{n}$, hence in $z^{2}$, hence in $x = z^{2}/2$. The product~\eqref{eq:Y_squared_en} is therefore rational in $x$. For $S = \{3, 5, 7\}$, the explicit degree of $N_S$ is $2 \cdot 15 + 1 = 31$; exact symbolic computation (Python/SymPy, scripts in~\cite{PT_GeoFlow_PersistenceCurve}) confirms the factor structure announced.
+
+\subsection{Genus computation and topological consequence}
+\label{sec:courbe:genre}
+
+\begin{theoreme}[Universal genus formula]
+\label{thm:genre_en}
+Let $S \subseteq \mathcal P$ be a solution of conditions ACA$_{\mathcal P}$ satisfying the hypotheses of \ref{thm:courbe_classification_en}. Then the genus of the algebraic curve underlying $\mathcal C_S$ is
+\[
+\boxed{\;\genus(\mathcal C_S) \;=\; \mustar(S) - \lfloor |S|/2 \rfloor.\;}
+\]
+\end{theoreme}
+
+\textbf{Consequence for PT.} Applying the formula to the unique solution $S = \{3, 5, 7\}$ of \ref{thm:courbe_classification_en},
+\begin{equation}
+\boxed{\;\genus(\Cper) \;=\; \mustar - \lfloor 3/2 \rfloor \;=\; 15 - 1 \;=\; 14.\;}
+\label{eq:genus_14_en}
+\end{equation}
+
+\textbf{Idea of proof.} From the explicit form~\eqref{eq:Y_squared_en} we extract the squarefree factor of $N_S$: $N_S^{\rm sqf}(x) = N_S(x)/(2x - 1)^{|S| - 1}$. Its degree is $2\mustar + 1 - (|S| - 1) = 2\mustar - |S| + 2$. The hyperelliptic curve $Y^{2} = N_S^{\rm sqf}(x)$ then has genus $\lfloor (\deg N_S^{\rm sqf} - 1)/2 \rfloor = \lfloor (2\mustar - |S| + 1)/2 \rfloor = \mustar - \lfloor |S|/2 \rfloor$. For $S = \{3, 5, 7\}$, direct computation: $\genus = 15 - 1 = 14$. The exhaustive computation of discriminants of squarefree polynomials is in~\cite[\S 7]{PT_GeoFlow_PersistenceCurve}.
+
+\subsection{Interpretation: \texorpdfstring{$\mustar$}{μ*} as a topological invariant}
+\label{sec:courbe:interpretation}
+
+Identity~\eqref{eq:genus_14_en} transforms the arithmetic fixed point $\mustar = 15$ from a mere integer into a \emph{topological invariant}: it is the genus, plus one, of a Riemann surface canonically associated to the cascade. This translation carries three important consequences.
+
+\begin{enumerate}[nosep,leftmargin=*]
+\item The triplet $\{3, 5, 7\}$ is not merely compatible with the equation $\mu = \sum_{p \in S} p$: it is the unique support of a non-trivial algebraic curve in the Kontsevich--Norbury class. The rigidity of the active-prime choice receives a \emph{topological} justification, complementary to the arithmetic justification by axioms $\BAthree$--$\BAfour$.
+\item The PT cascade fits into the general framework of Eynard--Orantin topological recursion: the associated invariants $\omega_{g,n}^{\Cper}$ inherit classical identities (Virasoro relations, intersection formulas on $\overline{\mathcal M}_{g,n}$). A structural substitution Mirzakhani $\to$ persistence, $2\pi^{2}/3 \to (1/2) \sum_{p \in S} \gammap{p}$, transports Weil--Petersson volumes towards PT invariants~\cite[\S 8]{PT_GeoFlow_PersistenceCurve}.
+\item Genus $14$ is, to the author's knowledge, the first strictly non-trivial topological invariant attached to the arithmetic structure of PT, opening the way to a cohomological study of its applications.
+\end{enumerate}
+The next section develops a second, complementary reading equipping the parameter space $\mu$ with a canonical Riemannian metric satisfying a Ricci soliton equation.

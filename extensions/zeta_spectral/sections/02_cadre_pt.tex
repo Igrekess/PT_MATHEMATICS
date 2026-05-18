@@ -1,0 +1,113 @@
+\section{Le cadre PT}
+\label{sec:cadre_pt}
+
+\subsection{Le paramètre fondamental}
+\label{sec:parametre}
+
+La théorie de la Persistance (PT) prend pour unique axiome arithmétique
+le théorème~$\Tone$ \cite{PT_M1}~:
+\[
+\sper \;=\; \tfrac{1}{2}.
+\]
+Ce paramètre joue trois rôles distincts dans le corpus PT, qui seront
+progressivement identifiés au cours de l'article~:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{arithmétique}~: $\sper$ est le paramètre de symétrie de la
+  transition interdite au premier $p = 3$ du crible
+  (théorème~$\Tone$, \cite{PT_M1}) ;
+\item \textbf{géométrique}~: $\sper$ est le seuil $\gammap{p} > 1/2$
+  d'activité d'un premier dans la cascade
+  (théorème~$\Tfive$, \cite{PT_M3}) ;
+\item \textbf{spectral}~: $\sper$ est la partie réelle qui apparaît dans
+  la transformée de Mellin sur les premiers via le Jacobien de la mesure
+  de Haar multiplicative.
+\end{itemize}
+
+Une lecture centrale du présent travail est que ces trois manifestations
+sont opératoriellement identifiables (\S\ref{sec:localisation_critique}).
+
+\subsection{Point fixe, premiers actifs, bifurcation}
+\label{sec:point_fixe}
+
+Le crible PT admet un unique point fixe $\mustar = 15$. Les premiers
+arithmétiquement actifs en ce point fixe sont les diviseurs premiers
+$\{3, 5, 7\}$ de $\mustar$ ; le premier $p = 2$ joue le rôle distinct de
+canal de parité (cf.~\S\ref{sec:dualite_higgs}). À ce point fixe, la
+dynamique de persistance se bifurque en deux branches conjuguées $\qplus$
+et $\qminus$ caractérisées par
+\begin{equation}
+\qplus \;=\; \dfrac{13}{15}, \qquad
+\qminus \;=\; \exp\!\Big(-\dfrac{1}{15}\Big).
+\label{eq:qplusqminus}
+\end{equation}
+Cette bifurcation est l'objet central du programme zêta. Elle entre dans
+toutes les amplitudes propres et toutes les phases cohomologiques
+rencontrées plus bas.
+
+\subsection{Mesure de Haar multiplicative et coordonnée de Mellin}
+\label{sec:haar}
+
+La cascade de persistance privilégie une seule mesure invariante sur la
+demi-droite des premiers~: la mesure de Haar multiplicative
+\begin{equation}
+du \;=\; \dfrac{dp}{p}, \qquad u \;=\; \log p.
+\label{eq:haar_mult}
+\end{equation}
+Cette mesure est invariante par dilatation $p \mapsto \lambda p$, et c'est
+la seule mesure invariante par le flot RG de PT (théorème~$\Ttwo$,
+doublement stochastique de la matrice $T_3$, \cite{PT_M1}). La
+coordonnée $u = \log p$ sera nommée \emph{coordonnée de Mellin} dans tout
+l'article ; elle porte la mesure additivement invariante par translation
+$u \mapsto u + c$.
+
+\subsection{Factorisation PT canonique de $\zeta$}
+\label{sec:factorisation}
+
+Pour $\Reop(s) > 1$ on définit, à partir des amplitudes de bifurcation,
+\begin{equation}
+\delta_p^{\pm} \;=\; \dfrac{1 - q_{\pm}^{p}}{p}, \qquad
+a_p \;=\; \delta_p^{+}\,(2 - \delta_p^{+}), \qquad
+b_p \;=\; \delta_p^{-}\,(2 - \delta_p^{-}),
+\label{eq:apbp}
+\end{equation}
+puis
+\begin{equation}
+\zetaplus(s) \;=\; \exp\!\Big(\sum_{p} a_p\,p^{-s}\Big), \qquad
+\zetaminus(s) \;=\; \exp\!\Big(\sum_{p} b_p\,p^{-s}\Big),
+\label{eq:zetapm}
+\end{equation}
+et le \textbf{facteur résiduel}
+\begin{equation}
+\Rres(s) \;=\; \dfrac{\zeta(s)}{\zetaplus(s)\,\zetaminus(s)}.
+\label{eq:Rres_def}
+\end{equation}
+On pose enfin $\Ap = a_p + b_p$, qui sera l'amplitude PT effective par
+premier dans toute la suite. Asymptotiquement, $\Ap \sim 4/p$ pour
+$p \to \infty$.
+
+\paragraph{Écriture canonique en angles d'holonomie.}
+Les amplitudes $a_p, b_p$ s'écrivent aussi
+\begin{equation}
+a_p \;=\; \sinp{p}(\qplus), \qquad b_p \;=\; \sinp{p}(\qminus),
+\label{eq:apbp_sinp}
+\end{equation}
+soit
+\begin{equation}
+\Ap \;=\; \sinp{p}(\qplus) \,+\, \sinp{p}(\qminus),
+\label{eq:Ap_holonomie}
+\end{equation}
+où $\thetap{p}$ désigne l'angle d'holonomie de la cascade au premier $p$
+(monographie ch.~10, structure fine, \cite{PT_Foundations}). L'équivalence
+entre les deux écritures vient de $1 - \delta_p^{\pm} = q_{\pm}^{p}/p$,
+soit
+\[
+\delta_p^{\pm}\,(2 - \delta_p^{\pm}) \;=\; 1 - (1 - \delta_p^{\pm})^{2} \;=\; 1 - (q_{\pm}^{p}/p)^{2} \;=\; \sinp{p}(q_{\pm})
+\]
+en posant $\cos(\thetap{p}, q_{\pm}) = q_{\pm}^{p}/p$.
+
+Le programme zêta cherche un modèle spectral canonique de $\Rres$, sous
+l'\textbf{hypothèse conjecturale} de non-annulation de
+$\zetaplus\,\zetaminus$ (vérifiée numériquement sur les zones testées) qui
+identifie les zéros non triviaux de $\Rres$ et ceux de $\zeta$. Cette
+hypothèse sera rappelée à chaque étape critique de l'identification.
+

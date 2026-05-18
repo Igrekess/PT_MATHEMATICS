@@ -1,0 +1,63 @@
+We construct a canonical spectral model of the residual factor
+$\Rres(s) = \zeta(s) / \big(\zetaplus(s)\zetaminus(s)\big)$ of the Riemann
+zeta function, starting from the persistence dynamics of PT. Three main
+results are established.
+\begin{enumerate}[nosep,leftmargin=*]
+\item A closed-form expression for the spectral amplitudes
+$\kappap(s) = 1 - (1 - p^{-s})\exp(\Ap\,p^{-s})$ such that
+$\det(I - \DRop(s))^{-1} = \Rres(s)$, verified to $10^{-12}$ in
+$\Reop(s) > 1$; $\DRop$ is the associated diagonal operator on
+$\ell^{2}(\Primes)$.
+\item An exact analytic trace formula
+$-d \log \Rres/ds = \sum_p (\log p)\,[1/(p^s - 1) + \Ap\,p^{-s}]$, verified
+to $10^{-26}$, which reads as a Berry--Keating trace formula on the orbit
+lengths $\ell_p = \log p$.
+\item A regularised operator trace
+$\Treg(s) = \Tr_{\mathrm{reg}}\!\big[(s - i\,\HPTBK)^{-1}\,\DRop(s)\big]$
+whose distributional poles on the critical line are identified with the
+non-trivial zeros of $\Rres(s)$. On $t \in [10, 200]$, the raw formula
+captures 74 zeros out of 79 at $|\Delta| < 1.5$ (on $t \in [10, 70]$:
+$17/17$), with saturation beyond $P_{\max} = 3\,000$. The explicit
+regularisation $R_1$ via Gaussian smearing ($\eps = 0.2$) substantially
+improves precision: \textbf{$75/79$ zeros at $|\Delta| < 0.5$ and $47/79$
+at $|\Delta| < 0.1$} on the same domain, with a median $|\Delta| = 0.080$
+against $0.52$ for the raw formula. The test extended to $t \in [10, 500]$
+($269$ zeros) confirms the robustness: \textbf{$267/269$ at $|\Delta| < 1.5$
+($99.3\,\%$), $242/269$ at $|\Delta| < 0.5$ ($90.0\,\%$), $139/269$ at
+$|\Delta| < 0.1$ ($51.7\,\%$)}, with capture by bands of $100$ units that
+stays $\ge 86.6\,\%$ at $|\Delta| < 0.5$ across the five sub-bands --- the
+performance does not collapse beyond $T = 200$.
+\end{enumerate}
+
+The localisation $\Reop(s) = 1/2$ admits four equivalent readings internal
+to PT: symplectic Planck cell $u_\star\, p_\star = 2\pi$, multiplicative
+Haar Jacobian $du = dp/p$, unitary transformation $e^{su/2}$, and
+antiperiodic boundary condition forced by the involution $T_3$ of the
+sieve $\bmod\,3$. The numerical residue $1/8$ separating the PT
+semi-classical density from the Riemann--von Mangoldt density admits a
+cohomological overdetermination: $1/8 = \sper^{2}/2 = \lambdaH$
+(Higgs self-coupling), $1/8 = c_1/N_{\mathrm{corners}}$ (first Chern class
+of the $\qplus/\qminus$ spinor bundle), $1/8 = \sper/4$ (Berry phase per
+corner of the double barrier). The identity $\sper^{2}/2 = \sper/4$ has
+only $\sper = 0$ and $\sper = 1/2$ as solutions; the value $\sper = 0$
+being excluded by $\Tone$ (PT axiom), the consistency of the two readings
+overdetermines $\sper = 1/2$ without deriving it independently.
+
+A structurally induced prediction --- $\Delta_N(L \bmod q) = 1/(8q)$ for
+primitive Dirichlet $L$-functions --- has been tested on the pre-computed
+zeros of \texttt{LMFDB} ($q \in \{3,5,7,11\}$, $\sim 140$ zeros per
+character, $T \le 200$). The test rejects the prediction at
+$\chi^{2}(\mathrm{PT}) = 7.49$ against $\chi^{2}(H_0) = 0.023$ on four
+degrees of freedom. The calibration on the $50$ first zeros of $\zeta$
+shows that the residue $1/8$ is an identity between asymptotic forms
+(between the BK semi-classical density and the Riemann--von Mangoldt
+density), not a measurable shift in the count of zeros. The falsifiability
+discipline of the programme is reinforced and its validity domain made
+precise: the PT mechanism described here is specific to $\zeta$, not to the
+Dirichlet family.
+
+The article strictly distinguishes \emph{understanding} the structure of
+the zeros and \emph{proving} their localisation: the programme reaches the
+first objective at the operator level; the second remains an open problem
+in the classical sense, equivalent to the strict analytic continuation of
+$\Rres(s)$ outside the half-plane of convergence.

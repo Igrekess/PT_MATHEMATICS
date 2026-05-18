@@ -1,0 +1,181 @@
+\section{Le découplage CRT et la non-localité modulaire}
+\label{sec:decouplage_crt}
+
+Les Sections~\ref{sec:champ_connexion} et~\ref{sec:holonomie_primitive}
+ont établi le statut de l'angle d'holonomie $\theta_p$ comme
+invariant primitif et celui des objets classiques $A_\mu,
+F_{\mu\nu}, g_{\mu\nu}$ comme dérivés du potentiel scalaire $S$.
+Pour relier ce statut à la question expérimentale de la
+non-localité, il reste à examiner les corrélations entre canaux
+modulaires distincts --- les seules corrélations
+``inter-objets'' que la PT autorise à porter une signification
+informationnelle non-triviale. Cette section énonce, sans
+démonstration détaillée, les deux théorèmes structurels prouvés
+dans l'article companion technique~\cite{PT_CRT_DECOUPLING}
+ainsi que leur corollaire empirique.
+
+\subsection{Théorème 4.1 : Théorème de découplage géométrique (forme empirique)}
+\label{ssec:thm_4_1_fr}
+
+\begin{theoreme}[Théorème de découplage géométrique, forme empirique]
+\label{thm:invariance_geom}
+\footnote{Vérifié formellement en Lean~4 + Mathlib comme
+\texttt{PT.CrtDecoupling.Empirical.empirical\_invariance}
+(forme hypothétique),
+\texttt{SpectralReduction.empirical\_invariance\_closed}
+(forme fermée fini),
+\texttt{Phase3.empirical\_invariance\_infinite}
+(forme infinie via Birkhoff--Hopf), et
+\texttt{Phase4.sieve\_empirical\_invariance}
+(clôture spécifique au crible) ;
+cf.~\cite[\S~8.5]{PT_CRT_DECOUPLING}.}
+Soient $p, q \in \{3, 5, 7\}$ premiers actifs distincts, et soient
+$\Phi_p \in \mathcal{A}_p$, $\Phi_q \in \mathcal{A}_q$ des
+observables bornées sur les $\sigma$-algèbres modulaires
+correspondantes. La fonction
+\begin{equation}
+  \mathcal{I}_{p,q}(\mu)
+  \;:=\;
+  I_{\pi_m^{\mathrm{emp}}}\!\bigl(\Phi_p\,;\,\Phi_q \,\big|\, G(\mu)\bigr)
+\end{equation}
+est constante sur $\mu \in [\mu_c, \infty)$.
+\end{theoreme}
+
+La démonstration complète est donnée dans le théorème~6.1
+du companion technique \cite{PT_CRT_DECOUPLING}. Elle procède en
+quatre étapes : (i) la mesure empirique $\pi_m^{\rm emp}$ de la
+trajectoire des résidus est une fonctionnelle du seul champ
+$\{g_n\}$, donc indépendante de $\mu$ ; (ii) la géométrie
+$G(\mu)$ est mesurable par rapport à la tribu engendrée par le
+spectre de la matrice de transfert $T_m$, qui est elle-même
+contenue dans la tribu invariante du shift ; (iii) la dynamique du
+crible est ergodique par le théorème de Birkhoff--Hopf appliqué
+au gap spectral T4, donc la tribu invariante est triviale
+modulo $\pi_m^{\rm emp}$, donc $G(\mu)$ est presque sûrement
+constante ; (iv) conditionner par une variable presque sûrement
+constante ne change pas l'information mutuelle. La conclusion
+suit immédiatement.
+
+Le point conceptuel est que la métrique émergente $G(\mu)$ --- y
+compris à travers la transition de Hartle--Hawking en $\mu_c
+\approx 6{,}97$ et jusqu'au point fixe canonique
+$\mustar = 15$ --- ne modifie jamais le contenu informationnel
+joint des canaux modulaires actifs. Les corrélations
+inter-canaux sont \emph{intrinsèquement} pré-géométriques : elles
+existent avant la construction de la métrique et lui sont
+indifférentes.
+
+\subsection{Théorème 4.2 : Théorème de découplage géométrique (forme Ruelle)}
+\label{ssec:thm_4_2_fr}
+
+\begin{theoreme}[Théorème de découplage géométrique, forme Ruelle]
+\label{thm:ruelle_zero_fr}
+\footnote{Vérifié formellement en Lean~4 + Mathlib comme
+\texttt{PT.CrtDecoupling.Main.geometric\_decoupling\_ruelle} ;
+cf.~\cite[\S~8.5]{PT_CRT_DECOUPLING}.}
+Sous la mesure idéalisée $\pi_m^{\mathrm{Ruelle}}$, on a
+$I(\Phi_p\,;\,\Phi_q) = 0$ exactement.
+\end{theoreme}
+
+La démonstration est immédiate à partir de la factorisation
+tensorielle CRT du transfert
+$T_{pq} = T_p \otimes T_q$ (Théorème~3.1
+de~\cite{PT_CRT_DECOUPLING}) et de la factorisation correspondante
+de l'unique vecteur propre gauche de Perron
+$\pi_{pq}^{\rm Ruelle} = \pi_p^{\rm Ruelle} \otimes \pi_q^{\rm Ruelle}$
+(Lemme~3.2 du même article). Cette factorisation est une
+condition d'indépendance, donc la divergence de Kullback--Leibler
+entre la loi jointe et le produit des marginales est nulle ;
+par l'inégalité de traitement de données, l'information mutuelle
+de toute paire d'observables bornées en hérite.
+
+\emph{Validation numérique.} La factorisation
+$\pi_{15}^{\rm Ruelle} = \pi_3^{\rm Ruelle} \otimes \pi_5^{\rm Ruelle}$
+est vérifiée au sens du résidu
+\begin{equation}
+  \|\pi_{15}^{\rm direct} - \pi_3 \otimes \pi_5\|_2
+  \;=\; 5{,}88 \times 10^{-53}
+\end{equation}
+à \texttt{mpmath} 50~chiffres de précision (test T2 PASS de
+\texttt{scripts/test\_crt\_decoupling.py}~\cite{PT_CRT_DECOUPLING}).
+
+\subsection{Corollaire 4.3 : Forme fermée du découplage}
+\label{ssec:cor_4_3_fr}
+
+\begin{corollaire}[Forme fermée du découplage]
+\label{cor:closed_form_fr}
+\footnote{Non formalisable comme théorème Lean en l'état car le
+paramètre de profondeur $k_{p,q}^{\rm eff}$ est ajusté
+empiriquement ; seule la prédiction à $k$ fixé admet un énoncé
+Lean-vérifiable ;
+cf.~\cite[\S~8.5]{PT_CRT_DECOUPLING}.}
+La constante $\mathcal{I}_{p,q}$ admet une expression fermée
+dérivée des angles d'holonomie :
+\begin{equation}
+  \mathcal{I}_{p,q}
+  \;=\;
+  \frac{1}{2 \ln 2}\Bigl[
+    \cos^{2 k_{p,q}}(\theta_3, \mustar)
+    + \sin^{4 k_{p,q}}(\theta_2, p_1)
+  \Bigr].
+  \label{eq:closed_form_fr}
+\end{equation}
+Validations numériques (cf.~\cite{PT_CRT_DECOUPLING}, Tableau B) :
+$\mathcal{I}_{3,5} = 0{,}132$ bits (cible $0{,}138$, écart $4{,}5\%$) ;
+$\mathcal{I}_{3,7} = 0{,}306$ bits (cible $0{,}283$, écart $8{,}1\%$).
+\end{corollaire}
+
+Le paramètre de profondeur $k_{p,q}$ est ajusté empiriquement à
+$k_{3,5}^{\rm eff} = 7$ et $k_{3,7}^{\rm eff} = 4$ ; une dérivation
+combinatoire à partir de la structure antidiagonale de $T_3$ reste
+ouverte (cf.\ remarque~7.1 de~\cite{PT_CRT_DECOUPLING}). Cette
+incertitude ne porte que sur la \emph{valeur quantitative} de
+$\mathcal{I}_{p,q}$ ; le résultat structurel
+(Théorème~\ref{thm:invariance_geom}) ne dépend pas du choix de
+$k_{p,q}$.
+
+\subsection{La non-localité spatiale dissoute en non-localité modulaire}
+\label{ssec:dissolution}
+
+Les trois énoncés précédents permettent de reformuler en termes
+PT le statut de la « non-localité » apparente des corrélations
+quantiques. On peut résumer la situation en trois propositions
+strictement parallèles aux trois positions du débat fondationnel
+(\S~\ref{sec:debat}), mais avec un statut différent :
+
+\paragraph{(i) Les corrélations inter-canaux existent.}
+$\mathcal{I}_{3,5}$ et $\mathcal{I}_{3,7}$ sont
+non nuls et de magnitude prédite par le
+Corollaire~\ref{cor:closed_form_fr}. La PT ne nie pas l'existence
+des corrélations EPR/Bell ; elle en fournit, au contraire, une
+prédiction quantitative.
+
+\paragraph{(ii) Ces corrélations sont d'origine arithmétique.}
+La forme fermée du Corollaire~\ref{cor:closed_form_fr}
+fait intervenir uniquement les angles d'holonomie $\theta_3,
+\theta_2$ évalués aux échelles canoniques $\mustar = 15$ et
+$p_1 = 3$. Aucune intégrale spatiale, aucune métrique, aucune
+distance entre points de l'espace n'entre dans l'expression. La
+non-localité observée n'est pas une non-localité dans
+l'espace : c'est une corrélation intra-CRT entre canaux modulaires
+différents.
+
+\paragraph{(iii) Ces corrélations sont invariantes par $G(\mu)$.}
+Le Théorème~\ref{thm:invariance_geom} interdit que la géométrie
+émergente \emph{couple} les canaux modulaires. Quelle que soit la
+position dans la famille géométrique
+$\mu \in [\mu_c, \infty)$ --- y compris à toute distance entre
+détecteurs dans un dispositif Bell --- l'information mutuelle entre
+canaux distincts reste la même.
+
+Ces trois propositions ensemble dissolvent la non-localité
+spatiale au sens fort de la position B : les corrélations
+quantiques ne traversent pas l'espace parce qu'elles ne sont pas
+dans l'espace. Elles sont dans la structure CRT, qui se manifeste
+dans la géométrie émergente $G$ par projection, sans la traverser
+ni l'utiliser comme support causal. Le paradoxe apparent d'une
+information « plus rapide que $c$ » dans les tests de Bell est un
+artéfact de la lecture spatiale d'une corrélation qui, dans la
+substrat PT, n'est pas spatiale. Nous revenons sur les conséquences
+expérimentales de cette dissolution dans
+la~\S~\ref{ssec:bell_consequence}.

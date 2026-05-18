@@ -1,0 +1,145 @@
+\section{Background on Perron--Frobenius theory}
+\label{app:perron_frobenius}
+
+This appendix collects the elementary facts about non-negative
+matrices used in the main text, with references to the standard
+literature. None of the material here is original; we include it
+only to make the article self-contained for readers approaching the
+results from outside Persistence Theory. The canonical reference is
+the monograph of Seneta~\cite{Seneta2006}, especially chapters~1
+and~2; see also chapter~1 of Walters~\cite{Walters1982} for the
+specialisation to Markov chains.
+
+\subsection{Primitivity and the Perron eigenvalue}
+\label{appssec:primitivity}
+
+A square non-negative matrix $A \in \mathbb{R}_{\geq 0}^{n \times n}$
+is \emph{irreducible} if for every pair $(i, j)$ there exists a
+positive integer~$k$ with $(A^k)_{ij} > 0$; it is \emph{primitive}
+if there exists a single $k$ such that $A^k$ has all entries
+positive. Every primitive matrix is irreducible; the converse fails
+in general (the matrix $\mathrm{antidiag}(1, 1)$ on
+$\mathcal{S}_3$ is irreducible but not primitive, as $T_3^{2n} =
+I$ alternates with $T_3^{2n+1} = \mathrm{antidiag}(1, 1)$; cf.\
+Section~\ref{ssec:transfer_matrix}).
+
+\begin{theorem}[Perron--Frobenius, irreducible case]
+\label{thm:PF}
+Let $A \in \mathbb{R}_{\geq 0}^{n \times n}$ be irreducible. Then:
+\begin{enumerate}[itemsep=2pt]
+  \item The spectral radius $\rho(A) > 0$ is a simple eigenvalue of
+    $A$, with a strictly positive (left and right) eigenvector
+    that is unique up to positive scalar.
+  \item Every other eigenvalue $\lambda$ of $A$ satisfies
+    $|\lambda| \leq \rho(A)$, with equality possible only for
+    eigenvalues of the form $\rho(A) \cdot e^{2\pi i k / h}$,
+    where $h$ is the period of~$A$ (in particular, $h = 1$ iff
+    $A$ is primitive).
+  \item The eigenvector corresponding to $\rho(A)$ is the unique
+    non-negative eigenvector of $A$ up to positive scalar.
+\end{enumerate}
+\end{theorem}
+
+The standard reference is Theorem~1.4 of
+Seneta~\cite{Seneta2006}, where the result is stated for
+non-negative matrices and the variant for stochastic matrices
+(used below) is derived as a corollary.
+
+\subsection{Uniqueness of the stationary distribution}
+\label{appssec:uniqueness}
+
+A row-stochastic matrix is a non-negative square matrix $T$ such
+that $\sum_j T_{ij} = 1$ for all $i$. Such a matrix satisfies
+$\rho(T) = 1$ with right eigenvector $\mathbf{1} = (1, \ldots, 1)^\top$.
+By Perron--Frobenius (Theorem~\ref{thm:PF}), if $T$ is irreducible
+then $\rho(T) = 1$ is a simple eigenvalue, and the corresponding
+unique left eigenvector $\pi \in \mathbb{R}_{> 0}^n$, normalised by
+$\sum_j \pi_j = 1$, is the stationary distribution of the Markov
+chain defined by~$T$.
+
+For the prime-sieve transfer matrices on the active subspace, the
+following two properties suffice for our purposes:
+\begin{enumerate}[itemsep=2pt]
+  \item For $p = 3$, the matrix $T_3 = \mathrm{antidiag}(1, 1)$ on
+    $\mathcal{S}_3 = \{1, 2\}$ is irreducible (one transition step
+    suffices to reach either state from the other) and has spectrum
+    $\{+1, -1\}$. The unique stationary distribution is
+    $\pi_3 = (1/2, 1/2)$, and the Perron eigenvalue $+1$ is simple.
+  \item For $p \geq 5$, the matrix $T_p$ on
+    $\mathcal{S}_p = \{1, \ldots, p-1\}$ given by
+    Eq.~\eqref{eq:Tp_explicit} is the all-ones matrix on
+    $\mathcal{S}_p$ minus the identity, multiplied by $1/(p-2)$.
+    It is irreducible and primitive (any two states communicate in
+    one step), and has spectrum
+    $\{+1, -1/(p-2), \ldots, -1/(p-2)\}$ with the negative
+    eigenvalue of multiplicity $p - 2$. The unique stationary
+    distribution is the uniform distribution
+    $\pi_p = (1/(p-1), \ldots, 1/(p-1))$.
+\end{enumerate}
+The spectral gap, defined as $1 - |\lambda_1|/\rho$ where
+$\lambda_1$ is the second-largest eigenvalue in absolute value, is
+$0$ for $p = 3$ (the antiperiodic case) and
+$1 - 1/(p-2) \geq 2/3$ for $p \geq 5$. The vanishing of the
+spectral gap for $p = 3$ is the technical reason behind the
+antidiagonal double-cover structure invoked in
+Remark~\ref{rmk:k_interp} of Section~\ref{ssec:k_interpretation}:
+$T_3$ is irreducible but not primitive, and its $\mathbb{Z}/2$
+period propagates non-trivially through the tensor product
+$T_3 \otimes T_q$ for distinct active primes~$q$.
+
+\subsection{Tensor products of primitive matrices}
+\label{appssec:tensor_primitive}
+
+The key algebraic fact used in Lemma~\ref{lem:pi_factor} is the
+following.
+
+\begin{proposition}[Tensor Spectrum (Perron--Frobenius)]
+\label{prop:tensor_PF}
+Let $A \in \mathbb{R}_{\geq 0}^{m \times m}$ and
+$B \in \mathbb{R}_{\geq 0}^{n \times n}$ be non-negative matrices.
+Then:
+\begin{enumerate}[itemsep=2pt]
+  \item $\mathrm{Spec}(A \otimes B) = \{\lambda_i \mu_j : \lambda_i
+    \in \mathrm{Spec}(A),\, \mu_j \in \mathrm{Spec}(B)\}$ (with
+    multiplicities), and the corresponding right (resp.\ left)
+    eigenvectors are $v_i \otimes w_j$ where $v_i, w_j$ are the
+    right (resp.\ left) eigenvectors of $A, B$.
+  \item If $A$ and $B$ are both row-stochastic and irreducible
+    with simple Perron eigenvalue~$1$, then $A \otimes B$ is
+    row-stochastic and irreducible with simple Perron
+    eigenvalue~$1$, and its stationary distribution is the
+    Kronecker product $\pi_A \otimes \pi_B$ of the per-factor
+    stationary distributions.
+\end{enumerate}
+\end{proposition}
+
+The first claim is the standard spectral identity for Kronecker
+products, see e.g.\ Theorem~4.2.12 of Horn--Johnson~\cite{Seneta2006}
+(or any matrix-theory textbook). For the second claim, the simplicity
+of the Perron eigenvalue $\lambda_0 \cdot \mu_0 = 1$ follows from the
+fact that there is a unique pair
+$(\lambda_i, \mu_j) = (\lambda_0, \mu_0) = (1, 1)$ with
+$\lambda_i \mu_j = 1$, given that both spectra lie in the closed
+unit disk and have $1$ as their unique boundary point of modulus
+$1$. The factorisation of the stationary distribution then follows
+from the Kronecker product rule
+$(\pi_A \otimes \pi_B)(A \otimes B) = \pi_A A \otimes \pi_B B =
+\pi_A \otimes \pi_B$.
+
+Proposition~\ref{prop:tensor_PF} applies directly to our case: for
+$p, q \geq 5$ distinct, both $T_p$ and $T_q$ are primitive
+row-stochastic with simple Perron eigenvalue~$1$, hence
+$T_p \otimes T_q = T_{pq}$ is primitive row-stochastic with simple
+Perron eigenvalue~$1$, and its stationary distribution factorises.
+For the pair $(p, q) = (3, q)$ with $q \geq 5$, primitivity of
+$T_3$ fails (the matrix is irreducible but periodic of period~$2$),
+but the conclusion about the stationary distribution survives
+because the periodicity does not couple to the right eigenvector
+of $T_q$ at $\mu_0 = 1$: explicitly, the Perron eigenvalue $1$ of
+$T_3 \otimes T_q$ is still simple (the only pair $(\lambda_i, \mu_j)$
+with $\lambda_i \mu_j = 1$ is $(+1, +1)$, given that the spectrum
+of $T_3$ is $\{+1, -1\}$ and that of $T_q$ contains no point of
+modulus~$1$ other than $+1$), and the corresponding left
+eigenvector is again the Kronecker product
+$\pi_3 \otimes \pi_q$. This is the form used in
+Theorem~\ref{thm:ruelle_zero}.

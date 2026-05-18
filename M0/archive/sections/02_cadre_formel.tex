@@ -1,0 +1,89 @@
+\section{Cadre formel : la catégorie \texorpdfstring{$L^0$}{L0} et le crible}
+\label{sec:cadre}
+
+Avant d'énoncer les théorèmes structurants de la PT, il est nécessaire de fixer le langage. Cette section introduit, dans l'ordre minimal de dépendances : la catégorie $L^0$ sur laquelle agit le crible, le crible PT modulo $\{3,5,7\}$ proprement dit, la convention des secteurs duaux $\qplus / \qminus$, et un petit dictionnaire bilingue physique\,\textendash\,mathématique destiné à fluidifier les renvois ultérieurs.
+
+\subsection{La catégorie \texorpdfstring{$L^0$}{L0}}
+\label{sec:cadre:l0}
+
+La PT prend pour cadre fondationnel la catégorie $L^0$, définie comme la catégorie des ensembles pointés finis sur ZFC, munie de l'additivité des cardinaux. Concrètement, un objet de $L^0$ est un couple $(X, \star_X)$ où $X$ est fini et $\star_X \in X$ est un point distingué (le \emph{point-base}, interprété informationnellement comme le « néant structurel »). Un morphisme $f : (X, \star_X) \to (Y, \star_Y)$ est une fonction $f : X \to Y$ avec $f(\star_X) = \star_Y$.
+
+Deux propriétés singularisent ce cadre.
+
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \emph{Additivité.} Le coproduit $(X, \star_X) \sqcup (Y, \star_Y)$ a pour cardinal $|X| + |Y| - 1$ (on identifie les deux points-base). Cette additivité est la traduction catégorique de l'additivité de Shannon pour l'entropie de partitions disjointes.
+
+\item \emph{Maximum d'entropie.} Parmi toutes les distributions sur $\mathbb{N}$ compatibles avec une moyenne fixée, la distribution géométrique est l'unique solution du problème de maximisation de l'entropie de Shannon sous contrainte ; ce résultat classique constitue le lemme~\Lzero{} (\ref{sec:theoremes:L0}). C'est sur cette unicité que repose la fixation de la sortie dynamique du crible, formalisée par le théorème~\Tzero{} \emph{Théorème du champ dynamique} (\ref{sec:theoremes:T0}), promotion de l'axiome de pont $\BAzero$ : la séquence des écarts $\{g_n\}$ est l'unique champ dynamique compatible avec les axiomes de pont $U_1$--$U_4$ du monographe~\cite{PT_Monograph}.
+\end{enumerate}
+
+Le rôle de $L^0$ est donc analogue, dans la PT, à celui qu'occupe la catégorie des espaces de Hilbert dans la mécanique quantique standard : un substrat catégorique minimal sur lequel les contraintes ultérieures (crible, dualité, holonomie) viennent s'inscrire sans introduire de structure additionnelle ad hoc.
+
+Une identité de comptage informationnel jouera un rôle récurrent : pour toute distribution de probabilités $P = (p_1, \dots, p_m)$ sur les classes résiduelles modulo $m$, on a
+\begin{equation}
+\log_2 m \;=\; D_{\mathrm{KL}}\!\left(P \,\|\, U_m\right) \;+\; H(P),
+\label{eq:GFT}
+\end{equation}
+où $U_m$ est la distribution uniforme sur $\mathbb{Z}/m\mathbb{Z}$, $D_{\mathrm{KL}}$ la divergence de Kullback\,\textendash\,Leibler et $H$ l'entropie de Shannon. L'identité~\eqref{eq:GFT} est tautologique au niveau probabiliste, mais elle est interprétée en PT comme la décomposition du \emph{coût informationnel maximal} $\log_2 m$ en une part irréductible $D_{\mathrm{KL}}$ (résiduelle, structurelle) et une part dispersive $H$ (entropique).
+
+\subsection{Le crible PT modulo \texorpdfstring{$\{3, 5, 7\}$}{{3,5,7}}}
+\label{sec:cadre:crible}
+
+Le crible PT n'est pas le crible d'Ératosthène classique au sens d'un algorithme énumératif d'élimination. Il en est plutôt l'\emph{ombre catégorique}, lue comme un système dynamique sur l'espace des écarts entre premiers consécutifs. Précisément, soit $(p_n)_{n \geq 1}$ la suite des nombres premiers et $(g_n)_{n \geq 1}$ la suite de leurs écarts, $g_n = p_{n+1} - p_n$.
+
+\begin{definition}[Crible PT au niveau $p$]
+\label{def:crible}
+Soit $p \in \{3, 5, 7\}$ un premier actif. Le \emph{crible PT au niveau $p$} est la projection $\pi_p$ de la suite $(g_n)$ sur ses classes résiduelles modulo $p$, considérée comme une marche stochastique conditionnée sur l'ensemble des entiers qui sont premiers à $2, 3, \dots, p$ simultanément. Le \emph{crible PT total} est la donnée conjointe $(\pi_3, \pi_5, \pi_7)$.
+\end{definition}
+
+À chaque niveau, le crible engendre une \emph{phase cyclique} : pour chaque premier actif $p$, on définit $\thetap{p} = 2\pi k_p / p$, où $k_p \in \{1, \dots, p-1\}$ est la classe résiduelle non triviale dominante au niveau $p$. Les fonctions $\sin^2 \thetap{p}$ (notées $\sinp{p}$ dans la suite) seront les briques élémentaires de toutes les formules d'holonomie en section~\ref{sec:alphaem}.
+
+Une observation cruciale, qui motivera le théorème~\Tone{} (\ref{sec:theoremes:T1}) puis le théorème~\Tthree{} (\ref{sec:theoremes:T3}), est que toutes les transitions ne sont pas autorisées dans le crible. Au niveau $p = 3$, par exemple, et pour tout premier $q > 3$, deux écarts consécutifs $g_n$ et $g_{n+1}$ ne peuvent jamais appartenir simultanément à la même classe non nulle mod $3$. Cette \emph{interdiction d'auto-transition} sera formalisée plus loin.
+
+\subsection{Les secteurs canoniques \texorpdfstring{$\qplus$}{q+} et \texorpdfstring{$\qminus$}{q-}}
+\label{sec:cadre:qpm}
+
+La loi géométrique unique fournie par le lemme~\Lzero{} admet, au point fixe~$\mustar$, deux paramétrisations canoniques équivalentes. Elles correspondent aux deux faces complémentaires du graphe du crible --- ses sommets et ses arêtes --- reliées par une involution naturelle. La lettre $q$, choisie ici, est le paramètre standard de la loi géométrique en statistique élémentaire ; le subscript $\pm$ distingue les deux paramétrisations.
+
+\begin{convention}[Secteurs $\qplus / \qminus$]
+\label{conv:qpm}
+On note
+\[
+\qplus \;=\; 1 - \dfrac{2}{\mustar} \;=\; \dfrac{13}{15}
+\qquad\text{et}\qquad
+\qminus \;=\; e^{-1/\mustar} \;=\; e^{-1/15}.
+\]
+Le paramètre $\qplus$, appelé \emph{branche max-entropie} (ou \emph{branche-sommet}), est rationnel ; il fournit la paramétrisation issue du principe de maximum d'entropie sous contrainte de moyenne (lemme~\Lzero) et code la couche d'identification discrète du crible --- comptage des survivants, structure rigide aux sommets. Le paramètre $\qminus$, appelé \emph{branche de Gibbs} (ou \emph{branche-arête}), est transcendant ; il fournit la paramétrisation de type Gibbs et code la couche dispersive du crible --- transitions entre survivants, structure le long des arêtes.
+\end{convention}
+
+Les deux valeurs partagent un dénominateur arithmétique commun, $\mustar = 15$, qui n'est pas postulé ici mais émerge comme point fixe (théorème~\Tfive{}, \ref{sec:theoremes:T5}). À ce stade, on note simplement que $\qplus$ est rationnel tandis que $\qminus$ est transcendant : c'est la trace algébrique élémentaire de la distinction discret\,/\,continu déjà observable au niveau de la paramétrisation seule.
+
+Les secteurs $\qplus$ et $\qminus$ sont reliés par une involution $D : \qplus \leftrightarrow \qminus$ engendrant une symétrie $\mathbb{Z}_2$ sur le crible. L'invariance sous $D$ classifie les observables en deux catégories : les invariants pairs (combinaisons symétriques de $\qplus$ et $\qminus$) et les invariants impairs (différences antisymétriques). Cette structure de bifurcation est intimement liée à l'identité de conservation spectrale du théorème~\Ttwo{} (\ref{sec:theoremes:T2}).
+
+\subsection{Dictionnaire bilingue physique\,\textendash\,mathématique}
+\label{sec:cadre:bilingue}
+
+Le tableau~\ref{tab:bilingue} fixe les correspondances de vocabulaire qui seront utilisées sans rappel dans la suite. Un glossaire plus détaillé est fourni en annexe~\ref{app:glossaire}.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}p{4.2cm}p{5cm}p{5cm}@{}}
+\toprule
+Objet PT & Lecture mathématique & Lecture physique \\
+\midrule
+$\sper = 1/2$ & Paramètre de persistance, exposant de symétrie & Exposant critique du crible \\
+$L^0$ & Catégorie d'ensembles pointés (ZFC) & Espace des configurations admissibles \\
+Crible mod $p$ & Projection sur $\mathbb{Z}/p\mathbb{Z}$ & Filtre de niveau d'énergie $p$ \\
+$\thetap{p}$ & Phase cyclique mod $p$ & Angle de mélange \\
+$\sinp{p} = \sin^2 \thetap{p}$ & Probabilité conditionnelle & Probabilité d'holonomie \\
+$\qplus = 13/15$ & Branche max-entropie (rationnelle) & Branche-sommet du graphe du crible \\
+$\qminus = e^{-1/15}$ & Branche de Gibbs (transcendante) & Branche-arête du graphe du crible \\
+$\mustar = 15$ & Point fixe arithmétique & Échelle d'équilibre de la cascade \\
+$\gammap{p}$ & Dimension anomale du niveau $p$ & Couplage anomal au niveau $p$ \\
+\bottomrule
+\end{tabular}
+\caption{Correspondance bilingue minimale physique\,\textendash\,mathématique. Le glossaire détaillé est donné en annexe~\ref{app:glossaire}.}
+\label{tab:bilingue}
+\end{table}
+
+Avec ce vocabulaire en place, on peut maintenant énoncer les sept théorèmes structurants $\Tzero$--$\Tsix$ de la PT.

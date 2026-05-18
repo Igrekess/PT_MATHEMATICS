@@ -1,0 +1,129 @@
+\section{The unique field and the modular connection of PT}
+\label{sec:field_connection}
+
+Before evaluating position C in the PT framework
+(Section~\ref{sec:holonomy_primitive}), three structural facts
+must be established: that PT admits a unique dynamical degree of
+freedom (\S~\ref{ssec:BA0_en}), that this degree of freedom
+naturally carries a modular gauge connection
+(\S~\ref{ssec:gauge_connection_en}), and that this connection
+induces the holonomy angles $\theta_p$ through an explicit
+algebraic identity (\S~\ref{ssec:T6_en}). All three facts are
+established in the monograph~\cite{PT_Monograph} and reproduced
+here without proof.
+
+\subsection{The unique dynamical field BA0/T0}
+\label{ssec:BA0_en}
+
+The closure theorem T0 of chapter~25 of the
+monograph~\cite{PT_Monograph} establishes that the sequence of
+gaps between consecutive primes,
+\begin{equation}
+  g_n \;:=\; p_{n+1} - p_n \qquad (n \geq 1),
+  \label{eq:g_n_def_en}
+\end{equation}
+is the \emph{unique} dynamical degree of freedom of the
+Eratosthenes sieve, under the structural conditions U1--U4
+(antidiagonality of $T_3$, GFT identity, canonical geometry of
+$\DKL$ and Fisher, fixed point $\mustar = 15$). Postulate BA0 of
+the monograph --- that $\{g_n\}_{n \geq 1}$ is \emph{the}
+dynamical field of the theory --- is therefore promoted from
+postulate to theorem, and the theory admits \emph{zero} dynamical
+axioms beyond the standard tools of number theory.
+
+This is what distinguishes PT radically from classical gauge
+theories: whereas the latter must postulate a vector field $A_\mu$
+as the primitive structure of electrodynamics, PT derives
+\emph{all} of the gauge structure --- including the very
+existence of a connection --- from the single scalar field
+$\{g_n\}$ and the arithmetic coherence constraints. The gauge
+connection will be, in what follows, a \emph{derived} object, not
+a postulate.
+
+\subsection{The modular gauge connection}
+\label{ssec:gauge_connection_en}
+
+For any modulus $m \geq 2$, the additive recurrence
+\begin{equation}
+  r_{n+1}^{(m)} \;=\; \bigl(r_n^{(m)} + g_n\bigr) \bmod m
+  \label{eq:gauge_recursion_en}
+\end{equation}
+expresses that the trajectory of modular residues
+$r_n^{(m)} = p_n \bmod m$ is entirely determined by the initial
+datum and the sequence $\{g_n\}$. This recurrence is the
+\emph{parallel transport equation} associated with the modular
+connection of PT: at each step $n$, the residue is translated by
+the ``gauge gain'' $g_n \bmod m$, and one reads the trajectory as
+a transport along the ``arithmetic time'' $n$.
+
+The gauge connection theorem~\cite[ch.~1, Thm.~gauge]{PT_Monograph}
+formalises this reading: the
+recurrence~\eqref{eq:gauge_recursion_en} defines, for every
+squarefree integer $m = q_1 \cdots q_k$ that is a product of
+distinct primes, a connection on the trivial bundle
+$\Omega \times (\mathbb{Z}/m\mathbb{Z}) \to \Omega$ above the
+path space $\Omega = \mathbb{N}^{\mathbb{N}}$. By the CRT
+decomposition
+\begin{equation}
+  \mathbb{Z}/m\mathbb{Z}
+  \;\cong\;
+  \prod_{i=1}^{k} \mathbb{Z}/q_i\mathbb{Z},
+  \label{eq:CRT_iso_en}
+\end{equation}
+this connection splits into $k$ independent components, one per
+prime $q_i$, and one can treat each factor
+$\mathbb{Z}/q_i\mathbb{Z}$ as a discrete circle of $q_i$ points
+carrying its own gauge connection. It is this decomposition that
+makes the modular connection of PT structurally simpler than a
+classical connection on $\mathbb{R}^4$: it is, by construction,
+a tensor product of finite-dimensional objects.
+
+\subsection{The holonomy identity T6}
+\label{ssec:T6_en}
+
+The holonomy theorem T6~\cite[ch.~6]{PT_Monograph} gives the
+explicit expression of the holonomy angle associated with parallel
+transport along a cycle of the modular connection. For each prime
+$p$ and each scale $\mu > 0$,
+\begin{align}
+  \delta_p(\mu) &\;:=\; \frac{1 - q(\mu)^p}{p},
+  &
+  \cos \theta_p(\mu) &\;:=\; 1 - \delta_p(\mu),
+  \label{eq:delta_theta_en}
+\\
+  \sinp{p}(\mu) &\;=\; \delta_p(\mu)\bigl(2 - \delta_p(\mu)\bigr),
+  &
+  q(\mu) &\;\in\; \{\qplus,\; q_-\},
+  \label{eq:sin2_theta_en}
+\end{align}
+where $\qplus(\mu) = 1 - 2/\mu$ and $q_-(\mu) = e^{-1/\mu}$ are
+the two canonical values of $q$ singled out by the
+maximum-entropy bifurcation L0~\cite[ch.~3]{PT_Monograph}. For the
+holonomy questions treated here we adopt the coupling branch
+$q = \qplus$, which describes the electromagnetic sector and the
+leptons.
+
+Identity~\eqref{eq:sin2_theta_en} is purely algebraic --- it uses
+only the trigonometric definition
+$\sin^2 \theta = 1 - \cos^2 \theta = 1 - (1 - \delta)^2 =
+\delta (2 - \delta)$ --- but it has a striking consequence: the
+usual trigonometry, and with it the constant $\pi$, \emph{emerges}
+from the modular dynamics without having been introduced at the
+start. The continuous circle is never postulated; it appears as
+the continuous limit of the discrete circle
+$\mathbb{Z}/p\mathbb{Z}$ as $p \to \infty$, and $\pi$ appears via
+the Riemann zeta function $\zeta(2) = \pi^2/6 =
+\prod_p (1 - 1/p^2)^{-1}$, which directly relates the measure of
+the continuous circle to the sieve of primes.
+
+\paragraph{Structural summary.}
+The three elements established in this section sketch an
+architecture in which the gauge connection and the holonomy
+angle are \emph{derived} objects, computable from the single
+scalar field $\{g_n\}$, and not independent postulates. Position
+C of the foundational debate --- holonomy as primitive --- takes,
+under PT, a substantially stronger sense than it has in field
+theory on manifold: it is not an option of interpretation but
+the unique outcome of a structural construction that admits no
+other choice. This is the status that the following section
+formalises.

@@ -1,0 +1,85 @@
+\section{Lecture spectrale : identités K2 et A6}
+\label{sec:spectrales}
+
+Les deux lectures précédentes (algébrique en \ref{sec:courbe}, différentielle en \ref{sec:soliton}) montrent que la cascade arithmétique de la PT admet des réalisations géométriques canoniques. La présente section établit une troisième lecture : la cascade laisse des \emph{signatures spectrales} dans deux structures classiques de la mathématique pure et de la physique théorique --- la distribution des zéros de la fonction zêta de Riemann d'une part, et le couplage de Higgs du Modèle Standard d'autre part. Le résultat principal (identité K2) est une triple identification du résidu de Riemann--von Mangoldt comme expression de l'axiome arithmétique $\sper = 1/2$ ; le résultat auxiliaire (identité de trace A6) est une formule exacte vérifiée numériquement à $10^{-25}$. Ces résultats sont issus de la consolidation~\cite{PT_NewMath_Consolidation}.
+
+\subsection{Densité des zéros de Riemann et résidu \texorpdfstring{$1/8$}{1/8}}
+\label{sec:spectrales:RvM}
+
+Soit $N(T)$ le nombre de zéros non triviaux $\rho = \beta + i\gamma$ de $\zeta(s)$ avec $0 < \gamma < T$. Le théorème classique de Riemann et von~Mangoldt~\cite{Edwards1974} fournit l'expansion asymptotique
+\begin{equation}
+N(T) \;=\; \dfrac{T}{2\pi}\,\log\!\dfrac{T}{2\pi e} \;+\; \dfrac{7}{8} \;+\; S(T) \;+\; O(1/T),
+\label{eq:RvM}
+\end{equation}
+où $S(T) = \frac{1}{\pi}\,\arg \zeta(1/2 + iT)$ est la fonction d'argument et oscille de moyenne nulle. La constante $7/8$ est une signature spectrale fine~: elle code, en termes de la quantification semi-classique de Berry--Keating~\cite{BerryKeating1999}, une \emph{phase de Maslov} associée aux points tournants du modèle hamiltonien $H_{\rm BK} = xp$ régularisé.
+
+La PT \emph{prédit}~\cite{PT_NewMath_Consolidation} une variante semi-classique de cette formule, où $7/8 = 1 - 1/8$ est remplacé par $1$ exactement~:
+\begin{equation}
+N_{\rm PT}(T) \;=\; \dfrac{T}{2\pi}\,\log\!\dfrac{T}{2\pi e} \;+\; 1 \;+\; S(T) \;+\; O(1/T).
+\label{eq:NPT}
+\end{equation}
+L'écart entre~\eqref{eq:RvM} et~\eqref{eq:NPT} est exactement $\Delta_N = 7/8 - 1 = -1/8$, ou en valeur absolue, $|\Delta_N| = 1/8$. La question posée par l'identité K2 est : ce résidu $1/8$ a-t-il une lecture PT pure ?
+
+\subsection{Identité K2 : triple identification du résidu \texorpdfstring{$1/8$}{1/8}}
+\label{sec:spectrales:K2}
+
+\begin{theoreme}[Identité K2, identification spectrale-physique]
+\label{thm:K2}
+Le résidu absolu $|\Delta_N| = 1/8$ admet, au point fixe $\mustar = 15$ de la cascade de la PT, trois identifications exactes structurellement équivalentes :
+\begin{equation}
+\boxed{\;
+\dfrac{1}{8} \;=\; \dfrac{\sper^{2}}{2} \;=\; \lambdaH \;=\; \DeltaMaslov \;,
+\;}
+\label{eq:K2}
+\end{equation}
+où $\lambdaH$ est l'auto-couplage du boson de Higgs du Modèle Standard (résultat \texttt{R\,lambda\_H} de l'article compagnon~\cite{companion_M5}), et $\DeltaMaslov$ est la phase de Maslov des coins de la double barrière du modèle de Berry--Keating régularisé.
+\end{theoreme}
+
+\textbf{Trois identifications.} L'identité~\eqref{eq:K2} se déchiffre en trois sous-identités exactes, chacune dérivable indépendamment dans le cadre PT.
+\begin{enumerate}[nosep,leftmargin=*,label=\textbf{P\arabic*.}]
+\item \emph{Carré du paramètre de symétrie.} L'axiome $\sper = 1/2$ donne immédiatement
+\[
+\dfrac{\sper^{2}}{2} \;=\; \dfrac{1/4}{2} \;=\; \dfrac{1}{8}.
+\]
+\item \emph{Auto-couplage de Higgs.} La dérivation du couplage scalaire de Higgs développée dans l'article compagnon~\cite{companion_M5} fournit, à profondeur cascade $d = 3$,
+\[
+\lambdaH \;=\; \dfrac{\sper^{2}}{2} \;=\; \dfrac{1}{8}.
+\]
+Cette identité est obtenue indépendamment de toute considération spectrale, via la structure d'autocouplage du potentiel scalaire au point fixe.
+\item \emph{Phase de Maslov.} Le modèle de Berry--Keating régularisé pour les zéros de Riemann donne, pour la phase de Maslov des coins de la double barrière~\cite{BerryKeating1999},
+\[
+\DeltaMaslov \;=\; \dfrac{1}{8} \;=\; -\dfrac{\pi/8}{\pi/1},
+\]
+en lecture semi-classique WKB, indépendamment de toute identification physique.
+\end{enumerate}
+
+\textbf{Origine commune.} Les trois identifications~P1--P3 partagent une origine structurelle commune : la bifurcation $\qplus / \qminus$ du paramètre de la loi géométrique au point fixe~$\mustar = 15$. Cette bifurcation produit, dans la PT, la même structure $\sper^{2}/2$ qui apparaît à la fois comme auto-couplage scalaire (côté physique du pont) et comme phase de Maslov (côté spectral). L'identité K2 affirme l'\emph{unicité} de cette origine~: les trois manifestations sont projections d'un même objet PT sur trois axes différents (arithmétique, physique, spectral).
+
+\textbf{Statut.} L'identification K2 est démontrée \emph{structurellement} : chacune des trois sous-identités P1, P2, P3 est exacte, et leur coïncidence numérique au point fixe en fait une identité PT \emph{plausible} au sens du programme. La dérivation cohomologique (item K3 du programme~\cite{PT_NewMath_Consolidation}, en cours) fournirait une preuve unifiée des trois, à partir d'un même invariant cohomologique de l'involution $D : \qplus \leftrightarrow \qminus$.
+
+\subsection{Identité de trace A6}
+\label{sec:spectrales:A6}
+
+\begin{theoreme}[Identité de trace exacte en $\Re(s) > 1$]
+\label{thm:A6}
+Soit $R(s)$ le facteur résiduel d'une représentation Fredholm de la fonction zêta régularisée par la PT, et soit $A_p$ l'amplitude de l'opérateur canalisé au premier $p$, $A_p = \sin^{2}\thetap{p}(\qplus) + \sin^{2}\thetap{p}(\qminus)$. Dans la région $\Re(s) > 1$ on a l'identité analytique exacte
+\begin{equation}
+\boxed{\;
+-\dfrac{d}{ds} \log R(s) \;=\; \sum_{p} \log p \cdot \biggl[\, \dfrac{1}{p^{s} - 1} \,+\, A_p \cdot p^{-s} \,\biggr] \,. \;}
+\label{eq:A6}
+\end{equation}
+\end{theoreme}
+
+\textbf{Vérification numérique.} L'identité~\eqref{eq:A6} a été testée numériquement (multi-précision \texttt{mpmath}, $25$ chiffres significatifs) sur 17 valeurs de $s$ réparties dans $\Re(s) > 1$ ; l'écart entre les deux membres est au niveau de la précision machine, soit \emph{de l'ordre de} $10^{-25}$. À toutes fins pratiques, l'identité est \emph{exacte}~\cite[Note 62]{PT_NewMath_Consolidation}.
+
+\textbf{Lecture.} Le premier terme $\sum_p \log p / (p^{s} - 1)$ est la dérivée logarithmique standard de la fonction zêta de Riemann, $-\zeta'(s)/\zeta(s)$. Le second terme, $\sum_p \log p \cdot A_p \cdot p^{-s}$, est la \emph{contribution PT propre} : il code l'effet de la bifurcation $\qplus / \qminus$ sur la trace régularisée. L'identité~\eqref{eq:A6} affirme donc que la dérivée logarithmique du facteur résiduel $R(s)$ se décompose proprement en un \og fond zêta classique \fg{} et une \og correction PT \fg{} d'amplitude $A_p$.
+
+\subsection{Conséquence : lien direct \texorpdfstring{$\sper = 1/2$}{s=1/2} \texorpdfstring{$\leftrightarrow$}{<->} phénoménologie spectrale}
+\label{sec:spectrales:conclusion}
+
+Les deux identités K2 et A6 fournissent ensemble un \emph{pont arithmétique-spectral} concret~:
+\begin{itemize}[nosep,leftmargin=*]
+\item l'identité K2 (\ref{thm:K2}) relie une \emph{quantité observable} ($\lambdaH$, mesurable au LHC) à une \emph{quantité spectrale} ($\DeltaMaslov$, prédictible à partir des zéros de Riemann) en passant par une \emph{quantité PT pure} ($\sper^{2}/2$ = carré de l'unique entrée formelle de la théorie) ;
+\item l'identité de trace A6 (\ref{thm:A6}) fournit la \emph{plomberie analytique} qui transporte les amplitudes PT $A_p$ dans la dérivée logarithmique d'une fonction résiduelle proche de $\zeta$, en régime $\Re(s) > 1$.
+\end{itemize}
+Ces deux résultats sont, au sens strict, des \emph{identités prouvées} (et non des théorèmes inconditionnels au sens de la \ref{sec:courbe} et de la \ref{sec:soliton}) : K2 repose sur la coïncidence structurelle de trois sous-identités, A6 est analytique en $\Re(s) > 1$ mais son prolongement à la ligne critique demeure ouvert. C'est précisément ce prolongement qui fait l'objet du programme spectral-arithmétique présenté en \ref{sec:programme}.

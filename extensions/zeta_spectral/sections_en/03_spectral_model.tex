@@ -1,0 +1,266 @@
+\section{Spectral Model of the Zeros}
+\label{sec:modele_spectral}
+
+This section presents the analytic and operator-theoretic framework. Four
+main results: closed-form expression of the amplitudes $(\kappap)$,
+exact Fredholm representation of $\Rres$, canalized operator for the
+intra-cascade coupling, and explicit trace formula.
+
+\subsection{Closed-Form Expression of the Amplitudes $\kappap(s)$}
+\label{sec:kappa_p}
+
+\begin{definition}
+\label{def:kappa_p}
+For each prime $p$ and each $s \in \Cplx$, we set
+\begin{equation}
+\boxed{\;\kappap(s) \;=\; 1 \,-\, \big(1 - p^{-s}\big)\,\exp\!\big(\Ap\,p^{-s}\big)\;}
+\label{eq:kappa_p}
+\end{equation}
+\end{definition}
+
+\noindent By construction,
+\[
+1 \,-\, \kappap(s) \;=\; \big(1 - p^{-s}\big)\,\exp\!\big(\Ap\,p^{-s}\big),
+\]
+and the asymptotic expansion for $p \to \infty$ gives
+\begin{equation}
+\kappap(s) \;=\; (1 - \Ap)\,p^{-s} \,+\, O\!\big(p^{-2s}\big).
+\label{eq:kappa_asymp}
+\end{equation}
+
+\paragraph{Interpretation.}
+The fundamental scalar of the cascade is neither $p^{-s}$ (Euler term)
+nor $\exp(\Ap p^{-s})$ (bifurcated compensation), but their gap $\kappap$.
+We have the reading
+\[
+1 \,-\, \kappap \;=\; \text{residual survival},
+\qquad
+\kappap \;=\; \text{spectral amplitude of the residue}.
+\]
+
+\subsection{Exact Fredholm Representation}
+\label{sec:fredholm}
+
+Let $\DRop(s)$ be the diagonal operator on $\ell^{2}(\Primes)$ ($\Primes$
+the set of primes) defined by $\DRop(s)\,e_p = \kappap(s)\,e_p$.
+
+\begin{theoreme}[Fredholm representation of $\Rres$]
+\label{thm:fredholm}
+For $\Reop(s) > 1$, the operator $\DRop(s)$ is trace class, and
+\begin{equation}
+\boxed{\;\det\!\big(I - \DRop(s)\big)^{-1} \;=\; \Rres(s)\;.}
+\label{eq:fredholm}
+\end{equation}
+\end{theoreme}
+
+\begin{proof}
+For $\Reop(s) > 1$, $\sum_p |\kappap(s)| < \infty$ by the asymptotic
+expansion~\eqref{eq:kappa_asymp}; the diagonal operator is therefore trace
+class. Direct computation gives
+\begin{align*}
+\det\!\big(I - \DRop(s)\big)^{-1}
+&= \prod_p (1 - \kappap)^{-1}
+= \prod_p (1 - p^{-s})^{-1}\,\exp(-\Ap\,p^{-s})\\
+&= \zeta(s)\,\exp\!\Big(-\sum_p \Ap\,p^{-s}\Big)
+= \Rres(s),
+\end{align*}
+using the classical Euler product for $\zeta$ and the definition of
+$\Rres$ in~\eqref{eq:Rres_def}.
+\end{proof}
+
+\paragraph{Scope of the representation.}
+The proof is direct algebraic: \eqref{eq:fredholm} is a
+\emph{determinantal rewriting} of the definition of $\Rres$. Its value is
+to provide the \emph{spectral target} that any candidate canonical PT
+operator must reproduce; it is not an independent argument for the
+spectral structure of $\Rres$.
+
+\paragraph{Numerical verification.}
+For $s = 1.3 + 14.134725\,i$, $P = 10^{6}$ truncated primes, the residual
+error between $\Rres(s)$ computed by the Fredholm product
+\eqref{eq:fredholm} and $\Rres(s)$ computed from $\zeta$ via
+\texttt{mpmath} is of the order of $2.0 \cdot 10^{-12}$. At $\sigma = 1.1$
+the precision drops to $\sim 1.3 \cdot 10^{-3}$, reflecting the approach
+to the boundary of absolute convergence, not a defect of the
+representation.
+
+\begin{remarque}[Non-vanishing hypothesis]
+\label{rem:non_annulation}
+The identification $\mathrm{zeros}(\Rres) = \mathrm{zeros}(\zeta)$
+used in the sequel assumes
+$\zetaplus(s)\,\zetaminus(s) \neq 0$ on the zones of interest (in
+particular the critical line). This hypothesis is verified
+numerically on the tested zones but is not proved; it is
+\textbf{conjectural} and must be treated as such
+(cf.~\S\ref{sec:limites_ouvertures}).
+\end{remarque}
+
+\subsection{Canalized Operator for the Coupling $\sum_p \Ap p^{-s}$}
+\label{sec:operateur_canalise}
+
+To model the intra-cascade coupling (the sum $\sum_p \Ap p^{-s}$)
+as the spectrum of a canonical operator \emph{without adjustable parameter},
+we construct
+\begin{equation}
+\Hilb_{\mathrm{PT}}
+\;=\;
+L^{2}(\Sigma_{\mathrm{pers}}, du) \,\otimes\, L^{2}\!\big(\widehat{\Integers/M\Integers}\big).
+\label{eq:H_PT_def}
+\end{equation}
+The first component is the continuous Mellin coordinate on
+$\Sigma_{\mathrm{pers}}$ (persistence surface, of genus $14$ in the
+PT corpus \cite{PT_GeoSpectral}); the second is discrete, on the
+characters of the multiplicative group modulo $M$ (cascade by Chinese
+remainder theorem, $M$ primorial product). The inter-window coupling is
+constructed by regularised Bergman kernel
+\begin{equation}
+B_{\mathrm{BF}}(z_i, z_j)
+\;=\;
+\frac{\eps_i\,\eps_j}{|z_i - z_j|^{2} + \eps_i\,\eps_j},
+\qquad
+\eps_i \;=\; \frac{\epsstar}{\rho_i}.
+\label{eq:Bergman_BF}
+\end{equation}
+
+\begin{lemme}[Geometric determination of $\epsstar$]
+\label{lem:epsstar_geom}
+The regularised Bergman covariance at maximal resolution
+($\eps_{\mathrm{reg}} = 10^{-3}$, packets of individual prime size)
+on the atomic measure $\pi_{\log}$ of the Mellin coordinate gives
+\begin{equation}
+\epsstar^{\mathrm{geom}} \;=\; 1.51.
+\label{eq:epsstar_geom}
+\end{equation}
+\end{lemme}
+
+\begin{proof}[Sketch]
+The regularised Bergman covariance of the kernel~\eqref{eq:Bergman_BF} on
+the atomic measure $\pi_{\log} = \sum_p \delta(u - \log p)$ is, at
+resolution $\eps_{\mathrm{reg}}$, the weighted average
+$\mathrm{Cov}(\eps_{\mathrm{reg}}) = \int\!\!\int B_{\mathrm{BF}}(u, u')^{2}\,
+\pi_{\log}(du)\,\pi_{\log}(du')$. The numerical sweep over values of
+$\eps_{\mathrm{reg}}$ by steps $10^{-3}, 10^{-2}, 10^{-1}, 1$ gives
+a covariance respectively of $0.0252$, $0.0794$, $0.2408$ and
+$0.680$, that is a factor $\epsstar^{\mathrm{geom}} = 1.51$ at the
+maximal resolution (natural reference of the continuous model). This is
+the canonical value injected into the canalized operator.
+\end{proof}
+
+\paragraph{Performance.}
+With $\epsstar^{\mathrm{geom}}$ injected without adjustment, the median
+error on $\sum_p \Ap\,p^{-s}$ is $0.085$ at $M = 1155$, $W = 24$ --- a
+factor $\sim 85$ above the adaptive smoothed scalar baseline
+($0.001$, which uses a tuned $\beta$). The contribution is not absolute
+precision but the \textbf{absence of a free parameter}: \eqref{eq:epsstar_geom}
+replaces an empirical tuning by a canonical geometric covariance.
+
+\subsection{Explicit Trace Formula}
+\label{sec:trace_formula}
+
+\begin{theoreme}[Explicit trace formula]
+\label{thm:trace_formula}
+For all $s$ with $\Reop(s) > 1$,
+\begin{equation}
+\boxed{\;
+-\,\dfrac{d}{ds} \log \Rres(s)
+\;=\; \sum_{p} \dfrac{\kappap'(s)}{1 - \kappap(s)}
+\;=\; \sum_{p} (\log p)\,\Big[\dfrac{1}{p^s - 1} \,+\, \Ap\,p^{-s}\Big]\,.\;}
+\label{eq:trace_formula}
+\end{equation}
+\end{theoreme}
+
+\begin{proof}
+By logarithmic differentiation of
+$1 - \kappap(s) = (1 - p^{-s}) \exp(\Ap p^{-s})$. Set $z = p^{-s}$,
+so that $dz/ds = -\log p \cdot z$. A direct computation gives
+\[
+\dfrac{\kappap'(s)}{1 - \kappap(s)}
+\;=\; -(\log p)\,\Big[\Ap\,z - \dfrac{z}{1 - z}\Big]
+\;=\; -(\log p)\,\Big[\Ap\,p^{-s} - \dfrac{1}{p^s - 1}\Big].
+\]
+Summing over $p$ and changing the overall sign yields the announced
+formula. A \emph{sanity check} via $-\zeta'/\zeta(s) = \sum_n
+\Lambda(n)\,n^{-s} = \sum_p (\log p)/(p^s - 1)$ gives the same expression
+for the first term.
+\end{proof}
+
+\paragraph{Numerical verification.}
+At $s = \sigma + 14.134725\,i$ with $\sigma \in \{1.2,\,1.5,\,2,\,3\}$ and
+$2\,000$ truncated primes, the discrepancy between the two forms
+of~\eqref{eq:trace_formula} is of the order of $10^{-26}$ (precision
+\texttt{mpmath} 25 digits). The identity is therefore exact in the
+algebraic sense.
+
+\paragraph{Berry--Keating reading.}
+The dilation operator
+$\HPTBK = (u\,p_u + p_u\,u)/2 = -i(u\partial_u + 1/2)$ generates the flow
+$e^{-it\HPTBK} f(u) = e^{-t/2}\,f(e^{-t}u)$. On the atomic measure
+$\nu = \sum_p \delta(u - \log p)$, the periodic orbits of the flow
+starting from $\log p_0$ have lengths $\ell_p = k \log p_0$, $k \ge 1$,
+corresponding to the powers $p_0^{k}$. The term
+$(\log p)/(p^s - 1) = \sum_{k \ge 1} (\log p)\,p^{-ks}$ identifies then
+with the sum over these orbits, and $\Ap\,p^{-s}$ represents the
+$\qplus/\qminus$ holonomic coupling contribution per prime.
+
+\subsection{Regularised Operator Trace}
+\label{sec:trace_reg}
+
+The compact writing of the trace formula~\eqref{eq:trace_formula} in
+terms of the resolvent of $\HPTBK$ and of the operator $\DRop$ uses an
+atomic Mellin projection
+\begin{equation}
+\Pi : L^{2}([\umin, \umax], du) \,\to\, \ell^{2}(\Primes_\gamma),
+\qquad \Pi(f)_p \;=\; f(\log p)\,\sqrt{\log p},
+\label{eq:Pi_def}
+\end{equation}
+where $\Primes_\gamma = \{p \text{ prime} : \umin \le \log p \le
+\umax(\gamma)\}$. The factor $\sqrt{\log p}$ is the square root of the
+atomic multiplicative Haar measure. The regularised trace then writes
+\begin{equation}
+\boxed{\;
+\Treg(s) \;:=\; \Tr_{\mathrm{reg}}\!\Big[(s - i\HPTBK)^{-1}\,\DRop(s)\Big]
+\;=\; \sum_{p \in \Primes_\gamma} \kappap(s)\,(\log p)\,\Big[\dfrac{1}{p^s - 1} + \Ap\,p^{-s}\Big]\,.\;}
+\label{eq:Treg}
+\end{equation}
+In $\Reop(s) > 1$, $\Treg(s) \equiv -d \log \Rres/ds$. On the critical
+line $\Reop(s) = 1/2$, the prime sum is not absolutely convergent; it is
+however distributionally convergent as an element of
+$\mathcal{S}'(\Reals_t)$, and the Hadamard regularisation gives a
+functional sense to $\Treg(1/2 + it)$.
+
+\paragraph{Three equivalent regularisations.}
+We will use three regularisations interchangeable in the distributional
+sense.
+\begin{description}[nosep,leftmargin=*]
+\item[($R_1$) Smearing by test function.] For $\phi_\eps$ a compactly
+supported approximation of the identity with width $\eps$, we set
+$I_\eps(\gamma_0) := \int \phi_\eps(t - \gamma_0)\,F(1/2 + it)\,dt$.
+The peaks $I_\eps(\gamma_n)$ behave as $c/\eps$ when $\eps \to 0^{+}$
+(smearing regularisation).
+\item[($R_2$) Abel-Hadamard summation.] With weight $p^{-\eps}$, $\eps > 0$,
+$F_\eps(t) := \sum_p (\log p)\,p^{-\eps}\,[1/(p^{1/2+it} - 1) + \Ap\,p^{-1/2-it}]$.
+By Fourier transform, $F_\eps$ is the convolution of $F$ by the
+Gaussian $\phi_\eps$: $R_2$ is equivalent to $R_1$ modulo the choice
+of regularising kernel.
+\item[($R_3$) Subtraction of the principal pole.] $\widetilde F(s) := F(s) - 1/(s - 1)$
+isolates the simple pole at $s = 1$ and applies the Hadamard extraction
+to the remaining part.
+\end{description}
+
+The three regularisations coincide in the distributional sense at the
+poles of $\Rres$. The strict functional proof of the analytic
+continuation of $\Treg$ to the critical line --- beyond distributional
+convergence --- remains open (\S\ref{sec:limites_ouvertures}).
+
+\paragraph{Self-correction: G\_HP4.d falsified.}
+A first test posed the naive identity ``direct spectrum of $\HPTBK$
+bounded by double barrier $= \{\gamma_n\}$''. This test was
+falsified: the direct spectrum is regular (Bohr--Sommerfeld
+asymptotically linear), while the $\gamma_n$ are irregular, and
+the ratio between the two spectra diverges. This falsification motivated
+the move to the distributional regularised trace: the zeros of
+$\zeta$ are \emph{distributional poles} of $\Treg(s)$, not direct
+eigenvalues of $\HPTBK$. The falsifiability discipline of the
+programme includes this correction on the same footing as the
+Dirichlet falsification of \S\ref{sec:auto_correction_dirichlet}.
+

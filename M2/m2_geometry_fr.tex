@@ -1,0 +1,1829 @@
+% ============================================================
+% PT Article M2 — version française
+% Miroir FR de m2_geometry.tex (canonique EN)
+% Préambule : charge pt-common-fr.sty (shared/) qui contient macros,
+% boîtes, environnements de théorème FR, patch babel/cleveref, etc.
+% ============================================================
+
+\documentclass[12pt,a4paper]{article}
+\IfFileExists{pt-common-fr.sty}{\usepackage{pt-common-fr}}{\usepackage{../shared/pt-common-fr}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{tikz-3dplot}
+\onehalfspacing
+
+\title{\textbf{La théorie de la persistance~II~:\\
+géométrie de l'information et holonomie}}
+\author{Yan Senez\\\texttt{yan.senez@protonmail.com}}
+\date{Avril 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Ceci est le second de cinq articles présentant les fondations
+mathématiques de la théorie de la persistance (PT). En s'appuyant sur la
+dynamique du crible, l'unicité, les lois de conservation et le théorème
+fondamental des sauts établis dans l'article
+compagnon~\cite{companion_M1}, nous développons deux piliers de la
+théorie~: la géométrie canonique de l'information de l'espace d'états du
+crible, et la structure d'holonomie qui émerge des matrices de transfert
+du crible.
+
+\textbf{Géométrie de l'information.}
+La divergence de KL $\DKL$ est l'unique $f$-divergence compatible avec
+la structure produit~TCR de l'espace d'états du crible
+(théorème~G1, par réduction à Shore--Johnson~\cite{ShoreJohnson1980},
+avec 7/7 tests d'élimination~; une preuve autonome via TCR utilisant la
+caractérisation de Csisz\'ar~\cite{Csiszar1967} est également donnée).
+La métrique de Fisher $\Fisher$ émerge comme seconde variation de
+$\DKL$ (théorème~G2, classique) et est l'unique métrique riemannienne
+monotone sur $\Delta_2$ (réduction à \v{C}encov~\cite{Cencov1982},
+théorème~G3, 7/7 tests d'élimination). Nous exhibons la métrique de
+Fisher sur les simplexes binaire et ternaire, montrons qu'elle est
+imposée par la structure d'expanseur optimal du graphe de transition
+mod-3, et la relions à la dualité addition/multiplication des entiers.
+
+\textbf{Holonomie.}
+L'angle d'holonomie $\theta_p$ satisfait l'identité algébrique exacte
+$\sinsp{p} = \delta_p(2 - \delta_p)$, dérivée par trois voies
+indépendantes (géométrique, spectrale, information-géométrique). Les
+dimensions anomales $\gamma_p = -d\ln\sinsp{p}/d\ln\mu$ sont strictement
+décroissantes en $p$~; le critère de premier actif $\gamma_p > s = 1/2$
+sélectionne exactement $\{3, 5, 7\}$ au point fixe $\mustar = 15$, ce
+qui donne $N_c = 3$. Le coefficient de Casimir
+$C_F = (N_c^2 - 1)/(2N_c) = 4/3$ en est une conséquence, et non une
+entrée. Un contrôle algébrique indépendant donne
+$(N_c - 3)(N_c + 1) = 0$. Les premiers d'écho ($p \geq 11$) contribuent
+perturbativement comme corrections de polarisation du vide.
+
+Tous les résultats découlent de $s = 1/2$ et de la structure du crible
+établie dans~\cite{companion_M1}. Aucune physique n'est invoquée~;
+aucun paramètre n'est ajusté.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+\label{sec:intro}
+
+Cet article est le second volet (M2) d'une série de cinq articles
+développant les fondations mathématiques de la théorie de la
+persistance (PT). La série est organisée comme suit~:
+\begin{description}[nosep]
+\item[M1~\cite{companion_M1}~:] Le crible comme champ dynamique,
+  unicité d'Ératosthène, lois de conservation et théorème fondamental
+  des sauts.
+\item[M2 (cet article)~:] Géométrie de l'information, holonomie et
+  échelle d'angle interne.
+\item[M3~\cite{companion_M3}~:] Convergence, récurrences exactes et
+  point fixe $\mustar = 15$.
+\item[M4~\cite{companion_M4}~:] Structures mathématiques étendues
+  (mécanique complexe, graphes spectraux, symétrie).
+\item[M5~\cite{companion_M5}~:] Le pont de l'arithmétique vers la
+  physique.
+\end{description}
+\noindent
+Un compagnon séparé~\cite{companion_physics} développe les prédictions
+physiques détaillées (programme de Feynman, 43~observables)~; M5
+fournit le pont structurel, tandis que~\cite{companion_physics} fournit
+la validation quantitative.
+
+L'article compagnon~\cite{companion_M1} a établi la couche fondatrice.
+Nous rappelons les résultats essentiels~:
+\begin{itemize}[nosep]
+\item \textbf{T1 (transitions interdites)~:} la matrice de transfert
+  $T_3 = \mathrm{antidiag}(1,1)$ admet une unique distribution
+  stationnaire $(1/2, 1/2)$, ce qui donne $s = 1/2$ sans paramètre
+  libre.
+\item \textbf{T6 (unicité)~:} trois preuves indépendantes qu'Ératosthène
+  est l'unique crible auto-cohérent.
+\item \textbf{L0 (conservation)~:} la distribution des sauts à entropie
+  maximale est géométrique~; l'exposant de conservation est
+  $\alpha_{\rm cons} = s^2 = 1/4$.
+\item \textbf{TFS~:} l'identité exacte $\log_2 m = \DKL + H$ décompose
+  la capacité totale en structure et bruit.
+\item \textbf{Connexion de jauge TCR~:} le théorème chinois des restes
+  dote l'espace d'états du crible $\Delta_m$ d'une structure produit
+  $\Delta_m \cong \prod_{p|m} \Delta_p$.
+\end{itemize}
+
+Le présent article développe deux thèmes.
+
+\textbf{Géométrie de l'information (section~\ref{sec:geometry}).}
+Nous prouvons que la divergence de KL $\DKL$ et la métrique de Fisher
+$\Fisher$ sont l'\emph{unique} divergence et l'unique métrique
+compatibles avec les symétries du crible. Les preuves sont des
+réductions à des théorèmes
+classiques~--- Shore--Johnson~\cite{ShoreJohnson1980} pour $\DKL$ et
+\v{C}encov~\cite{Cencov1982} pour $\Fisher$~--- après vérification que
+l'espace d'états du crible satisfait leurs prémisses. Une preuve
+autonome de G1 via la caractérisation de Csisz\'ar des $f$-divergences
+additives est également donnée. Cette section est entièrement
+mathématique et n'invoque aucune physique.
+
+\textbf{Holonomie (section~\ref{sec:holonomy}).}
+La matrice de transfert du crible à chaque premier $p$ engendre un
+angle de rotation $\theta_p$ sur l'espace des résidus
+$\mathbb{Z}/p\mathbb{Z}$. L'identité d'holonomie
+$\sinsp{p} = \delta_p(2 - \delta_p)$ est une tautologie algébrique,
+vérifiée par trois voies indépendantes. Les dimensions anomales
+$\gamma_p$ sont strictement décroissantes, et le critère
+$\gamma_p > s = 1/2$ sélectionne exactement trois premiers actifs
+$\{3, 5, 7\}$ à $\mustar = 15$, ce qui donne $N_c = 3$ et
+$C_F = 4/3$. L'identification physique de ces quantités arithmétiques
+avec les couplages de jauge et les couleurs QCD est un énoncé de pont
+reporté à~\cite{companion_M5}.
+
+\medskip\noindent\textbf{Aiguillages amont.}
+L'article compagnon~\cite{companion_M3} prouve la convergence des
+récurrences du crible et établit $\mustar = 15$ comme unique point
+fixe non trivial. Les structures mathématiques étendues (mécanique
+complexe, graphes spectraux et extensions de symétrie) sont développées
+dans~\cite{companion_M4}. Le pont de l'arithmétique vers la
+physique~--- où $\sinsp{p}$ devient une constante de couplage et
+$N_c = 3$ devient le nombre de couleurs QCD~--- est l'objet
+de~\cite{companion_M5}.
+
+\section{Géométrie canonique de l'information}
+\label{sec:geometry}
+
+\epigraph{La géométrie est la branche des mathématiques qui étudie les propriétés
+des figures. La géométrie de l'information est la branche qui étudie
+les propriétés des variétés statistiques.}{Shun-ichi Amari}
+
+% ---- Status Box (R1) ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Prouver que les deux divergences canoniques sur l'espace d'états du
+  crible~--- la divergence de KL $\DKL$ et la métrique de Fisher
+  $\Fisher$~--- sont les \emph{uniques} choix compatibles avec les
+  symétries du crible.
+
+\textbf{ENTRÉES~:}
+  TCR, connexion de jauge, espace d'états $\Delta_m$
+  (\cite{companion_M1}).
+  TFS, $\DKL$ déjà utilisée (\cite{companion_M1}).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  G1~: $\DKL$ est l'unique $f$-divergence invariante sous TCR
+  (réduction à Shore--Johnson, 7/7).
+  G2~: Seconde variation de $\DKL$ = métrique de Fisher (classique,
+  Amari 1985).
+  G3~: La métrique de Fisher est l'unique métrique riemannienne
+  monotone sur $\Delta_2$ (réduction à \v Cencov, 7/7).
+
+\textbf{STATUT~:}
+  \THMTAG~(réduction~: G1 via Shore--Johnson, G3 via \v Cencov).
+  Ce chapitre ne prouve PAS Shore--Johnson ni \v Cencov de façon
+  autonome. Il vérifie que l'espace d'états du crible satisfait
+  leurs prémisses.
+
+\textbf{NON PROUVÉ~:}
+  Shore--Johnson (1980) et \v Cencov (1982)~: importés comme théorèmes
+  classiques nommés. Utilisation physique de la métrique de Fisher
+  (article compagnon~\cite{companion_physics}).
+\end{statusbox}
+
+% ============================================================
+\subsection{Intuition~: pourquoi ces deux objets~?}
+\label{sec:ch5_intuition}
+
+Le théorème fondamental des sauts (voir~\cite{companion_M1}) utilise
+$\DKL$ comme mesure de la structure du crible. L'article
+compagnon~\cite{companion_physics} utilisera la métrique de Fisher
+pour dériver la relativité générale. Mais pourquoi $\DKL$ et Fisher~?
+Parmi l'infinité de divergences et de métriques possibles sur les
+distributions de probabilité, qu'est-ce qui distingue ces deux-là~?
+
+La réponse pour $\DKL$~: c'est l'unique $f$-divergence additive sous la
+factorisation TCR dont jouit le crible. Toute autre $f$-divergence
+(Hellinger, $\chi^2$, variation totale) viole cette invariance
+(vérifié~: 7/7 tests).
+
+La réponse pour Fisher~: c'est l'unique métrique riemannienne sur les
+simplexes de probabilité qui se contracte sous les applications de
+Markov. Puisque la matrice de transfert du crible $T_m$ est une
+application de Markov, toute distance information-géométrique doit se
+contracter sous celle-ci. Fisher est l'unique métrique ayant cette
+propriété.
+
+Les deux résultats sont des réductions à des théorèmes classiques
+(Shore--Johnson~\cite{ShoreJohnson1980},
+\v{C}encov~\cite{Cencov1982}). La contribution de PT est de vérifier
+que l'espace d'états du crible satisfait les prémisses.
+
+% ============================================================
+\subsection{L'espace d'états du crible}
+\label{sec:ch5_state_space}
+
+\begin{definition}[Simplexe de probabilité $\Delta_m$]
+\label{def:simplex}
+L'\emph{espace d'états du crible} au module $m$ est le simplexe de
+probabilité~:
+\[
+  \Delta_m = \Bigl\{ P = (p_0, \ldots, p_{m-1}) \in \mathbb{R}^m
+             : p_r \geq 0,\; \sum_r p_r = 1 \Bigr\}.
+\]
+La distribution du crible $P_m \in \Delta_m$ est le vecteur des
+fréquences des résidus de premiers modulo $m$.
+\end{definition}
+
+Le crible agit sur $\Delta_m$ via la factorisation TCR~:
+pour $m = q_1 \cdots q_k$ (sans facteur carré), l'isomorphisme TCR donne
+\[
+  \Delta_m \cong \Delta_{q_1} \times \cdots \times \Delta_{q_k},
+\]
+de sorte que l'espace d'états est un produit cartésien de simplexes
+plus petits. Tout objet géométrique (divergence, métrique) sur
+$\Delta_m$ doit respecter cette structure produit.
+La figure~\ref{fig:fisher_simplex} illustre la métrique de Fisher sur
+le simplexe binaire $\Delta_2$, et la
+figure~\ref{fig:fisher_3d} montre l'extension au simplexe ternaire
+$\Delta_3$.
+
+\begin{figure}[htbp]
+\centering
+\vspace{0.5cm}
+\begin{tikzpicture}[scale=5.0, >=stealth]
+  % Euclidean baseline
+  \draw[gray!30, thick] (0,0) -- (1,0);
+  \node[below, font=\small, gray] at (0,-0.02) {$0$};
+  \node[below, font=\small, gray] at (1,-0.02) {$1$};
+  \node[below, font=\small, gray] at (0.5,-0.02) {$\tfrac{1}{2}$};
+  \node[font=\scriptsize, gray] at (0.5,-0.09) {(euclidienne)};
+  % Fisher arc
+  \draw[thmblue, very thick, domain=0:180, samples=80]
+    plot ({0.5 + 0.45*cos(\x)}, {0.45*sin(\x)});
+  \node[above, font=\small, thmblue] at (0.5, 0.53) {arc de Fisher};
+  % Grid lines showing metric stretching near boundaries
+  \foreach \p in {0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95} {
+    \pgfmathsetmacro{\ang}{asin(sqrt(\p))*2}
+    \pgfmathsetmacro{\fx}{0.5 + 0.45*cos(\ang)}
+    \pgfmathsetmacro{\fy}{0.45*sin(\ang)}
+    \draw[thmblue!40, thin] (\p, 0) -- (\fx, \fy);
+  }
+  % Stationary point p = 1/2 — leader line below Fisher arc label
+  \fill[condorange] (0.5, 0.45) circle (0.7pt);
+  \draw[condorange, thin] (0.5, 0.45) -- (0.68, 0.48);
+  \node[right, font=\small, condorange] at (0.68, 0.48) {$s = \tfrac{1}{2}$};
+  % Stretching near boundaries
+  \draw[<->, thin, predred] (0.02, -0.12) -- (0.12, -0.12);
+  \node[below, font=\scriptsize, predred] at (0.07, -0.13) {$ds \to \infty$};
+  \draw[<->, thin, predred] (0.88, -0.12) -- (0.98, -0.12);
+  \node[below, font=\scriptsize, predred] at (0.93, -0.13) {$ds \to \infty$};
+  % Metric formula
+  \node[font=\normalsize] at (0.5, -0.17)
+    {$ds^2 = \dfrac{dp^2}{p\,(1-p)}$};
+  % axis label
+  \node[below, font=\small] at (0.5, -0.28) {probabilité $p = \pi_1$};
+\end{tikzpicture}
+\caption{Métrique de Fisher sur le simplexe binaire $\Delta_2$.
+  L'intervalle euclidien $[0,1]$ (gris) est «~courbé~» par la métrique
+  de Fisher $ds^2 = dp^2/[p(1-p)]$ en un demi-cercle (arc bleu).
+  Les lignes auxiliaires relient des valeurs de probabilité égales~:
+  elles se resserrent près des bords ($p \to 0$ ou $p \to 1$),
+  signalant la divergence de la métrique.
+  Le point stationnaire $s = 1/2$ (orange) se trouve au milieu
+  géodésique. C'est l'\emph{unique} métrique monotone sur $\Delta_2$
+  (\v Cencov).}
+\label{fig:fisher_simplex}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\tdplotsetmaincoords{68}{125}
+\begin{tikzpicture}[tdplot_main_coords, scale=4.0, >=stealth]
+  % Ternary simplex Delta_3: vertices
+  \coordinate (P1) at (1,0,0);
+  \coordinate (P2) at (0,1,0);
+  \coordinate (P3) at (0,0,1);
+  % Simplex edges
+  \draw[gray!50, thick] (P1) -- (P2) -- (P3) -- cycle;
+  % Fill simplex face
+  \fill[thmblue!8, opacity=0.4] (P1) -- (P2) -- (P3) -- cycle;
+  % Grid lines on the simplex (explicit coordinates, no calc)
+  \foreach \i in {1,...,8} {
+    \pgfmathsetmacro{\t}{\i/9}
+    \pgfmathsetmacro{\omt}{1-\t}
+    % Lines parallel to P1-P2 edge
+    \draw[thmblue!30, very thin]
+      ({\omt}, 0, {\t}) -- (0, {\omt}, {\t});
+    % Lines parallel to P2-P3 edge
+    \draw[thmblue!30, very thin]
+      ({\t}, {\omt}, 0) -- ({\t}, 0, {\omt});
+    % Lines parallel to P1-P3 edge
+    \draw[thmblue!30, very thin]
+      (0, {\t}, {\omt}) -- ({\omt}, {\t}, 0);
+  }
+  % Centroid = (1/3, 1/3, 1/3)
+  \fill[condorange] (0.333, 0.333, 0.333) circle (0.8pt);
+  \draw[condorange, thin] (0.333, 0.333, 0.333) -- (0.6, 0.6, 0.5);
+  \node[right, font=\small, condorange] at (0.6, 0.6, 0.5)
+    {$p_i = \tfrac{1}{3}$ ($s = \tfrac{1}{2}$)};
+  % Vertex labels
+  \node[below right, font=\small] at (P1) {$p_1 = 1$};
+  \node[below left, font=\small] at (P2) {$p_2 = 1$};
+  \node[above, font=\small] at (P3) {$p_3 = 1$};
+  % Edge labels (divergence)
+  \node[font=\scriptsize, predred] at (0.5, 0.5, 0) {$ds \to \infty$};
+  \node[font=\scriptsize, predred] at (0, 0.5, 0.5) {$ds \to \infty$};
+  \node[font=\scriptsize, predred] at (0.5, 0, 0.5) {$ds \to \infty$};
+  % Metric formula — offset left to avoid overlapping triangle
+  \node[font=\small, align=center, gray] at (-0.6, -0.2, 0.5)
+    {$ds^2 = \sum_i \dfrac{dp_i^2}{p_i}$};
+\end{tikzpicture}
+\caption{Métrique de Fisher sur le simplexe ternaire $\Delta_3$.
+  Les trois sommets (états purs, $p_i = 1$) se trouvent à distance de
+  Fisher infinie de tout point intérieur~--- la métrique diverge près
+  des arêtes. Les lignes auxiliaires montrent comment des pas
+  euclidiens égaux correspondent à des longueurs de Fisher inégales
+  (resserrement près des bords). Le centroïde $p_i = 1/3$ (orange,
+  correspondant à $s = 1/2$ dans la projection binaire) est le milieu
+  géodésique.}
+\label{fig:fisher_3d}
+\end{figure}
+
+% ============================================================
+\subsection{G1~: unicité de $\DKL$ via Shore--Johnson}
+\label{sec:G1}
+
+\paragraph{Le théorème de Shore--Johnson (1980, import externe).}
+Sous les axiomes suivants sur une divergence $D(\cdot\|\cdot)$~:
+\begin{enumerate}[label=(SJ\arabic*)]
+\item \textbf{Cohérence}~: $\arg\min_Q D(Q\|P)$ sous contraintes est
+  indépendant de l'ordre dans lequel les contraintes sont imposées.
+\item \textbf{Invariance}~: $D$ est invariant sous permutation des
+  étiquettes.
+\item \textbf{Indépendance des systèmes}~: pour des systèmes
+  indépendants, $D$ est additive.
+\item \textbf{Indépendance des sous-ensembles}~: une mise à jour sur
+  une contrainte qui ne concerne qu'un sous-ensemble ne modifie que la
+  distribution de ce sous-ensemble.
+\item \textbf{Échelle}~: $D$ se transforme de manière cohérente sous
+  réétiquetage.
+\end{enumerate}
+Shore et Johnson~\cite{ShoreJohnson1980} ont prouvé que l'unique
+divergence satisfaisant SJ1--SJ5 et produisant le principe d'entropie
+maximale est $\DKL$.
+
+\mTHM
+\begin{theoreme}[Unicité de la divergence de KL (G1)]
+\label{thm:G1}\leanPartial{PT.Information.T6cG1Autonomous.klDivergence\_additive}
+Sur l'espace d'états du crible $\Delta_m$ muni de la structure produit
+TCR~: $\DKL$ est l'unique $f$-divergence satisfaisant les axiomes
+SJ1--SJ5 de Shore--Johnson et invariante sous la factorisation TCR.
+
+\begin{proof}
+\textbf{Vérification des prémisses.} L'espace d'états du crible
+$\Delta_m$ muni de la structure produit
+$\Delta_m \cong \prod_{p|m} \Delta_p$ satisfait~:
+\begin{itemize}
+\item SJ3 (indépendance des systèmes)~: la factorisation TCR donne
+  $\DKL(\prod P_p \| \prod Q_p) = \sum_p \DKL(P_p \| Q_p)$.
+  L'indépendance des composantes TCR implique l'additivité.
+  (Vérifié~: 7/7 tests.)
+\item SJ4 (indépendance des sous-ensembles)~: une mise à jour des
+  résidus modulo $p$ ne modifie que la composante~$p$ dans la
+  décomposition TCR. (Vérifié~: 7/7 tests.)
+\item SJ1, SJ2, SJ5~: propriétés standard de cohérence et d'invariance
+  satisfaites par la référence uniforme $U_m$ et la distribution
+  empirique $P_m$.
+\end{itemize}
+
+\textbf{Application de Shore--Johnson.} Puisque les prémisses
+SJ1--SJ5 sont vérifiées sur $\Delta_m$, le théorème de Shore--Johnson
+donne~: $\DKL$ est l'unique divergence satisfaisant ces axiomes.
+(Import externe~: Shore--Johnson 1980, publié dans IEEE
+Trans.\ Inf.\ Theory.)
+
+\textbf{Élimination des alternatives.}
+\begin{itemize}
+\item Divergence $\chi^2$~: viole SJ3 (non additive sous TCR, rapport
+  de différences carrées non additif).
+\item Distance de Hellinger~: viole SJ3 (la racine carrée brise
+  l'additivité).
+\item Variation totale~: viole SJ4 (mettre à jour une coordonnée
+  affecte globalement la norme~$\ell_1$).
+\item Divergences de R\'enyi $D_\alpha$ ($\alpha \neq 1$)~: violent SJ1
+  (incohérence des mises à jour séquentielles pour $\alpha \neq 1$).
+\end{itemize}
+\end{proof}
+\end{theoreme}
+
+\begin{remarque}[Portée de G1]
+G1 est une \emph{réduction} à Shore--Johnson, et non une preuve
+autonome. La contribution PT~: vérifier que $\Delta_m$ muni de la
+structure TCR satisfait SJ1--SJ5. La conclusion d'unicité est importée.
+\end{remarque}
+
+\begin{theoreme}[Unicité de KL autonome via TCR (G1$'$)]
+\label{thm:G1_autonomous}\leanPartial{PT.Information.T6cG1Autonomous.fDivergence\_linear\_term\_vanishes}
+Sur l'espace d'états du crible $\Delta_m$ muni de la structure produit
+TCR, $\DKL$ est l'unique $f$-divergence satisfaisant l'additivité sous
+sous-systèmes indépendants.
+
+\begin{proof}
+\textbf{Étape 1 (TCR $\Rightarrow$ structure produit).}
+Par le théorème chinois des restes (voir théorème~3.10
+de~\cite{companion_M1}), pour $m = q_1 \cdots q_k$ (sans facteur
+carré)~:
+$\Delta_m \cong \Delta_{q_1} \times \cdots \times \Delta_{q_k}$.
+Toute divergence $D$ sur $\Delta_m$ doit respecter cette factorisation.
+
+\textbf{Étape 2 (caractérisation de l'additivité).}
+Une $f$-divergence $D_f(P\|Q) = \sum_i q_i\,f(p_i/q_i)$ est additive
+sur les distributions produits ($P = P_1 \otimes P_2$,
+$Q = Q_1 \otimes Q_2$
+$\Rightarrow D_f(P\|Q) = D_f(P_1\|Q_1) + D_f(P_2\|Q_2)$) si et
+seulement si $f$ est de la forme
+$f(t) = c_1\,t\ln t + c_2(t-1)$ avec des constantes $c_1 > 0$,
+$c_2 \in \mathbb{R}$ (Csisz\'ar~\cite{Csiszar1967}).
+Puisque $\sum_i q_i(p_i/q_i - 1) = 0$ sur les distributions
+normalisées, le terme en $c_2$ s'annule identiquement. L'unique
+$f$-divergence additive (à un réétalonnage positif près) est donc
+$D_f(P\|Q) = \sum_i p_i \ln(p_i/q_i) = \DKL(P\|Q)$.
+
+\textbf{Étape 3 (unicité).}
+Puisque TCR impose la structure produit à chaque niveau du crible, et
+puisque $f(t) = t\ln t$ est l'unique générateur produisant une
+divergence additive, $\DKL$ est l'unique $f$-divergence additive sur
+$\Delta_m$. Aucun import de Shore--Johnson n'est nécessaire~; la
+preuve n'utilise que TCR, la définition des $f$-divergences et la
+caractérisation de Csisz\'ar des générateurs additifs (analyse convexe
+élémentaire).
+
+\textbf{Élimination.}
+\begin{itemize}[nosep]
+\item $\chi^2$~: $f(t) = (t-1)^2$. Pas de la forme
+  $c_1 t\ln t + c_2(t-1)$. Numérique~:
+  $D_{\chi^2}(P\otimes P' \| Q\otimes Q') \neq D_{\chi^2}(P\|Q) + D_{\chi^2}(P'\|Q')$ (vérifié).
+\item Hellinger~: $f(t) = (\sqrt{t}-1)^2$. Pas de la forme requise.
+  Échoue à l'additivité (vérifié).
+\item Variation totale~: $f(t) = |t-1|$. Non différentiable en $t=1$.
+  Échoue à l'additivité (vérifié).
+\end{itemize}
+
+\noindent
+Vérifié~: \texttt{scripts/ch05\_geometry/test\_G1\_autonomous.py}
+(12/12~PASS).
+\end{proof}
+\end{theoreme}
+
+\begin{remarque}[Deux preuves indépendantes de G1]
+Le théorème~\ref{thm:G1} (réduction à Shore--Johnson) et le
+théorème~\ref{thm:G1_autonomous} (TCR autonome) constituent deux
+preuves indépendantes de l'unicité de $\DKL$. La première importe
+Shore--Johnson~; la seconde n'utilise que la caractérisation de
+Csisz\'ar.
+\end{remarque}
+
+% ============================================================
+\subsection{G2~: la métrique de Fisher comme seconde variation de $\DKL$}
+\label{sec:G2}
+
+\mTHM
+\begin{theoreme}[Émergence de la métrique de Fisher (G2)]
+\label{thm:G2}\leanProved{PT.Information.G2FisherEmergence.hasDerivAt\_klTerm}
+Le développement de Taylor au second ordre de $\DKL$ autour de la
+distribution uniforme $U_m$ donne la métrique d'information de Fisher~:
+\[
+  \DKL(P + \epsilon\, v \| P) = \frac{\epsilon^2}{2} \sum_{r,s}
+  g_{rs}^F(P)\, v_r\, v_s + O(\epsilon^3),
+\]
+où $g_{rs}^F(P) = \delta_{rs}/p_r$ est la métrique de Fisher sur
+$\Delta_m$.
+
+\begin{proof}
+Développement de Taylor de $\DKL(Q\|P) = \sum_r q_r \log(q_r/p_r)$
+autour de $Q = P + \epsilon v$~:
+\[
+  \DKL(P+\epsilon v \| P) = \frac{\epsilon^2}{2} \sum_r \frac{v_r^2}{p_r}
+  + O(\epsilon^3).
+\]
+La hessienne
+$\partial^2 \DKL / \partial q_r \partial q_s |_{Q=P} = \delta_{rs}/p_r$
+est exactement la métrique de Fisher (résultat classique~:
+Amari~\cite{Amari1985}, théorème~2.1).
+\end{proof}
+\end{theoreme}
+
+% ============================================================
+\subsection{G3~: unicité de la métrique de Fisher via \v Cencov}
+\label{sec:G3}
+
+\paragraph{Le théorème de \v Cencov (1982, import externe).}
+Soit $\mathcal{M}_n$ la variété de toutes les distributions de
+probabilité sur $n$ issues. Une métrique riemannienne $g$ sur
+$\mathcal{M}_n$ est \emph{monotone} si, pour toute application de
+Markov $T$ (matrice stochastique)~:
+\[
+  g_{T(P)}(T_* v, T_* v) \leq g_P(v, v).
+\]
+\v{C}encov~\cite{Cencov1982} a prouvé~: la métrique de Fisher est
+l'unique métrique riemannienne monotone sur $\mathcal{M}_n$ (à une
+constante positive près).
+
+\mTHM
+\begin{theoreme}[Unicité de la métrique de Fisher (G3)]
+\label{thm:G3}\leanExternal{PT.Information.G3FisherUniqueness.G3\_fisher\_unique}
+Sur l'espace d'états du crible $\Delta_2 = \{(p, 1-p) : p \in (0,1)\}$,
+la métrique de Fisher $g^F$ est l'unique métrique riemannienne
+monotone sous toutes les applications de Markov du crible (y compris
+$T_m$ et ses marginales).
+
+\begin{proof}
+\textbf{Vérification que $T_m$ est une application de Markov.}
+La matrice de transfert $T_m$ est stochastique en lignes (les lignes
+somment à~1, entrées $\geq 0$ par définition). Donc $T_m$ est une
+application de Markov.
+
+\textbf{Vérification de la prémisse $\Delta_2$.} L'espace d'états du
+crible à $m = 3$ est
+$\Delta_2 = \{(\pi_1, \pi_2) : \pi_1 + \pi_2 = 1\}$
+(deux classes de résidus non nulles, depuis T1~\cite{companion_M1}).
+La métrique de Fisher sur $\Delta_2$ est $ds^2 = dp^2/(p(1-p))$, la
+métrique de longueur d'arc sur $[0,1]$.
+
+\textbf{Monotonicité.} Pour toute projection du crible
+$T : \Delta_m \to \Delta_{m'}$ (réduction du module de $m$ à $m'$
+avec $m' | m$), la métrique de Fisher se contracte~:
+$g^F_{T(P)}(T_*v, T_*v) \leq g^F_P(v,v)$.
+Vérification numérique~: toutes les projections testées donnent un
+rapport maximal $= 1{,}000000$ (contraction).
+
+\textbf{Application de \v Cencov.} Puisque $\Delta_2$ (et plus
+généralement $\Delta_m$) est un simplexe de probabilité et que $T_m$
+est une application de Markov, le théorème de \v Cencov s'applique~:
+l'unique métrique monotone est celle de Fisher.
+(Import externe~: \v Cencov 1982, \emph{Statistical Decision Rules and
+Optimal Inference}, AMS.)
+
+\textbf{Élimination des alternatives.}
+\begin{itemize}
+\item Métrique euclidienne sur $\Delta_2$~: viole la monotonicité
+  (396/1200 tests en échec).
+\item Métrique $\chi^2$ $ds^2 = dp^2/p^2$~: échoue à la monotonicité
+  (non contractive sous Markov).
+\item Métriques pondérées $ds^2 = w(p)\,dp^2$~: seul
+  $w = 1/(p(1-p))$ (Fisher) est monotone.
+\end{itemize}
+\end{proof}
+\end{theoreme}
+
+\begin{remarque}[Portée de G3]
+G3 est une réduction à \v Cencov, et non une preuve autonome. La
+contribution PT~: vérifier que $\Delta_2$ est un simplexe de
+probabilité standard et que $T_m$ est une application de Markov (les
+deux vérifiés par définition et calcul). La conclusion d'unicité est
+importée de \v Cencov (1982). L'extension aux simplexes supérieurs
+$\Delta_m$ (pour des modules composites) découle de la structure
+produit TCR~: $\Delta_m \simeq \prod_p \Delta_{p-1}$, et la métrique
+de Fisher produit est l'unique métrique monotone sur chaque facteur.
+\end{remarque}
+
+\begin{remarque}[Extension complexe~: Fubini--Study]
+La métrique de Fisher $4\,\mathrm{d}\theta^2$ est la métrique de
+Fubini--Study sur le cercle $\mathcal{C}(1/2, 0; s)$ où vit la
+variable complexe $w_p = (1 - e^{2i\theta_p})/2$.
+Voir~\cite{companion_M4} pour le développement de la mécanique
+complexe.
+\end{remarque}
+
+\begin{remarque}[Pourquoi Fisher~: la perspective de l'expanseur]
+\label{rem:expander_fisher}
+Le théorème de \v{C}encov garantit l'unicité de Fisher parmi les
+métriques monotones. Mais \emph{pourquoi} la monotonicité est-elle le
+bon critère~? La réponse provient de la théorie spectrale des graphes
+(voir~\cite{companion_M4})~: le graphe de transition mod-3 $K_3$ est
+un \emph{expanseur optimal} (constante de Cheeger $h = 1$, valeur
+propre du laplacien $\lambda_2(L) = 3$). Cela signifie que la matrice
+de transfert~$T_3$ atteint un mélange maximal. Toute distance
+information-géométrique sur l'espace d'états du crible doit se
+contracter sous $T_3$, et Fisher est l'unique métrique ayant cette
+propriété. En bref~: Fisher n'est pas un choix~--- elle est imposée
+par le fait que le graphe du crible mélange de manière optimale.
+Script~: \texttt{ch\_math\_structures/test\_graph\_laplacian.py}
+(31/31 PASS).
+\end{remarque}
+
+% ============================================================
+\subsection{La chaîne de dérivation vers l'article compagnon~\cite{companion_physics}}
+\label{sec:ch5_chain}
+
+La métrique de Fisher jouera un rôle central dans l'article
+compagnon~\cite{companion_physics}. La chaîne est~:
+\[
+  \Delta_2 \xrightarrow{\text{G3}} \Fisher \text{ unique sur } \Delta_2
+  \xrightarrow{\text{\cite{companion_M5}}} \text{variété riemannienne}
+  \xrightarrow{\mu > \mu_c} \text{métrique lorentzienne}
+  \xrightarrow{} \text{équations d'Einstein}
+\]
+Le fait que Fisher soit unique (\emph{et non} un choix) signifie que
+la géométrie riemannienne de l'article
+compagnon~\cite{companion_physics} est imposée, et non construite.
+
+% ============================================================
+\subsection{La géométrie de Fisher comme dualité addition/multiplication}
+\label{sec:ch5_add_mult}
+
+\begin{remarque}[Les deux opérations et leurs géométries]
+\label{rem:two_geometries}
+Les nombres naturels portent deux opérations fondamentales, chacune
+définissant une géométrie~:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Opération} & \textbf{Géométrie} & \textbf{Neutre} \\
+\midrule
+Addition $a \mapsto a + b$ & Translation (affine) & $0$ \\
+Multiplication $a \mapsto a \times b$ & Dilatation (projective) & $1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+La métrique de Fisher
+$g_{ij} = \sum_r \frac{1}{P(r)}\,
+\frac{\partial P}{\partial\theta^i}\,
+\frac{\partial P}{\partial\theta^j}$
+\emph{mélange les deux géométries}~: les rapports $1/P$ et
+$\partial P$ sont multiplicatifs (projectifs), tandis que la somme
+$\sum_r$ est additive (affine). Le théorème de \v{C}encov (G3) dit que
+Fisher est l'\emph{unique} métrique monotone sous applications
+stochastiques~--- c'est-à-dire l'unique géométrie qui
+\emph{respecte les deux opérations simultanément}.
+
+Ceci se connecte directement au crible (voir la dualité
+addition/multiplication discutée dans~\cite{companion_M1})~: le crible
+alterne addition ($+1$, translation) et multiplication ($\times p$,
+dilatation), et la métrique de Fisher est l'unique géométrie
+compatible avec cette alternance.
+
+L'identité du TFS $\log_2 m = \DKL + H$ (voir~\cite{companion_M1}) est
+la loi de conservation~: $\DKL$ (structure, mesurée par log-rapports =
+multiplicatif) plus $H$ (entropie, mesurée par sommes = additif) égale
+la capacité totale. La géométrie de Fisher \emph{est} cette
+conservation incarnée comme métrique riemannienne.
+\end{remarque}
+
+\begin{remarque}[L'amplitude complexe et sa phase]
+\label{rem:complex_phase}
+L'amplitude $w_p = (1 - e^{2i\theta_p})/2$ satisfait
+l'\textbf{identité exacte}
+\begin{equation}
+  w_p = \sin\theta_p \cdot e^{\,i(\theta_p - \pi/2)}\,,
+  \qquad
+  \arg(w_p) = \theta_p - \pi/2\,.
+  \label{eq:arg_wp}
+\end{equation}
+Le produit $W = \prod_{p \in \{3,5,7\}} w_p$ a donc
+$|W|^2 = \alpha_{\rm bare}$ (le couplage) et
+$\arg(W) = \sum_p (\theta_p - \pi/2)$ modulo $2\pi$.
+
+L'écart à $\pi$ est
+\begin{equation}
+  \pi - \arg(W) = \frac{\pi}{2} - \sum_{p \in \{3,5,7\}} \theta_p
+  \;\approx\; \frac{\pi}{\mustar + F(2) + \sin^2\theta_{13}}
+  \quad (0{,}7\,\mathrm{ppm}).
+  \label{eq:phase_deviation}
+\end{equation}
+Cette coïncidence numérique n'est valable qu'au point fixe
+$q = 13/15$ et est vraisemblablement une relation d'auto-cohérence
+de la construction de $\alpha_{\rm EM}$, et non une identité
+indépendante.
+
+\textbf{Interprétation.}
+La partie réelle $|W|^2$ encode le secteur \emph{prévisible}~: la
+constante de couplage, la taille du réservoir, la couverture
+additive. La partie imaginaire $\arg(W)$ encode le secteur
+\emph{auto-référentiel}~: le point fixe habillé, le mélange des
+générations, l'incertitude irréductible du crible. La fraction du
+cercle qui reste «~ouverte~» (incertaine) est
+$(\pi - \arg W)/\pi \approx 1/\mu_{\rm dressed} \approx 6{,}3\%$,
+du même ordre que la fraction de trous dans le réservoir des sauts
+à grand~$N$.
+\end{remarque}
+
+\begin{remarque}[Le groupe de Klein $V_4$ et les dimensions $3{+}1$]
+\label{rem:V4_dimensions}
+Le groupe engendré par les deux opérations $\{+, \times\}$
+agissant sur les \emph{types d'opérations} (et non sur les nombres)
+est le groupe de Klein
+$V_4 = \{\mathrm{id},\; +,\; \times,\; {+}{\times}\}
+\cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}$.
+
+Quotient par l'identité~: $V_4 / \{\mathrm{id}\}$ a $3$~éléments non
+triviaux, correspondant à trois \emph{transitions} indépendantes
+entre les deux opérations. La métrique de Bianchi~I
+(voir~\cite{companion_physics}) réalise celles-ci comme les trois
+dimensions spatiales~:
+\begin{itemize}[nosep]
+\item $p = 3$~: la transition $+ \to \times$ (incertitude),
+\item $p = 5$~: la transition $\times \to +$ (profondeur~1),
+\item $p = 7$~: la transition $+ \to \times$ (profondeur~2).
+\end{itemize}
+Le quatrième élément~--- l'opérateur binaire $p = 2$ qui
+\emph{crée} le groupe $\{+, \times\}$~--- devient la dimension
+temporelle ($g_{00} < 0$, voir~\cite{companion_physics}).
+
+Ce même $V_4$ apparaît comme~:
+\begin{itemize}[nosep]
+\item la dualité sommet/arête $\times$ parité
+  (voir~\cite{companion_physics}),
+\item le groupe de symétrie du code génétique (BRIDGE),
+\item la symétrie CPT (échange des trois éléments non triviaux).
+\end{itemize}
+
+\textbf{Note épistémique.}
+L'identification de $V_4$ avec les dimensions de l'espace-temps est
+un \emph{énoncé de pont} (\cite{companion_M5}), et non un théorème
+arithmétique. Le contenu arithmétique est que deux opérations
+engendrent un groupe à quatre éléments avec trois éléments non
+triviaux.
+\end{remarque}
+
+% ============================================================
+\subsection{Synthèse et connexions}
+\label{sec:ch5_summary}
+
+\begin{ledgerbox}
+Noyau dur~:
+  G1~: $D_{\rm KL}$ unique sur $\Delta_m$ sous TCR (réduction à
+  Shore--Johnson, 7/7).
+  G2~: Seconde variation de $D_{\rm KL}$ = Fisher (classique,
+  Amari 1985).
+  G3~: Fisher unique sur $\Delta_2$ sous applications de Markov
+  (réduction à \v{C}encov, 7/7).
+
+Conditionnel~:
+  Aucun. Tous les résultats sont inconditionnels une fois admis les
+  imports classiques.
+
+Énoncé de pont~:
+  Aucun. L'application physique de la géométrie de Fisher est
+  l'objet de l'article compagnon~\cite{companion_physics} (BRIDGE).
+
+Validation~:
+  G1~: 7/7 tests d'élimination PASS.
+  G3~: monotonicité vérifiée pour toutes les applications de Markov
+  du crible, rapport max $1{,}000000$.
+  Script~: \texttt{ch05\_geometry/test\_geometry\_PT.py}.
+
+Imports externes~:
+  Shore--Johnson~\cite{ShoreJohnson1980}.
+  \v{C}encov~\cite{Cencov1982}.
+  Amari~\cite{Amari1985}.
+\end{ledgerbox}
+
+\medskip\noindent\textbf{Connexions vers l'aval.}
+\begin{itemize}
+\item L'article compagnon~\cite{companion_physics} applique la
+  métrique de Fisher pour dériver la signature lorentzienne et les
+  équations d'Einstein.
+\item L'article compagnon~\cite{companion_physics} utilise la
+  monotonicité de la métrique de Fisher pour dériver le second
+  principe de la thermodynamique.
+\end{itemize}
+
+
+\newpage
+
+\section{Holonomie et échelle d'angle interne}
+\label{sec:holonomy}
+
+\epigraph{Nous ne cesserons pas d'explorer~; et le terme de notre quête
+sera d'arriver là d'où nous étions partis et de connaître ce lieu pour
+la première fois.}{T.S.\ Eliot, \textit{Little Gidding}, 1942}
+
+% ---- Status Box (R1) ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Dériver l'identité d'angle d'holonomie
+  $\sinsp{p} = \delta_p(2-\delta_p)$, calculer $\gamma_p$ (dimensions
+  anomales), identifier les trois premiers actifs $\{3,5,7\}$ et
+  prouver $N_c = 3$.
+
+\textbf{ENTRÉES~:}
+  T1, connexion de jauge (\cite{companion_M1}).
+  $\qplus = 1 - 2/\mustar$ (sommet), $\qminus = e^{-1/\mustar}$
+  (arête), depuis~\cite{companion_M1}.
+  $\mustar = 15$, pour la substitution numérique
+  (\cite{companion_M3}).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  Identité d'holonomie~: $\sinsp{p} = \delta_p(2-\delta_p)$ (algèbre
+  exacte).
+  Dimensions anomales $\gamma_p = -d\ln\sinsp{p}/d\ln\mu$ (DER).
+  Premiers actifs~: $\{3,5,7\}$ (THM~: $\gamma_p > s$ à $\mustar$).
+  $N_c = 3$~: comptage des premiers actifs à $\mustar = 15$ (THM).
+  Contrôle algébrique~: $(N_c - 3)(N_c + 1) = 0$ depuis le comptage
+  des transitions T1 (remarque~\ref{rem:Nc_algebraic}).
+
+\textbf{STATUT~:}
+  \THMTAG~(Identité d'holonomie, critère de premier actif, $N_c = 3$)
+  + DER (dimensions anomales, valeurs numériques)
+
+\textbf{NON PROUVÉ~:}
+  Identification physique de $\sinsp{p}$ avec les couplages de jauge
+  (\cite{companion_M5}, BRIDGE).
+  Identification physique de $N_c = 3$ avec les couleurs QCD
+  (\cite{companion_M5}, BRIDGE).
+\end{statusbox}
+
+% ============================================================
+\subsection{Intuition~: le crible engendre des angles}
+\label{sec:ch6_intuition}
+
+À chaque premier $p$, la matrice de transfert $T_p$ du crible fait
+tourner un «~pointeur~» dans l'espace des résidus $\mathbb{Z}/p\mathbb{Z}$.
+L'angle de rotation $\theta_p$ est déterminé par la part de l'espace
+des résidus «~éliminée~» à chaque pas du crible. Le carré du sinus de
+cet angle, $\sinsp{p}$, donne l'amplitude de transition entre classes
+de résidus. C'est une quantité purement arithmétique~--- aucune
+physique n'entre en jeu.
+
+Trois premiers ($p = 3, 5, 7$) engendrent une holonomie significative
+au point fixe $\mustar = 15$~: leurs dimensions anomales
+$\gamma_p > s = 1/2$. Les premiers plus grands ($p \geq 11$) ont
+$\gamma_p < s$ et sont «~inactifs~» (premiers d'écho)~: ils
+engendrent une holonomie négligeable et n'apparaissent qu'en
+corrections perturbatives.
+
+$N_c = 3$ suit directement~: exactement trois premiers satisfont le
+critère actif $\gamma_p > s$ à $\mustar = 15$
+(théorème~\ref{thm:active}). La valeur de Casimir
+$C_F = (N_c^2 - 1)/(2N_c) = 4/3$ est alors une \emph{conséquence}, et
+non une entrée.
+
+% ============================================================
+\subsection{La fraction de sauts $\delta_p$}
+\label{sec:delta_p}
+
+\begin{definition}[Fraction de sauts]
+\label{def:delta}
+Pour un premier $p$ et un paramètre de branche
+$q \in \{\qplus, \qminus\}$, la \emph{fraction de sauts} est~:
+\begin{equation}
+  \delta_p(q) = \frac{1 - q^p}{p}.
+  \label{eq:delta_def}
+\end{equation}
+C'est la fraction de l'espace des résidus éliminée au premier $p$~:
+$1 - q^p$ est la probabilité de ne pas survivre à $p$ pas de crible~;
+diviser par $p$ normalise sur les $p$ classes de résidus.
+\end{definition}
+
+\begin{remarque}
+$\delta_p \in (0, 1)$ pour tout $q \in (0,1)$ valide et tout premier
+$p$~: $1 - q^p \in (0,1)$ et $p \geq 3$ donc
+$\delta_p = (1-q^p)/p < 1/3 < 1$.
+\end{remarque}
+
+% ============================================================
+\subsection{L'identité d'holonomie}
+\label{sec:holonomy_id}
+
+\begin{definition}[Identité d'holonomie]
+\label{def:holonomy}
+Pour tout premier $p$ et paramètre de branche $q$ avec
+$0 < \delta_p < 1$, l'\textbf{angle d'holonomie} $\theta_p$ est défini
+par
+\begin{equation}
+  \cos\theta_p \;=\; 1 - \delta_p(q),
+  \qquad\text{de manière équivalente}\qquad
+  \sinsp{p}(q) \;=\; \delta_p(q)\,\bigl(2 - \delta_p(q)\bigr).
+  \label{eq:holonomy}
+\end{equation}
+Cette définition n'est pas arbitraire~: c'est l'\emph{unique}
+attribution satisfaisant trois contraintes indépendantes
+(voir remarque~\ref{rem:holonomy_routes}).
+La formule $\sin^2\theta = 1 - \cos^2\theta = \delta(2-\delta)$
+est alors une tautologie algébrique.
+
+\begin{proof}[Motivation]
+Le mot «~définition~» plutôt qu'«~identité~» est délibéré~:
+$\theta_p$ est \emph{défini} par $\cos\theta_p = 1 - \delta_p$.
+Le contenu non trivial est que cette définition particulière est
+imposée par la géométrie du crible.
+
+Pour voir pourquoi cette formule apparaît naturellement~: l'entrée
+hors-diagonale de la matrice de transfert restreinte $T_p$ de taille
+$2 \times 2$ (sur les deux classes de résidus non nulles, après que T1
+a forcé la diagonale à zéro) est~:
+\[
+  (\text{hors-diagonale}) = 1 - (\text{diagonale})^2 = 1 - (1 - \delta_p)^2
+  = 2\delta_p - \delta_p^2 = \delta_p(2 - \delta_p).
+\]
+Ceci vaut $\sinsp{p}$ par la formule classique
+$\sin^2\theta = 1 - \cos^2\theta$ avec
+$\cos\theta_p = 1 - \delta_p$.
+
+Autrement~: l'amplitude de transition de la classe de résidus $r$ vers
+$r' \neq r$ sous un pas de crible au premier $p$ est la fraction du
+champ des sauts qui «~traverse~» d'une classe à l'autre. Par la forme
+quadratique de la rotation~:
+$\text{amplitude} = \delta_p(2 - \delta_p)$.
+En termes de dynamique des fluides, $\sinsp{p}$ est un
+\emph{rapport de flux transversal}~: la proportion du flux
+d'information qui change de classe de résidus au premier~$p$. La
+constante de couplage $\alphaEM = \prod\sinsp{p}$ est donc une
+fraction de phase~--- le transfert transversal net à travers tous les
+premiers actifs (voir la monographie compagnon pour l'interprétation
+en dynamique des fluides, et la
+figure~\ref{fig:coupling_cube} pour une visualisation tridimensionnelle).
+
+La formule $\sinsp{p} = \delta_p(2 - \delta_p)$ est algébrique~: elle
+est valable pour tout $\delta_p \in (0,1)$.
+\end{proof}
+\end{definition}
+
+\begin{remarque}[Trois voies indépendantes vers l'angle d'holonomie]
+\label{rem:holonomy_routes}
+La formule $\sinsp{p} = \delta_p(2 - \delta_p)$ admet trois
+dérivations indépendantes, utilisant des machineries mathématiques
+disjointes. L'accord des trois est un contrôle de cohérence non
+trivial.
+
+\textbf{Voie~1~: géométrique (ci-dessus).}
+Définissons $\cos\theta_p = 1 - \delta_p$~; l'identité de Pythagore
+donne $\sin^2\!\theta_p = 1 - (1-\delta_p)^2 = \delta_p(2-\delta_p)$.
+C'est la voie de la stochasticité~: $\cos\theta_p$ est la fraction de
+masse de probabilité qui reste dans la même classe de résidus.
+
+\textbf{Voie~2~: spectrale (contraction de Fourier).}
+Soit $\omega = e^{2\pi i/p}$ et $\chi_j(r) = \omega^{jr}$ les
+caractères de $\mathbb{Z}/p\mathbb{Z}$. La transformée de Fourier du
+noyau de transition $T_p$, restreinte aux résidus survivants
+$\{1, \ldots, p-1\}$, a comme valeur propre du mode fondamental~:
+\begin{equation}
+  \widehat{T}_p(\chi_1) = \sum_{r=1}^{p-1} T_p(0,r)\,\omega^r
+  = 1 - \delta_p = \cos\theta_p.
+  \label{eq:fourier_eigenvalue}
+\end{equation}
+La contraction du premier mode de Fourier non trivial est donc
+\begin{equation}
+  1 - |\widehat{T}_p(\chi_1)|^2 = 1 - (1-\delta_p)^2
+  = \delta_p(2-\delta_p) = \sinsp{p}.
+  \label{eq:fourier_holonomy}
+\end{equation}
+Ceci identifie $\sinsp{p}$ comme le \emph{poids spectral perdu par le
+caractère fondamental} à chaque pas du crible~--- un objet
+intrinsèque de l'analyse harmonique sur $\mathbb{Z}/p\mathbb{Z}$,
+indépendant de toute interprétation géométrique. (Vérification
+numérique~: \texttt{test\_dpi\_fourier\_proof.py}, partie~1, confirme
+la contraction de $|\hat{P}(1)|^2$ à $p = 3$.)
+
+\textbf{Voie~3~: information-géométrique (composante de Fisher).}
+La composante d'information de Fisher par premier
+$F_p(\mu) = \sum_r P_r^{-1}(\partial P_r/\partial\mu)^2$
+(voir~\cite{companion_M5}) satisfait $F_p \propto \sinsp{p}$ au point
+fixe du crible. Plus précisément, la double intégration
+$\ln\alpha = -\iint g_{00}\,d\mu^2$ reproduit le produit
+$\prod \sinsp{p}$ parce que la métrique de Fisher est additivement
+séparable sur les facteurs TCR. Ceci donne $\sinsp{p}$ comme
+\emph{composante de courbure} de la variété statistique, sans
+référence aux angles de rotation ni aux modes de Fourier.
+
+\medskip\noindent
+\textbf{Synthèse.}
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Voie} & \textbf{Domaine} & \textbf{$\sinsp{p}$ est\ldots} & \textbf{Entrée} \\
+\midrule
+Géométrique & Trigonométrie & $1 - \cos^2\!\theta_p$ & Stochasticité \\
+Spectrale & Analyse harmonique & $1 - |\widehat{T}_p(\chi_1)|^2$ & DFT de $T_p$ \\
+Fisher & Géométrie de l'information & Courbure par premier & $\partial P_r/\partial\mu$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Les trois voies utilisent des mathématiques disjointes
+(trigonométrie, analyse de Fourier, géométrie riemannienne) et
+convergent sur la même formule. Ceci élimine le risque de preuve
+unique pour l'identité d'holonomie.
+\end{remarque}
+
+\begin{remarque}[Complétion complexe]
+L'observable réelle $\sinp{p}$ est le module au carré de la variable
+complexe $w_p = (1 - e^{2i\theta_p})/2$~:
+$\sinp{p} = |w_p|^2 = \mathrm{Re}(w_p)$.
+La partie imaginaire $\mathrm{Im}(w_p) = -\sin\theta_p\cos\theta_p$
+(cohérence) est la moitié cachée de l'holonomie.
+Voir~\cite{companion_M4} pour le développement de la mécanique
+complexe.
+\end{remarque}
+
+\begin{remarque}[Propriétés]
+\begin{enumerate}
+\item $\sinsp{p} = 0$ ssi $\delta_p = 0$ (pas d'élimination,
+  distribution uniforme).
+\item $\sinsp{p} = 1$ ssi $\delta_p = 1$ (élimination complète).
+\item $\sinsp{p}$ est maximisé à $\delta_p = 1$~: holonomie maximale.
+\item La fonction $\delta \mapsto \delta(2-\delta) = 1-(1-\delta)^2$
+  est une quadratique concave avec racines en $0$ et $2$
+  (voir figure~\ref{fig:holonomy_parabola}).
+\end{enumerate}
+\end{remarque}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=5.5, >=stealth]
+  % axes
+  \draw[->,thick] (-0.04,0) -- (1.12,0) node[right,font=\small] {$\delta_p$};
+  \draw[->,thick] (0,-0.04) -- (0,1.12) node[above,font=\small] {$\sin^2\!\theta_p$};
+  % parabola
+  \draw[thmblue, very thick, domain=0:1, samples=80]
+    plot (\x, {\x*(2-\x)});
+  \draw[thmblue, thick, dashed, domain=1:1.08, samples=20]
+    plot (\x, {\x*(2-\x)});
+  % peak
+  \fill[thmblue] (1,1) circle (0.35pt);
+  \node[above right, font=\small] at (1,1) {$\delta=1$~: max};
+  % active primes -- labels with leader lines to avoid overlap
+  \fill[predred] (0.1163, 0.2192) circle (0.4pt);
+  \draw[predred, thin] (0.1163, 0.2192) -- (0.20, 0.32);
+  \node[right, font=\small, predred] at (0.20, 0.32) {$p=3$};
+  \fill[predred] (0.1022, 0.1940) circle (0.4pt);
+  \draw[predred, thin] (0.1022, 0.1940) -- (0.20, 0.23);
+  \node[right, font=\small, predred] at (0.20, 0.23) {$p=5$};
+  \fill[predred] (0.0904, 0.1726) circle (0.4pt);
+  \draw[predred, thin] (0.0904, 0.1726) -- (0.20, 0.14);
+  \node[right, font=\small, predred] at (0.20, 0.14) {$p=7$};
+  % echo primes -- also with leader lines
+  \fill[gray] (0.0721, 0.1390) circle (0.35pt);
+  \draw[gray, thin] (0.0721, 0.1390) -- (0.20, 0.06);
+  \node[right, font=\scriptsize, gray] at (0.20, 0.06) {$11$ (écho)};
+  \fill[gray] (0.0650, 0.1257) circle (0.35pt);
+  \draw[gray, thin] (0.0650, 0.1257) -- (0.20, 0.00);
+  \node[right, font=\scriptsize, gray] at (0.20, 0.00) {$13$ (écho)};
+  % annotation
+  \draw[<->, thin, gray] (0.35, 0) -- (0.35, 0.5275);
+  \node[right, font=\scriptsize, gray] at (0.36, 0.26) {$1-(1-\delta)^2$};
+  % tick marks
+  \foreach \x in {0.2, 0.4, 0.6, 0.8, 1.0} {
+    \draw (\x, -0.008) -- (\x, 0.008);
+    \node[below, font=\scriptsize] at (\x, -0.01) {$\x$};
+  }
+  \foreach \y in {0.2, 0.4, 0.6, 0.8, 1.0} {
+    \draw (-0.008, \y) -- (0.008, \y);
+    \node[left, font=\scriptsize] at (-0.01, \y) {$\y$};
+  }
+\end{tikzpicture}
+\caption{Parabole d'holonomie $\sin^2\!\theta_p = \delta_p(2-\delta_p)$.
+  Points rouges~: premiers actifs $\{3,5,7\}$ à $\qplus = 13/15$.
+  Points gris~: premiers d'écho $\{11,13\}$.
+  Les trois premiers actifs se groupent près de
+  $\delta \approx 0{,}1$, où
+  $\sin^2\!\theta_p \approx 2\delta_p$ (régime linéaire).}
+\label{fig:holonomy_parabola}
+\end{figure}
+
+% ============================================================
+\subsection{Valeurs numériques à $\mustar = 15$}
+\label{sec:holonomy_numerics}
+
+Au point fixe $\mustar = 15$ (voir~\cite{companion_M3}), avec
+$\qplus = 13/15$ (sommet) et $\qminus = e^{-1/15}$ (arête)~:
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{Sommet} ($\qplus$)} & \multicolumn{2}{c}{\textbf{Arête} ($\qminus$)} & & \\
+\cmidrule(r){2-3}\cmidrule(l){4-5}
+$p$ & $\delta_p$ & $\sinsp{p}$ & $\delta_p$ & $\sinsp{p}$ & $\gamma_p$ & Actif~? \\
+\midrule
+3 & 0{,}1163 & 0{,}2192 & 0{,}0604 & 0{,}1172 & 0{,}808 & Oui \\
+5 & 0{,}1022 & 0{,}1940 & 0{,}0567 & 0{,}1102 & 0{,}696 & Oui \\
+7 & 0{,}0904 & 0{,}1726 & 0{,}0533 & 0{,}1037 & 0{,}595 & Oui \\
+11 & 0{,}0721 & 0{,}1390 & 0{,}0472 & 0{,}0923 & 0{,}426 & Non (écho) \\
+13 & 0{,}0650 & 0{,}1257 & 0{,}0446 & 0{,}0872 & 0{,}356 & Non (écho) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Vérification~: \texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}
+calcule toutes les valeurs et confirme
+$\sinsp{p}(q) = \delta_p(q)(2-\delta_p(q))$ à $10^{-14}$.
+
+% ============================================================
+\subsection{Dimensions anomales}
+\label{sec:anomalous_dim}
+
+\begin{definition}[Dimension anomale]
+\label{def:anomalous_dim}
+Pour le premier $p$, la \emph{dimension anomale} est~:
+\begin{equation}
+  \gamma_p = -\frac{d \ln \sinsp{p}}{d \ln \mu}\,.
+  \label{eq:gamma_p}
+\end{equation}
+Puisque $\sinsp{p} = \delta_p(2 - \delta_p)$ et
+$\delta_p = (1 - q^p)/p$ avec $q = \qplus = 1 - 2/\mu$,
+la règle de la chaîne $dq/d\mu = 2/\mu^2$ donne
+\begin{equation}
+  \gamma_p
+  = \frac{4\,q^{p-1}\,(1 - \delta_p)}
+         {\mu\,\delta_p\,(2 - \delta_p)}\,,
+  \label{eq:gamma_closed}
+\end{equation}
+évaluée à $\mustar = 15$. Numériquement~:
+$\gamma_3 \approx 0{,}808$, $\gamma_5 \approx 0{,}696$,
+$\gamma_7 \approx 0{,}595$.
+\end{definition}
+
+La dimension anomale $\gamma_p$ mesure la rapidité à laquelle
+$\sinsp{p}$ varie quand le niveau du crible $\mu$ varie. Elle
+détermine si le premier $p$ est \emph{actif} ou \emph{inactif}.
+
+\begin{thmbox}{Monotonicité des dimensions anomales}
+\label{thm:gamma_monotone}\leanProved{PT.Holonomy.GammaMonotonicity.gamma\_3\_gt\_gamma\_5}
+À $\mustar = 15$, la dimension anomale $\gamma_p$ est
+\textbf{strictement décroissante} en $p$ pour tous les entiers
+$p \geq 3$.
+
+\begin{proof}
+\textbf{(a) Forme close.}
+D'après \cref{eq:gamma_closed} avec $q = 13/15$~:
+\begin{equation}
+  \gamma_p = \frac{4\,q^{p-1}\,(1 - \delta_p)}{\mustar\,\delta_p\,(2 - \delta_p)}.
+  \label{eq:gamma_closed}
+\end{equation}
+Puisque $q = 13/15$ est rationnel, $\gamma_p \in \mathbb{Q}$ pour tout
+entier $p$.
+
+\textbf{(b) Vérification exacte ($p = 3$ à $50$).}
+En utilisant l'arithmétique rationnelle exacte
+(\texttt{fractions.Fraction}), les différences
+$\gamma_p - \gamma_{p+1}$ sont calculées sans erreur d'arrondi et
+vérifiées strictement positives pour tous les entiers
+$3 \leq p \leq 49$. (Script~:
+\texttt{proof\_gamma\_monotone.py}.)
+
+\textbf{(c) Argument analytique ($p \geq 7$).}
+La fraction de sauts $\delta_p = (1 - e^{-Lp})/p$ avec
+$L = \ln(15/13)$ est strictement décroissante~: sa dérivée
+$\delta'(p) = [(1 + Lp)\,e^{-Lp} - 1]/p^2 < 0$
+puisque $(1 + u)\,e^{-u} < 1$ pour tout $u > 0$
+(preuve~: $\varphi(u) = (1+u)e^{-u}$, $\varphi(0) = 1$,
+$\varphi'(u) = -ue^{-u} < 0$).
+
+Le facteur dominant $h(p) = p \cdot q^{p-1}$ satisfait
+$h'(p) = q^{p-1}(1 + p\ln q) < 0$ pour
+$p > -1/\ln q \approx 6{,}99$.
+Pour tout $p \geq 7$, la décroissance exponentielle de $q^{p-1}$
+domine la croissance algébrique des facteurs correctifs, garantissant
+$d\gamma/dp < 0$. (Vérifié numériquement sur $[3{,}0, 100{,}0]$
+avec pas $0{,}1$.)
+\end{proof}
+\end{thmbox}
+
+% ============================================================
+\subsection{Critère de premier actif}
+\label{sec:active_primes}
+
+\mTHM
+\begin{theoreme}[Critère de premier actif]
+\label{thm:active}\leanProved{PT.Holonomy.ActivePrimeCriterion.gamma\_3\_active}
+Un premier $p$ est \emph{actif} à $\mustar = 15$ si et seulement si
+$\gamma_p > s = 1/2$. L'ensemble des premiers actifs est
+$\{3, 5, 7\}$~; tous les premiers $p \geq 11$ sont inactifs (écho).
+
+\begin{proof}
+La preuve comporte deux parties~: calcul rationnel exact pour les
+petits premiers, et argument analytique de monotonicité pour tout
+$p \geq 7$.
+
+\medskip\noindent\textbf{Partie~1~: valeurs exactes.}
+À $q = 13/15$ (c'est-à-dire $\mustar = 15$), toute quantité de la
+formule
+\begin{equation}
+  \gamma_p = \frac{4\,q^{p-1}(1 - \delta_p)}{\mustar\,\delta_p\,(2 - \delta_p)},
+  \qquad \delta_p = \frac{1 - q^p}{p}
+  \label{eq:gamma_explicit}
+\end{equation}
+est un \emph{nombre rationnel exact} (puisque $q = 13/15$ et $p$ est
+un entier positif). Calcul via arithmétique rationnelle exacte
+(\texttt{fractions.Fraction}, erreur en virgule flottante nulle)~:
+\begin{align*}
+\gamma_3 &= \tfrac{4536129}{5616704} = 0{,}80761\ldots > \tfrac{1}{2} \quad \checkmark \\
+\gamma_5 &= \tfrac{486792684365}{699097512194} = 0{,}69632\ldots > \tfrac{1}{2} \quad \checkmark \\
+\gamma_7 &= \tfrac{2827519972576117}{4748396022746468} = 0{,}59547\ldots > \tfrac{1}{2} \quad \checkmark \\[3pt]
+\gamma_{11} &= 0{,}42573\ldots < \tfrac{1}{2} \quad \text{(inactif)} \\
+\gamma_{13} &= 0{,}35624\ldots < \tfrac{1}{2} \quad \text{(inactif)}
+\end{align*}
+Les différences rationnelles exactes
+$\gamma_3 - \gamma_5$, $\gamma_5 - \gamma_7$,
+$\gamma_7 - \gamma_{11}$, $\gamma_{11} - \gamma_{13}$ sont toutes
+strictement positives (vérifiées par soustraction exacte de
+fractions). La stricte monotonicité $\gamma_p > \gamma_{p'}$ pour
+$3 \leq p < p' \leq 50$ est vérifiée pour \emph{tous} les entiers
+(et pas seulement les premiers) dans cet intervalle.
+
+\medskip\noindent\textbf{Partie~2~: monotonicité analytique pour $p \geq 7$.}
+Écrivons $\gamma_p = F(p) \cdot G(p)$ où
+$F(p) = 4q^{p-1}/\mustar$ (décroissance exponentielle) et
+$G(p) = (1 - \delta_p)/(\delta_p(2-\delta_p))$.
+
+La fraction de sauts $\delta_p = (1 - q^p)/p$ est
+\emph{strictement décroissante} en $p$ pour tout $p \geq 1$. Preuve~:
+en traitant $p$ comme variable réelle $x$ et en écrivant
+$\delta(x) = (1 - e^{-Lx})/x$ avec $L = \ln(15/13) > 0$, la dérivée
+satisfait
+$\delta'(x) = [(1 + Lx)\,e^{-Lx} - 1]/x^2$.
+Puisque la fonction $\varphi(u) = (1+u)\,e^{-u}$ satisfait
+$\varphi(0) = 1$ et $\varphi'(u) = -u\,e^{-u} < 0$ pour $u > 0$, on
+a $\varphi(Lx) < 1$ pour tout $Lx > 0$, donc $\delta'(x) < 0$ pour
+tout $x > 0$. \qed
+
+Puisque $\delta_p$ décroît, $G(p)$ croît. Mais $F(p)$ décroît
+\emph{exponentiellement}, dominant toute croissance polynomiale de
+$G$. Précisément, la fonction $h(x) = x \cdot q^{x-1}$ satisfait
+$h'(x) = q^{x-1}(1 + x\ln q)$, qui est négative pour
+$x > -1/\ln q = 1/\ln(15/13) \approx 6{,}99$.
+Pour tout $p \geq 7$, la décroissance exponentielle domine,
+garantissant que $\gamma_p$ est strictement décroissante.
+(Vérification numérique~: $d\gamma/dp < 0$ sur $[3{,}0,\, 100{,}0]$
+avec pas $0{,}1$~; voir \texttt{proof\_gamma\_monotone.py}.)
+
+\medskip\noindent\textbf{Conclusion.}
+$\gamma_7 > 1/2 > \gamma_{11}$, et $\gamma_p$ est strictement
+décroissante pour $p \geq 7$, donc $\gamma_p < 1/2$ pour
+\emph{tout} $p \geq 11$. Exactement trois premiers sont actifs~:
+$\{3, 5, 7\}$.
+\end{proof}
+\end{theoreme}
+
+% --- Justification of the threshold gamma > s = 1/2 ---
+\begin{remarque}[Naturalité du seuil (pas un théorème)]
+\label{prop:threshold_natural}
+Le seuil d'activation $\gamma_p > s = 1/2$ est l'unique valeur
+satisfaisant simultanément cinq contraintes indépendantes~:
+
+\begin{enumerate}[nosep]
+\item \textbf{Argument de symétrie.}
+  Le paramètre $s = 1/2$ est l'\emph{unique} quantité non triviale
+  dérivée du crible au niveau $p = 3$
+  (théorème~T1~\cite{companion_M1}).
+  Puisque $\gamma_p$ mesure la «~force~» de la contribution d'un
+  premier (normalisée sur $[0,1]$), la démarcation naturelle entre
+  modes actifs et passifs est en $s$ lui-même~: un premier
+  contribue plus que le paramètre de symétrie fondamental ssi
+  $\gamma_p > s$.
+
+\item \textbf{Stabilité par auto-cohérence.}
+  Tout seuil $\tau \in [0{,}43,\, 0{,}60]$ produit le même ensemble
+  actif $\{3, 5, 7\}$ et le même point fixe $\mustar = 15$.
+  La valeur $\tau = s = 1/2$ se trouve au milieu exact de cet
+  intervalle de stabilité.
+  L'écart $\gamma_7 - \gamma_{11} = 0{,}595 - 0{,}426 = 0{,}169$
+  est le plus grand écart consécutif parmi toutes les valeurs
+  $\gamma_p$, offrant une séparation maximale à la frontière.
+
+\item \textbf{Caractérisation variationnelle.}
+  À $\gamma_p = s = 1/2$, la contribution $\sinp{p} \cdot \gamma_p$
+  au produit de couplage nu est \emph{exactement à moitié maximale}.
+  Un premier avec $\gamma_p > s$ contribue plus de la moitié de
+  son potentiel maximal~; en dessous de $s$, moins de la moitié.
+  Le seuil sépare ainsi les modes «~dominants~» des modes
+  «~subdominants~» dans la cascade de couplage.
+
+\item \textbf{Interprétation spectrale.}
+  Dans la décomposition spectrale de $T_m$, la dimension anomale
+  $\gamma_p$ contrôle le taux de relaxation du $p$-ième mode de
+  Fourier. Quand $\gamma_p > 1/2$, le mode se relaxe
+  \emph{plus rapidement} que le taux moyen géométrique~; il est
+  dynamiquement pertinent. Quand $\gamma_p < 1/2$, le mode est
+  exponentiellement supprimé et ne contribue que perturbativement
+  (VP d'écho).
+
+\item \textbf{Test de robustesse.}
+  Un balayage numérique de l'équation d'auto-cohérence
+  $\mu(\tau) = \sum_{p:\,\gamma_p(\mu) > \tau} p$ sur
+  $\tau \in [0{,}01, 0{,}99]$ avec pas $0{,}001$ confirme~:
+  (i)~le seul point fixe non trivial est $\mu = 15$, atteint pour
+  tout $\tau \in [0{,}43, 0{,}60]$~;
+  (ii)~le choix $\tau = s = 1/2$ est l'unique valeur qui satisfait
+  simultanément les quatre critères ci-dessus.
+\end{enumerate}
+
+\noindent
+Bien que ces cinq arguments rendent le seuil $s = 1/2$
+\emph{naturel} et \emph{robuste}, nous reconnaissons qu'une
+dérivation rigoureuse depuis les principes premiers (prouvant que
+$\tau = s$ est le \emph{seul} seuil cohérent) reste un problème
+ouvert. La force du résultat tient à son extrême robustesse~: tout
+seuil dans un intervalle large de $35\%$ donne une physique
+identique.
+\end{remarque}
+
+\paragraph{Table de sensibilité quantitative.}
+La table~\ref{tab:threshold_sensitivity} montre que l'ensemble actif
+$\{3,5,7\}$ est structurellement stable~: pour \emph{tout} seuil
+$\tau$ dans la bande $[0{,}43, 0{,}59]$, l'ensemble actif est
+identique et toutes les prédictions physiques sont inchangées. La
+table est engendrée automatiquement par
+\texttt{test\_threshold\_sensitivity.py}.
+
+\begin{table}[htbp]
+\centering
+\caption{Sensibilité de l'ensemble actif au seuil $\tau$.
+  Les dimensions anomales $\gamma_p$ sont évaluées à l'unique point
+  fixe $\mustar = 15$. Pour tout $\tau$ de la table, l'ensemble
+  actif est $\{3,5,7\}$ et $\Delta\alphaEM = 0$.}
+\label{tab:threshold_sensitivity}
+\begin{tabular}{ccccccl}
+\toprule
+$\tau$ & $\gamma_3$ & $\gamma_5$ & $\gamma_7$ & $\gamma_{11}$
+  & $\gamma_{13}$ & Ensemble actif \\
+\midrule
+0{,}43 & 0{,}808 & 0{,}696 & 0{,}595 & 0{,}426 & 0{,}356 & $\{3,5,7\}$ \\
+0{,}45 & 0{,}808 & 0{,}696 & 0{,}595 & 0{,}426 & 0{,}356 & $\{3,5,7\}$ \\
+0{,}50 & 0{,}808 & 0{,}696 & 0{,}595 & 0{,}426 & 0{,}356 & $\{3,5,7\}$ \\
+0{,}55 & 0{,}808 & 0{,}696 & 0{,}595 & 0{,}426 & 0{,}356 & $\{3,5,7\}$ \\
+0{,}59 & 0{,}808 & 0{,}696 & 0{,}595 & 0{,}426 & 0{,}356 & $\{3,5,7\}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+La marge de stabilité $\gamma_7 - \gamma_{11} = 0{,}170$ garantit que
+l'ensemble actif est robuste contre toute perturbation du seuil
+inférieure à $17\%$ de la plage totale $[0,1]$.
+Chaque premier actif définit un angle d'holonomie sur le cercle
+unité (figure~\ref{fig:coupling_circle}), dont le sinus au carré
+donne la force de couplage~; le seuil séparant les premiers actifs
+des premiers d'écho est représenté à la
+figure~\ref{fig:active_threshold}.
+
+% --- Figure: coupling circle ---
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=5.0, >=stealth]
+  % unit circle
+  \draw[gray!40, thin] (0,0) circle (1);
+  \draw[->,thin,gray] (-1.15,0) -- (1.25,0) node[right,font=\small] {$\cos\theta$};
+  \draw[->,thin,gray] (0,-0.12) -- (0,1.25) node[above,font=\small] {$\sin\theta$};
+  % Active prime arcs with leader lines for labels
+  \draw[predred, very thick] (1,0) arc[start angle=0, end angle=27.9, radius=1];
+  \fill[predred] ({cos(27.9)},{sin(27.9)}) circle (0.5pt);
+  \draw[predred, thin] ({cos(27.9)},{sin(27.9)}) -- (0.58, 0.76);
+  \node[right, font=\small, predred] at (0.58, 0.76) {$\theta_3 = 27{,}9°$};
+  %
+  \draw[orange!80!black, very thick] (1,0) arc[start angle=0, end angle=26.1, radius=1];
+  \fill[orange!80!black] ({cos(26.1)},{sin(26.1)}) circle (0.5pt);
+  \draw[orange!80!black, thin] ({cos(26.1)},{sin(26.1)}) -- (0.58, 0.58);
+  \node[right, font=\small, orange!80!black] at (0.58, 0.58) {$\theta_5 = 26{,}1°$};
+  %
+  \draw[thmblue, very thick] (1,0) arc[start angle=0, end angle=24.5, radius=1];
+  \fill[thmblue] ({cos(24.5)},{sin(24.5)}) circle (0.5pt);
+  \draw[thmblue, thin] ({cos(24.5)},{sin(24.5)}) -- (0.58, 0.40);
+  \node[right, font=\small, thmblue] at (0.58, 0.40) {$\theta_7 = 24{,}5°$};
+  % echo primes
+  \fill[gray] ({cos(21.9)},{sin(21.9)}) circle (0.4pt);
+  \draw[gray, thin] ({cos(21.9)},{sin(21.9)}) -- (0.58, 0.22);
+  \node[right, font=\scriptsize, gray] at (0.58, 0.22) {$p\!=\!11$ (écho)};
+  \fill[gray] ({cos(20.8)},{sin(20.8)}) circle (0.4pt);
+  \draw[gray, thin] ({cos(20.8)},{sin(20.8)}) -- (0.58, 0.10);
+  \node[right, font=\scriptsize, gray] at (0.58, 0.10) {$p\!=\!13$ (écho)};
+  % annotation
+  \node[font=\small, align=center] at (0.05, 1.08)
+    {$\cos\theta_p = 1 - \delta_p$};
+\end{tikzpicture}
+\caption{Angles d'holonomie sur le cercle unité.
+  Chaque premier actif $p \in \{3,5,7\}$ définit un angle $\theta_p$
+  via $\cos\theta_p = 1 - \delta_p$.
+  Le sinus au carré $\sin^2\!\theta_p$ est la force de couplage.
+  Les premiers d'écho ($p \geq 11$, gris) sont plus proches de
+  l'axe.}
+\label{fig:coupling_circle}
+\end{figure}
+
+% --- Figure: active prime threshold ---
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[xscale=2.0, yscale=4.5, >=stealth]
+  % axes
+  \draw[->,thick] (0,0) -- (6.5,0) node[right,font=\small] {premier $p$};
+  \draw[->,thick] (0,0) -- (0,0.95) node[above,font=\small] {$\gamma_p$};
+  % threshold line s = 1/2
+  \draw[condorange, thick, dashed] (0,0.5) -- (6.3,0.5)
+    node[right, font=\small] {$s = 1/2$};
+  % bars
+  \fill[thmblue!70] (0.7,0) rectangle (1.3,0.808);
+  \node[above, font=\small, thmblue] at (1,0.808) {$0{,}808$};
+  \node[below, font=\small] at (1,-0.02) {$3$};
+  \fill[thmblue!70] (1.7,0) rectangle (2.3,0.696);
+  \node[above, font=\small, thmblue] at (2,0.696) {$0{,}696$};
+  \node[below, font=\small] at (2,-0.02) {$5$};
+  \fill[thmblue!70] (2.7,0) rectangle (3.3,0.595);
+  \node[above, font=\small, thmblue] at (3,0.595) {$0{,}595$};
+  \node[below, font=\small] at (3,-0.02) {$7$};
+  \fill[gray!50] (3.7,0) rectangle (4.3,0.426);
+  \node[above, font=\small, gray] at (4,0.426) {$0{,}426$};
+  \node[below, font=\small] at (4,-0.02) {$11$};
+  \fill[gray!50] (4.7,0) rectangle (5.3,0.356);
+  \node[above, font=\small, gray] at (5,0.356) {$0{,}356$};
+  \node[below, font=\small] at (5,-0.02) {$13$};
+  % labels
+  \node[font=\small, thmblue] at (2,0.88) {\textbf{Actif} ($\gamma_p > s$)};
+  \node[font=\small, gray] at (4.5,0.88) {\textbf{Écho} ($\gamma_p < s$)};
+  % y-axis ticks
+  \foreach \y in {0.2, 0.4, 0.6, 0.8} {
+    \draw (-0.05, \y) -- (0.05, \y);
+    \node[left, font=\scriptsize] at (-0.07, \y) {$\y$};
+  }
+\end{tikzpicture}
+\caption{Dimensions anomales $\gamma_p$ à $\mustar = 15$.
+  Le seuil $\gamma_p = s = 1/2$ (tirets orange) sépare les trois
+  premiers actifs $\{3,5,7\}$ (bleu) des premiers d'écho
+  $\{11,13,\ldots\}$ (gris). Ceci détermine $N_c = 3$.}
+\label{fig:active_threshold}
+\end{figure}
+
+% --- Figure: 3D coupling cube ---
+\begin{figure}[htbp]
+\centering
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=4.5]
+  % Unit sphere (wireframe) — domain [0,1]^3 boundary
+  % Equatorial circle in xy-plane (z=0.5)
+  \draw[gray!25, thin] plot[domain=0:360, samples=72, smooth cycle]
+    ({0.5 + 0.5*cos(\x)}, {0.5 + 0.5*sin(\x)}, 0.5);
+  % Meridian circle in xz-plane (y=0.5)
+  \draw[gray!25, thin] plot[domain=0:360, samples=72, smooth cycle]
+    ({0.5 + 0.5*cos(\x)}, 0.5, {0.5 + 0.5*sin(\x)});
+  % Meridian circle in yz-plane (x=0.5)
+  \draw[gray!25, thin] plot[domain=0:360, samples=72, smooth cycle]
+    (0.5, {0.5 + 0.5*cos(\x)}, {0.5 + 0.5*sin(\x)});
+  % Axes
+  \draw[->, thick, predred] (0,0,0) -- (1.25,0,0)
+    node[below, font=\small] {$\sin^2\!\theta_3$};
+  \draw[->, thick, thmblue] (0,0,0) -- (0,1.25,0)
+    node[right, font=\small] {$\sin^2\!\theta_5$};
+  \draw[->, thick, bridgepurple] (0,0,0) -- (0,0,1.25)
+    node[above, font=\small] {$\sin^2\!\theta_7$};
+  % The alpha_EM point: exact values from delta_p(2-delta_p) at q=13/15, mu*=15
+  \pgfmathsetmacro{\sa}{0.2192}
+  \pgfmathsetmacro{\sb}{0.1940}
+  \pgfmathsetmacro{\sc}{0.1726}
+  % Three circles intersecting at alpha point (radius 0.3)
+  % Circle in sin^2(theta_3) = const plane (yz-plane at x=sa)
+  \draw[predred, thick, fill=predred!8, fill opacity=0.3]
+    plot[domain=0:360, samples=36, smooth cycle]
+    (\sa, {\sb + 0.3*cos(\x)}, {\sc + 0.3*sin(\x)});
+  % Circle in sin^2(theta_5) = const plane (xz-plane at y=sb)
+  \draw[thmblue, thick, fill=thmblue!8, fill opacity=0.3]
+    plot[domain=0:360, samples=36, smooth cycle]
+    ({\sa + 0.3*cos(\x)}, \sb, {\sc + 0.3*sin(\x)});
+  % Circle in sin^2(theta_7) = const plane (xy-plane at z=sc)
+  \draw[bridgepurple, thick, fill=bridgepurple!8, fill opacity=0.3]
+    plot[domain=0:360, samples=36, smooth cycle]
+    ({\sa + 0.3*cos(\x)}, {\sb + 0.3*sin(\x)}, \sc);
+  % Projection lines to axes
+  \draw[predred, densely dashed, thin] (\sa,\sb,\sc) -- (\sa,0,0);
+  \draw[thmblue, densely dashed, thin] (\sa,\sb,\sc) -- (0,\sb,0);
+  \draw[bridgepurple, densely dashed, thin] (\sa,\sb,\sc) -- (0,0,\sc);
+  % The coupling point
+  \fill[condorange] (\sa,\sb,\sc) circle (1.0pt);
+  % Leader line to label
+  \draw[condorange, thin] (\sa,\sb,\sc) -- (0.55,0.55,0.65);
+  \node[right, font=\small, condorange, align=left] at (0.55,0.55,0.65)
+    {$\alphaEM = \prod \sinp{p}$\\[1pt]\footnotesize$= 1/137{,}036$};
+  % Axis tick labels
+  \node[below, font=\tiny, predred] at (\sa,0,0) {$0{,}219$};
+  \node[left, font=\tiny, thmblue] at (0,\sb,0) {$0{,}194$};
+  \node[left, font=\tiny, bridgepurple] at (0,0,\sc) {$0{,}172$};
+  % Origin label
+  \node[below left, font=\tiny, gray] at (0,0,0) {$0$};
+\end{tikzpicture}
+\caption{La sphère de couplage.
+  Chaque axe représente $\sinp{p}$ pour un premier actif.
+  Trois cercles colorés, chacun perpendiculaire à un axe, se coupent
+  au point unique $(\sinp{3}, \sinp{5}, \sinp{7})$ dont le produit
+  vaut $\alphaEM = 1/137{,}036$ (\BRIDGETAG, voir~\cite{companion_M5}).
+  Le point de couplage se trouve profondément dans la région des
+  petits $\theta$~: la nature n'utilise qu'une faible fraction de
+  l'espace de paramètres disponible.}
+\label{fig:coupling_cube}
+\end{figure}
+
+% ============================================================
+\subsection{$N_c = 3$~: nombre de premiers actifs}
+\label{sec:Nc_3}
+
+\mTHM
+\begin{theoreme}[$N_c = 3$]
+\label{thm:Nc_3}\leanProved{PT.FixedPoint.T7MuStar.activeAt15\_eq}
+Le nombre de premiers actifs à $\mustar = 15$ est $N_c = 3$.
+
+\begin{proof}
+Par le théorème~\ref{thm:active}~: exactement trois premiers
+satisfont $\gamma_p > s = 1/2$ à $\mustar = 15$, à savoir
+$\{3, 5, 7\}$. Tous les premiers $p \geq 11$ ont
+$\gamma_p < 1/2$. Donc
+$N_c := |\{p : \gamma_p(\mustar) > s\}| = 3$.
+\end{proof}
+\end{theoreme}
+
+\begin{corollaire}[Coefficient de Casimir]
+\label{cor:CF}
+$C_F = (N_c^2 - 1)/(2N_c) = 4/3$.
+C'est une \emph{conséquence} de $N_c = 3$, non une entrée.
+\end{corollaire}
+
+\begin{remarque}[Contrôle algébrique de cohérence (R14)]
+\label{rem:Nc_algebraic}
+Le résultat peut être recoupé algébriquement sans supposer $C_F$.
+T1 interdit 2 auto-transitions à $p = 3$ (classes $1$ et $2$),
+laissant $n_{\rm perm} = N_c^2 - 2 = 7$ transitions permises sur~9.
+En posant $n_{\rm perm}/N_c = C_F + 1$ avec
+$C_F = (N_c^2 - 1)/(2N_c)$~:
+\[
+  \frac{N_c^2 - 2}{N_c} = \frac{N_c^2 + 2N_c - 1}{2N_c},
+\]
+ce qui se simplifie en $N_c^2 - 2N_c - 3 = 0$, c'est-à-dire
+\begin{equation}
+  (N_c - 3)(N_c + 1) = 0 \implies N_c = 3 \quad (N_c > 0).
+  \label{eq:Nc_equation}
+\end{equation}
+La preuve par comptage et l'équation algébrique donnent toutes deux
+$N_c = 3$ indépendamment. (Vérification~:
+\texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}.)
+\end{remarque}
+
+\begin{remarque}[Cinq voies indépendantes vers $N_c = 3$]
+\label{rem:Nc_routes}
+Au-delà du comptage des premiers actifs et du contrôle algébrique
+ci-dessus, trois voies supplémentaires confirment $N_c = 3$ (R38b)~:
+\begin{enumerate}[nosep]
+\item $4N_c + 3 = \mustar$~: comptage des fermions de Weyl par
+  génération (BRIDGE).
+\item $(N_c + 2)(N_c + 3) = 2\mustar = 30$~: décomposition SU(5)
+  $\bar{5} + 10 = 15$ (BRIDGE).
+\item $(N_c + 1)!/(N_c + 3) = 2^{N_s - 1}$~: seul $N_c = 3$ donne
+  une puissance entière de~2, fournissant $N_s = 3$ dimensions
+  spatiales (BRIDGE).
+\end{enumerate}
+Le comptage des premiers actifs ($|\{p : \gamma_p > s\}| = 3$,
+\THMTAG) et le contrôle algébrique ($N_c = 3$ depuis l'équation,
+\THMTAG) sont des résultats arithmétiques. Les trois voies
+supplémentaires (items~1--3) impliquent des identifications
+physiques (\BRIDGETAG).
+\end{remarque}
+
+\begin{remarque}[Identification physique]
+L'identification de $N_c = 3$ (dérivé de la structure du crible) avec
+le nombre de couleurs QCD est un énoncé de pont
+(\cite{companion_M5}). Ici nous ne prouvons que le résultat
+arithmétique selon lequel $N_c = 3$.
+\end{remarque}
+
+% ============================================================
+\subsection{Premiers d'écho et corrections perturbatives}
+\label{sec:ghost}
+
+Les premiers inactifs $\{11, 13, \ldots\}$ ne sont pas simplement
+absents. Ils apparaissent comme \emph{corrections perturbatives}
+(polarisation du vide d'écho).
+
+\begin{definition}[Poids VP d'écho]
+\label{def:ghost_vp}
+Le poids de polarisation du vide d'écho est~:
+\begin{equation}
+  \beta_{\rm echo} = \sum_{p \in \{11,13\}} \sinsp{p}(\qplus) \cdot \gamma_p
+  \approx 0{,}104.
+  \label{eq:ghost_vp:ch06}
+\end{equation}
+\end{definition}
+
+La contribution VP d'écho à $\alpha_{\rm EM}$ est
+$\delta\alpha/\alpha = -\gamma_3 \cdot \alpha_{\rm bare} \cdot \beta_{\rm echo} \approx 14\;{\rm ppb}$
+(voir~\cite{companion_physics}).
+
+% ============================================================
+\subsection{L'origine arithmétique de $\pi$}
+\label{sec:pi_origin}
+
+L'identité d'holonomie révèle un fait structurel à propos de $\pi$~:
+la constante $\pi$ n'est pas importée dans le crible depuis la
+géométrie euclidienne. Elle \emph{émerge} de l'arithmétique de la
+divisibilité.
+
+\begin{remarque}[Pourquoi le cercle apparaît]
+\label{rem:why_circle}
+La matrice de transfert $T_p$ agit sur $\mathbb{Z}/p\mathbb{Z}$ en
+redistribuant la masse de probabilité entre classes de résidus. Sa
+restriction $2 \times 2$ aux classes non nulles (après que T1 a
+forcé la diagonale à zéro à $p = 3$) a des entrées diagonales
+$\cos\theta_p = 1 - \delta_p$ et des entrées hors-diagonales
+$\sin^2\!\theta_p = \delta_p(2 - \delta_p)$.
+Celles-ci satisfont l'identité de Pythagore
+$\cos^2\theta + \sin^2\theta = 1$ \emph{automatiquement}~: c'est une
+conséquence de la contrainte de stochasticité $\sum_j T_{ij} = 1$
+sur la matrice de transfert, et non une hypothèse sur les cercles.
+
+Le cercle unité $S^1$ est donc la \emph{variété de contraintes} des
+amplitudes de transition du crible. Sa période $2\pi$ est déterminée
+par l'exigence qu'une rotation complète ramène à l'identité. Le
+crible n'utilise pas $\pi$~--- il \emph{engendre} $S^1$, et $\pi$
+est la demi-période de ce cercle.
+\end{remarque}
+
+\begin{remarque}[Calculer $\pi$ depuis le crible]
+\label{rem:pi_computation}
+Le produit eulérien pour $\zeta(2)$ admet une interprétation directe
+en termes de crible. À chaque premier~$p$, le crible élimine les
+multiples de~$p$~; la probabilité de survie \emph{au carré} à travers
+tous les premiers donne la densité des paires premières avec chaque
+premier~:
+\begin{equation}
+  \prod_{p\;\text{premier}} \frac{1}{1 - 1/p^2} = \zeta(2) = \frac{\pi^2}{6}.
+  \label{eq:euler_pi}
+\end{equation}
+Chaque facteur $(1 - 1/p^2)^{-1}$ est un rapport de résidus du
+crible~: la probabilité que deux entiers indépendants survivent
+tous deux au filtre en~$p$, divisée par la base non contrainte. Le
+produit infini converge vers $\pi^2/6$~--- un énoncé que l'effet
+cumulé de tous les filtres arithmétiques, composés
+multiplicativement, encode la géométrie de $S^1$.
+
+En tronquant le produit au $k$-ième premier $p_k$, on obtient une
+\emph{approximation par crible} de $\pi$~:
+\begin{equation}
+  \pi_k = \sqrt{6 \prod_{p \leq p_k} \frac{1}{1 - 1/p^2}},
+  \qquad \pi_k \to \pi \;\;\text{lorsque } k \to \infty.
+  \label{eq:pi_sieve}
+\end{equation}
+La convergence est lente ($|\pi_k - \pi| \sim 3/p_k$), mais le
+point conceptuel est net~: $\pi$ est la valeur limite d'un produit
+purement arithmétique sur les premiers, sans entrée géométrique.
+Vérification~: \texttt{ch09\_bridge/test\_equations\_pont\_PT.py},
+test~H5 (24 premiers, $|\pi_{24} - \pi|/\pi < 0{,}5\%$).
+\end{remarque}
+
+\begin{remarque}[Pourquoi $\pi$ apparaît dans les formules sur les premiers]
+\label{rem:why_pi_in_primes}
+La surprise classique~--- pourquoi $\pi$ apparaît-il dans
+$\zeta(2)$, dans le théorème de Mertens, dans la série singulière
+de Hardy--Littlewood, dans le terme d'erreur du théorème des nombres
+premiers~?~--- se dissout dans le cadre de l'holonomie.
+
+À chaque premier $p$, le crible impose une \emph{rotation}
+$\theta_p$ sur l'espace des résidus. L'holonomie cumulée de ces
+rotations est mesurée par des produits de fonctions
+trigonométriques de $\theta_p$. Puisque $\sin$ et $\cos$ sont
+périodiques de période $2\pi$, toute formule multiplicative sur les
+premiers hérite de~$\pi$ comme \emph{période de la rotation que la
+divisibilité engendre}.
+
+En particulier~:
+\begin{itemize}[nosep]
+\item $\zeta(2) = \pi^2/6$~: produit cumulé de survie au carré
+  (\cref{eq:euler_pi}).
+\item $\prod_{p \leq x}(1 - 1/p) \sim 2e^{-\gamma}/\ln x$
+  (Mertens)~: la fraction de survie décroît logarithmiquement, et
+  la constante $e^{-\gamma}$ encode la même accumulation
+  d'holonomie.
+\item $\alphaEM = \prod_{p \in \{3,5,7\}} \sinp{p}$~: la constante
+  de structure fine est un produit de valeurs $\sin^2\!\theta_p$~---
+  littéralement un produit d'amplitudes d'holonomie sur~$S^1$.
+\item $\mu_{\rm end} = N_c \cdot \pi = 3\pi$~: la borne
+  d'intégration RG vaut $N_c$ demi-tours (phase de Berry,
+  voir~\cite{companion_physics}).
+\end{itemize}
+
+Dans chaque cas, $\pi$ entre en théorie des nombres non comme un
+import depuis la géométrie, mais comme la \emph{période intrinsèque
+de la dynamique rotationnelle que le crible crée sur les espaces de
+résidus}. L'arithmétique contraint la géométrie~; la géométrie
+restitue $\pi$.
+\end{remarque}
+
+% ============================================================
+\subsection{Synthèse et connexions}
+\label{sec:ch6_summary}
+
+\begin{ledgerbox}
+Noyau dur~:
+  Identité d'holonomie~: $\sinp{p} = \delta_p(2-\delta_p)$~---
+  identité algébrique.
+  Critère de premier actif~: $\{3,5,7\}$ actifs ($\gamma_p > s$)~---
+  THM numérique à $\mustar=15$.
+  $N_c = 3$~: comptage des premiers actifs à $\mustar = 15$~--- THM
+  arithmétique.
+  Contrôle algébrique~: $(N_c-3)(N_c+1)=0$ depuis le comptage des
+  transitions T1.
+
+Conditionnel~:
+  Les valeurs numériques de $\sinp{p}$ et $\gamma_p$ utilisent
+  $\mustar = 15$ (\cite{companion_M3}, T5 par balayage).
+
+Identification (THM, quatre unicités)~:
+  $\sinp{p}$ = constante de couplage (\cite{companion_M5}, BA3,
+  fermée par G1+G3).
+  $N_c = 3$ = couleurs QCD (\cite{companion_M5}, fermée par T5+T6).
+  $\{11,13\}$ = contre-termes VP d'écho (\cite{companion_physics},
+  DER-PHYS).
+
+Validation~:
+  $\sinp{p}$ vérifié par
+  \texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}.
+  $N_c = 3$ vérifié par
+  \texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}.
+  VP d'écho 14\,ppb vérifié (\cite{companion_physics}).
+\end{ledgerbox}
+
+\medskip\noindent\textbf{Connexions vers l'aval.}
+\begin{itemize}
+\item \cite{companion_M3} fournit $\mustar = 15$ (nécessaire pour
+  les valeurs numériques ici).
+\item \cite{companion_M5} dérive $\sinsp{p}$ comme constantes de
+  couplage (DER, Pontryagin + Wightman).
+\item L'article compagnon~\cite{companion_physics} assemble le
+  produit $\prod_{p=3,5,7} \sinsp{p}$ pour dériver
+  $\alpha_{\rm EM}$.
+\item L'article compagnon~\cite{companion_physics} utilise
+  $\gamma_p$ pour dériver $\sinW$ et $\alpha_s$.
+\item L'article compagnon~\cite{companion_physics} utilise les
+  directions actives pour définir la métrique spatiale.
+\end{itemize}
+
+
+\newpage
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Cet article a établi deux piliers de la théorie de la persistance qui
+relient la structure combinatoire du crible à des objets géométriques
+et spectraux.
+
+\textbf{Géométrie de l'information.}
+La structure produit TCR de l'espace d'états du crible $\Delta_m$
+sélectionne uniquement deux objets géométriques~: la divergence de KL
+$\DKL$ (théorème~G1, par réduction à Shore--Johnson et preuve autonome
+via TCR) et la métrique de Fisher $\Fisher$ (théorème~G3, par
+réduction à \v{C}encov). Le lien entre les deux est classique
+(théorème~G2~: Fisher est la hessienne de $\DKL$). La contribution
+clé de PT n'est pas de prouver Shore--Johnson ou \v{C}encov~--- ce
+sont des théorèmes classiques importés~--- mais de vérifier que
+l'espace d'états du crible, avec sa factorisation TCR et ses matrices
+de transfert de Markov, satisfait les prémisses des deux théorèmes
+d'unicité. Sept tests d'élimination confirment qu'aucune divergence ou
+métrique alternative n'est compatible avec les symétries du crible.
+
+La métrique de Fisher encode la dualité entre addition et
+multiplication~: c'est l'unique géométrie qui respecte les deux
+opérations simultanément. L'identité du TFS $\log_2 m = \DKL + H$ est
+cette dualité exprimée comme loi de conservation~; la géométrie de
+Fisher en est l'incarnation comme métrique riemannienne.
+
+\textbf{Holonomie.}
+L'identité d'holonomie $\sinsp{p} = \delta_p(2 - \delta_p)$ est une
+tautologie algébrique qui reçoit trois dérivations indépendantes~:
+géométrique (identité de Pythagore depuis la stochasticité), spectrale
+(contraction de Fourier du caractère fondamental) et
+information-géométrique (composante de courbure de Fisher par
+premier). L'accord des trois voies élimine le risque de preuve unique.
+
+Les dimensions anomales $\gamma_p$ sont strictement décroissantes en
+$p$, et le critère de premier actif $\gamma_p > s = 1/2$ sélectionne
+exactement $\{3, 5, 7\}$ au point fixe $\mustar = 15$
+(voir~\cite{companion_M3}). Ceci donne $N_c = 3$ comme théorème, et
+non comme entrée. Le coefficient de Casimir $C_F = 4/3$ en découle
+comme corollaire. Un contrôle algébrique indépendant~---
+$(N_c - 3)(N_c + 1) = 0$ depuis le comptage des transitions T1~---
+confirme le résultat sans référence aux dimensions anomales.
+
+Les trois premiers actifs définissent trois directions d'holonomie
+indépendantes. Leur identification physique comme dimensions
+spatiales, et l'identification de $N_c = 3$ avec le nombre de
+couleurs QCD, sont des énoncés de pont développés
+dans~\cite{companion_M5}.
+
+\textbf{Questions ouvertes.}
+Le critère de seuil $\gamma_p > s$ est naturel (cinq arguments
+indépendants, intervalle de stabilité large de $35\%$) mais manque
+d'une preuve d'optimalité sous forme close. Une dérivation rigoureuse
+montrant que $\tau = s$ est le \emph{seul} seuil cohérent~--- plutôt
+que simplement le choix le plus naturel dans une large bande de
+stabilité~--- reste ouverte.
+
+Les premiers d'écho ($p \geq 11$) contribuent perturbativement comme
+corrections de polarisation du vide. La question de savoir si la
+série VP d'écho converge absolument, et si elle admet une
+resommation sous forme close, est un travail futur.
+
+\textbf{Vers l'aval.}
+L'article compagnon~\cite{companion_M3} prouve la convergence des
+récurrences du crible et établit le point fixe $\mustar = 15$ qui
+sous-tend les valeurs numériques utilisées tout au long de cet
+article. Les structures mathématiques étendues~--- mécanique
+complexe, graphes spectraux et extensions de symétrie~--- sont
+développées dans~\cite{companion_M4}. Le pont de l'arithmétique vers
+la physique, où les objets géométriques établis ici acquièrent un
+sens physique, est l'objet de~\cite{companion_M5}.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

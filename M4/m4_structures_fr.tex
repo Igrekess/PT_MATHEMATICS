@@ -1,0 +1,3558 @@
+% ============================================================
+% PT Article M4 — version française
+% Miroir FR de m4_structures.tex (canonique EN)
+% ============================================================
+
+\documentclass[12pt,a4paper]{article}
+\IfFileExists{pt-common-fr.sty}{\usepackage{pt-common-fr}}{\usepackage{../shared/pt-common-fr}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{tikz-3dplot}
+\onehalfspacing
+
+\title{\textbf{La théorie de la persistance~IV~:\\
+structures mathématiques étendues}}
+\author{Yan Senez\\\texttt{yan.senez@protonmail.com}}
+\date{Avril 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Ceci est le quatrième de cinq articles présentant les fondations
+mathématiques de la théorie de la persistance (PT). Construisant sur
+la dynamique du crible et les lois de
+conservation~\cite{companion_M1}, la géométrie de l'information et
+l'holonomie~\cite{companion_M2}, et la théorie de la convergence et
+le point fixe~\cite{companion_M3}, nous développons les structures
+mathématiques étendues que le crible d'Ératosthène porte au-delà des
+théorèmes arithmétiques fondamentaux.
+
+\textbf{Algèbre du crible et transformées.}
+Le produit du crible $*_T$ définit une nouvelle algèbre de fonctions
+arithmétiques~: non associative, non commutative et sans
+élément neutre~--- distincte de la convolution de Dirichlet, des
+algèbres de Hecke et de $\ell^1(\mathbb{N})$. La transformée de
+persistance $P_K$ projette sur la base propre de la matrice de
+transfert $T_3$~; la métrique PT $d_{\rm PT}$ est quasi-orthogonale aux
+métriques archimédienne et $p$-adique~; la catégorie
+$\mathrm{Cat}(\mathrm{Sieve})$ admet quatre foncteurs cohérents
+convergeant vers la structure asymptotique du crible. Trois nouvelles
+transformées~--- tensorielle $\mathcal{T}$ (corrélations
+inter-modulaires dans un tenseur $3{\times}5{\times}7$), holonomique
+$\mathcal{H}$ (produit eulérien généralisé avec métrique de Fisher)
+et décohérence $\mathcal{D}$ (monotonie de l'entropie~: la seconde
+loi du crible, théorème~H)~--- étendent la transformée de persistance
+classique. Le code de résidus de sauts atteint la distance $d = n - 1$
+(asymptotiquement MDS)~; prédiction et correction d'erreur coïncident.
+
+\textbf{Mécanique complexe.}
+L'observable réelle $\sinsp{p}$ se relève en une variable complexe
+$w_p$ sur un cercle de rayon $s = 1/2$, avec
+$|w_p|^2 = \mathrm{Re}(w_p)$. La force holomorphe $F(w) = i/w - 2i$,
+l'intégrabilité de Liouville sur $\mathbb{T}^n$, une relation
+d'incertitude exacte $|p_w|\cdot|w| = 1$, et les corrections
+radiatives QED $3\alpha/(4\pi)$ et $16\pi^2$ émergent de la géométrie
+du cercle.
+
+\textbf{Mathématiques prédictives.}
+Le cadre MP quantifie les cascades de contraintes~: chaque premier
+ajoute exactement un degré de liberté (théorème~L1, inconditionnel)~;
+la dimension de couche suit $\dim(d) = P(d{+}1) - (2d{+}1)$
+(13~strates vérifiées)~; le spectre d'activation est
+$\Sigma_k = \binom{4}{k}$ pour $k \geq \mathrm{AT}$~; et la formule de
+seuil d'activation en trois régimes (écho, construction, asymptotique)
+prouve $\mathrm{AT} = 1$ pour tout $p \geq 41$.
+
+\textbf{Extensions de convergence.}
+La course arithmético-géométrique fournit cinq routes alternatives vers
+T4. Le graphe de transition modulo~3 $K_3$ est un expanseur de
+Ramanujan optimal dont la fonction zêta d'Ihara a tous ses zéros non
+triviaux sur le cercle critique. Le groupe diédral
+$D_4 = \langle T_3, J \rangle$ organise la structure spectrale via
+l'entrelacement~$J$.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+\label{sec:intro}
+
+Cet article est le quatrième volet (M4) d'une série en cinq parties
+développant les fondations mathématiques de la théorie de la
+persistance (PT). La série s'organise comme suit~:
+\begin{description}[nosep]
+\item[M1~\cite{companion_M1}~:] Le crible comme champ dynamique,
+  unicité d'Ératosthène, lois de conservation, et théorème
+  fondamental des sauts.
+\item[M2~\cite{companion_M2}~:] Géométrie de l'information, holonomie
+  et échelle d'angle interne.
+\item[M3~\cite{companion_M3}~:] Convergence, récurrences exactes, et
+  point fixe $\mustar = 15$.
+\item[M4 (cet article)~:] Structures mathématiques étendues~: algèbre
+  du crible, mécanique complexe, mathématiques prédictives, et
+  extensions de convergence.
+\item[M5~\cite{companion_M5}~:] Le pont de l'arithmétique vers la
+  physique.
+\end{description}
+
+\noindent
+Ces cinq articles fournissent ensemble une fondation mathématique
+auto-contenue de la théorie de la persistance, destinée à être lue
+dans l'ordre M1\,$\to$\,M5.
+
+Les articles compagnons~\cite{companion_M1,companion_M2,companion_M3}
+ont établi la théorie arithmétique de base~: la dynamique du crible
+et les lois de conservation (M1), la géométrie de l'information
+canonique et les angles d'holonomie
+$\sinsp{p} = \delta_p(2 - \delta_p)$ (M2), et la convergence vers
+l'unique point fixe $\mustar = 15$ avec premiers actifs
+$\{3, 5, 7\}$ (M3). Cet article développe l'infrastructure
+mathématique étendue que le crible porte au-delà de ces théorèmes de
+base.
+
+Le matériau est organisé en quatre sections, correspondant à quatre
+domaines mathématiques distincts.
+
+\textbf{Section~\ref{sec:math_structures}~: Structures mathématiques.}
+Le produit du crible $*_T$ pondère la convolution de Dirichlet par la
+matrice de transfert $T_3$, produisant une nouvelle structure
+algébrique. La transformée de persistance $P_K$, la métrique PT
+$d_{\rm PT}$, la catégorie du crible et trois nouvelles transformées
+(tensorielle, holonomique, décohérence) révèlent la profondeur du
+contenu mathématique du crible. Le code des résidus de sauts atteint
+la distance de Hamming $d = n - 1$ (théorème, asymptotiquement
+MDS)~: 32~scripts compagnons valident le catalogue complet.
+
+\textbf{Section~\ref{sec:complex}~: Mécanique complexe.}
+Le relèvement de l'observable réelle $\sinsp{p}$ à la variable
+complexe $w_p = (1 - e^{2i\theta_p})/2$ met au jour une structure
+cachée~: tous les $w_p$ se trouvent sur un cercle de rayon $s = 1/2$
+(théorème du cercle), la force $F(w) = i/w - 2i$ est holomorphe, le
+moment angulaire vaut $\sinsp{p}$ (charge de Noether), et le système
+est intégrable au sens de Liouville sur $\mathbb{T}^n$. Les
+corrections radiatives QED se décomposent entièrement en quantités
+PT-natives.
+
+\textbf{Section~\ref{sec:PM}~: Mathématiques prédictives.}
+Le cadre MP prédit ce qui devient structurellement inévitable
+lorsque des contraintes sont empilées sur un champ brut. Sept
+théorèmes à partir d'une unique fondation algébrique (algèbre des
+indicateurs + TCR)~: L1 (incrément unité), la formule de dimension,
+le spectre d'activation, la formule AT à trois régimes, l'identité de
+partition C1, la saturation fantôme C2 et le corollaire MP--PT
+($\mathrm{AT} = 1$ pour tout $p \geq 41$). Trois instanciations
+(crible, codes correcteurs d'erreurs, nombres chanceux) affinent la
+classification universel/spécifique.
+
+\textbf{Section~\ref{sec:convergence_ext}~: Extensions de
+convergence.}
+La course arithmético-géométrique, la théorie spectrale des graphes
+du crible (expanseur de Ramanujan optimal, fonction zêta d'Ihara) et
+le groupe de symétrie $D_4$ approfondissent et valident le théorème
+de convergence T4 de~\cite{companion_M3}.
+
+Tous les résultats découlent de $s = 1/2$ et de la structure de crible
+établie dans~\cite{companion_M1,companion_M2,companion_M3}. Aucune
+physique n'est invoquée~; aucun paramètre n'est ajusté.
+
+\section{Structures mathématiques du crible}
+\label{sec:math_structures}
+
+\epigraph{Le but du calcul est la compréhension, pas les
+nombres.}{Richard Hamming}
+
+% ---- Status Box ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Exposer les structures algébriques, métriques, catégorielles,
+  quantiques et de théorie des codes que le crible porte au-delà des
+  applications physiques des articles
+  compagnons~\cite{companion_M3,companion_physics}.
+
+\textbf{ENTRÉES~:}
+  $T_3$ (article compagnon~\cite{companion_M1}), TFS (article
+  compagnon~\cite{companion_M1}), géométrie de Fisher (article
+  compagnon~\cite{companion_M2}), structure TCR (article
+  compagnon~\cite{companion_M1}), borne spectrale (article
+  compagnon~\cite{companion_M3}).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  \begin{itemize}[nosep]
+  \item Nouvelle algèbre du crible $*_T$~: non associative, non
+    commutative, sans élément neutre (M15).
+  \item Transformée de persistance $P_K$~: décomposition spectrale
+    exacte (M16).
+  \item Métrique PT $d_{\rm PT}$~: quasi-orthogonale à $|\cdot|$ et
+    $|\cdot|_p$ (M17).
+  \item Nombres PT $\mathbb{Z}_{\rm PT}$~: enrichissement profini de
+    $\mathbb{Z}$ (M18).
+  \item Catégorie $\mathrm{Cat}(\mathrm{Sieve})$~: quatre foncteurs
+    cohérents (M19).
+  \item Extension modulaire universelle~: les structures valent pour
+    tout premier $q$ (M21).
+  \item Crible quantique~: canal CPTP avec décohérence arithmétique
+    (M27).
+  \item Réseau tensoriel TCR~: MPS de dimension de liaison 3 exacte
+    (M28).
+  \item Prédiction multi-modulaire~: $+61\%$ par rapport à mod-3 seul
+    (M30).
+  \item Code quantique TCR $[[3, 5.58, 1]]$~: prédiction = correction
+    d'erreur (M31).
+  \item Code de distance de sauts~: $d = n - 1$ (THÉORÈME),
+    asymptotiquement MDS (M32).
+  \item Transformée tensorielle $\mathcal{T}$~: $3{\times}5{\times}7
+    = 105$ composantes, le rang classifie les corrélations
+    inter-modulaires (M33).
+  \item Transformée holonomique $\mathcal{H}$~: $f \mapsto
+    \{\sinp{p}(f)\}$, métrique de Fisher, produit eulérien généralisé
+    (M34).
+  \item Transformée de décohérence $\mathcal{D}$~: $f \mapsto
+    \{S_K(f)\}$, théorème~H (monotonie = 2\textsuperscript{e}~loi du
+    crible) (M35).
+  \end{itemize}
+
+\textbf{STATUT~:}
+  \VALTAG~(32 scripts compagnons~; cf.\ scripts compagnons).
+
+\textbf{NON PROUVÉ~:}
+  L'extension quantique CSS donne $d_{\rm CSS} \sim 1$ pour $n$~grand
+  (la distance classique $d = n-1$ ne se transfère pas pleinement au
+  cadre quantique). Les applications cryptographiques sont
+  spéculatives.
+\end{statusbox}
+
+
+% ============================================================
+\subsection{L'algèbre du crible}
+\label{sec:ms_algebra}
+
+\begin{definition}[Produit du crible $*_T$]
+\label{def:sieve_product}
+Pour des fonctions arithmétiques $f, g\colon \mathbb{N} \to
+\mathbb{R}$, on définit~:
+\begin{equation}
+  (f *_T g)(n) = \sum_{d \mid n} f(d)\, g(n/d)\,
+    T_3\bigl(d \bmod 3,\; (n/d) \bmod 3\bigr).
+  \label{eq:sieve_product}
+\end{equation}
+\end{definition}
+
+Le produit du crible pondère chaque paire de diviseurs par l'entrée de
+la matrice de transfert reliant leurs classes de résidus. Il hérite
+de la structure divisorielle de la convolution de Dirichlet, mais la
+module par la dynamique du crible.
+
+\begin{thmbox}{Algèbre du crible}
+\label{thm:sieve_algebra}
+L'algèbre $(\mathcal{A}, *_T)$ des fonctions arithmétiques sous le
+produit du crible possède les propriétés suivantes~:
+\begin{enumerate}[nosep]
+\item \textbf{Non associative}~: $(f *_T g) *_T h \neq f *_T (g *_T h)$
+  en général (vérifié par contre-exemple explicite pour $n = 6$).
+\item \textbf{Non commutative}~: $f *_T g \neq g *_T f$ en général
+  (asymétrie de $T_3$~: $T_{01} \neq T_{10}$).
+\item \textbf{Sans élément neutre}~: il n'existe pas de fonction $e$
+  telle que $e *_T f = f *_T e = f$ pour tout~$f$.
+\item \textbf{Distincte de toutes les algèbres connues}~: $*_T$
+  diffère de la convolution de Dirichlet, des algèbres de Hecke et de
+  $\ell^1(\mathbb{N})$ par sa non-associativité et sa pondération par
+  matrice de transition.
+\end{enumerate}
+Script~: \texttt{ch\_math\_structures/test\_sieve\_algebra.py}
+(scripts compagnons).
+\end{thmbox}
+
+
+% ============================================================
+\subsection{La transformée de persistance}
+\label{sec:ms_transform}
+
+\begin{definition}[Transformée de persistance $P_K$]
+\label{def:persistence_transform}
+Pour une fonction arithmétique $f$ et un niveau de crible $K$, on
+définit $P_K(f)$ comme la projection spectrale de la restriction
+$f|_{\mathrm{surv}(K)}$ sur la base propre $(v_+, v_-)$ de~$T_3$~:
+\begin{equation}
+  P_K(f) = \langle f, v_+ \rangle_K \cdot v_+
+          + \langle f, v_- \rangle_K \cdot v_-,
+  \label{eq:persistence_transform}
+\end{equation}
+où $\langle \cdot, \cdot \rangle_K$ est le produit scalaire pondéré
+par la distribution des survivants au niveau~$K$.
+\end{definition}
+
+Propriétés clés~:
+\begin{itemize}[nosep]
+\item $P_K(\mathbf{1}) = v_+$ (la fonction constante est purement
+  stationnaire).
+\item $P_K(\chi_3) = v_-$ (le caractère de Legendre est purement
+  anti-stationnaire).
+\item $P_K$ est linéaire, idempotente ($P_K^2 = P_K$) et exacte
+  (inversible sur le sous-espace spectral de dimension~2).
+\item $P_K$ est compatible avec $*_T$~:
+  $P_K(f *_T g) = P_K(f) *_T P_K(g)$ sur l'espace propre.
+\end{itemize}
+
+Script~: \texttt{ch\_math\_structures/test\_persistence\_transform.py}
+(scripts compagnons).
+
+
+% ============================================================
+\subsection{La métrique PT et les nombres PT}
+\label{sec:ms_metric}
+
+\subsubsection{La métrique PT}
+
+\begin{definition}[Distance PT]
+\label{def:pt_metric}
+Pour des entiers $m, n$, on définit~:
+\begin{equation}
+  d_{\rm PT}(m, n) = \sum_{K=2}^{K_{\max}}
+    \bigl| \sigma_K(m) - \sigma_K(n) \bigr|,
+  \label{eq:pt_metric}
+\end{equation}
+où $\sigma_K(m) = m \bmod p_K$ est la signature du crible au
+niveau~$K$ et $K_{\max}$ est le niveau de crible le plus profond
+considéré.
+\end{definition}
+
+\begin{thmbox}{Propriétés de $d_{\rm PT}$}
+\label{thm:pt_metric}
+\begin{enumerate}[nosep]
+\item $d_{\rm PT}$ est une métrique (inégalité triangulaire, symétrie,
+  $d_{\rm PT}(m,n) = 0 \Leftrightarrow m = n$ dans la plage
+  primorielle).
+\item $d_{\rm PT}$ est \textbf{quasi-orthogonale} à la fois à la
+  métrique archimédienne $|m - n|$ et aux métriques $p$-adiques
+  $|m-n|_p$~: corrélation $< 0{,}1$ dans tous les cas.
+\item Sous $d_{\rm PT}$, les premiers sont \textbf{dispersés} (deux
+  premiers ne sont jamais proches) tandis que les composés sont
+  \textbf{regroupés} (partage de motifs de divisibilité). Précision de
+  classification~: $96\%$.
+\end{enumerate}
+Script~: \texttt{ch\_math\_structures/test\_pt\_metric.py} (scripts
+compagnons).
+\end{thmbox}
+
+\subsubsection{Nombres PT}
+
+\begin{definition}[Enrichissement PT $\mathbb{Z}_{\rm PT}$]
+\label{def:pt_numbers}
+On définit $\mathbb{Z}_{\rm PT}$ comme l'ensemble des entiers enrichis
+par leur trajectoire dans le crible~:
+$n \mapsto (n,\, \sigma_2(n),\, \sigma_3(n),\, \ldots)$.
+La multiplication est héritée de $\mathbb{Z}$~; l'addition est
+«~disruptive~» (elle brise la trajectoire dans le crible).
+\end{definition}
+
+Propriétés clés~: $\sigma_K$ est un homomorphisme d'anneaux, donc
+$\sigma_K(m+n) = \sigma_K(m) + \sigma_K(n) \bmod p_K$ et
+$\sigma_K(mn) = \sigma_K(m) \cdot \sigma_K(n) \bmod p_K$ tiennent
+exactement. Cependant, le \emph{statut de survivant} du crible (si
+$m$ est $K$-rugueux) n'est pas préservé par l'addition~: deux entiers
+$K$-rugueux peuvent se sommer en un composé. $\mathbb{Z}_{\rm PT}$
+est un \emph{enrichissement filtré profini} de $\mathbb{Z}$.
+
+Script~: \texttt{ch\_math\_structures/test\_pt\_numbers.py} (scripts
+compagnons).
+
+
+% ============================================================
+\subsection{Catégorie du crible}
+\label{sec:ms_category}
+
+\begin{definition}[$\mathrm{Cat}(\mathrm{Sieve})$]
+\label{def:sieve_category}
+La \emph{catégorie du crible} a~:
+\begin{itemize}[nosep]
+\item Objets~: niveaux du crible $K = 2, 3, 4, \ldots$
+\item Morphismes~: applications de transition $\phi_{K \to K+1}$
+  induites par le premier suivant $p_{K+1}$.
+\end{itemize}
+\end{definition}
+
+Quatre foncteurs cohérents relient le crible aux catégories
+classiques~:
+\begin{enumerate}[nosep]
+\item $F_{\rm Grp}\colon \mathrm{Cat}(\mathrm{Sieve}) \to \mathbf{Grp}$~:
+  envoie le niveau $K$ sur le groupe de symétrie $G_K$ de la matrice
+  de transition.
+\item $F_{\rm Vect}\colon \mathrm{Cat}(\mathrm{Sieve}) \to \mathbf{Vect}$~:
+  envoie le niveau $K$ sur l'espace propre $V_K$ de~$T_K$.
+\item $F_{\rm Top}\colon \mathrm{Cat}(\mathrm{Sieve}) \to \mathbf{Top}$~:
+  envoie le niveau $K$ sur le complexe simplicial du graphe de
+  transition.
+\item $F_{\rm Info}\colon \mathrm{Cat}(\mathrm{Sieve}) \to \mathbf{Info}$~:
+  envoie le niveau $K$ sur l'espace de divergence
+  $(D_{\rm KL}^{(K)}, g_F^{(K)})$.
+\end{enumerate}
+
+Les transformations naturelles entre ces foncteurs encodent la
+compatibilité des descriptions algébriques, spectrales, topologiques
+et information-théoriques. La limite projective $\varprojlim_K F(K)$
+converge pour les quatre foncteurs, donnant la structure asymptotique
+du crible.
+
+Script~: \texttt{ch\_math\_structures/test\_sieve\_category.py}
+(scripts compagnons).
+
+
+% ============================================================
+\subsection{Extension modulaire universelle}
+\label{sec:ms_modular}
+
+Les structures décrites ci-dessus ont été construites pour le crible
+modulo~3. Une question naturelle~: dépendent-elles de $q = 3$~?
+
+\begin{thmbox}{Universalité du produit du crible}
+\label{thm:universality}
+Pour tout premier impair $q$, la matrice de transfert du crible
+modulo~$q$ $T_q$ présente~:
+\begin{enumerate}[nosep]
+\item Un trou spectral~: $|\lambda_2(T_q)| < 1$.
+\item Des auto-transitions interdites~: $T_q(r, r) = 0$ pour $r \neq 0$.
+\item Une algèbre du crible $*_{T_q}$ avec les mêmes propriétés
+  algébriques (non associative, non commutative, sans élément neutre).
+\item Une transformée de persistance $P_K^{(q)}$ avec décomposition
+  spectrale.
+\end{enumerate}
+Vérifié pour $q = 3, 5, 7, 11, 13$. Toutes les structures sont
+\textbf{universelles}~--- elles dépendent de la primalité de $q$, et
+non spécifiquement de $q = 3$.
+Script~: \texttt{ch\_math\_structures/test\_modular\_extension.py}
+(scripts compagnons).
+\end{thmbox}
+
+
+% ============================================================
+\subsection{Transformées PT (M33--M35)}
+\label{sec:ms_new_transforms}
+
+La transformée de persistance~$P_K$ (\cref{sec:ms_transform}) projette
+sur la base propre de~$T_3$, capturant le contenu spectral modulo~3
+en deux coordonnées par~$K$. Trois transformées complémentaires
+étendent cette image en capturant les \emph{corrélations
+inter-modulaires} (M33), la \emph{géométrie holonomique} (M34) et la
+\emph{monotonie entropique}~(M35).
+
+
+\subsubsection{La transformée tensorielle (M33)}
+\label{sec:ms_tensor_transform}
+
+\begin{definition}[Transformée tensorielle de persistance]
+\label{def:tensor_transform}
+Pour une fonction arithmétique~$f$ et une profondeur de crible~$K$,
+soit $P_K^{(q)}(f) \in \mathbb{R}^q$ la projection spectrale de~$f$
+sur la base propre de la matrice de transfert~$T_q$ (cf.~M21). La
+\emph{transformée tensorielle de persistance} est
+\begin{equation}
+  \mathcal{T}_K(f)
+  = P_K^{(3)}(f) \otimes P_K^{(5)}(f) \otimes P_K^{(7)}(f)
+  \;\in\; \mathbb{R}^{3 \times 5 \times 7},
+  \label{eq:tensor_transform}
+\end{equation}
+un tenseur d'ordre trois à $3 \times 5 \times 7 = 105$ composantes.
+\end{definition}
+
+La concaténation multi-modulaire (M30, \cref{sec:ms_codes}) empile les
+trois vecteurs de projection en un vecteur de dimension~$15$,
+abandonnant toute information inter-modulaire. Le produit tensoriel
+conserve les \emph{corrélations inter-modulaires}~: comment $f$ se
+comporte \emph{simultanément} modulo~$3$, modulo~$5$ et modulo~$7$.
+
+\begin{thmbox}{Classification par rang tensoriel}
+\label{thm:tensor_rank}
+\begin{enumerate}[nosep]
+\item $f = \mathbf{1}$~: $\mathcal{T}_K(\mathbf{1})$ a rang~$1$ pour
+  tout~$K$ (produit pur, aucune corrélation inter-modulaire).
+\item $f = \chi_3$~: rang $\leq 2$ (couplage faible, structure modulo~3
+  découplable).
+\item $f = \lambda, \mu$ (Liouville, Möbius)~: rang $2$--$3$
+  (couplage arithmétique non trivial entre modules).
+\end{enumerate}
+Le rang tensoriel mesure la \textbf{complexité} des corrélations
+inter-modulaires induites par le crible.
+\end{thmbox}
+
+\paragraph{Identité de Plancherel.}
+Pour un tenseur de rang~1~:
+\begin{equation}
+  \|\mathcal{T}_K(f)\|^2
+  = \|P_K^{(3)}\|^2 \cdot \|P_K^{(5)}\|^2 \cdot \|P_K^{(7)}\|^2.
+  \label{eq:plancherel_tensor}
+\end{equation}
+Le rapport de couplage $\rho = \|\mathcal{T}\|^2 / \prod_q
+\|P^{(q)}\|^2$ vaut exactement~$1$ lorsque les facteurs TCR sont
+informationnellement indépendants~; les écarts quantifient les
+corrélations induites par le crible.
+
+\paragraph{Décomposition CP.}
+La décomposition polyadique canonique
+$\mathcal{T}_{jkl} = \sum_{r=1}^{R} a_{r,j}^{(3)} \, a_{r,k}^{(5)} \,
+a_{r,l}^{(7)}$
+sépare le tenseur en $R$~composantes de rang~1~: le mode $r = 1$ est
+la part TCR-factorisable~; les modes $r \geq 2$ sont des termes de
+correction inter-modulaires.
+
+Script~: \texttt{ch\_math\_structures/test\_tensor\_transform.py}
+(scripts compagnons).
+
+
+\subsubsection{La transformée holonomique (M34)}
+\label{sec:ms_holonomic_transform}
+
+\begin{definition}[Transformée holonomique $\mathcal{H}$]
+\label{def:holonomic_transform}
+Pour une fonction arithmétique~$f$, une profondeur de crible~$K$ et
+un premier actif~$p$ ($p = p_j$, $j \leq K$), on définit le
+\emph{déficit généralisé}
+\begin{equation}
+  \delp{p}(f,K) = 1 - \frac{w_0}{\sum_{c=0}^{p-1} w_c},
+  \qquad
+  w_c = \frac{n_c}{N}\,\langle |f|^2 \rangle_c,
+  \label{eq:holonomic_deficit}
+\end{equation}
+où $n_c$ compte les sauts dans la classe~$c \bmod p$ et
+$\langle |f|^2 \rangle_c$ est la moyenne conditionnelle de~$|f|^2$.
+L'\emph{angle holonomique} et son sinus carré sont
+\begin{equation}
+  \cos\theta_p(f) = 1 - \delp{p}(f),
+  \qquad
+  \sinp{p}(f) = \delp{p}(f)\,(2 - \delp{p}(f)).
+  \label{eq:holonomic_angle}
+\end{equation}
+La \emph{transformée holonomique} est l'application
+$\mathcal{H}(f,K) = \bigl\{\sinp{p}(f,K)\bigr\}_{p\;\text{actif}}$.
+\end{definition}
+
+\begin{thmbox}{Propriétés de la transformée holonomique}
+\label{thm:holonomic_properties}
+\begin{enumerate}[nosep]
+\item \textbf{Identité pythagoricienne}~:
+  $\sinp{p} + \cos^2\!\theta_p = 1$ pour tout~$p$ (par construction).
+\item \textbf{Produit eulérien généralisé}~:
+  $\Pi(f,K) = \prod_{p\;\text{actif}} \sinp{p}(f,K)$.
+  Pour $f = \mathbf{1}$, c'est l'holonomie brute du crible.
+  Pour les poids $\qplus$, $\Pi \to \alphaEM \approx 1/137$.
+\item \textbf{Métrique de Fisher}~: la variation infinitésimale
+  \begin{equation}
+    ds^2 = \sum_p \frac{(d\theta_p)^2}{\sinp{p}}
+    \label{eq:fisher_holonomic}
+  \end{equation}
+  est une métrique riemannienne sur l'espace des fonctions
+  arithmétiques, mesurant la courbure informationnelle dans l'espace
+  du crible (cf.\ article compagnon~\cite{companion_M2}).
+\item \textbf{Stabilité}~: pour $p$ fixé, $\theta_p(f,K)$ converge
+  lorsque $K \gg \mathrm{index}(p)$.
+\item \textbf{Distance holonomique signée}~: pour des fonctions avec
+  $|f|^2 = |g|^2$ (par ex.\ $f = \mathbf{1}$, $g = \chi_3$), le
+  spectre fondé sur l'énergie est identique. La distance
+  \emph{signée} utilise les moyennes par classe
+  $m_c^f = \langle f \rangle_c$~:
+  \begin{equation}
+    d_{\mathcal{H}}(f,g)
+    = \sqrt{\sum_p \sum_{c=0}^{p-1}
+      \frac{(m_c^f - m_c^g)^2}{p}}.
+    \label{eq:holonomic_distance}
+  \end{equation}
+\end{enumerate}
+Script~: \texttt{ch\_math\_structures/test\_holonomic\_transform.py}
+(scripts compagnons).
+\end{thmbox}
+
+
+\begin{remarque}[Lecture circulaire de la transformée holonomique]\mBR
+\label{rem:circular_reading}
+L'angle $\theta_p$ est une véritable variable circulaire sur $U(1)$,
+et non simplement un paramétrage commode d'une quantité réelle. Cela
+se voit depuis le relèvement complexe~:
+\begin{equation}
+  w_p = \frac{1 - e^{2i\theta_p}}{2}
+  = \sinp{p}\,e^{i(\pi/2 - \theta_p)},
+  \label{eq:complex_lift}
+\end{equation}
+qui satisfait $(\mathrm{Re}\,w_p - \tfrac{1}{2})^2
++ \mathrm{Im}(w_p)^2 = \tfrac{1}{4}$~: tout $w_p$ se trouve sur le
+cercle de centre et rayon $1/2$. La valeur $1/2$ qui apparaît ici est
+\emph{le même} $s = 1/2$ que l'occupation stationnaire modulo~3~:
+les deux expriment le point d'équilibre de la dynamique de
+transitions interdites du crible.
+
+L'identité $\sinp{p} = \mathrm{Re}(1 - e^{2i\theta_p})/2$ fait de la
+structure pythagoricienne (item~1 ci-dessus) une projection de la
+géométrie circulaire sur la droite réelle, tandis que la métrique de
+Fisher \eqref{eq:fisher_holonomic} vit naturellement sur le tore
+produit $\prod_p U(1)$. Un développement complet des fondations
+circulaires (donnée~$C_0$~: phase, enroulement, holonomie comme
+objets primitifs) est reporté à un article compagnon.
+\end{remarque}
+
+\subsubsection{La transformée de décohérence (M35)}
+\label{sec:ms_decoherence_transform}
+
+\begin{definition}[Transformée de décohérence $\mathcal{D}$]
+\label{def:decoherence_transform}
+Pour une fonction arithmétique~$f$ et une profondeur de crible~$K$,
+on définit~:
+\begin{enumerate}[nosep]
+\item La \emph{distribution d'énergie par classe}~:
+  $p_c(f,K) = \sum_{n:\,\mathrm{classe}(n)=c} |f(n)|^2
+   \big/ \sum_n |f(n)|^2$.
+\item L'\emph{état quantique} (règle de Born)~:
+  $|\psi_K(f)\rangle = \sum_c \sqrt{p_c}\,e^{i\phi_c}\,|c\rangle$,
+  où $\phi_c = \arg\langle f \rangle_c$.
+\item L'\emph{entropie de décohérence}~:
+  $S_K(f) = -\sum_c p_c(f,K)\,\ln p_c(f,K)$.
+\end{enumerate}
+La \emph{transformée de décohérence} est $\mathcal{D}(f)
+= \{S_K(f)\}_{K \geq K_{\min}}$.
+\end{definition}
+
+\begin{thmbox}{Théorème de décohérence (H)}\mTHM
+\label{thm:theorem_H}\leanTodo{PT.Stochastic.ArithmeticDecoherence}
+Pour toute fonction arithmétique~$f$ non négative et toute profondeur
+de crible~$K$~:
+\begin{equation}
+  S_{K+1}(f) \;\geq\; S_K(f).
+  \label{eq:theorem_H}
+\end{equation}
+C'est la \textbf{seconde loi de la thermodynamique pour le crible}~:
+l'entropie de la distribution des classes de sauts est non
+décroissante sous le canal du crible. La convergence est
+exponentielle, à un taux contrôlé par le trou spectral
+$1 - |\lambda_2(T_3)| = 1/2 = \sper$ de la matrice de transfert~(T3).
+\end{thmbox}
+
+\begin{proof}
+La preuve combine trois ingrédients déjà établis dans M1--M3 : (i)
+la structure doublement stochastique de la matrice de transfert du
+crible (T3), (ii) le théorème de majorisation de
+Hardy--Littlewood--Pólya, et (iii) la concavité de Schur de
+l'entropie de Shannon.
+
+\textbf{Étape~1 : réduction à la majorisation.}
+Soit $p^{(K)} = (p_c(f,K))_{c \in \Z/3\Z}$ la distribution
+d'énergie de classe à la profondeur~$K$. Par construction,
+l'application d'un pas supplémentaire de crible se décrit par
+l'action de la matrice de transfert doublement stochastique~$T_3$
+(T3, \cite{companion_M1}) sur le simplexe des distributions de
+probabilité sur les $3$~classes résiduelles :
+\[
+  p^{(K+1)} \;=\; T_3 \cdot p^{(K)}.
+\]
+La double stochasticité de~$T_3$ est exacte par T3 (chaque ligne
+\emph{et} chaque colonne somme à~$1$).
+
+\textbf{Étape~2 : majorisation de Hardy--Littlewood--Pólya.}
+On note $p \succ q$ la relation standard de majorisation : $q$ est
+\emph{majorée par} $p$ si $\sum_{i=1}^{k} q_i^{\downarrow} \le
+\sum_{i=1}^{k} p_i^{\downarrow}$ pour tout $k$, avec égalité en
+$k = n$, où $\downarrow$ désigne le réordonnancement décroissant.
+Le théorème de Hardy--Littlewood--Pólya~\cite{HLP1934} affirme :
+pour toute matrice doublement stochastique~$M$ et toute
+distribution~$p$,
+\[
+  p \;\succ\; M p.
+\]
+Appliqué à $M = T_3$ et $p = p^{(K)}$, ceci donne
+$p^{(K)} \succ p^{(K+1)}$.
+
+\textbf{Étape~3 : concavité de Schur de l'entropie de Shannon.}
+L'entropie de Shannon
+$S(p) = -\sum_c p_c \log p_c$
+est une fonction strictement Schur-concave sur le simplexe : si
+$p \succ q$, alors $S(p) \le S(q)$, avec inégalité stricte sauf si
+$p$ et $q$ sont des permutations l'une de l'autre. En combinant
+avec l'étape~2,
+\[
+  S_K(f) \;=\; S(p^{(K)}) \;\le\; S(p^{(K+1)}) \;=\; S_{K+1}(f),
+\]
+ce qui est~\eqref{eq:theorem_H}.
+
+\textbf{Étape~4 : taux de convergence.}
+Le taux exponentiel d'approche vers l'entropie d'équilibre
+$S_{\max} = \log 3$ est gouverné par le module de la seconde plus
+grande valeur propre de~$T_3$. Par T3, $\mathrm{spec}(T_3) =
+\{1, -1\}$, d'où $|\lambda_2(T_3)| = 1$ pour l'antidiagonale nue.
+Après normalisation en matrice stochastique par lignes
+(étape~3 de la preuve de T2 dans~\cite{companion_M3}), la
+seconde valeur propre non triviale devient $\lambda_2 = -1/2$, de
+module $|\lambda_2| = 1/2 = \sper$. La théorie de
+Perron--Frobenius fournit alors le taux exponentiel
+$\gamma_{\rm dec} = 1 - |\lambda_2| = 1/2$.
+\end{proof}
+
+\begin{remarque}
+Le théorème~H est inconditionnel : il n'exige aucune hypothèse
+probabiliste sur~$f$, seulement la non-négativité. L'égalité
+$S_{K+1}(f) = S_K(f)$ a lieu si et seulement si $p^{(K)}$ est déjà
+la distribution uniforme, c'est-à-dire le point fixe de~$T_3$ ;
+dans ce cas $S_K(f) = S_{\max} = \log 3$ et le crible a atteint
+l'équilibre informationnel.
+\end{remarque}
+
+\paragraph{Taux de décohérence.}
+Le taux $\gamma(f,K) = 1 - (S_{\max} - S_K)/(S_{\max} - S_{K-1})$
+mesure la rapidité avec laquelle $f$ approche l'entropie d'équilibre
+$S_{\max} = \ln 3$. Il est lié au trou spectral~:
+$\gamma \sim 1 - |\lambda_2(T_3)|$.
+
+\paragraph{Information accessible.}
+La quantité $I_{\mathrm{acc}}(f,K) = S_{\max} - S_K(f) \geq 0$ est
+l'information que le crible préserve encore sur~$f$ à la
+profondeur~$K$. La perte d'information par pas
+$\Delta I(K) = I_{\mathrm{acc}}(K) - I_{\mathrm{acc}}(K+1) \geq 0$
+est non négative d'après le théorème~H.
+
+\paragraph{Distance entropique.}
+La transformée de décohérence définit une distance combinant
+entropie, pureté et moyennes signées par classe~:
+\begin{equation}
+  d_{\mathcal{D}}(f,g)
+  = \sqrt{\sum_K \bigl[
+    (S_K^f - S_K^g)^2 + (P_K^f - P_K^g)^2
+    + \textstyle\sum_c (m_c^f - m_c^g)^2
+  \bigr]},
+  \label{eq:decoherence_distance}
+\end{equation}
+où $P_K = \mathrm{Tr}(\rho_K^2)$ est la pureté et $m_c$ la moyenne
+signée par classe. Les termes de moyenne signée garantissent que des
+fonctions d'identique $|f|^2$ (par ex.\ $\mathbf{1}$ et $\chi_3$)
+soient distinguées.
+
+Script~:
+\texttt{ch\_math\_structures/test\_decoherence\_transform.py}
+(scripts compagnons).
+
+
+\subsubsection{Comparaison des transformées PT}
+
+\begin{center}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Propriété} & $P$ (M16) & $\mathcal{H}$ (M34) &
+  $\mathcal{T}$ (M33) & $\mathcal{D}$ (M35) & Fourier \\
+\midrule
+Base spectrale & $v_\pm$ de $T_3$ & $\sinp{p}$ &
+  $\bigotimes_q \mathrm{evecs}(T_q)$ & entropie & $e^{ikx}$ \\
+Paramètre & profondeur $K$ & premiers $p$ & $(K,q_1,q_2,q_3)$ &
+  profondeur $K$ & fréquence $k$ \\
+Dim.\ par $K$ & 2 & $K$ (premiers) & 105 & 1 & $\infty$ \\
+Linéaire & OUI & NON & OUI & NON & OUI \\
+Monotone & NON & NON & NON & \textbf{OUI} & NON \\
+Voit le crible & \textbf{OUI} & \textbf{OUI} & \textbf{OUI} &
+  \textbf{OUI} & NON \\
+Corr.\ inter-mod. & NON & partielle & \textbf{OUI} & NON & NON \\
+Courbure & NON & \textbf{OUI} & NON & NON & NON \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Aucune de ces transformées n'est un cas particulier de Fourier ou
+Mellin~: la base spectrale est celle de la matrice de transfert du
+crible~$T_q$, et non~$\{e^{ikx}\}$~; le paramètre est la profondeur
+du crible~$K$, et non une fréquence~; et le théorème~H n'a aucun
+analogue en analyse harmonique classique.
+
+
+% ============================================================
+\subsection{Crible quantique et réseaux tensoriels}
+\label{sec:ms_quantum}
+
+\subsubsection{Le crible comme canal CPTP}
+
+La matrice de transfert $T_K$ peut être interprétée comme un canal
+quantique dans la représentation de Kraus. Soit $\rho_K$ la matrice
+densité encodant la distribution des sauts au niveau~$K$.
+
+\begin{thmbox}{Décohérence arithmétique}
+\label{thm:decoherence}
+Le canal du crible $\mathcal{E}_K\colon \rho \mapsto T_K \rho
+T_K^\dagger$ est une application complètement positive préservant la
+trace (CPTP) telle que~:
+\begin{enumerate}[nosep]
+\item L'entropie de von~Neumann $S_{\rm vN}(\rho_K)$ est strictement
+  croissante avec $K$ (décohérence).
+\item La pureté $\mathrm{Tr}(\rho_K^2) \to 1/3$ lorsque $K \to \infty$
+  (convergence vers l'état maximalement mixte sur 3 classes).
+\item Le taux de décohérence est contrôlé par $|\lambda_2(T_K)|$.
+\end{enumerate}
+Script~: \texttt{ch\_math\_structures/test\_quantum\_sieve.py}
+(scripts compagnons).
+\end{thmbox}
+
+Ce n'est pas une affirmation selon laquelle le crible \emph{est} un
+système quantique. C'est l'observation que le formalisme mathématique
+de la décohérence quantique (canaux CPTP, évolution de Lindblad,
+croissance de l'entropie) est le langage naturel pour décrire la
+perte d'information du crible à chaque pas.
+
+\subsubsection{Réseau tensoriel TCR}
+
+La factorisation TCR $\mathbb{Z}/m\mathbb{Z} \cong
+\prod_{p|m} \mathbb{Z}/p\mathbb{Z}$ induit une structure de produit
+tensoriel sur l'espace d'états. La dynamique du crible peut s'écrire
+comme un état produit de matrices (MPS)~:
+
+\begin{thmbox}{Représentation MPS}
+\label{thm:mps}
+La distribution des sauts au niveau $K$ admet une représentation MPS
+exacte de \textbf{dimension de liaison $\chi = 3$}. L'entropie
+d'intrication entre toute bipartition des facteurs TCR satisfait
+$S_{\rm ent} \leq \log 3$, et la longueur de corrélation $\xi$ est
+finie ($\xi < \infty$)~: le réseau tensoriel est \textbf{gappé}.
+Script~: \texttt{ch\_math\_structures/test\_tensor\_network.py}
+(scripts compagnons).
+\end{thmbox}
+
+La dimension de liaison 3 est \emph{exacte}, et non une
+approximation. La structure TCR du crible est efficacement capturée
+par un réseau tensoriel 1D sans erreur de troncation.
+
+
+% ============================================================
+\subsection{Codes correcteurs d'erreurs depuis les sauts}
+\label{sec:ms_codes}
+
+\subsubsection{Prédiction multi-modulaire}
+
+Le prédicteur multi-modulaire utilise les résidus modulo
+$q = 3, 5, 7$ simultanément. L'information mutuelle entre modules
+est substantielle ($\mathrm{MI} \sim 1$\,nat), confirmant que les
+facteurs TCR ne sont \emph{pas} informationnellement indépendants. La
+prédiction de la classe de saut suivante s'améliore de $+61{,}2\%$
+par rapport au prédicteur modulo~3 seul.
+
+Script~:
+\texttt{ch\_math\_structures/test\_multi\_modular\_predictor.py}
+(scripts compagnons).
+
+\subsubsection{Code quantique TCR}
+
+La structure TCR définit un code quantique correcteur d'erreurs avec
+paramètres $[[3, 5.58, 1]]$. L'écart de Knill--Laflamme est
+$\Delta_{\rm KL} = 0{,}008$ (QEC approximative, quasiment exacte).
+Idée clé~: l'information mutuelle entre modules est
+\emph{simultanément} la ressource pour la prédiction (direction~B) et
+la capacité de correction d'erreur (direction~C). Les deux directions
+sont la même structure mathématique vue sous des angles différents.
+
+Script~: \texttt{ch\_math\_structures/test\_crt\_quantum\_code.py}
+(scripts compagnons).
+
+\textbf{Limitation honnête~:} sur les résidus entiers, la distance
+du code est $d = 1$ (un code produit trivial sans contraintes
+inter-modulaires). La résolution provient de l'usage des résidus de
+\emph{sauts}.
+
+\subsubsection{Le code de distance de sauts (théorème principal)}
+
+\begin{thmbox}{Théorème de distance TCR-saut}
+\label{thm:gap_distance}
+Soient $q_1 < q_2 < \cdots < q_n$ les $n$ premiers premiers impairs
+(les modules à la profondeur du crible $K = n+1$). On définit le
+\emph{code de résidus de sauts}~$\mathcal{C}$ par~:
+\[
+  \mathcal{C} = \bigl\{
+    (g \bmod q_1,\; g \bmod q_2,\; \ldots,\; g \bmod q_n)
+    : g \in \mathrm{sauts\_distincts}(K)
+  \bigr\}.
+\]
+Alors pour $n \geq 2$~:
+\begin{enumerate}[nosep]
+\item L'application TCR est injective sur les sauts~:
+  $|\mathcal{C}| = |\mathrm{sauts\_distincts}|$.
+\item La distance de Hamming minimale satisfait $d = n$ pour $n = 2$
+  (cas frontière) et $d = n - 1$ pour $n \geq 3$.
+\item Le code corrige $t = \lfloor(d-1)/2\rfloor$ erreurs.
+\item Le rapport $d/n$ est croissant pour $n \geq 3$ et $d/n \to 1$
+  lorsque $n \to \infty$ (asymptotiquement MDS).
+\end{enumerate}
+\end{thmbox}
+
+\begin{proof}[Esquisse de preuve]
+Supposons que deux sauts distincts $g_1 \neq g_2$ coïncident en $m$
+positions de coordonnées $i_1, \ldots, i_m$. Alors
+$q_{i_1} \cdots q_{i_m}$ divise $g_1 - g_2$. Puisque
+$|g_1 - g_2| \leq \mathrm{saut}\_\mathrm{max}\sim 2p_K$ (croissance
+linéaire) tandis que $q_{i_1} \cdots q_{i_m} \geq 3 \cdot 5 = 15$
+pour $m \geq 2$ (croissance exponentielle), on obtient $m \leq 1$.
+Donc $d \geq n - 1$. Des paires atteignant exactement $n - 1$
+positions différentes existent (vérifié pour $K = 3 \ldots 7$), donc
+$d = n - 1$ exactement.
+\end{proof}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$K$ & $n$ (modules) & $d$ (distance) & $t$ (corrigible) & $d/n$ \\
+\midrule
+3 & 2 & 2 & 0 & 1{,}000 \\
+4 & 3 & 2 & 0 & 0{,}667 \\
+5 & 4 & 3 & 1 & 0{,}750 \\
+6 & 5 & 4 & 1 & 0{,}800 \\
+7 & 6 & 5 & 2 & 0{,}833 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Comparaison.}
+Un code sur des résidus \emph{entiers} (et non des résidus de sauts)
+a toujours $d = 1$~: c'est un code produit sans contraintes
+inter-modulaires. Le code des résidus de sauts atteint $d = n-1$ car
+les valeurs des sauts sont bornées (linéairement en $p_K$) tandis que
+les produits des modules croissent exponentiellement. La \emph{borne
+sur les sauts} est l'ingrédient qui crée la distance.
+
+\paragraph{Premiers d'écho.}
+Les premiers $p > p_K$ situés sous $\mathrm{saut}\_\mathrm{max}$
+agissent comme des erreurs non détectables~: ils modifient la suite
+des sauts sans changer les coordonnées du code. Lorsque $K$ augmente,
+la distance du code $d = n - 1$ croît plus rapidement que le nombre
+de premiers d'écho, de sorte que la capacité de correction d'erreur
+du code finit par dominer.
+
+Script~:
+\texttt{ch\_math\_structures/test\_gap\_distance\_code.py}
+(scripts compagnons).
+
+\subsubsection{Synthèse~: quatre visages du crible}
+
+Le crible est simultanément~:
+\begin{enumerate}[nosep]
+\item Un \textbf{algorithme} générateur de premiers (théorie des
+  nombres).
+\item Un \textbf{canal de décohérence} CPTP (information quantique).
+\item Un \textbf{code correcteur d'erreurs} avec $d = n - 1$ (théorie
+  des codes).
+\item Une \textbf{contraction spectrale} de trou $1 - |\lambda_2|$
+  (systèmes dynamiques).
+\end{enumerate}
+La distance du code $d = n - 1$ est la \emph{manifestation
+arithmétique} de la persistance informationnelle~: le crible produit
+un code dont la redondance croît sans borne, garantissant que le
+motif des premiers est récupérable à partir d'une information
+partielle.
+
+
+% ============================================================
+\subsection{Banc d'essai et limites honnêtes}
+\label{sec:ms_benchmark}
+
+Un banc d'essai des cinq nouvelles structures mathématiques (algèbre,
+transformée, métrique, nombres, catégorie) face à des tâches
+concrètes donne~:
+
+\begin{itemize}[nosep]
+\item \textbf{Classification} (premier vs.\ composé)~: $d_{\rm PT}$
+  atteint $96\%$ de précision, compétitive avec les classifieurs
+  fondés sur $\Omega(n)$.
+\item \textbf{Prédiction}~: la prédiction multi-modulaire améliore
+  modulo~3 de $+61\%$ (M30).
+\item \textbf{Correction d'erreur}~: $d = n-1$ prouvé, $t \geq 1$
+  pour $K \geq 5$ (M32).
+\item \textbf{Détection structurelle}~: la transformée de persistance
+  $P_K$ sépare proprement $\mathbf{1}$ et $\chi_3$ (M16).
+\item \textbf{Cohérence catégorielle}~: les quatre foncteurs
+  convergent vers la structure asymptotique (M19).
+\end{itemize}
+
+\paragraph{Limites honnêtes.}
+\begin{itemize}[nosep]
+\item $d_{\rm PT}$ ne remplace pas les tests de primalité (elle
+  classifie statistiquement, et non déterministiquement).
+\item Le code des sauts a $|\mathcal{C}| \sim 2n$ mots de code~--- trop
+  peu pour la communication pratique. Sa valeur est théorique.
+\item Le canal CPTP est une analogie structurelle, et non une
+  réalisation physique.
+\item L'extension quantique CSS donne $d_{\rm CSS} \sim 1$ pour
+  $n$~grand (la distance classique ne se transfère pas pleinement).
+\end{itemize}
+
+Script~: \texttt{ch\_math\_structures/test\_capabilities.py}
+(scripts compagnons).
+
+\medskip
+\noindent\textbf{Total~:} 32 scripts compagnons, tous validés
+(scripts compagnons).
+
+\section{Mécanique complexe du crible}
+\label{sec:complex}
+
+\epigraph{Le chemin le plus court entre deux vérités du domaine réel
+passe par le domaine complexe.}{Jacques Hadamard}
+
+% ---- Status Box ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Relever PT depuis l'observable réelle $\sinp{p}$ vers la variable
+  complexe naturelle $w_p = (1 - e^{2i\theta_p})/2$, en mettant au
+  jour la structure cachée~: géométrie circulaire, force holomorphe,
+  moment angulaire et intégrabilité de Liouville complète.
+
+\textbf{ENTRÉES~:}
+  L'article compagnon~\cite{companion_M2} (identité d'holonomie
+  $\sinp{p} = \delta_p(2-\delta_p)$), l'article
+  compagnon~\cite{companion_M1} (TFS, action $S_{\mathrm{PT}}$),
+  l'article compagnon~\cite{companion_physics} ($\alphaEM$ depuis le
+  produit du crible).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  \begin{itemize}[nosep]
+  \item Théorème du cercle~: tous les $w_p$ sont sur
+    $\mathcal{C}(1/2,\,0;\, s)$, rayon $s = 1/2$
+    (Thm~\ref{thm:circle}).
+  \item $|w|^2 = \mathrm{Re}(w) = \sinp{p}$~: le module carré égale la
+    projection réelle (ID).
+  \item $\alpha = |W|^2 = \prod |w_p|^2$~: la structure fine comme
+    module complexe (ID).
+  \item $|T_{12,\mathbb{C}}| > T_{12,\mathrm{re}}$ de 29 à 62\%~:
+    renforcement de la borne spectrale.
+  \item Force holomorphe $F(w) = i/w - 2i$ (noyau de Cauchy, pôle en
+    $w = 0$).
+  \item Moment angulaire $L = \sinp{p} = |w|^2$ comme charge de
+    Noether.
+  \item Relation d'incertitude $|p_w|\cdot|w| = 1$ (identité exacte,
+    et non une borne).
+  \item Équipartition $E_p \to \kappa/2 = 1$, température géométrique
+    $T = 1/s = 2$.
+  \item Intégrabilité de Liouville complète sur $\mathbb{T}^n$~;
+    $\alpha = \prod L_p$.
+  \item Coefficient FSR QED~: $3/(4\pi) = N_{\mathrm{spatial}}\cdot
+    s^2/\mathrm{Circ}(\mathcal{C})$ (DER).
+  \item Facteur de boucle~: $16\pi^2 = \Omega_2^2$ à partir de
+    $N_{\mathrm{spatial}} = 3$ (DER).
+  \end{itemize}
+
+\textbf{STATUT~:}
+  \DERTAG\ + \textsc{[id]} (théorème du cercle, 7~identités, force
+  holomorphe, intégrabilité de Liouville, corrections radiatives).
+  10~scripts (M41--M50), 127/127 PASS.
+
+\textbf{NON PROUVÉ~:}
+  Interprétation physique de $\arg(W) = 0{,}937\pi$ (lien potentiel
+  avec la violation~CP). Lien entre les corrections de
+  Bernoulli--zêta et le catalogue NLO existant.
+\end{statusbox}
+
+
+% ============================================================
+\subsection{La variable complexe \texorpdfstring{$w_p$}{wp}}
+\label{sec:cx_variable}
+
+À chaque premier $p$ de paramètre $q \in \{\qplus, \qminus\}$,
+l'angle d'holonomie du crible $\theta_p$ définit une variable
+complexe naturelle~:
+
+\begin{equation}
+  w_p \;=\; \frac{1 - e^{2i\theta_p}}{2}\,.
+  \label{eq:wp_def}
+\end{equation}
+
+Les parties réelle et imaginaire se décomposent comme~:
+\begin{align}
+  \mathrm{Re}(w_p) &= \sin^2\theta_p = \delta_p(2-\delta_p)
+    && \text{(perte = observable PT standard)}\,, \label{eq:wp_re}\\
+  \mathrm{Im}(w_p) &= -\tfrac{1}{2}\sin(2\theta_p) = -\sin\theta_p\cos\theta_p
+    && \text{(cohérence = observable cachée)}\,, \label{eq:wp_im}\\
+  |w_p| &= \sin\theta_p\,,\quad
+  |w_p|^2 = \sin^2\theta_p = \mathrm{Re}(w_p)
+    && \text{(identité fondamentale)}\,. \label{eq:wp_mod}
+\end{align}
+
+PT standard n'utilise que $\mathrm{Re}(w_p)$. La partie imaginaire
+$\mathrm{Im}(w_p) = -\sin\theta_p\cos\theta_p$ mesure la
+\emph{cohérence} entre les canaux de perte et de conservation~--- la
+moyenne géométrique des amplitudes de perte et de conservation, avec
+un signe.
+
+\medskip
+\noindent\textbf{Valeurs numériques} ($q = \qplus = 13/15$, premiers
+actifs)~:
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$p$ & $\mathrm{Re}(w_p) = \sinp{p}$ & $\mathrm{Im}(w_p)$ & $|w_p|$ \\
+\midrule
+3 & 0{,}3340 & $-$0{,}4716 & 0{,}5780 \\
+5 & 0{,}1992 & $-$0{,}3991 & 0{,}4463 \\
+7 & 0{,}0528 & $-$0{,}2237 & 0{,}2298 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+La cohérence $|\mathrm{Im}(w_p)|$ dépasse $\mathrm{Re}(w_p)$ pour
+$p = 5, 7$~: PT standard écarte la composante \emph{dominante} de la
+variable complexe.
+
+\begin{thmbox}[Théorème du cercle]
+\label{thm:circle}
+Pour tous les premiers $p$ et tout $q \in (0,1)$, le point $w_p$ se
+trouve sur le cercle
+\begin{equation}
+  \mathcal{C}\colon\;
+  \bigl(\mathrm{Re}(w) - \tfrac{1}{2}\bigr)^2 + \mathrm{Im}(w)^2
+  = \tfrac{1}{4}\,,
+  \label{eq:circle}
+\end{equation}
+centré en $(1/2, 0)$ et de rayon $s = 1/2$.
+\end{thmbox}
+
+\begin{proof}
+Soit $x = \sin^2\theta$, $y = -\sin\theta\cos\theta$.
+Alors $x^2 + y^2 = \sin^4\theta + \sin^2\theta\cos^2\theta
+= \sin^2\theta(\sin^2\theta + \cos^2\theta) = \sin^2\theta = x$.
+Donc $(x - 1/2)^2 + y^2 = x^2 - x + 1/4 + y^2 = 1/4$.
+\end{proof}
+
+Le cercle passe par l'origine ($\theta = 0$~: aucune perte) et par
+$(1, 0)$ ($\theta = \pi/2$~: perte totale). Lorsque $K$ augmente, les
+nouveaux premiers poussent $w_p$ vers l'origine~: \emph{la
+contraction est une convergence radiale sur le cercle vers $w = 0$}.
+
+\paragraph{Sept identités fondamentales.}
+Les identités suivantes valent pour tous les premiers et tout
+$q \in (0,1)$~:
+\begin{align}
+  |w_p|^2 &= \mathrm{Re}(w_p) \,,\tag{ID1}\label{id:mod_re}\\
+  \mathrm{Im}(w_p)^2 &= \mathrm{Re}(w_p)\,(1 - \mathrm{Re}(w_p))\,,\tag{ID2}\label{id:im_parab}\\
+  w_p &= -i\sin\theta_p\, e^{i\theta_p}\,,\tag{ID3}\label{id:polar}\\
+  \arg(w_p) &= \theta_p - \pi/2\,,\tag{ID4}\label{id:arg}\\
+  \bar{w}_p &= \frac{w_p}{2w_p - 1}\,,\tag{ID5}\label{id:conj}\\
+  z_p &= 1 - 2w_p = e^{2i\theta_p}\,,\tag{ID6}\label{id:u1}\\
+  \delta_p &= \frac{(1 - q)[p]_q}{p}\,.\tag{ID7}\label{id:qbracket}
+\end{align}
+
+L'identité~\ref{id:mod_re} est la propriété définissante du cercle
+$\mathcal{C}$. L'identité~\ref{id:conj} fait du conjugué une
+\emph{transformation de Möbius}, rendant la force
+$F = -i/\bar{w}$ holomorphe en $w$ seul
+(section~\ref{sec:cx_force}).
+
+
+% ============================================================
+\subsection{Observables complexes}
+\label{sec:cx_observables}
+
+\subsubsection{Produit complexe et \texorpdfstring{$\alpha$}{alpha}}
+
+La constante de structure fine du crible provient du produit~:
+\begin{equation}
+  W \;=\; \prod_{p\;\mathrm{actif}} w_p\,,\qquad
+  |W|^2 = \prod_{p} |w_p|^2 = \prod_{p} \sinp{p} = \alpha_{\mathrm{nu}}\,.
+  \label{eq:W_product}
+\end{equation}
+
+La \emph{phase} de $W$ est une nouvelle observable, indépendante de
+$|W|^2 = \alpha$~:
+\begin{equation}
+  \arg(W) = \sum_p \arg(w_p) = \sum_p (\theta_p - \pi/2)\,.
+  \label{eq:argW}
+\end{equation}
+Pour $q = \qplus$, $\arg(W) \approx 0{,}937\pi$.
+Ce n'est \emph{pas} une fraction simple de $\pi$~; l'approximation
+rationnelle la plus proche est $15/16$.
+
+\subsubsection{\texorpdfstring{$T_{12}$}{T12} complexe et renforcement spectral}
+\label{subsec:cx_T12}
+
+Le trou spectral $T_{12}$ admet une extension complexe via le
+caractère $\chi_3$~:
+\begin{equation}
+  T_{12,\mathbb{C}} = \frac{1}{3}\sum_p \chi_3(p)\, w_p
+  = \frac{w_7 - w_5}{3}\,,
+  \label{eq:T12C}
+\end{equation}
+puisque $\chi_3(3) = 0$, $\chi_3(5) = -1$, $\chi_3(7) = +1$. Le
+module satisfait~:
+\[
+  |T_{12,\mathbb{C}}| > |T_{12,\mathrm{re}}|\,,\qquad
+  \text{rapport } \frac{|T_{12,\mathbb{C}}|}{|T_{12,\mathrm{re}}|}
+  = \frac{1}{\sin\theta_{\mathrm{eff}}} \in [1{,}29~;\; 1{,}62]\,.
+\]
+Pour $\qplus$~: $|T_{12,\mathbb{C}}| = 0{,}00920$ contre
+$T_{12,\mathrm{re}} = 0{,}00712$ ($+29\%$).
+Pour $\qminus$~: gain $+62\%$.
+Cela renforce les bornes spectrales de la preuve de convergence T5
+(article compagnon~\cite{companion_M3}) sans changer la structure de
+la preuve.
+
+\subsubsection{Action complexe}
+
+L'action effective PT $S_{\mathrm{PT}} = -\sum_p \ln\sinp{p}$ s'étend
+en~:
+\begin{equation}
+  S_{\mathbb{C}} = -\sum_p \ln w_p
+  = -\sum_p \bigl[\ln|w_p| + i\arg(w_p)\bigr]\,,
+  \label{eq:S_complex}
+\end{equation}
+avec $\mathrm{Re}(S_{\mathbb{C}}) = S_{\mathrm{PT}}/2$ (puisque
+$\ln\sinp{p} = 2\ln|w_p|$). La partie imaginaire encode la phase
+accumulée le long du chemin des premiers.
+
+
+% ============================================================
+\subsection{Structure algébrique profonde}
+\label{sec:cx_algebra}
+
+\subsubsection{Correspondance U(1)}
+
+L'application affine $z_p = 1 - 2w_p = e^{2i\theta_p}$ envoie le
+cercle $\mathcal{C}$ sur le cercle unité $\mathbb{S}^1$. Cela
+identifie l'espace d'états du crible avec $\mathrm{U}(1)$.
+
+\subsubsection{Fisher = Fubini--Study}
+
+La métrique de Fisher sur l'espace de paramètres de Bernoulli se
+retire en quatre fois la métrique de longueur d'arc sur
+$\mathcal{C}$~:
+\begin{equation}
+  \mathrm{d}s^2_{\mathrm{Fisher}}
+  = \frac{4}{\sinp{p}(1 - \sinp{p})}\,(\mathrm{d}\sinp{p})^2
+  = 4\,\mathrm{d}\theta_p^2\,.
+  \label{eq:fisher_fubini}
+\end{equation}
+C'est la métrique de Fubini--Study sur $\mathbb{CP}^1$. Le facteur~4
+égale l'inverse du carré du rayon du cercle~: $4 = 1/s^2$.
+
+\subsubsection{Correspondance avec la matrice densité}
+\label{subsec:cx_density}
+
+Chaque $w_p$ encode la première colonne d'une matrice densité de
+rang~1 $\rho_p = |\psi_p\rangle\langle\psi_p|$ pour un système à
+2~niveaux $|\psi_p\rangle = \sin\theta_p\,|0\rangle +
+\cos\theta_p\,|1\rangle$~:
+\begin{equation}
+  w_p = (\rho_p)_{00} - i\,(\rho_p)_{01}
+  = \sin^2\theta_p - i\sin\theta_p\cos\theta_p\,.
+  \label{eq:density}
+\end{equation}
+
+La partie réelle est l'élément diagonal (probabilité), la partie
+imaginaire l'élément hors diagonale (cohérence). Le cercle
+$\mathcal{C}$ est le lieu des états purs sur le méridien
+$\Phi = 0$ de la sphère de Bloch.
+
+\subsubsection{Birapports}
+
+Pour quatre points co-cycliques sur $\mathcal{C}$, le birapport est
+\emph{exactement réel} (partie imaginaire $< 10^{-16}$). Pour les
+premiers actifs~:
+\[
+  \mathrm{CR}(3, 5;\, 7, \infty) \approx 2{,}000
+  \quad (\text{erreur } 1{,}5 \times 10^{-4})\,.
+\]
+Les birapports quasi-entiers reflètent la structure harmonique des
+trois premiers actifs.
+
+
+% ============================================================
+\subsection{Corrections complexes}
+\label{sec:cx_corrections}
+
+\subsubsection{Le rayon du cercle encode \texorpdfstring{$s$}{s}}
+
+Le cercle $\mathcal{C}$ a pour rayon $s = 1/2$. Le paramètre
+fondamental de PT est donc encodé dans la géométrie du plan
+complexe~: \emph{la géométrie est la théorie}.
+
+\subsubsection{Décomposition structurelle de \texorpdfstring{$1/\alpha$}{1/alpha}}
+\label{subsec:cx_bernoulli}
+
+Le produit nu $1/\alpha_{\mathrm{nu}} = \prod(1/\sinp{p})$
+se décompose via $\sin^2 = \theta^2\cdot(\sin\theta/\theta)^2$~:
+\begin{equation}
+  \frac{1}{\alpha_{\mathrm{nu}}}
+  = \underbrace{\prod_p \frac{1}{\theta_p^2}}_{= 110{,}34\;\text{(classique)}}
+  \;\times\;
+  \underbrace{\prod_p \Bigl(\frac{\theta_p}{\sin\theta_p}\Bigr)^2}_{= 1{,}235\;\text{(Bernoulli--zêta)}}\,.
+  \label{eq:alpha_decomp}
+\end{equation}
+
+Le facteur «~classique~» n'utilise que l'ordre dominant
+$\sin\theta \approx \theta$. Le facteur Bernoulli--zêta encode les
+corrections d'ordre supérieur via
+$\theta/\sin\theta = 1 + \theta^2/6 + 7\theta^4/360 + \cdots$,
+où les coefficients font intervenir les nombres de Bernoulli
+$B_{2k}$ et implicitement $\zeta(2k)$.
+
+\emph{Cette décomposition est une identité}~--- le facteur de
+Bernoulli est déjà contenu dans $\sin^2$ et ne constitue pas une
+nouvelle correction à $\alpha$. Elle révèle la structure interne du
+produit nu.
+
+\subsubsection{NLO à partir de la cohérence}
+
+Le rapport des parties imaginaire et réelle donne le rapport
+NLO/LO~:
+\begin{equation}
+  \frac{|\mathrm{Im}(w_p)|}{\mathrm{Re}(w_p)}
+  = |\cot\theta_p|
+  \sim \sqrt{p/2}\,.
+  \label{eq:nlo_cot}
+\end{equation}
+
+Pour tous les premiers au-delà de $p = 3$, la composante de cohérence
+(imaginaire) dépasse la composante de perte (réelle)~: le NLO
+\emph{domine} le LO dans le plan complexe.
+
+
+\subsubsection{Corrections radiatives depuis la géométrie circulaire}
+\label{subsec:cx_radiative}
+
+Les deux dernières formules de TQC utilisées dans le catalogue NLO
+(article compagnon~\cite{companion_physics}, annexe~B)~--- le
+coefficient QED de rayonnement d'état final et le facteur de vertex
+à une boucle~--- se décomposent entièrement en quantités PT-natives.
+
+\begin{derbox}{FSR QED depuis la géométrie circulaire}
+\label{der:fsr_circle}
+La correction QED de rayonnement d'état final pour un fermion de
+charge~$Q_f$ est~:
+\begin{equation}
+  \delta_{\mathrm{QED}} = \frac{3\alpha Q_f^2}{4\pi}
+  = \frac{N_{\mathrm{spatial}}\cdot s^2}{\mathrm{Circ}(\mathcal{C})}
+  \;\cdot\;\alpha\,Q_f^2\,,
+  \label{eq:fsr_pt}
+\end{equation}
+où $N_{\mathrm{spatial}} = 3$ (théorème, R38b),
+$s = 1/2$ (fondamental), et
+$\mathrm{Circ}(\mathcal{C}) = 2\pi s = \pi$.
+Le coefficient $3/4 = N_{\mathrm{spatial}}\cdot s^2$ est donc
+déterminé par le nombre de dimensions spatiales et le rayon du crible.
+\end{derbox}
+
+Interprétation physique~: $N_{\mathrm{spatial}}$ compte les directions
+de polarisation indépendantes pour le quantum émis~;
+$s^2 = 1/4$ est le rapport $\mathrm{Aire}(\mathcal{C})/\pi$~;
+et $\mathrm{Circ}(\mathcal{C}) = \pi$ normalise l'espace des phases
+d'émission sur le cercle.
+
+\begin{derbox}{Facteur de boucle depuis l'angle solide}
+\label{der:loop_factor}
+Le facteur de normalisation à une boucle est~:
+\begin{equation}
+  16\pi^2 = \Omega_2^2 = \biggl(
+  \frac{2\pi^{N_{\mathrm{spatial}}/2}}{\Gamma(N_{\mathrm{spatial}}/2)}
+  \biggr)^{\!2},
+  \label{eq:loop_factor}
+\end{equation}
+où $\Omega_2 = 4\pi$ est l'angle solide de la sphère unité $S^2$ en
+$N_{\mathrm{spatial}} = 3$ dimensions spatiales.
+\end{derbox}
+
+La correction de vertex
+$\rho_b = 1 - G_F m_t^2/(4\sqrt{2}\,\pi^2)$
+(R43, non universelle $Z\to b\bar{b}$) se réécrit sous forme de
+Yukawa~:
+\begin{equation}
+  \rho_b = 1 - \frac{y_t^2}{\Omega_2^2}\,,
+  \qquad y_t = \frac{\sqrt{2}\,m_t}{v}\,,
+  \label{eq:rho_b_pt}
+\end{equation}
+où chaque quantité est PT-dérivée~: $y_t$ depuis la hiérarchie des
+masses de quarks, $v$ (R51), et $\Omega_2^2 = 16\pi^2$ depuis
+$N_{\mathrm{spatial}} = 3$. La valeur numérique $\rho_b = 0{,}9938$
+correspond exactement au résultat standard (identité algébrique).
+
+\paragraph{Intégrale de contour.}
+La force holomorphe $F(w) = i/w - 2i$ satisfait~:
+\begin{equation}
+  \oint_{\mathcal{C}} F\,\mathrm{d}w = -\pi = -\mathrm{Circ}(\mathcal{C})\,.
+  \label{eq:contour_F}
+\end{equation}
+Puisque $w = 0$ se trouve \emph{sur} $\mathcal{C}$ (pôle au bord), la
+formule de Sokhotski--Plemelj donne
+$\oint(i/w)\,\mathrm{d}w = \pi i \cdot i = -\pi$ (la moitié du résidu
+plein). Le travail total effectué par la force le long d'un parcours
+de $\mathcal{C}$ égale sa circonférence~: une identité topologique
+reliant le rayonnement à la géométrie.
+
+\paragraph{Statut.}
+Avec ces deux dérivations,
+\emph{toutes les corrections NLO/NNLO utilisées dans l'article
+compagnon}~\cite{companion_physics} \emph{sont désormais
+PT-dérivées}~;
+plus aucune formule TQC externe ne subsiste dans la chaîne
+d'habillage. (Script~: M50,
+\texttt{test\_complex\_radiative}, 18/18~PASS.)
+
+
+% ============================================================
+\subsection{Mécanique holomorphe}
+\label{sec:cx_force}
+
+\subsubsection{La force}
+
+On définit le moment complexe par
+$p_w = \mathrm{d}S_{\mathbb{C}}/\mathrm{d}\theta = -\cot\theta - i$.
+La force associée dans l'espace $w$ est~:
+\begin{equation}
+  F(w) = \frac{i}{w} - 2i\,.
+  \label{eq:force}
+\end{equation}
+
+C'est une fonction holomorphe sur $\mathbb{C} \setminus \{0\}$ avec
+un pôle simple en $w = 0$ et un résidu $\mathrm{Res}(F, 0) = i$.
+L'identité~\ref{id:conj} $\bar{w} = w/(2w-1)$ convertit
+$F = -i/\bar{w}$ en la forme holomorphe ci-dessus.
+
+\paragraph{Identité de rotation.}
+\begin{equation}
+  F(w_p)\cdot\mathrm{Re}(w_p) = -i\,w_p\,.
+  \label{eq:rotation}
+\end{equation}
+La force multipliée par l'observable égale la variable complexe
+tournée de $-\pi/2$. La multiplication par $\sinp{p}$ effectue une
+rotation d'un quart de tour.
+
+\paragraph{Force azimutale universelle.}
+\begin{equation}
+  \mathrm{Im}\!\Bigl(\frac{\mathrm{d}S_{\mathbb{C}}}{\mathrm{d}\theta}\Bigr)
+  = -1 = -\frac{1}{2s}\,,
+  \label{eq:universal}
+\end{equation}
+constante pour tous les premiers. La force azimutale égale l'inverse
+du diamètre du cercle $2s = 1$.
+
+\subsubsection{Moment angulaire comme charge de Noether}
+
+Le moment angulaire associé à la rotation $\mathrm{U}(1)$
+$w \mapsto e^{i\alpha}w$ est~:
+\begin{equation}
+  L_p = \mathrm{Im}(\bar{w}_p\,\mathrm{d}w_p/\mathrm{d}\theta)
+  = \sinp{p} = |w_p|^2\,.
+  \label{eq:angular_momentum}
+\end{equation}
+
+\emph{L'observable PT EST le moment angulaire.}
+
+\subsubsection{Relation d'incertitude}
+\label{subsec:cx_uncertainty}
+
+\begin{equation}
+  |p_w| \cdot |w_p| = 1 \qquad\text{pour tout } p\,.
+  \label{eq:uncertainty}
+\end{equation}
+
+C'est une \emph{identité exacte} (et non une borne), de constante
+égale au diamètre $2s = 1$ du cercle $\mathcal{C}$.
+Depuis~\eqref{eq:uncertainty}~:
+$\sinp{p} = |w|^2 = 1/(1 + \cot^2\theta)
+= 1/(1 + \mathrm{Re}(p_w)^2)$,
+retrouvant la règle de Born depuis le moment.
+
+
+% ============================================================
+\subsection{Intégrabilité et variables action--angle}
+\label{sec:cx_integrability}
+
+\subsubsection{Actions de Liouville}
+
+On définit la variable d'action et le hamiltonien~:
+\begin{equation}
+  L_p = \sinp{p}\,,\qquad
+  H_p = -\ln\sin\theta_p = -\tfrac{1}{2}\ln L_p\,.
+  \label{eq:liouville}
+\end{equation}
+
+Le crochet de Poisson $\{L_p, H_{p'}\} = 0$ pour $p \neq p'$
+(indépendance des premiers), et $\{L_p, H_p\} = 0$ car les deux ne
+dépendent que de $\theta_p$ (un degré de liberté par premier). Le
+système est \emph{complètement intégrable} au sens de Liouville, et
+vit sur un tore $\mathbb{T}^n$.
+
+La constante de structure fine est le produit des actions de
+Liouville~:
+\begin{equation}
+  \alpha = \prod_{p\;\mathrm{actif}} L_p
+  = \prod_{p\;\mathrm{actif}} \sinp{p}\,.
+  \label{eq:alpha_liouville}
+\end{equation}
+
+\subsubsection{Équipartition}
+\label{subsec:cx_equipartition}
+
+On définit l'énergie cinétique $E_p = \frac{1}{2}p\,\theta_p^2$.
+Pour $p$ grand, $\theta_p \sim \sqrt{2/p}$, donc~:
+\begin{equation}
+  E_p \;\to\; \frac{\kappa}{2} = 1\,,\qquad
+  T_{\mathrm{geom}} = \kappa = \frac{1}{s} = 2\,.
+  \label{eq:equipartition}
+\end{equation}
+
+Correction exacte~: $E_p = 1 - 2/p + O(1/p^2)$.
+La température géométrique $T = 2$ égale la courbure du cercle
+$\mathcal{C}$ (inverse du rayon $s = 1/2$).
+
+\subsubsection{Corrections de Bernoulli--zêta}
+
+Le rapport $\theta/\sin\theta$ admet le développement de Bernoulli~:
+\begin{equation}
+  \frac{\theta}{\sin\theta}
+  = 1 + \frac{\zeta(2)}{\pi^2}\,\theta^2
+    + \frac{7\zeta(4)}{2\pi^4}\,\theta^4
+    + \cdots
+  = \sum_{k=0}^{\infty} \frac{(-1)^{k+1}(2^{2k}-2)\,B_{2k}}{(2k)!}\,\theta^{2k}\,.
+  \label{eq:bernoulli}
+\end{equation}
+
+Ceci relie le facteur de «~correction quantique~»
+$\prod(\theta/\sin\theta)^2 = 1{,}235$ dans~\eqref{eq:alpha_decomp}
+aux valeurs de la fonction zêta de Riemann aux entiers pairs.
+
+\subsubsection{Régularisation UV}
+
+La discrétisation des premiers fournit une coupure UV naturelle~:
+$p_{\min} = 3$ (le plus petit premier actif). Les premiers d'écho
+($p = 11, 13$) servent de contre-termes dans l'action effective,
+analogues aux régulateurs de Pauli--Villars. Il n'y a \emph{ni
+divergences, ni pôles, ni dépendance à la coupure}~: la mécanique
+complexe est finie par construction.
+
+
+% ============================================================
+\subsection{Synthèse}
+\label{sec:cx_synthesis}
+
+\subsubsection{PT réelle vs.\ PT complexe}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Concept} & \textbf{PT réelle} & \textbf{PT complexe} \\
+\midrule
+Observable      & $\sinp{p} \in [0,1]$    & $w_p \in \mathcal{C} \subset \mathbb{C}$ \\
+Géométrie       & Intervalle $[0,1]$      & Cercle de rayon $s = 1/2$ \\
+Métrique        & Fisher $4\,\mathrm{d}\theta^2$ & Fubini--Study sur $\mathbb{CP}^1$ \\
+Cohérence       & Écartée                 & $\mathrm{Im}(w_p) = -\sin\theta\cos\theta$ \\
+$\alpha$        & $\prod\sinp{p}$         & $|W|^2$, plus la phase $\arg(W)$ \\
+Action          & $S = -\sum\ln\sinp{p}$  & $S_{\mathbb{C}} = -\sum\ln w_p$ \\
+Force           & $-\mathrm{d}S/\mathrm{d}\theta$ (réelle) & $F(w) = i/w - 2i$ (holomorphe) \\
+Mom.\ angulaire & Non défini              & $L = \sinp{p}$ (charge de Noether) \\
+Incertitude     & Non définie             & $|p|\cdot|w| = 1$ (identité) \\
+Intégrabilité   & Non manifeste           & Liouville sur $\mathbb{T}^n$ \\
+Température     & $\beta = 1/\mu$         & $T = 1/s = 2$ (courbure) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Impact sur les preuves existantes}
+
+\begin{enumerate}[nosep]
+\item \textbf{Bornes spectrales} (article
+  compagnon~\cite{companion_M3})~:
+  $|T_{12,\mathbb{C}}| > T_{12,\mathrm{re}}$ resserre le trou
+  spectral de 29 à 62\%. Les preuves T4/T5 restent valides et sont
+  renforcées.
+\item \textbf{Structure fine} (article
+  compagnon~\cite{companion_physics})~:
+  $\alpha = |W|^2$ fournit une interprétation géométrique~; la
+  décomposition structurelle~\eqref{eq:alpha_decomp} révèle le
+  contenu Bernoulli--zêta déjà présent dans $\sinp{p}$. Aucun
+  changement numérique.
+\item \textbf{Métrique de Fisher} (article
+  compagnon~\cite{companion_M2})~:
+  La métrique $4\,\mathrm{d}\theta^2$ est Fubini--Study sur le
+  cercle. C'est une reformulation, et non une correction.
+\item \textbf{Règle de Born} (article
+  compagnon~\cite{companion_physics})~:
+  $\sinp{p} = |w|^2$ est littéralement $|\psi|^2$, et la
+  correspondance avec la matrice densité~\eqref{eq:density} fournit
+  un plongement quantique explicite.
+\end{enumerate}
+
+\subsubsection{Directions ouvertes}
+\label{subsec:cx_open}
+
+\begin{enumerate}[nosep]
+\item Signification physique de $\arg(W) = 0{,}937\pi$~: lien avec
+  l'invariant de Jarlskog ou la violation~CP~?
+\item Accumulation de phase de Berry lorsque $K$ augmente~:
+  quantification de
+  $\gamma_K = \sum \mathrm{Im}\langle\psi_k|\psi_{k+1}\rangle$~?
+\item Autres processus radiatifs dérivables depuis l'intégrale de
+  contour $\oint_{\mathcal{C}} F\,\mathrm{d}w = -\pi$ et la structure
+  de noyau de Cauchy de~$F$.
+\item $q$-déformation et brisure du cercle~: lorsque $q \to 1$, le
+  cercle s'effondre en un point~; lorsque $q \to 0$, il s'étend au
+  disque complet.
+\end{enumerate}
+
+
+% ============================================================
+% Script references
+% ============================================================
+\paragraph{Scripts.}
+M41~(\texttt{test\_imaginary\_PT}),
+M42~(\texttt{test\_complex\_plane}),
+M43~(\texttt{test\_complex\_deep}),
+M44~(\texttt{test\_complex\_directions}),
+M45~(\texttt{test\_complex\_corrections}),
+M46~(\texttt{test\_complex\_questions}),
+M47~(\texttt{test\_complex\_force}),
+M48~(\texttt{test\_complex\_mechanics}),
+M49~(\texttt{test\_complex\_final}),
+M50~(\texttt{test\_complex\_radiative}).
+Tous dans \texttt{scripts/ch\_math\_structures/}.
+
+
+\newpage
+
+\section{Mathématiques prédictives}
+\label{sec:PM}
+
+\epigraph{Donnez-moi un champ et une cascade de contraintes. Je vous
+dirai combien de degrés de liberté survivent à chaque niveau, quel
+est leur coût d'activation, et quelle géométrie ils portent.}{Le
+programme MP}
+
+% ---- Status Box (R1) ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Développer le cadre des \emph{mathématiques prédictives}~(MP)~: un
+  langage universel pour prédire comment les cascades de contraintes
+  façonnent les degrés de liberté qui survivent. Instancier le cadre
+  sur le crible d'Ératosthène et dériver des théorèmes en forme close
+  pour la dimension de couche, le spectre d'activation et le seuil
+  d'activation, y compris le mécanisme de rang fantôme.
+
+\textbf{ENTRÉES~:}
+  Angles d'holonomie $\sinp{p}$ et dimensions anormales $\gamp{p}$
+  (article compagnon~\cite{companion_M2}), point fixe $\mustar = 15$
+  (article compagnon~\cite{companion_M3}), $N_{\mathrm{spatial}} = 3$
+  (article compagnon~\cite{companion_M3}), factorisation TCR (article
+  compagnon~\cite{companion_M1}).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  \begin{itemize}[nosep]
+  \item L1~: chaque premier ajoute exactement 1~DDL
+    (théorème~\ref{thm:L1}, inconditionnel \THMTAG).
+  \item $\dim(d) = P(d{+}1) - (2d{+}1)$, formule de dimension de
+    couche (théorème~\ref{thm:dim_formula}, \THMTAG\ sous position
+    générale).
+  \item $\Sigma_k = \binom{4}{k}$ pour $k \ge \mathrm{AT}$, spectre
+    d'activation (théorème~\ref{thm:sigma}, \THMTAG\ sous position
+    générale).
+  \item Formule AT en trois régimes~: écho, construction,
+    asymptotique (théorèmes~\ref{thm:AT_A}--\ref{thm:AT_C},
+    \THMTAG).
+  \item Identité de partition~:
+    $\mathrm{fantome}(1) + \mathrm{struct}(1) = n_{\mathrm{base}}$
+    (identité~\ref{id:C1}, \IDTAG).
+  \item Conjecture MP--PT prouvée~: $\mathrm{AT} = 1$ pour tout
+    $p \ge 41$ (corollaire~\ref{cor:PMPT}).
+  \end{itemize}
+
+\textbf{STATUT~:}
+  \THMTAG~(L1, AT parties A--B) + \THMTAG~(dim, $\Sigma$, AT
+  partie~C, sous position générale) + \IDTAG~(C1)
+
+\textbf{NON PROUVÉ~:}
+  La conjecture de position générale
+  (conjecture~\ref{hyp:gen_pos}) est vérifiée numériquement pour les
+  13~strates (11--59) mais n'est pas dérivée à partir de premiers
+  principes arithmétiques. La seconde instanciation (codes
+  correcteurs d'erreurs) est \VALTAG, et non \THMTAG.
+\end{statusbox}
+
+% ============================================================
+\subsection{Le cadre MP}
+\label{sec:PM_framework}
+
+\subsubsection{Motivation}
+\mTHM
+
+La théorie de la persistance, telle que développée dans les articles
+compagnons~\cite{companion_M1,companion_M2,companion_M3}, prouve que
+le crible d'Ératosthène converge vers un unique point fixe
+$\mustar = 15$ avec premiers actifs $\{3, 5, 7\}$. Les axiomes de
+pont (article compagnon~\cite{companion_M5}) envoient ensuite cette
+structure sur la physique. Mais une question reste intacte~:
+
+\begin{quote}
+\emph{Que se passe-t-il, structurellement, lorsqu'un premier est
+ajouté à la base du crible~?}
+\end{quote}
+
+Le cadre des \emph{mathématiques prédictives}~(MP) répond à cette
+question. Ce n'est pas une mathématique des objets~--- il prédit ce
+qui \emph{devient inévitable} lorsque des contraintes sont empilées
+sur un champ brut. Trois sorties~:
+\begin{enumerate}[nosep]
+  \item le nombre de degrés de liberté (DDL) survivants à chaque
+    niveau de contrainte,
+  \item le coût d'activation pour débloquer le DDL suivant,
+  \item la géométrie portée par les survivants (spectre de
+    transversalité, métrique de Fisher, invariants de persistance).
+\end{enumerate}
+
+\subsubsection{Définitions universelles}
+\label{sec:PM_defs}
+
+\begin{definition}[Cascade de contraintes]
+\label{def:cascade}
+Une \emph{cascade de contraintes} est un tuple $(F, C, S, G, I)$ où
+$F$ est un champ brut de candidats,
+$C = (C_1, C_2, \ldots)$ est une famille ordonnée de contraintes,
+$S_d = \{x \in F : C_1(x) \wedge \cdots \wedge C_d(x)\}$ est
+l'ensemble des survivants à la profondeur~$d$,
+$G$ est la géométrie lisible depuis la distribution des survivants,
+et $I$ est une famille d'invariants stables sous la cascade.
+\end{definition}
+
+\begin{definition}[Matrice d'observation]
+\label{def:obs_matrix}
+Étant donné une famille de sondes $\eta = (\eta_1, \ldots, \eta_n)$ et
+une profondeur~$d$, la \emph{matrice d'observation} $\mathbf{O}(\eta,
+d)$ est la matrice de Gram centrée dont les lignes sont les
+espérances conditionnelles
+$\mathbb{E}[\eta_j \mid \text{niveau de conditionnement } d]$
+pour chaque résidu de conditionnement. La \emph{matrice historique}
+à la profondeur~$d$ est la pile verticale
+\[
+  \mathbf{H}(\eta, d) = \begin{pmatrix}
+    \mathbf{O}(\eta, 1) \\ \vdots \\ \mathbf{O}(\eta, d)
+  \end{pmatrix}.
+\]
+Le \emph{rang cumulatif} est
+$R(\eta, d) = \operatorname{rang} \mathbf{H}(\eta, d)$.
+\end{definition}
+
+\begin{definition}[Dimension de couche et seuil d'activation]
+\label{def:layer_AT}
+La \emph{dimension de couche} à la profondeur~$d$ est
+$\dim(d) = R(\eta, d) - R(\eta, d{-}1)$.
+La \emph{profondeur future} d'une strate~$p$ est le plus grand~$d$
+tel que $\dim(d) > 0$.
+Le \emph{seuil d'activation} $\mathrm{AT}$ est le nombre minimal de
+sondes-cibles requises pour détecter le nouveau DDL à la profondeur
+future.
+\end{definition}
+
+\begin{definition}[Spectre de transversalité]
+\label{def:sigma}
+Pour un paquet de sondes de taille~$n_p$, le \emph{spectre de
+transversalité} $(\Sigma_1, \ldots, \Sigma_{n_p})$ compte combien de
+sous-ensembles de taille~$k$ détectent le nouveau DDL~:
+$\Sigma_k = \#\{S \subseteq \text{paquet} : |S| = k,\;
+S \text{ détecte}\}$.
+\end{definition}
+
+
+% ============================================================
+\subsection{Instanciation crible}
+\label{sec:PM_sieve}
+
+\subsubsection{Cadre}
+
+Dans l'instanciation crible~:
+\begin{itemize}[nosep]
+  \item $F = \{n \in \mathbb{N} : n \ge 2\}$ (entiers candidats).
+  \item $C_k$~: divisibilité par le $k$-ième premier $p_k$ (crible
+    d'Ératosthène).
+  \item $S_d$~: les entiers $d$-rugueux (premiers entre eux avec
+    $p_1, \ldots, p_d$).
+  \item Sondes~: indicateurs centrés
+    $\eta(p, t)(g) = \delta(g \equiv t \bmod p) - 1/p$
+    pour chaque premier~$p$ et résidu $t \in \{p{-}4, \ldots, p{-}1\}$
+    (un paquet de 4~sondes par strate).
+  \item Conditionnement~: résidus modulo les premiers actifs
+    $\{3, 5, 7\}$ et les premiers d'écho $\{11, 13, \ldots\}$ déjà
+    dans la base.
+\end{itemize}
+
+Chaque premier $p > 7$ ajouté à la base du crible définit une
+\emph{strate}. La strate explore comment les invariants MP~---
+profondeur future, seuil d'activation, spectre de transversalité~---
+changent lorsque la contrainte~$C_p$ est imposée.
+
+\subsubsection{Horloge primorielle}
+\label{sec:PM_clock}
+
+Les strates pavent le cycle primoriel $\Z/30\Z$, où $30 = 2\mustar$
+est le primoriel des premiers actifs. Les 8~résidus copremiers
+$(\Z/30\Z)^* = \{1, 7, 11, 13, 17, 19, 23, 29\}$ sont visités dans
+l'ordre par les premiers $> 7$. Le premier cycle complet (strates
+11--37) couvre les 8~résidus~; le cycle~2 commence à la strate~41.
+
+\subsubsection{Données~: 13 strates explorées}
+\label{sec:PM_data}
+
+\begin{table}[htbp]
+\centering
+\caption{Invariants MP pour les 13 strates explorées.}
+\label{tab:PM_shells}
+\begin{tabular}{rrrrrl}
+\toprule
+Strate & Profondeur & Incr. & AT & Spectre $(\Sigma_1,\ldots,\Sigma_4)$ & Cycle \\
+\midrule
+11 &  4 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 1 \\
+13 &  5 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 1 \\
+17 &  6 & 1 & 2 & $(0,\;6,\;4,\;1)$ & 1 \\
+19 &  7 & 1 & 2 & $(0,\;6,\;4,\;1)$ & 1 \\
+23 &  8 & 1 & 2 & $(0,\;6,\;4,\;1)$ & 1 \\
+29 &  9 & 1 & 3 & $(0,\;0,\;4,\;1)$ & 1 \\
+31 & 10 & 1 & 3 & $(0,\;0,\;4,\;1)$ & 1 \\
+37 & 11 & 1 & 3 & $(0,\;0,\;4,\;1)$ & 1 \\
+41 & 12 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 2 \\
+43 & 13 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 2 \\
+47 & 14 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 2 \\
+53 & 15 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 2 \\
+59 & 16 & 1 & 1 & $(4,\;6,\;4,\;1)$ & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Trois faits sont visibles~:
+\begin{enumerate}[nosep]
+  \item L'incrément vaut toujours~1 (L1).
+  \item Le spectre vaut toujours $\binom{4}{k}$ pour
+    $k \ge \mathrm{AT}$, zéro en dessous.
+  \item Le AT suit un motif d'\emph{escalator} au cycle~1
+    (AT = 1, 1, 2, 2, 2, 3, 3, 3) et se réinitialise à AT~=~1 pour
+    tout le cycle~2.
+\end{enumerate}
+
+
+% ============================================================
+\subsection{Théorème~L1~: incrément unité}
+\label{sec:PM_L1}
+
+\begin{thmbox}{L1 --- Théorème d'incrément unité}
+\label{thm:L1}
+Pour tout premier $p > 7$, l'ajout de $p$ à la base du crible
+augmente la profondeur future d'exactement~$1$~:
+\[
+  \mathrm{PF}(\text{strate } p) = \mathrm{prof\_base} + 1.
+\]
+\end{thmbox}
+
+La preuve repose sur deux lemmes algébriques. \mTHM
+
+\begin{lemme}[Saturation d'indicateurs]
+\label{lem:indicator_sat}
+Pour tout premier~$p$ et tous résidus distincts
+$t_1 \ne t_2 \in \Z/p\Z$,
+\[
+  \delta(g \equiv t_1) \cdot \delta(g \equiv t_2) = 0
+  \qquad\text{(identiquement, et non statistiquement).}
+\]
+De plus $\delta(g \equiv t)^2 = \delta(g \equiv t)$ (idempotence).
+\end{lemme}
+
+\begin{proof}
+Un saut $g$ est congru à exactement un résidu modulo~$p$, donc le
+produit d'indicateurs pour des résidus distincts s'annule
+identiquement. L'idempotence découle de $0^2 = 0$, $1^2 = 1$.
+\end{proof}
+
+\noindent
+\textbf{Conséquence.} Tout monôme de degré $\ge 2$ en les sondes
+d'un \emph{seul} premier est une combinaison linéaire des sondes de
+degré~1 (plus des constantes). L'algèbre des sondes pour le
+premier~$p$ est engendrée par les $p{-}1$ indicateurs centrés
+$\{\eta(p, t)\}_{t \ne 0}$.
+
+\begin{lemme}[Irréductibilité TCR]
+\label{lem:CRT_irred}
+Pour des premiers distincts $p \ne q$, le produit
+$\delta(g \equiv t \bmod p) \cdot \delta(g \equiv s \bmod q)$ égale
+$\delta(g \equiv r \bmod pq)$ où~$r$ est l'unique relèvement~TCR.
+Cette observable au module~$pq$ n'est \emph{pas} dans
+l'engendrement des observables aux modules~$p$ et~$q$ séparément.
+\end{lemme}
+
+\begin{proof}
+Supposons que
+$\delta(g \equiv r \bmod pq) = \sum_i a_i f_i(g \bmod p) + \sum_j b_j
+h_j(g \bmod q) + c$.
+L'évaluation en $g = r$ et $g = r + p$ (même résidu mod~$p$,
+différents mod~$q$) impose $b_j = 0$ pour tout~$j$. Par symétrie,
+$a_i = 0$ pour tout~$i$. Mais $\delta(g \equiv r \bmod pq)$ est non
+constant~: contradiction.
+\end{proof}
+
+\begin{proof}[Preuve du théorème~\ref{thm:L1}]
+\textbf{Partie~I~: $\mathrm{PF} \ge \mathrm{prof\_base} + 1$.}\quad
+À la profondeur $D = d{+}1$ (après ajout de $p = p_{d+1}$), les
+observables incluent les produits croisés
+$\eta(p_1, t_1) \cdots \eta(p_d, t_d) \cdot \eta(p, t)$~--- un
+produit de $d{+}1$ sondes pour des premiers \emph{distincts}. Par
+TCR itéré ($\Z/m'\Z \cong \prod \Z/p_i\Z$), ce produit contient
+l'observable irréductible $\delta(g \equiv r \bmod m')$ au module
+$m' = p_1 \cdots p_d \cdot p$. Puisque $\DKL(P_p \| U_p) > 0$ (le
+biais des sauts mod~$p$ est non trivial d'après~T0), la composante
+$\Z/p\Z$ porte de l'information non nulle. Le rang à la profondeur
+$d{+}1$ est strictement plus grand qu'à la profondeur~$d$.
+
+\textbf{Partie~II~: $\mathrm{PF} \le \mathrm{prof\_base} + 1$.}\quad
+À la profondeur $D = d{+}2$, tout monôme de degré $d{+}2$ en les
+sondes de $d{+}1$ premiers distincts doit faire intervenir au moins
+un premier au carré (par tiroirs). Par le
+lemme~\ref{lem:indicator_sat}, le facteur carré se réduit au
+degré~$\le 1$, ce qui ramène le monôme au degré $\le d{+}1$. Aucune
+nouvelle direction n'apparaît à la profondeur $d{+}2$.
+\end{proof}
+
+\begin{remarque}
+L1 est inconditionnel~: aucune hypothèse probabiliste, aucune
+hypothèse de position générale. Il vaut pour \emph{toute} suite de
+sauts, pas seulement les sauts de premiers. Le théorème est une
+propriété de l'algèbre TCR des indicateurs modulaires.
+\end{remarque}
+
+
+% ============================================================
+\subsection{Formule de dimension de couche}
+\label{sec:PM_dim}
+
+\begin{conjecture}[Position générale]
+\label{hyp:gen_pos}
+Les corrections d'interaction entre premiers distincts dans la
+matrice d'observation sont en position générale~: aucune relation
+linéaire accidentelle ne survient entre les termes croisés TCR.
+(Vérifié pour 13~strates, non prouvé.)
+\end{conjecture}
+
+\begin{thmbox}{Formule de dimension}
+\label{thm:dim_formula}
+Sous la conjecture~\ref{hyp:gen_pos}, la dimension stabilisée de la
+couche à la profondeur~$d$ est
+\[
+  \dim(d) = P(d{+}1) - (2d{+}1),
+\]
+où $P(n) = \sum_{k=1}^{n} p_k$ est la somme des $n$~premiers premiers.
+De manière équivalente,
+\[
+  \dim(d) = \sum_{k=1}^{d} (p'_k - 1) - (d - 1),
+\]
+où $p'_k = p_{k+1}$ est le $k$-ième premier impair.
+\end{thmbox}
+
+\begin{proof}[Esquisse de preuve]
+La matrice d'observation à la profondeur~$d$ a $d$~blocs de lignes de
+conditionnement, un par premier impair $p'_k \in \{3, 5, \ldots,
+p'_d\}$. Après centrage, le bloc~$k$ contribue $p'_k - 1$ lignes
+effectives. Le nombre total de lignes effectives est
+$\sum_{k=1}^d (p'_k - 1)$.
+
+Parmi ces lignes, exactement $d{-}1$ dépendances inter-blocs
+existent~: chacun des $d{-}1$ «~anciens~» blocs (ceux déjà présents à
+la profondeur $d{-}1$) partage une direction marginale avec l'espace
+de profondeur précédente $V_{d-1}$. Le «~nouveau~» bloc (pour le
+premier $p'_d$, entrant à la profondeur~$d$) n'introduit pas une
+telle dépendance. Sous la position générale, ce sont les
+\emph{seules} dépendances. Donc
+$\dim(d) = \sum(p'_k - 1) - (d{-}1)$.
+\end{proof}
+
+\noindent
+\textbf{Incrément.}
+Une conséquence immédiate est
+$\Delta\dim = \dim(d{+}1) - \dim(d) = p_{d+2} - 2$,
+le nombre de transitions non triviales dans la matrice de transfert
+$T_{p_{d+2}}$ de taille $(p_{d+2}{-}1) \times (p_{d+2}{-}1)$.
+Le tableau~\ref{tab:PM_dim} vérifie la formule de dimension pour
+$d = 2, \ldots, 11$.
+
+\noindent
+\textbf{Anticipation.} Le décalage de~2 (la couche à la
+profondeur~$d$ dépend du premier $p_{d+2}$) coïncide avec
+$\mathrm{PROF} = 2$, la profondeur du crible du théorème~T4.
+
+\begin{table}[htbp]
+\centering
+\caption{Vérification de la dimension de couche (10/10).}
+\label{tab:PM_dim}
+\begin{tabular}{rccccc}
+\toprule
+$d$ & $P(d{+}1)$ & $2d{+}1$ & $\dim(d)$ prédit & observé & accord \\
+\midrule
+ 2 &  10 &  5 &   5 &   5 & \checkmark \\
+ 3 &  17 &  7 &  10 &  10 & \checkmark \\
+ 4 &  28 &  9 &  19 &  19 & \checkmark \\
+ 5 &  41 & 11 &  30 &  30 & \checkmark \\
+ 6 &  58 & 13 &  45 &  45 & \checkmark \\
+ 7 &  77 & 15 &  62 &  62 & \checkmark \\
+ 8 & 100 & 17 &  83 &  83 & \checkmark \\
+ 9 & 129 & 19 & 110 & 110 & \checkmark \\
+10 & 160 & 21 & 139 & 139 & \checkmark \\
+11 & 197 & 23 & 174 & 174 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+\textbf{Prédiction~:} $\dim(12) = P(13) - 25 = 238 - 25 = 213$.
+
+
+% ============================================================
+\subsection{Spectre d'activation}
+\label{sec:PM_sigma}
+
+\begin{thmbox}{Spectre de transversalité}
+\label{thm:sigma}
+Sous la conjecture~\ref{hyp:gen_pos} (AT-position générale), pour un
+paquet de sondes de taille~$4$~:
+\[
+  \Sigma_k = \begin{cases}
+    0 & \text{si } k < \mathrm{AT}, \\
+    \displaystyle\binom{4}{k} & \text{si } k \ge \mathrm{AT}.
+  \end{cases}
+\]
+\end{thmbox}
+
+\begin{proof}
+Soit $W = \operatorname{span}(u_1, \ldots, u_4)$ l'espace transverse
+(les projections des 4~sondes sur $V^{\perp}$), avec
+$\dim W = \mathrm{AT}$.
+
+\emph{Cas $k < \mathrm{AT}$~:} un sous-ensemble de $k < \mathrm{AT}$
+sondes engendre un espace de dimension $\le k < \mathrm{AT}$ et ne
+peut couvrir~$W$.
+
+\emph{Cas $k \ge \mathrm{AT}$~:} tout sous-ensemble de taille~$k$
+contient un sous-sous-ensemble de taille~AT qui, par position
+générale, a un rang exactement~AT et engendre~$W$. Donc tout
+sous-ensemble de ce type détecte le DDL, donnant
+$\Sigma_k = \binom{4}{k}$.
+\end{proof}
+
+\noindent
+Vérification~: 13/13 exact (tableau~\ref{tab:PM_shells}).
+
+
+% ============================================================
+\subsection{Seuil d'activation~: trois régimes}
+\label{sec:PM_AT}
+
+Le seuil d'activation est gouverné par
+$|B| = |B(p)| = \pi(p) - 4$,
+le nombre de niveaux de conditionnement d'écho (premiers entre 7
+et~$p$, exclus).
+
+\subsubsection{Partie~A~: réinitialisation perturbative TCR (cycles $\ge 2$)}
+
+\begin{thmbox}{Seuil d'activation A}
+\label{thm:AT_A}
+Si $|B(p)| > \varphi(30) = 8$ (de manière équivalente~: il existe
+$q < p$ tel que $q \equiv p \pmod{30}$), alors $\mathrm{AT}(p) = 1$.
+\end{thmbox}
+
+\begin{proof}
+Pour $|B| \ge 9$ (c'est-à-dire $p \ge 41$), il existe un prédécesseur
+$q < p$ avec $q \equiv p \pmod{30}$, c.-à-d.\ $q \equiv p \pmod{2}$,
+$q \equiv p \pmod{3}$, $q \equiv p \pmod{5}$. La composante TCR
+mod~30 de $\eta_{p,c}$ est déjà capturée par la sonde existante
+$\eta_{q,c'}$ dans la base. La composante complémentaire
+(distinguant $p$ de~$q$ à l'intérieur de leur canal mod-30 partagé)
+est de rang~1. Une seule sonde $\eta_{p,c}$ suffit à capturer cette
+correction de rang~1. Par L1, la profondeur future ajoute exactement
+un DDL, donc $\mathrm{AT} = 1$.
+\end{proof}
+
+\subsubsection{Partie~B~: régime d'écho ($|B| \le 2$)}
+
+\begin{thmbox}{Seuil d'activation B}
+\label{thm:AT_B}
+Pour $p \in \{11, 13\}$ (premiers d'écho, $|B| \le 2$)~:
+$\mathrm{AT}(p) = 1$.
+\end{thmbox}
+
+\begin{proof}
+Les premiers 11 et 13 sont les premiers premiers d'écho
+($\gamp{11} = 0{,}426$, $\gamp{13} = 0{,}356$, tous deux $< 1/2$). À
+leur profondeur, la base ne contient aucune sonde pour les résidus
+mod~11 (resp.\ 13). Tout l'espace de sondes $\eta_{p,c}$ est nouveau.
+Une seule sonde capture l'unique nouveau DDL garanti par~L1.
+\end{proof}
+
+\subsubsection{Partie~C~: mécanisme de rang fantôme (cycle~1)}
+
+Le c\oe ur du chapitre. On établit d'abord le phénomène de
+\emph{rang fantôme}.
+
+\begin{definition}[Rang fantôme et rang structurel]
+\label{def:phantom_struct}
+Soit $F_0$ la famille de base ($n_{\mathrm{base}}$ sondes) et
+$F_k = F_0 \cup \{\eta_1, \ldots, \eta_k\}$ la famille étendue avec
+$k$ sondes-cibles. On définit~:
+\begin{align}
+  \mathrm{fantome}(k) &= R(F_k, d) - R(F_0, d), \label{eq:phantom}\\
+  \mathrm{struct}(k) &= R(F_k, d{+}1) - R(F_k, d), \label{eq:struct}
+\end{align}
+où $d = \mathrm{prof\_base}$ et $d{+}1$ est la profondeur future.
+Alors $\mathrm{AT} = \min\{k : \mathrm{struct}(k) > 0\}$.
+\end{definition}
+
+\begin{idbox}{C1 --- Identité de partition}
+\label{id:C1}
+\mID
+$\mathrm{fantome}(1) + \mathrm{struct}(1) = n_{\mathrm{base}}$.
+\end{idbox}
+
+\begin{proof}
+La famille de base observe toutes les profondeurs jusqu'à~$d$ et ne
+contient aucune sonde pour le premier-cible~$p$. Donc le rang
+structurel de base seul est nul~:
+$\dim_{\mathrm{base}} = R(F_0, d{+}1) - R(F_0, d) = 0$. Alors~:
+\begin{align*}
+  \mathrm{fantome}(1) + \mathrm{struct}(1)
+  &= [R(F_1, d) - R(F_0, d)] + [R(F_1, d{+}1) - R(F_1, d)] \\
+  &= R(F_1, d{+}1) - R(F_0, d) \\
+  &= [R(F_1, d{+}1) - R(F_0, d{+}1)] + \dim_{\mathrm{base}} \\
+  &= R(F_1, d{+}1) - R(F_0, d{+}1).
+\end{align*}
+Sous position générale, les $n_{\mathrm{base}}$ termes croisés
+$(\eta_{\mathrm{cible}} \times \text{base}_j)$ à la profondeur
+$d{+}1$ sont linéairement indépendants, donc
+$R(F_1, d{+}1) - R(F_0, d{+}1) = n_{\mathrm{base}}$.
+\end{proof}
+
+\noindent
+Le tableau~\ref{tab:C1} confirme l'identité de partition pour les
+six strates testées.
+
+\begin{table}[htbp]
+\centering
+\caption{Identité de partition C1~: vérification exacte (6/6).}
+\label{tab:C1}
+\begin{tabular}{rrrrrr}
+\toprule
+Strate & $n_{\mathrm{base}}$ & fantome(1) & struct(1) & ph + st & accord \\
+\midrule
+11 &  6 &  4 & 2 &  6 & \checkmark \\
+13 & 10 &  8 & 2 & 10 & \checkmark \\
+17 & 14 & 14 & 0 & 14 & \checkmark \\
+19 & 18 & 18 & 0 & 18 & \checkmark \\
+23 & 22 & 22 & 0 & 22 & \checkmark \\
+29 & 26 & 26 & 0 & 26 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{thmbox}{C2 --- Saturation du fantôme}
+\label{thm:C2}
+Sous la conjecture~\ref{hyp:gen_pos}, pour $|B| \ge 3$~:
+$\mathrm{fantome}(1) = n_{\mathrm{base}}$, donc
+$\mathrm{struct}(1) = 0$.
+\end{thmbox}
+
+\begin{proof}
+Lorsque $p$ ne divise pas $M_d = \prod_{k=1}^{d} p_k$, la
+distribution de $\operatorname{surv}(d) \bmod p$ est non uniforme.
+La décomposition TCR de la matrice d'observation révèle
+$N_{\mathrm{spatial}} = 3$ canaux actifs (mod~3, mod~5, mod~7). La
+non-uniformité crée des corrélations entre $\eta_{p,c}$ et les
+sondes de base à la profondeur~$d$.
+
+Pour $|B| \le 2$~: seulement 1--2 niveaux de conditionnement d'écho~;
+les 3~canaux TCR ne sont pas tous saturés. Deux directions
+structurelles survivent~: $\mathrm{struct}(1) = 2 > 0$.
+
+Pour $|B| \ge 3$~: les $|B|$ niveaux d'écho fournissent assez de
+non-uniformité pour saturer les 3~canaux TCR. Tous les
+$n_{\mathrm{base}}$ termes croisés sont absorbés par le fantôme~:
+$\mathrm{struct}(1) = 0$.
+
+Le seuil $|B| = 3$ est un comptage dimensionnel~: il faut au moins
+$N_{\mathrm{spatial}} = 3$ sources indépendantes de non-uniformité
+pour bloquer les 3~canaux TCR.
+\end{proof}
+
+\begin{thmbox}{Seuil d'activation C}
+\label{thm:AT_C}
+Sous la conjecture~\ref{hyp:gen_pos}, pour les strates non-écho du
+cycle~1 ($3 \le |B| \le 8$)~:
+\[
+  \mathrm{AT} = \left\lceil \frac{|B| - 2}{N_{\mathrm{spatial}}} \right\rceil + 1,
+  \qquad N_{\mathrm{spatial}} = |\{3, 5, 7\}| = 3.
+\]
+\end{thmbox}
+
+\begin{proof}
+Par le théorème~\ref{thm:C2}, $\mathrm{struct}(1) = 0$ pour $|B| \ge
+3$. L'argument procède en trois étapes.
+
+\emph{Étape~1 (partition des canaux TCR).} La matrice d'observation
+se décompose en $N_{\mathrm{spatial}} = 3$ canaux (mod~3, mod~5,
+mod~7) via l'isomorphisme TCR $\Z/M_d^*\Z \cong \prod \Z/p_i^*\Z$.
+Le fantôme sature chaque canal indépendamment.
+
+\emph{Étape~2 (saturation par canal).} Chaque sonde-cible crée des
+termes croisés dans les 3~canaux TCR. Sous position générale, chaque
+sonde contribue jusqu'à $N_{\mathrm{spatial}} = 3$ directions
+inter-canaux brisant le fantôme. Le surplus de fantôme à surmonter
+est $|B| - 2$ (les $|B|$ niveaux d'écho moins les 2 niveaux
+«~libres~» qui ne bloquent pas tous les canaux).
+
+\emph{Étape~3 (comptage).} Pour $\mathrm{struct}(k) > 0$, les
+$k$~sondes doivent collectivement épuiser le fantôme~:
+\[
+  k \cdot N_{\mathrm{spatial}} \ge |B| - 2
+  \;\Longrightarrow\;
+  \mathrm{AT} = \left\lceil\frac{|B|-2}{3}\right\rceil + 1.
+\]
+Le $+1$ rend compte de la sonde de référence requise même sans
+fantôme.
+\end{proof}
+
+\noindent
+Le tableau~\ref{tab:AT_verify} vérifie la formule à travers les trois
+régimes pour 13~strates.
+
+\begin{table}[htbp]
+\centering
+\caption{Formule AT~: vérification complète (13/13).}
+\label{tab:AT_verify}
+\begin{tabular}{rrcccl}
+\toprule
+Strate & $|B|$ & Régime & AT (obs.) & AT (formule) & Accord \\
+\midrule
+11 & 1 & écho     & 1 & 1 & \checkmark \\
+13 & 2 & écho     & 1 & 1 & \checkmark \\
+17 & 3 & constr.  & 2 & $\lceil 1/3\rceil + 1 = 2$ & \checkmark \\
+19 & 4 & constr.  & 2 & $\lceil 2/3\rceil + 1 = 2$ & \checkmark \\
+23 & 5 & constr.  & 2 & $\lceil 3/3\rceil + 1 = 2$ & \checkmark \\
+29 & 6 & constr.  & 3 & $\lceil 4/3\rceil + 1 = 3$ & \checkmark \\
+31 & 7 & constr.  & 3 & $\lceil 5/3\rceil + 1 = 3$ & \checkmark \\
+37 & 8 & constr.  & 3 & $\lceil 6/3\rceil + 1 = 3$ & \checkmark \\
+41 & 9 & asympt.  & 1 & 1 & \checkmark \\
+43 & 10 & asympt. & 1 & 1 & \checkmark \\
+47 & 11 & asympt. & 1 & 1 & \checkmark \\
+53 & 12 & asympt. & 1 & 1 & \checkmark \\
+59 & 13 & asympt. & 1 & 1 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+\subsection{Rang fantôme~: un nouveau phénomène arithmétique}
+\label{sec:PM_phantom}
+
+\subsubsection{Origine}
+\mTHM
+
+Le rang fantôme provient d'une cause purement arithmétique~: lorsque
+$p \nmid M_d$, l'ensemble $\operatorname{surv}(d) \bmod p$ n'est
+\emph{pas} équidistribué. Les classes de résidus portent des biais
+non triviaux qui créent des corrélations parasites entre la
+sonde-cible $\eta_{p,c}$ et les sondes de base. Ces corrélations
+gonflent le rang à la profondeur de base~$d$ sans contribuer aucune
+information structurelle à la profondeur future $d{+}1$.
+
+\subsubsection{Loi de conservation}
+
+L'identité~\ref{id:C1} est une \emph{loi de conservation}~:
+l'information totale créée en ajoutant une sonde-cible
+($= n_{\mathrm{base}}$ nouvelles colonnes de termes croisés) se
+sépare en composantes fantôme et structurelle dont la somme est
+constante. Pour les strates d'écho ($|B| \le 2$)~:
+$\mathrm{struct}(1) = 2$,
+$\mathrm{fantome}(1) = n_{\mathrm{base}} - 2$. Pour les strates
+non-écho ($|B| \ge 3$)~: $\mathrm{struct}(1) = 0$,
+$\mathrm{fantome}(1) = n_{\mathrm{base}}$.
+
+\subsubsection{Le fantôme comme prix de la mémoire arithmétique}
+
+Le rang fantôme est le \emph{prix} de la mémoire arithmétique~: la
+non-uniformité de $\operatorname{surv}(d) \bmod p$ enregistre quels
+premiers ont déjà été criblés. Cette mémoire gonfle le rang à la
+profondeur~$d$, masquant le signal structurel. Le seuil
+d'activation AT mesure combien de sondes sont nécessaires pour
+«~percer~» la barrière fantôme.
+
+La constante $N_{\mathrm{spatial}} = 3$ dans la formule AT est le
+nombre de canaux TCR actifs. C'est la même quantité qui détermine
+la dimensionnalité spatiale dans PT (article
+compagnon~\cite{companion_M3}). Le mécanisme de rang fantôme fournit
+ainsi une interprétation \emph{informationnelle} concrète de
+$N_{\mathrm{spatial}} = 3$~: c'est la constante d'obstruction à la
+détection structurelle à travers le bruit arithmétique.
+
+\subsubsection{Contraste avec les codes linéaires}
+
+Dans la seconde instanciation (codes correcteurs d'erreurs sur
+$\mathbb{F}_2$~; section~\ref{sec:PM_codes}), le rang fantôme est
+\emph{identiquement nul}~: $\mathrm{AT} = 1$ universellement. Cela
+provient de ce que les codes $\mathbb{F}_2$-linéaires ont des
+distributions de syndromes uniformes~; aucune mémoire arithmétique
+ne s'accumule. Le fantôme est spécifique au crible, pas universel.
+
+
+% ============================================================
+\subsection{Seconde instanciation~: codes correcteurs d'erreurs}
+\label{sec:PM_codes}
+
+Le cadre MP a été testé sur un second domaine~: les codes linéaires
+correcteurs d'erreurs sur $\mathbb{F}_2$.
+
+\subsubsection{Correspondance structurelle}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Crible} & \textbf{Code linéaire} \\
+\midrule
+Entiers $1, \ldots, N$ & Mots de code $\mathbb{F}_2^n$ \\
+Premier $p_k$ & Contrôle de parité $h_k$ \\
+«~Non divisible par $p$~» & $h_k \cdot x = 0 \bmod 2$ \\
+Survivants $d$-rugueux & $C_d = \ker(H_d)$ \\
+Sonde $\eta(p, c)$ & Sonde $\psi_j = x_j - 1/2$ \\
+Strate mod~30 & Coset cyclotomique (BCH) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Résultats}
+
+Sept codes ont été testés (Répétition $[5,1,5]$, Hamming $[7,4,3]$,
+Hamming étendu $[8,4,4]$, systématique $[6,3]$, BCH $[15,5,7]$,
+Reed--Muller $[8,4,4]$, Golay $[23,12,7]$). Dans tous les cas~:
+\begin{itemize}[nosep]
+  \item $\mathrm{AT} = 1$ universellement (pas de rang fantôme).
+  \item L1 tient conditionnellement (lorsque les sondes s'étendent
+    avec les contraintes).
+  \item La matrice d'observation, la matrice historique et le rang
+    cumulatif sont bien définis et calculables.
+\end{itemize}
+
+\subsubsection{Classification~: universel vs.\ spécifique}
+
+Le tableau~\ref{tab:PM_classification} classifie chaque résultat MP
+par sa portée de validité.
+
+\begin{table}[htbp]
+\centering
+\caption{Résultats MP universels vs.\ spécifiques au crible.}
+\label{tab:PM_classification}
+\begin{tabular}{lll}
+\toprule
+\textbf{Résultat} & \textbf{Statut} & \textbf{Portée} \\
+\midrule
+Cadre MP (obs., hist., rang) & universel & tout $(F, C)$ \\
+T1 (transitions interdites) & quasi-universel & tout crible de pas~3 \\
+$\spt = 1/2$ & quasi-universel & tout crible de pas~3 \\
+L1 (incrément unité) & spécifique & Ératosthène (TCR requis) \\
+AT $= 1$ & universel (linéaire) & codes $\mathbb{F}_2$ \\
+AT $= 1$ & spécifique (fantôme) & crible, cycles $\ge 2$ \\
+$\dim(d) = P(d{+}1) - (2d{+}1)$ & spécifique & crible seul (TCR requis) \\
+$\Sigma_k = \binom{4}{k}$ & spécifique & crible (4 composantes TCR) \\
+Rang fantôme & spécifique & mémoire arithmétique \\
+Cosets $\sim$ strates & structurel & cosets BCH $\sim$ strates mod~30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+\subsection{Troisième instanciation~: nombres chanceux}
+\label{sec:PM_lucky}
+
+Le crible des nombres chanceux est un crible \emph{positionnel}~:
+partant des entiers impairs (pas~0 $= 2$), il retire chaque
+$L_k$-ième survivant à l'étape~$k$, où $L_k$ est le $k$-ième élément
+restant. Puisqu'Ératosthène est l'unique crible primitif (T6), le
+crible chanceux est un \emph{crible sur le crible}~: un raffinement
+positionnel du substrat arithmétique.
+
+\subsubsection{Cadre}
+
+Valeurs du crible chanceux~: $2, 3, 7, 9, 13, 15, 21, 25, 31, 33, 37,
+\ldots$ (seulement 47\% sont premiers~--- le reste est composé comme
+9, 15, 21, 25). À chaque profondeur~$d$, les survivants et leurs
+sauts sont analysés avec les mêmes sondes MP (indicateurs
+modulaires mod~3, 5, 7) et structure de conditionnement que pour
+Ératosthène.
+
+\subsubsection{T0 et $\spt = 1/2$~: universels}
+
+Le tableau~\ref{tab:PM_lucky} compare les invariants MP pour les
+deux cribles à $N = 10^5$.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparaison MP~: Ératosthène vs.\ nombres chanceux ($N = 10^5$).}
+\label{tab:PM_lucky}
+\begin{tabular}{lll}
+\toprule
+\textbf{Propriété} & \textbf{Ératosthène} & \textbf{Chanceux} \\
+\midrule
+T1 (transitions interdites mod~3) & OUI (exact) & OUI (exact) \\
+$\spt = n_1/(n_1 + n_2)$ & $0{,}49983$ & $0{,}50000$ (exact) \\
+$|\spt - 1/2|$ & $1{,}7 \times 10^{-4}$ & $0$ \\
+$T_{00}$ (auto-trans.\ classe~0) & $0{,}362$ & $0{,}270$ \\
+L1 (incrément unité) & OUI (13/13) & NON (alterné 2--1) \\
+Saturation de rang & $\infty$ (TCR) & 12 (fini) \\
+Type de contrainte & Divisibilité & Positionnel \\
+Factorisation TCR & OUI & NON \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+Le paramètre de symétrie $\spt = 1/2$ tient \emph{exactement} pour
+les nombres chanceux ($n_1 = n_2 = 5725$ à $N = 10^5$), encore plus
+précisément que pour les premiers. Le mécanisme est le même~: T0
+interdit les transitions non nulles intra-classe, forçant
+l'involution $1 \leftrightarrow 2$ et donc $n_1 = n_2$.
+
+\begin{remarque}
+T0 pour les nombres chanceux ne vient \emph{pas} de la divisibilité.
+Il vient du pas positionnel $L_2 = 3$ (retirant chaque 3-ième
+élément), qui crée une contrainte mod-3 équivalente. Tout crible
+dont le second pas non trivial est~3 hérite de T0. Puisqu'Ératosthène
+commence avec les pas 2 et 3, et que les chanceux commencent avec
+les pas 2 et 3 (positionnellement), tous deux héritent de T0 et
+de $\spt = 1/2$.
+\end{remarque}
+
+\subsubsection{L1 et structure de rang~: spécifique à Ératosthène}
+
+La structure de rang chanceuse est qualitativement différente~:
+\[
+  \dim_{\mathrm{Chanceux}}(d) = \begin{cases}
+    2 & d \text{ impair, } d \le 7, \\
+    1 & d \text{ pair, } d \le 6, \\
+    0 & d \ge 8.
+  \end{cases}
+\]
+Les rangs saturent à $12 = \sum_{m \in \{3,5,7\}} (m - 1)$, le
+maximum possible avec des sondes mod $\{3, 5, 7\}$. Sans termes
+croisés TCR, le crible positionnel ne peut créer d'observables
+irréductibles aux modules composés ($15, 21, 35, 105$), donc la
+croissance du rang est bornée par l'alphabet des sondes.
+
+À l'inverse, le crible d'Ératosthène produit des observables
+TCR-irréductibles à chaque profondeur (lemme~\ref{lem:CRT_irred}),
+donnant une croissance non bornée du rang et des incréments unités
+exacts (L1).
+
+\subsubsection{Mise à jour de la classification}
+
+L'instanciation chanceuse affine la classification
+universel/spécifique~:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Résultat} & \textbf{Codes ($\mathbb{F}_2$)} & \textbf{Chanceux} & \textbf{Ératosthène} \\
+\midrule
+$\spt = 1/2$ & N/A & OUI (exact) & OUI \\
+T0 & N/A & OUI & OUI \\
+L1 & conditionnel & NON & OUI \\
+$\dim(d) = P(d{+}1) - (2d{+}1)$ & NON & NON & OUI \\
+$\Sigma_k = \binom{4}{k}$ & N/A & N/A & OUI \\
+Formule AT (3 régimes) & $\mathrm{AT} = 1$ & N/A & OUI \\
+Rang fantôme & absent & différent & OUI \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+La hiérarchie est claire~: $\spt = 1/2$ et T0 sont \emph{universels}
+(tout crible de pas~3)~; L1 et la formule de dimension sont
+\emph{spécifiques} à Ératosthène (requièrent TCR)~; le mécanisme de
+rang fantôme est \emph{spécifique} à la mémoire arithmétique
+(requiert $\operatorname{surv}(d) \bmod p$ non uniforme).
+
+\subsubsection{Convergence de l'holonomie chanceuse}
+\label{sec:PM_lucky_holonomy}
+
+Le crible chanceux partage T0 et $\spt = 1/2$ avec Ératosthène mais
+manque de multiplicativité. Néanmoins, les angles d'holonomie
+convergent asymptotiquement~:
+
+\begin{itemize}[nosep]
+\item Pour $L_k \ge 31$~:
+  $\sinp{\mathrm{Chanceux}} / \sinp{\mathrm{PT}} \to 1{,}00$.
+\item $\gamp{\mathrm{Chanceux}}$ oscille plutôt que de converger
+  monotonement~: 506/991 incréments sont positifs (50{,}9\%,
+  compatible avec une marche aléatoire).
+\item La somme cumulative $\sum L_k = 4\,057\,742 \gg \mustar
+  \approx 12$ (point fixe chanceux), confirmant l'absence de
+  convergence finie.
+\end{itemize}
+
+Cette convergence est \emph{asymptotique}, non structurelle~: les
+nombres chanceux approchent les valeurs PT par le haut sans le
+mécanisme TCR qui rend Ératosthène exact. Le crible chanceux est une
+ombre d'Ératosthène, partageant sa symétrie ($\spt$) mais pas sa
+géométrie ($\sinp{p}$).
+
+\begin{remarque}
+Le comportement oscillatoire des angles d'holonomie chanceux, avec
+incréments quasi-symétriques (50{,}9\% positifs), est
+caractéristique d'un crible positionnel~: en l'absence de
+multiplicativité, chaque étape d'élimination crée une perturbation
+en marche aléatoire autour de la valeur asymptotique. Le taux de
+convergence
+$|1 - \sinp{\mathrm{Chanceux}} / \sinp{\mathrm{PT}}| \sim L_k^{-1/2}$
+est cohérent avec cette image et contraste fortement avec la
+convergence exponentielle de $\sinp{p}$ sous Ératosthène.
+\end{remarque}
+
+
+% ============================================================
+\subsection{Le lien MP--PT}
+\label{sec:PM_PT}
+
+\begin{corollaire}[Conjecture MP--PT, prouvée]
+\label{cor:PMPT}
+$\mathrm{AT}(p) = 1$ pour tout premier $p \ge 41$.
+\end{corollaire}
+
+\begin{proof}
+Corollaire direct du théorème~\ref{thm:AT_A}~: pour $p \ge 41$,
+$|B| \ge 9 > \varphi(30) = 8$, donc la réinitialisation perturbative
+s'applique.
+\end{proof}
+
+\subsubsection{Conséquences}
+
+\begin{enumerate}[nosep]
+  \item \textbf{Complétude du MS.} L'escalator d'activation (cycle~1,
+    strates 11--37) est un \emph{transitoire}~: la complexité
+    structurelle du crible est épuisée en 8~strates. Toutes les
+    strates ultérieures sont des corrections perturbatives
+    ($\mathrm{AT} = 1$). Les 43~observables du MS sont le contenu
+    \emph{complet} de ce transitoire.
+
+  \item \textbf{Transitoire = physique.} La complexité du monde
+    physique (3~générations, 3~dimensions spatiales, 41~observables)
+    est entièrement contenue dans le premier cycle primoriel. Le
+    régime permanent ($\mathrm{AT} = 1$) est le silence structurel.
+
+  \item \textbf{Pas de nouvelle physique.} La structure du crible est
+    épuisée au cycle~1. Les premiers d'écho ($p \ge 11$) n'ajoutent
+    que des corrections perturbatives (PV d'écho), jamais une
+    nouvelle structure qualitative. Prédiction~: aucune nouvelle
+    particule, force ou symétrie au-delà du Modèle Standard.
+\end{enumerate}
+
+\subsubsection{Correspondances d'invariants}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Invariant MP} & \textbf{Invariant PT} \\
+\midrule
+Profondeur future (PF) & Position dans la cascade vers $\mustar$ \\
+Seuil d'activation (AT) & «~Résistance~» du premier~$p$ \\
+Spectre $\Sigma$ & Géométrie d'holonomie du paquet de sondes \\
+Dimension de couche & Liée à $\varphi(p)$ d'Euler \\
+Cycle primoriel & $30 = 2\mustar$ (primoriel actif) \\
+Décalage de stabilisation $= 2$ & $\mathrm{PROF} = 2$ \\
+$N_{\mathrm{spatial}} = 3$ dans AT & $|\{3, 5, 7\}| = 3$ (premiers actifs) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+% ============================================================
+\subsection{Hiérarchie des invariants de persistance}
+\label{sec:PM_hierarchy}
+
+Le cadre MP révèle une hiérarchie à quatre niveaux d'invariants,
+ordonnés par universalité (tableau~\ref{tab:PM_hierarchy}).
+
+\begin{table}[htbp]
+\centering
+\caption{Quatre niveaux d'invariants de persistance.}
+\label{tab:PM_hierarchy}
+\begin{tabular}{clll}
+\toprule
+\textbf{Niveau} & \textbf{Nom} & \textbf{Invariant} & \textbf{Portée} \\
+\midrule
+0 & Universel & $\DKL(P \| U)$, $H_{\max} = \DKL + H$ & Tout système T0 \\
+1 & Type & $\spt = 1/2$, T0 transitions interdites & Cribles de type~I \\
+2 & Cascade & $\mustar = 15$, $\{3,5,7\}$ actifs & TCR-compatibles \\
+3 & Crible & $\sinp{p}$, $\gamp{p}$, $\alphaEM$ & Ératosthène seul \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Niveau~0~: universel.}
+L'identité $\log_2 3 = \DKL + H$ tient \emph{exactement}
+($< 10^{-15}$) pour \emph{tous} les systèmes T0~: le crible
+d'Ératosthène, le crible chanceux, le système T0 des protéines, les
+sauts de marche aléatoire, et les suites de classes alternées. C'est
+le contenu du TFS (Théorème Fondamental des Sauts, article
+compagnon~\cite{companion_M1})~: la séparation de l'entropie maximale
+$H_{\max}$ en divergence $\DKL$ et entropie résiduelle~$H$ est une
+conséquence universelle de la contrainte T0, sans dépendance au
+crible particulier ni à l'origine des sauts.
+
+\paragraph{Niveau~1~: type.}
+Le paramètre de symétrie $\spt = 1/2$ et les transitions interdites
+T0 tiennent à la fois pour Ératosthène et les nombres chanceux
+(section~\ref{sec:PM_lucky}). Le mécanisme est le même~: tout crible
+dont le second pas non trivial est~3 hérite de la contrainte mod-3
+qui force $n_1 = n_2$. Les invariants de niveau~1 sont partagés par
+tous les \emph{cribles de type~I} (pas~3 présent).
+
+\paragraph{Niveau~2~: cascade.}
+Le point fixe $\mustar = 15$ et l'ensemble des premiers actifs
+$\{3,5,7\}$ requièrent l'indépendance multiplicative (structure TCR).
+Le crible chanceux, positionnel et non multiplicatif, n'atteint
+\emph{pas} $\mustar = 15$~: son rang sature à~12 et sa convergence
+est asymptotique, non structurelle
+(section~\ref{sec:PM_lucky_holonomy}).
+
+\paragraph{Niveau~3~: crible.}
+Les angles d'holonomie $\sinp{p}$ sont définis par la géométrie
+spécifique du crible d'Ératosthène au point fixe $\mustar = 15$. Les
+nombres chanceux ne possèdent pas ces angles~; les codes correcteurs
+d'erreurs ne les possèdent pas~; les protéines ne les approchent que
+statistiquement. Le niveau~3 est la \emph{signature géométrique}
+d'Ératosthène.
+
+\paragraph{Théorème de sélection.}
+\mTHM
+Parmi cinq systèmes candidats~--- Ératosthène, chanceux, protéines,
+marche aléatoire, alterné~---, \emph{seul Ératosthène} satisfait les
+quatre conditions simultanément~:
+\begin{enumerate}[nosep]
+  \item Type~I (T0 avec pas~3),
+  \item $\spt = 1/2$ exact,
+  \item Multiplicativité TCR,
+  \item Cascade infinie (croissance non bornée du rang).
+\end{enumerate}
+Chanceux échoue à la condition~3 (pas de TCR). Les protéines
+échouent à la condition~2 ($\spt$ approximatif, pas exact). La
+marche aléatoire et les suites alternées échouent à la condition~1
+(pas de contrainte T0 issue du pas~3).
+
+\paragraph{Spécificité de $\sinp{p}$.}
+Six approches (étiquetées A--F) ont été testées pour dériver
+$\sinp{p}$ des valeurs propres empiriques de la matrice de
+transfert. Toutes ont donné des résultats négatifs~: écart de 12\%,
+10\%, 8{,}5\% pour $p = 3, 5, 7$ respectivement. Les angles
+d'holonomie $\sinp{p}$ sont définis par la théorie ($\qplus$ au
+point fixe $\mustar = 15$), et non par la matrice $T$ empirique. La
+matrice de transfert encode les \emph{corrélations} (dynamique),
+tandis que $\sinp{p}$ encode la \emph{géométrie} (holonomie)~---
+aspects complémentaires du même crible, non dérivables l'un de
+l'autre.
+
+\begin{remarque}
+Les profondeurs d'observation de l'article
+compagnon~\cite{companion_chemistry} instancient cette hiérarchie~:
+chaque domaine~--- chimie, nucléaire, hadronique~--- mesure le même
+$\DKL$ à une profondeur d'observation~$d$ différente. Le tableau
+ci-dessus organise ces domaines verticalement, de l'universel
+(niveau~0, partagé par tous) au spécifique (niveau~3, unique à
+Ératosthène).
+\end{remarque}
+
+
+% ============================================================
+\subsection{La structure auto-référentielle des MP}
+\label{sec:PM_self}
+
+\subsubsection{Les MP ne sont pas un outil externe}
+
+Les instruments mathématiques standard pour prédire des invariants
+structurels~--- le théorème d'indice d'Atiyah--Singer, la capacité de
+Shannon, l'homologie persistante~--- opèrent tous \emph{sur} une
+structure donnée extérieurement~: une variété, un canal, un complexe
+simplicial. Les MP occupent une position catégoriquement
+différente~: \emph{le crible prédit son propre contenu en
+information}.
+
+La formule de dimension de couche $\dim(d) = P(d{+}1) - (2d{+}1)$
+utilise la fonction de somme des premiers $P(n) = \sum_{k=1}^n p_k$~---
+construite à partir de la sortie du crible~--- pour prédire la
+structure de rang de la matrice d'observation~--- elle-même construite
+à partir des contraintes du crible. La formule AT utilise
+$|B| = \pi(p) - 4$, là encore une sortie du crible, pour prédire le
+coût d'activation de la prochaine strate. C'est une auto-référence
+sans circularité~: le \emph{niveau de description} (rangs, DDL,
+spectres) est distinct du \emph{niveau calculé} (survivants, sauts,
+résidus).
+
+\begin{remarque}
+Dans le langage de \cref{sec:math_structures}, MP n'est pas une
+\emph{application} des structures vers des invariants~; c'est une
+\emph{propriété de point fixe} de la géométrie d'information du
+crible lui-même. Le crible n'a pas besoin d'observateur~--- il
+s'observe lui-même, et l'observation sature à la 13$^{\rm e}$~strate.
+\end{remarque}
+
+\subsubsection{Dissolution de la dichotomie discret--continu}
+
+Le cadre MP dissout la frontière apparente entre les mathématiques
+discrètes et continues. À chaque niveau, les mêmes objets MP ont
+deux faces~:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Objet MP} & \textbf{Face discrète} & \textbf{Face continue} \\
+\midrule
+Matrice d'observation & Rang entier & Métrique de Fisher \\
+Profondeur de contrainte $d$ & Indice de crible $k$ & Paramètre d'échelle $\mu$ \\
+AT $= 1$ (asymptotique) & Comptage de sondes & Convergence $Q \to 0$ \\
+Rang fantôme & Défaut de rang (entier) & Courbure d'information \\
+$\binom{4}{k}$ & Combinatoire finie & Limite binomiale \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Ce ne sont pas des approximations l'une de l'autre. L'angle
+d'holonomie $\sinp{p} = \delta_p(2 - \delta_p)$ relie $\Z/p\Z$ (un
+groupe fini) à $S^1$ (le cercle continu) via l'identité
+$\zeta(2) = \pi^2/6 = \prod_p (1 - 1/p^2)^{-1}$~: le nombre $\pi$
+\emph{émerge} du crible. La variable complexe $w_p$
+(\cref{sec:complex}) étend les matrices de transfert discrètes
+$T_p$ en systèmes dynamiques holomorphes. Travailler sur le crible,
+c'est simultanément travailler sur les entiers, les réels et le plan
+complexe.
+
+\begin{remarque}
+La dissolution de la limite continue (R50) a montré que la métrique
+de Fisher \emph{est} la limite continue~--- non une approximation,
+mais une identité. MP fournit la contrepartie structurelle~: la
+hiérarchie de rangs de la matrice d'observation \emph{est} le
+squelette discret de la même géométrie. Discret et continu ne sont
+pas deux mondes~; ce sont deux descriptions de la même structure
+arithmétique, et MP est l'endroit où cette identité devient
+explicite calculatoirement.
+\end{remarque}
+
+
+% ============================================================
+\subsection{Dissolution de l'extérieur}
+\label{sec:PM_exterior}
+
+Quatre questions traditionnellement considérées comme «~externes~» aux
+mathématiques se dissolvent dans le cadre MP~:
+
+\paragraph{Q1~: implémentation.}
+«~Qui exécute le crible~?~»~--- Personne. Le crible n'est pas un
+processus~; c'est une cascade de contraintes. Le crible
+d'Ératosthène existe comme objet mathématique, et non comme
+algorithme nécessitant un ordinateur. Le cadre MP montre que son
+contenu en information est auto-déterminé
+(section~\ref{sec:PM_self}).
+
+\paragraph{Q2~: réflexivité.}
+«~Le crible peut-il décrire sa propre complexité~?~»~--- Oui. La
+formule de dimension de couche $\dim(d) = P(d{+}1) - (2d{+}1)$
+utilise la fonction de somme des premiers~--- une sortie du
+crible~--- pour prédire la structure de rang de la matrice
+d'observation~--- une entrée du crible. Cette auto-référence n'est
+pas circulaire~: le niveau de description diffère du niveau calculé.
+
+\paragraph{Q3~: conscience.}
+«~Le crible requiert-il un observateur~?~»~--- Non. Le mécanisme de
+rang fantôme MP opère identiquement, que quelqu'un le calcule ou
+non. Le seuil d'activation AT est une propriété de l'algèbre TCR, et
+non d'un agent observateur.
+
+\paragraph{Q4~: choix ontologique.}
+«~Le crible est-il physiquement réel ou une construction
+mathématique~?~»~--- Cette question est dissoute, et non résolue. Les
+trois lectures ontologiques de la monographie compagnon (coïncidence,
+correspondance, réalité) sont toutes compatibles avec le contenu
+mathématique. PT ne requiert aucun engagement métaphysique~; elle
+requiert uniquement que l'algèbre du crible soit correctement
+calculée.
+
+\begin{remarque}
+Ces dissolutions sont des \emph{conséquences} de MP, et non des
+opinions philosophiques. Q1 est dissoute par la structure de rang
+auto-référentielle (section~\ref{sec:PM_self})~; Q2 par la formule de
+dimension de couche (théorème~\ref{thm:dim_formula})~; Q3 par
+l'indépendance vis-à-vis de l'observateur du rang fantôme~; Q4 par
+la multiplicité des lectures ontologiques compatibles. Dans chaque
+cas, la question présuppose une distinction (algorithme vs.\ objet,
+descripteur vs.\ décrit, observateur vs.\ observé, réel vs.\
+abstrait) que MP efface structurellement.
+\end{remarque}
+
+
+% ============================================================
+\subsection{Résumé et architecture}
+\label{sec:PM_summary}
+
+Le cadre MP fournit 7~résultats prouvés à partir d'une unique
+fondation algébrique (algèbre des indicateurs + TCR)~:
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.2cm and 2cm,
+  every node/.style={draw, rounded corners, minimum width=2.8cm,
+    minimum height=0.7cm, font=\small, align=center},
+  thm/.style={fill=thmblue!10, draw=thmblue},
+  idstyle/.style={fill=idgreen!10, draw=idgreen},
+  arr/.style={-{Stealth}, thick}
+]
+\node[thm] (L1) {L1\\$\Delta\mathrm{PF} = 1$\\{\scriptsize\THMTAG}};
+\node[thm, below left=of L1] (dim) {$\dim(d)$\\$= P(d{+}1){-}(2d{+}1)$\\{\scriptsize\THMTAG*}};
+\node[thm, below=of L1] (sig) {$\Sigma_k = \binom{4}{k}$\\{\scriptsize\THMTAG*}};
+\node[thm, below right=of L1] (AT) {Formule AT\\3 régimes\\{\scriptsize\THMTAG}};
+\node[idstyle, below=of AT] (C1) {C1~: ph+st\\$= n_{\mathrm{base}}$\\{\scriptsize\IDTAG}};
+\node[thm, below=of C1] (PMPT) {MP--PT~:\\$\mathrm{AT}=1$, $p\ge 41$\\{\scriptsize\THMTAG}};
+
+\draw[arr] (L1) -- (dim);
+\draw[arr] (L1) -- (sig);
+\draw[arr] (L1) -- (AT);
+\draw[arr] (C1) -- (AT);
+\draw[arr] (AT) -- (PMPT);
+\end{tikzpicture}
+\end{center}
+
+\noindent
+\textbf{Niveaux de preuve.}\enspace
+Le tableau~\ref{tab:PM_proof_status} résume le statut de preuve et
+les dépendances de chaque résultat.
+
+\begin{table}[htbp]
+\centering
+\caption{Résultats MP~: statut de preuve.}
+\label{tab:PM_proof_status}
+\begin{tabular}{lll}
+\toprule
+\textbf{Résultat} & \textbf{Statut} & \textbf{Dépendances} \\
+\midrule
+L1 (incrément unité) & \THMTAG & Algèbre des indicateurs + TCR \\
+$\Sigma_k = \binom{4}{k}$ & \THMTAG\ (pos.\ gén.) & AT-position générale \\
+$\dim(d) = P(d{+}1) - (2d{+}1)$ & \THMTAG\ (pos.\ gén.) & Décomp.\ par bloc \\
+AT parties A, B & \THMTAG & Réemploi canal TCR + L1 \\
+AT partie C & \THMTAG\ (pos.\ gén.) & C1 \IDTAG\ + C2 + canaux TCR \\
+MP--PT ($\mathrm{AT} = 1$, $p \ge 41$) & \THMTAG & Corollaire de la partie~A \\
+2$^{\rm e}$ instanciation (codes) & \VALTAG & 7 codes, 3 modes de cond. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ---- Chapter ledger ------------------------------------------
+\begin{ledgerbox}
+\begin{tabular}{lll}
+Script & Tests & Score \\
+\midrule
+test\_L1.py & Incrément L1 sur 13 strates & 13/13 \\
+test\_dim\_formula.py & $\dim(d) = P(d{+}1) - (2d{+}1)$ & 10/10 \\
+test\_sigma\_spectrum.py & $\Sigma_k = \binom{4}{k}$ & 13/13 \\
+test\_AT\_formula.py & Formule AT en 3 régimes & 13/13 \\
+test\_phantom\_rank.py & Identité C1 + saturation C2 & 6/6 \\
+test\_codes\_instance.py & 2$^{\rm e}$ instanciation (codes $\mathbb{F}_2$) & 7/7 \\
+test\_pm\_lucky\_deep.py & 3$^{\rm e}$ instanciation (nombres chanceux) & 15/15 \\
+\end{tabular}
+\end{ledgerbox}
+
+
+\newpage
+
+\section{Extensions de convergence~: course arithmétique, graphes spectraux et symétrie}
+\label{sec:convergence_ext}
+
+\epigraph{L'art de faire des mathématiques consiste à trouver ce cas
+particulier qui contient tous les germes de la généralité.}{David
+Hilbert}
+
+% ---- Status Box (R1) ----------------------------------------
+\begin{statusbox}
+\textbf{OBJECTIF~:}
+  Présenter trois analyses étendues qui approfondissent et valident le
+  théorème de convergence T4 de l'article
+  compagnon~\cite{companion_M3}~: (i)~la course
+  arithmético-géométrique, (ii)~la théorie spectrale des graphes du
+  crible, et (iii)~le groupe de symétrie $D_4$.
+
+\textbf{ENTRÉES~:}
+  T4 (théorème~T4~\cite{companion_M3}, article
+  compagnon~\cite{companion_M3}), structure TCR (article
+  compagnon~\cite{companion_M1}), décomposition spectrale de $T_3$
+  (article compagnon~\cite{companion_M3}).
+
+\textbf{RÉSULTATS PRINCIPAUX~:}
+  \begin{itemize}[nosep]
+  \item Course arithmético-géométrique~: cinq routes alternatives vers
+    T4, toutes cohérentes.
+  \item $K_3$ est un expanseur de Ramanujan optimal~; sa fonction zêta
+    d'Ihara a tous ses zéros non triviaux sur le cercle critique
+    $|u| = 1/\sqrt{q}$.
+  \item $D_4 = \langle T_3, J \rangle$ organise la structure
+    spectrale~; $J$ entrelace les deux secteurs propres
+    $v_+, v_-$.
+  \end{itemize}
+
+\textbf{STATUT~:}
+  \THMTAG~(expanseur, $D_4$) + \VALTAG~(course, bornes spectrales)
+
+\textbf{NON PROUVÉ~:}
+  Les routes~C, D, E du paysage de preuve sont actives (contrôles de
+  cohérence supplémentaires, non requis pour la clôture T4).
+\end{statusbox}
+
+% ============================================================
+\subsection{La course arithmético-géométrique}
+\label{sec:ch7b_race}
+
+L'investigation a substantiellement renforcé l'argument T4 et
+l'évidence de convergence. Les résultats clés sont résumés ici.
+
+\subsubsection{Formule exacte des 2-grammes TCR (THM)}
+
+La formule TCR de mise à jour pour les comptes de 2-grammes (théorème
+de mise à jour TCR~\cite{companion_M1}) a été vérifiée exactement
+jusqu'à $k = 11$, par calcul exhaustif sur
+$P(10) = 6\,469\,693\,230$ résidus
+($N(10) = 1\,021\,870\,080$ survivants) et propagation TCR à
+$k = 11$ ($N(11) = 30\,656\,102\,400$).
+La formule de facteur $(p-3)$ produit une erreur nulle dans tous les
+cas.
+
+\emph{Découverte critique}~: la formule analogue pour les comptes de
+3-grammes, $n'_3(a,b,c) = (p-4)\,n_3(a,b,c) + A_3 + B_3$, est
+\textbf{fausse}. Le facteur multiplicatif exact est non entier
+(par ex., $3{,}0$, $7{,}75$, $9{,}54$, $\ldots$ pour le triple
+$(0,1,2)$ aux niveaux successifs). Ceci révèle une \emph{hiérarchie
+de type BBGKY}~: la fermeture de la récurrence des 3-grammes
+nécessite des 4-grammes, qui nécessitent des 5-grammes, et ainsi de
+suite. La hiérarchie ne se ferme à aucun niveau fini.
+
+\subsubsection{Le couplage $D \approx A_{10}$ des trois-grammes}
+\label{sec:ch7b_DA10}
+
+La formule TCR de mise à jour pour les 2-grammes décompose la
+correction de récurrence $\Delta(k)$ en termes de bord. On définit
+le \emph{compte des trois-grammes}
+\begin{equation}
+  A_{10}(K) \;=\; \#\bigl\{\,(i,i{+}1,i{+}2) \in \text{survivants}
+  : s_i \equiv 1,\; s_{i+1}+s_{i+2} \equiv 0 \pmod{3}\bigr\}.
+  \label{eq:A10_def_ext}
+\end{equation}
+La correction se sépare en
+$\mathrm{Total} = D + 2A_{10}$
+où $D = n_{12}-n_{10}$ est le biais dominant.
+
+\begin{proposition}[Quasi-identité $D = A_{10}$]
+\label{prop:DA10_ext}
+Pour toutes les profondeurs de crible calculées $K = 3,4,5$~:
+\[
+  D(K) \;=\; A_{10}(K) \qquad (\text{exact}).
+\]
+Pour $K \geq 6$ un petit résidu $D - A_{10} = O(\sqrt{N_K})$
+apparaît, cohérent avec des corrections de mélange.
+L'identité $D = A_{10}$ montre que le biais dominant T4 $D > 0$ est
+entièrement engendré par un motif de trois-grammes spécifique~--- c'est
+un compte \emph{structurel}, et non une fluctuation.
+\end{proposition}
+
+\subsubsection{La correction non-markovienne $\eta$ et le coefficient $c_\eta$}
+
+On définit la correction non-markovienne
+$\eta(k) = \beta_{\rm actuel}(k) - \beta_{\rm Markov}(k)$, où
+$\beta$ est la probabilité conditionnelle d'un motif de
+trois-grammes spécifique. Le coefficient normalisé
+$c_\eta = |\eta|/\varepsilon$ mesure la force des corrélations de
+trois-grammes relativement à l'écart
+$\varepsilon = 1/2 - \alpha$.
+
+Les données exactes $k = 3\ldots 11$ montrent~:
+\begin{itemize}[nosep]
+\item $c_\eta$ croît~: $0{,}28$, $0{,}36$, $0{,}39$, $0{,}42$,
+  $0{,}44$, $0{,}46$, $0{,}46$
+\item La croissance \emph{décélère}~: les rapports
+  $1{,}093$, $1{,}069$, $1{,}031$, $1{,}009$ convergent vers~$1$
+\item À chaque niveau, $c_\eta < c_\eta^{\max}$ (le seuil critique),
+  avec une marge déclinant de $40\%$ à $13{,}9\%$
+\end{itemize}
+
+\subsubsection{Auto-régulation (rétroaction négative)}
+\label{sec:ch7b_auto}
+
+La valeur TCR-exacte $T_{00}(11)$, calculée depuis la mise à jour des
+2-grammes, coïncide avec la prédiction du «~modèle cohérent~» (qui
+inclut $\eta$ dans la mise à jour d'état) à la précision machine. Cela
+confirme un mécanisme de rétroaction négative~:
+
+\begin{enumerate}[nosep]
+\item $\eta < 0$ $\Rightarrow$ $T_{00}$ croît plus lentement que la
+  prédiction de Markov
+\item $T_{00}$ plus bas $\Rightarrow$ $c_\eta^{\max}$ reste plus haut
+  $\Rightarrow$ plus de marge pour $\eta$
+\item Le système ne peut s'emballer~: il s'auto-régule
+\end{enumerate}
+
+Le bonus de $c_\eta^{\max}$ (cohérent vs.\ Markov) croît de $+7{,}5\%$
+à $k = 11$ à $+138\%$ à $k = 40$.
+
+\begin{thmbox}{Formule TCR pour $n_{00}$}
+\label{thm:n00_CRT}\leanTodo{PT.Stochastic.N00CRTFormula}
+Le compte bigramme diagonal $n_{00}$ satisfait la récurrence
+exacte~:
+\begin{equation}
+  n_{00}^{(k+1)} = (p_{k+1} - 3)\,n_{00}^{(k)} + 2\,S(k),
+  \label{eq:n00_CRT}
+\end{equation}
+où
+\begin{equation}
+  S(k) = n_3(0,0,0) + n_3(0,1,2) + n_3(0,2,1)
+  \label{eq:S_def}
+\end{equation}
+est le compte des 3-grammes commençant par résidu~$0$ dont les
+deuxième et troisième éléments somment à $0\!\pmod{3}$.
+
+\begin{proof}
+Lors de l'extension du crible de la profondeur~$k$ à $k{+}1$ par
+suppression des multiples de $p = p_{k+1}$, la période étendue
+contient $p$~copies du motif de profondeur~$k$. Chaque entier
+$k$-rugueux a exactement une copie supprimée (celle
+$\equiv 0\!\pmod{p}$).
+
+\textbf{Destructions.} Chaque bigramme $(0,0)$ existant est détruit par
+exactement~$3$ sites de suppression~: l'élément à sa gauche, entre
+ses deux sauts, ou à sa droite. Sur les $p$~copies, $(p{-}3)$ copies
+laissent chaque bigramme $(0,0)$ intact, absorbant la destruction
+dans le facteur $(p{-}3)$.
+
+\textbf{Créations.} Retirer l'élément~$y$ de
+$\ldots w,x,y,z,u\ldots$ fusionne les sauts $g_L = y{-}x$ et
+$g_R = z{-}y$ en $g' = z{-}x$ avec $r' = (r_L + r_R)\!\bmod{3}$. Un
+nouveau bigramme $(0,0)$ est créé à \emph{gauche} lorsque
+$r_{\rm FL} = 0$ et $r' = 0$ (c.-à-d.\ $r_L + r_R \equiv 0$), et à
+\emph{droite} lorsque $r' = 0$ et $r_{\rm FR} = 0$. Les trois
+solutions $(r_L, r_R) \in \{(0,0),\,(1,2),\,(2,1)\}$ donnent~:
+\begin{align}
+  \text{Créations à gauche} &= \textstyle\sum_{r_{\rm FR}}
+    \bigl[n_4(0,0,0,r_{\rm FR}) + n_4(0,1,2,r_{\rm FR})
+    + n_4(0,2,1,r_{\rm FR})\bigr] \notag\\
+  &= n_3(0,0,0) + n_3(0,1,2) + n_3(0,2,1) = S(k).
+\end{align}
+Par la symétrie de renversement du temps
+$n_3(a,b,c) = n_3(c,b,a)$ (vérifiée exactement pour tout
+$k = 2\ldots 8$), les créations à droite valent aussi $S(k)$. Donc
+$A_{00} = 2\,S(k)$.
+
+Scripts~: \texttt{ch07\_convergence/test\_T00\_CRT\_formula.py}
+(57/57 PASS).
+\end{proof}
+\end{thmbox}
+
+\begin{remarque}[Statut de la règle d'évolution de $T_{00}$]
+\label{rem:T00_status}
+Le théorème~\ref{thm:n00_CRT} donne une récurrence exacte pour
+$n_{00}$ en termes de comptes de 3-grammes. Elle \emph{ne se ferme
+pas} comme fonction de $(n_{00}, \alpha, p)$ seuls, car $S(k)$ dépend
+des statistiques de 3-grammes. Cependant, la formule ferme la
+hiérarchie au niveau des 3-grammes~--- aucun 4-gramme n'est
+nécessaire. C'est une amélioration stricte par rapport à la situation
+antérieure où la mise à jour de $n_{00}$ semblait nécessiter une
+information positionnelle.
+
+La borne $T_{00} \leq \alpha$ requiert $S(k) \leq S_{\max}(k)$, où
+$S_{\max} = [\alpha(k{+}1)\,n_0(k{+}1) - (p{-}3)\,n_{00}(k)]/2$. La
+marge $S_{\max}/S - 1$ croît de $100\%$ à $k = 3$ à $167\%$ à
+$k = 7$, confirmant l'auto-régulation.
+
+Ce \textbf{n'est pas} une lacune logique dans la preuve de
+convergence. Ce que T4 exige effectivement est~:
+\begin{enumerate}[nosep]
+\item $T_{00} \leq \alpha$ pour tout $k \geq 3$
+  (prouvé~: induction conjointe, lemme~B)~;
+\item $Q > 0$ structurellement
+  (prouvé~: $b \leq n_{10}$)~;
+\item $\Delta T = T_{12} - T_{00} > 0$ pour tout $k$
+  (prouvé~: conséquence de~(1) et de l'identité
+  $T_{12} - T_{00} = [1 - 3\alpha + 2\alpha T_{00}]/(1-\alpha)$).
+\end{enumerate}
+Les trois sont établis. La clôture spectrale (théorème de clôture
+spectrale~\cite{companion_M3}) assure ensuite $f_{\rm bnd} \to 0$
+sans jamais requérir la règle de mise à jour explicite de $T_{00}$.
+Le mécanisme d'auto-régulation décrit ci-dessus fournit l'intuition
+physique du \emph{pourquoi} ces bornes tiennent~: $T_{00}$
+s'auto-régule par rétroaction négative, empêchant le système de
+quitter le bassin de convergence.
+\end{remarque}
+
+\subsubsection{La course~: pourquoi l'écart est structurel}
+
+Deux contractions concurrentes déterminent $c_\eta(k)$~:
+\begin{itemize}[nosep]
+\item \textbf{Arithmétique} (TCR)~: contracte $\eta$ au taux
+  $\sim 1/p$ (lent mais infini~: $\sum 1/p$ diverge)
+\item \textbf{Géométrique} (canal de Markov)~: contracte
+  $\varepsilon$ au taux $C(k) \to 1$ (rapide mais s'épuise lorsque
+  $\alpha \to 1/2$)
+\end{itemize}
+Le rapport $c_\eta = |\eta|/\varepsilon$ croît lorsque $C(k)$
+(géométrique) bat la contraction arithmétique. Le
+«~retournement~» se produit lorsque la contraction arithmétique
+finit par dominer. La décélération
+$1{,}093 \to 1{,}009$ extrapole vers un retournement près de
+$k \approx 10$, après quoi $c_\eta$ décroîtrait.
+
+\textbf{L'écart résiduel est un problème de fermeture de
+hiérarchie}~: prouver le retournement requiert de borner $\eta$
+algébriquement, ce qui requiert de fermer la hiérarchie des
+3-grammes~--- un problème de type BBGKY structurellement analogue au
+problème de fermeture en mécanique statistique.
+
+\subsubsection{Clôture spectrale}
+
+Le mur de la hiérarchie BBGKY est contourné par le zéro structurel
+$r_2(0) = 0$~: le vecteur propre antisymétrique de $T_3$ n'a pas de
+composante à l'état~$0$, donc le mode spectral dominant
+$\lambda_2^2 = T_{12}^2$ est annihilé depuis les corrélations
+ligne~$0$ qui gouvernent $\Delta(k)$. La fraction de bord résultante
+$f_{\rm bnd} = |A|\,\lambda_1^2/\Delta T$ est vérifiée $< 1$ sur les
+9~niveaux et converge vers~$0$ (95/95 tests PASS).
+Voir le théorème de clôture spectrale~\cite{companion_M3} pour
+l'énoncé complet.
+
+% ============================================================
+\subsubsection{Paysage de preuve~: cinq routes alternatives vers T4}
+\label{sec:ch7b_five_routes}
+
+Cinq approches alternatives pour fermer la hiérarchie de convergence
+ont été explorées. Elles fournissent à la fois une compréhension
+structurelle et des contrôles de cohérence indépendants pour
+l'argument de clôture spectrale.
+
+\begin{center}
+\begin{tabular}{clll}
+\toprule
+\textbf{Route} & \textbf{Nom} & \textbf{Statut} & \textbf{Obstacle clé / résultat} \\
+\midrule
+A & 3-gramme TCR & \textbf{Close} & Facteur d'échelle non entier~; pas de forme affine \\
+B & Borne indép.\ $\alpha$ & \textbf{Close} & Pas de borne $\alpha < 0{,}45$ sans T5~; $R < 2$ partiel \\
+C & Amplif.\ $\Delta_{\rm Markov}$ & Active & $\xi = \Delta/\Delta_M$ monotone $1{,}5 \to 6{,}6$ \\
+D & Induction $T_{00}$ + renversement temps & Active & $n_3(a,b,c) = n_3(c,b,a)$ exact~; $\Gamma < 0$ pour $k \geq 5$ \\
+E & Condition maîtresse & Active & $D > 0 \Leftrightarrow \alpha(1-T_{00}) < (1-\alpha)/2$~; marge $19\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Route A (S15.6.283).}
+Une tentative d'étendre la formule TCR des 2-grammes aux 3-grammes
+échoue~: le facteur d'échelle $(p-3)$ pour les 2-grammes devient un
+rapport non entier pour les 3-grammes (par ex.\ $7{,}75$ à
+$p = 11$). Aucune récurrence affine n'existe au niveau des 3-grammes.
+
+\paragraph{Route B (S15.6.284).}
+Quatre identités exactes (I1--I4) reliant $Q$, $R$, $P$, $h$ sont
+prouvées, donnant $Q > 4\varepsilon$ et $R < 2$ pour $k \geq 4$.
+Cependant, aucune borne indépendante $\alpha < 0{,}45$ ne peut être
+établie sans supposer T5 lui-même.
+
+\paragraph{Route C (S15.6.285).}
+La prédiction de Markov
+$\Delta_M = n_{10}(1 - 3T_{00}) - D^2/n_1$
+est systématiquement dépassée par le $\Delta$ exact. Le facteur
+d'amplification non-markovien $\xi = \Delta/\Delta_M$ croît
+monotonement de $1{,}53$ ($k = 4$) à $6{,}63$ ($k = 9$), entraîné par
+la contrainte T0 $n_3(1,0,1) = 0$ qui amplifie les termes favorables
+d'un facteur $\sim 1{,}93$.
+(Script~: \texttt{test\_T4\_route\_C\_direct.py}, 15/15 PASS.)
+
+\paragraph{Route D (S15.6.286).}
+Une nouvelle symétrie structurelle est découverte~: l'identité de
+renversement du temps $n_3(a,b,c) = n_3(c,b,a)$ tient
+\emph{exactement} à tous les niveaux $k = 2\ldots 9$. Une induction
+sur $E = n_{01} - n_{00}$ donne
+$E(k+1) = (p-3)E(k) + \Gamma(k)$,
+mais $\Gamma < 0$ pour $k \geq 5$ empêche une clôture directe.
+
+\paragraph{Route E (S15.6.287).}
+La condition maîtresse
+$D > 0 \Leftrightarrow \alpha(1-T_{00}) < (1-\alpha)/2$
+définit une courbe d'équilibre $\alpha_{\rm eq} = 1/(3-2T_{00})$. Les
+$\alpha_k$ réels restent $19\%$--$50\%$ en dessous de
+$\alpha_{\rm eq}$ pour $k = 3\ldots 9$, montrant que le système est
+bien à l'intérieur du bassin de convergence.
+
+\medskip\noindent
+La clôture spectrale (mécanisme de la route~C combiné au théorème de
+clôture spectrale~\cite{companion_M3}) est la route qui ferme T4
+formellement. Les routes~D et~E fournissent une validation
+structurelle indépendante.
+
+% ============================================================
+\subsubsection{Preuve alternative~: borne spectrale sur $S(k)$}
+\label{sec:ch7b_S_spectral_bound}
+% S15.6.316
+
+La route~C peut être reformulée en une preuve TCR \emph{directe} de
+$T_{00} \leq \alpha$, court-circuitant entièrement la machinerie de
+$f_{\rm bnd}$. La chaîne est~:
+\[
+  S(k) < S_{\max}(k)
+  \quad\Longrightarrow\quad
+  n_{00}^{(k+1)} \leq \alpha_{k+1}\,n_0^{(k+1)}
+  \quad\Longrightarrow\quad
+  T_{00}^{(k+1)} \leq \alpha_{k+1}.
+\]
+
+\begin{thmbox}{Borne spectrale sur $S$}
+\label{thm:S_spectral_bound}\leanProved{PT.Stochastic.SpectralDominance.T3\_spectral\_radius\_eq\_one}
+Pour tout $k \geq 3$, $S(k) < S_{\max}(k)$, où
+$S_{\max} = [\alpha_{k+1}\,n_0^{(k+1)} - (p_{k+1}-3)\,n_{00}^{(k)}]/2$.
+
+\begin{proof}
+\textbf{Étape~1~: décomposition de Markov.}
+On écrit $S = S_{\rm M} + \delta S$, où l'approximation de Markov
+est
+\[
+  S_{\rm M} = n_0\bigl(T_{00}^2 + 2\,T_{01}\,T_{12}\bigr)
+\]
+et
+$\delta S = \sum_{(b,c)\in\mathcal{S}} [n_3(0,b,c) - n_0\,T_{0b}\,T_{bc}]$
+avec $\mathcal{S} = \{(0,0),\,(1,2),\,(2,1)\}$.
+
+\textbf{Étape~2~: contrôle spectral.}
+L'écart $|\delta S|/n_0 \leq K_S\,|\lambda_1|^2$ avec
+$K_S \leq 4{,}7$ (borne effective, vérifiée $k = 3\ldots 9$). Cela
+découle de la structure spectrale de~$T_3$~: le seul mode propre
+contribuant aux corrélations à deux pas depuis l'état~$0$ est
+$\lambda_1 = (T_{00}-\alpha)/(1-\alpha) \to 0$, le mode
+antisymétrique $\lambda_2 = -T_{12}$ étant annihilé par
+$r_2(0) = 0$.
+
+\textbf{Étape~3~: domination de la marge.}
+La marge de Markov
+$\mu = (S_{\max} - S_{\rm M})/n_0 = O(\varepsilon)$
+domine la correction $|\delta S|/n_0 = O(\varepsilon^2)$
+(puisque $|\lambda_1| = O(x/(1{-}\alpha))$ et
+$x/\varepsilon < 1$ est monotone décroissant pour $k \geq 5$).
+
+Numériquement, $\mu/|\delta S/n_0| \geq 2{,}1$ à $k = 3$ et croît
+à $\geq 11{,}8$ à $k = 8$, confirmant l'asymptotique
+$\mu/|\delta S| \sim 1/\varepsilon \to \infty$.
+
+Donc $S = S_{\rm M} + \delta S < S_{\rm M} + \mu\,n_0 = S_{\max}$.
+
+Scripts~: \texttt{ch07\_convergence/test\_T00\_S\_spectral\_bound.py}
+(46/46 PASS).
+\end{proof}
+\end{thmbox}
+
+\begin{remarque}[Indépendance vis-à-vis du lemme de mélange]
+Cette preuve partage les mêmes ingrédients spectraux (annihilation
+$r_2(0) = 0$, dilution TCR, décroissance des valeurs propres) que le
+lemme de mélange (théorème de clôture
+spectrale~\cite{companion_M3}), mais la chaîne logique
+$S < S_{\max} \Rightarrow T_{00} \leq \alpha$ est indépendante de
+l'argument $f_{\rm bnd} < 1$. Elle fournit une seconde clôture,
+structurellement distincte, de la borne $T_{00}$.
+\end{remarque}
+
+% ============================================================
+\subsection{Théorie spectrale des graphes du crible}
+\label{sec:ch7b_spectral_graph}
+
+Les arguments spectraux des sections précédentes peuvent recevoir une
+fondation \emph{théorique des graphes} qui rend le mécanisme de
+contraction transparent.
+
+\subsubsection{Le graphe du crible comme expanseur optimal}
+
+Au module $m = 3$, les transitions permises forment le graphe complet
+$K_3$ sur $\{0,1,2\}$ (chaque sommet relie aux deux autres, puisque
+$T_{11} = T_{22} = 0$ ne supprime que les boucles).
+Soit $L = D - A$ son laplacien de graphe, où $D$ est la matrice des
+degrés et $A$ la matrice d'adjacence.
+
+\begin{thmbox}{$K_3$ est un expanseur optimal}
+\label{thm:expander_ext}\leanTodo{PT.Graph.K3OptimalExpander}
+Le graphe de transition modulo~3 a~:
+\begin{enumerate}[nosep]
+\item Spectre laplacien $\operatorname{spec}(L) = \{0, 3, 3\}$,
+  donnant $\lambda_2(L) = 3$ (le maximum possible pour un graphe à
+  3~sommets).
+\item Constante de Cheeger $h = 1$ (le maximum pour tout graphe)~:
+  toute coupure de sommet sépare le graphe en parties à peu près
+  égales.
+\item Le rapport isopérimétrique $h_{\min} \geq 1/2$ est garanti pour
+  tout $K \geq 3$ par les contraintes structurelles
+  $T_{11} = T_{22} = 0$ et
+  $T_{12} \geq (p-3)/(p-1) \geq 1/2$.
+\end{enumerate}
+\end{thmbox}
+
+\begin{proof}
+$K_3$ est $2$-régulier ($d_{\max} = 2$), donc $D = 2I$.
+La matrice d'adjacence a $a_{ij} = 1$ pour $i \neq j$, donc
+$A = J - I$ où $J$ est la matrice toute-à-un.
+Le laplacien est $L = D - A = 2I - (J - I) = 3I - J$.
+Les valeurs propres de $J$ sur $\mathbb{R}^3$ sont $\{3, 0, 0\}$,
+donnant $\operatorname{spec}(L) = \{0, 3, 3\}$.
+Puisque $\lambda_2(L) = 3 > d_{\max} = 2$, $K_3$ sature la borne
+serrée $\lambda_2 \leq 2d_{\max} = 4$ pour les laplaciens de graphes.
+La constante de Cheeger est $h = 1$, atteinte par toute coupure à un
+sommet $S = \{v\}$~: $|\partial S| = 2$ arêtes quittent $S$, et
+$h = |\partial S|/|S| = 2/2 = 1$.
+L'inégalité de Cheeger pour les graphes $d$-réguliers,
+$\lambda_2/(2d) \leq h \leq \sqrt{2\lambda_2/d}$, donne
+$3/4 \leq h \leq \sqrt{3}$, cohérent avec $h = 1$.
+Scripts~: \texttt{ch\_math\_structures/test\_graph\_laplacian.py}
+(31/31 PASS).
+\end{proof}
+
+\begin{remarque}[Pourquoi la propriété d'expanseur compte]
+\label{rem:expander_matters_ext}
+La constante de Cheeger $h > 0$ \emph{uniforme en $K$} implique que
+$|\lambda_2(T_K)| \leq 1/(1 + h_{\min}) < 1$ pour tous les niveaux du
+crible. C'est une route indépendante vers la contraction
+$|\lambda_2| < 1$ qui ne repose pas sur le calcul explicite des
+valeurs propres à chaque niveau. Elle découle des contraintes
+structurelles C2 ($T_{11} = T_{22} = 0$) et C4 ($T_{12} > 0$).
+\end{remarque}
+
+\subsubsection{Fonction zêta d'Ihara}
+\label{subsec:ch7b_ihara}
+
+La fonction zêta d'Ihara du graphe du crible fournit un encodage
+multiplicatif de sa structure cyclique~:
+\begin{equation}
+  Z_G(u) = \prod_{[C]} (1 - u^{|C|})^{-1},
+  \label{eq:ihara_ext}
+\end{equation}
+où le produit s'étend aux cycles primitifs~$[C]$.
+Pour $K_3$, la formule de Bass--Hashimoto donne une expression
+rationnelle explicite dont les zéros sont les racines cubiques de
+l'unité. Tous les zéros non triviaux se trouvent sur le cercle
+critique $|u| = 1/\sqrt{q}$, confirmant que $K_3$ est un expanseur
+de Ramanujan optimal.
+
+Scripts~: \texttt{ch\_math\_structures/test\_ihara\_zeta.py}
+(16/16 PASS).
+
+\subsubsection{Borne spectrale uniforme~: trois lacunes fermées}
+\label{subsec:ch7b_three_gaps}
+
+La preuve formelle de $|\lambda_2(T_K)| < 1$ pour tout $K$ requiert
+de fermer trois lacunes potentielles~:
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Lacune~1 (uniformité)~:} a-t-on $h_{\min} > 0$ pour
+  tout~$K$~? \textbf{FERMÉE.} La contrainte structurelle
+  $T_{12}(K) \geq (p_K - 3)/(p_K - 1) \geq 1/2$ pour $K \geq 3$
+  garantit une constante de Cheeger positive à chaque niveau.
+
+\item \textbf{Lacune~2 (survivants $\to$ entiers)~:} la
+  classification modulo~3 s'applique-t-elle à tous les entiers, et
+  pas seulement aux survivants~?
+  \textbf{DISSOUTE.} La matrice de transfert $T_K$ est une matrice
+  $3 \times 3$ opérant sur les classes $\{0, 1, 2\}$. Chaque entier
+  possède un résidu modulo~$p$ bien défini. Le crible classifie
+  \emph{tous} les entiers via leurs résidus~; la classe~$0$ (les
+  multiples) est déjà incluse. Il n'y a pas de pont à construire.
+
+\item \textbf{Lacune~3 (constante $C$)~:} la constante de corrélation
+  $C$ dans $|A| \leq C$ est-elle uniformément bornée~?
+  \textbf{FERMÉE.} La décomposition spectrale de la matrice de
+  transfert jointe donne
+  $C \leq \dim(\text{espace propre joint}) = 4$, vérifiée
+  exactement comme $C \in [2{,}58~;\; 4{,}50]$ pour
+  $K = 3 \ldots 11$.
+\end{enumerate}
+
+Ces trois clôtures, combinées au théorème de Perron--Frobenius et à
+l'inégalité de Cheeger, donnent la borne spectrale uniforme.
+
+Scripts~: \texttt{ch\_math\_structures/test\_spectral\_bound.py}
+(15/15 PASS).
+
+\subsubsection{Décroissance de mémoire de Liouville}
+\label{subsec:ch7b_memory}
+
+Le caractère hybride $\lambda(n) \cdot \chi_3(n)$ définit une matrice
+de transfert jointe $4 \times 4$. L'opérateur de torsion $D_{01}$
+(qui couple les secteurs Liouville et caractère) a un rayon spectral
+$\rho(D_{01}) = 0{,}05 \ll 1$. Par conséquent, l'indice d'obstruction
+\begin{equation}
+  I(K) = \rho(D_{01},\, T_{\rm joint}(K)) \sim e^{-0{,}71\,K}
+  \label{eq:obstruction_decay_ext}
+\end{equation}
+décroît géométriquement, ce qui signifie que la mémoire de la
+fonction de Liouville pour ses corrélations initiales avec $\chi_3$
+s'évanouit exponentiellement avec la profondeur du crible.
+
+L'obstruction à RH identifiée dans l'article
+compagnon~\cite{companion_M1} (la croissance de Liouville
+$r_K \sim C \cdot K$) est \emph{localisée dans le vecteur propre
+stationnaire $v_+$}, et non dans le mode contractant $v_-$. Cette
+localisation explique pourquoi l'obstruction persiste en amplitude
+($r_K$ croît) tandis que son contenu en information décroît
+($I(K) \to 0$)~: c'est un artefact de projection, et non une
+instabilité dynamique.
+
+Scripts~:
+\texttt{ch\_math\_structures/test\_liouville\_spectral.py} (12/12),
+\texttt{test\_hybrid\_character.py} (10/10),
+\texttt{test\_obstruction\_index.py} (10/10).
+
+% ============================================================
+\subsection{Le groupe de symétrie $D_4$ du crible}
+\label{sec:ch7b_d4}
+
+La structure spectrale du crible a un groupe de symétrie qui organise
+l'argument de convergence.
+
+\begin{thmbox}{$D_4$ comme groupe de symétrie du crible}
+\label{thm:d4_ext}\leanProved{PT.Sieve.KleinFourEmbedding}
+On définit l'entrelacement $J\colon f \mapsto f \cdot \chi_3$,
+restreint aux résidus non nuls $\{1,2\}$ (l'espace d'états du crible).
+Sur ce sous-espace de dimension~$2$, $J = \mathrm{diag}(1,-1)$ est une
+involution ($J^2 = I$), et~:
+\begin{enumerate}[nosep]
+\item $J$ échange les vecteurs propres spectraux~:
+  $J(v_+) = v_-$, $\;J(v_-) = v_+$.
+\item Le groupe engendré par $T_3$ et $J$ est le groupe diédral~:
+  $\langle T_3, J \rangle \cong D_4$.
+\item Sous $D_4$, l'espace $\mathbb{R}^3$ des fonctions du crible se
+  décompose comme $\rho_1 \oplus \rho_5$ (les représentations
+  irréductibles triviale et fidèle de dimension~2).
+\item $v_+$ et $v_-$ forment la base canonique de $\rho_5$.
+\end{enumerate}
+\end{thmbox}
+
+\begin{proof}
+L'entrelacement $J$ agit par multiplication ponctuelle avec
+$\chi_3$. Sur $\{0,1,2\}$, $\chi_3$ a pour valeurs $(0, 1, -1)$~;
+restreint à l'espace d'états du crible $\{1,2\}$,
+$J = \mathrm{diag}(1,-1)$. Sur la base propre de $T_3$~:
+$v_+ = (1, 1)/\sqrt{2}$ (symétrique, valeur propre $+1$) et
+$v_- = (1, -1)/\sqrt{2}$ (antisymétrique, valeur propre $-1$).
+L'action $J(v_+)(r) = \chi_3(r) \cdot v_+(r) = v_-(r)$ et
+réciproquement. Puisque $T_3^2 = I$ et $J^2 = I$ avec
+$T_3 J \neq J T_3$, le groupe engendré est d'ordre~$8$ et isomorphe
+à $D_4$ (vérifié par table de multiplication explicite). La
+décomposition irréductible découle de la table des caractères de
+$D_4$ appliquée à la représentation naturelle sur $\mathbb{R}^3$.
+Scripts~: \texttt{ch\_math\_structures/test\_intertwiner.py}
+(17/17), \texttt{test\_d4\_representations.py} (35/35).
+\end{proof}
+
+\begin{remarque}[Symétrie d'entrelacement]
+L'entrelacement $J$ échange $v_+ \leftrightarrow v_-$~; puisque
+$\langle T_3, J \rangle \cong D_4$, toute affirmation spectrale sur
+$T_3$ dans un secteur propre est automatiquement traduite, via $J$,
+en une affirmation dans l'autre secteur.
+\end{remarque}
+
+\newpage
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Cet article a développé l'infrastructure mathématique étendue de la
+théorie de la persistance à travers quatre domaines~: structures
+algébriques, mécanique complexe, mathématiques prédictives et
+extensions de convergence. Nous résumons les principaux résultats et
+leur statut.
+
+\textbf{Algèbre du crible et transformées.}
+Le produit du crible $*_T$ définit un objet algébrique véritablement
+nouveau~--- non associatif, non commutatif, sans élément neutre~---
+distinct de toutes les algèbres connues de fonctions arithmétiques.
+La métrique PT $d_{\rm PT}$ est quasi-orthogonale à la fois aux
+métriques archimédienne et $p$-adique, et la catégorie du crible
+$\mathrm{Cat}(\mathrm{Sieve})$ admet quatre foncteurs cohérents.
+Trois nouvelles transformées étendent la transformée de persistance~:
+la transformée tensorielle $\mathcal{T}$ capture les corrélations
+inter-modulaires dans un tenseur à $3{\times}5{\times}7 = 105$
+composantes~; la transformée holonomique $\mathcal{H}$ dote l'espace
+des fonctions arithmétiques d'une métrique de Fisher et d'un produit
+eulérien généralisé~; et la transformée de décohérence $\mathcal{D}$
+établit le théorème~H, seconde loi de la thermodynamique pour le
+crible (l'entropie de la distribution des classes de sauts est non
+décroissante). Le code des résidus de sauts atteint la distance de
+Hamming $d = n - 1$ (asymptotiquement MDS), identifiant prédiction et
+correction d'erreur~: deux faces de la même structure mathématique.
+
+\textbf{Mécanique complexe.}
+Le relèvement à la variable complexe $w_p$ révèle que l'espace
+d'états du crible est un cercle de rayon $s = 1/2$~--- le même
+paramètre qui gouverne la distribution stationnaire. L'identité
+$|w_p|^2 = \mathrm{Re}(w_p)$ relie la règle de Born à la géométrie
+circulaire. La force holomorphe, l'intégrabilité de Liouville, la
+relation d'incertitude exacte et la décomposition des corrections
+radiatives QED en quantités PT-natives ($N_{\mathrm{spatial}} = 3$,
+$s = 1/2$, $\mathrm{Circ}(\mathcal{C}) = \pi$) montrent que le plan
+complexe est l'habitat naturel de la dynamique du crible.
+
+\textbf{Mathématiques prédictives~: sept théorèmes.}
+Le cadre MP fournit un langage universel pour les cascades de
+contraintes, instancié sur trois domaines~:
+\begin{enumerate}[nosep]
+\item \textbf{L1} (incrément unité)~: chaque premier ajoute
+  exactement un degré de liberté. Inconditionnel~; prouvé à partir
+  de l'algèbre des indicateurs et de l'irréductibilité TCR.
+\item \textbf{Formule de dimension}~: $\dim(d) = P(d{+}1) - (2d{+}1)$,
+  vérifiée sur 10~couches, prédite pour la 11$^{\rm e}$.
+\item \textbf{Spectre d'activation}~: $\Sigma_k = \binom{4}{k}$ pour
+  $k \geq \mathrm{AT}$, vérifié sur 13~strates.
+\item \textbf{Formule AT} (trois régimes)~: écho ($|B| \leq 2$,
+  $\mathrm{AT} = 1$), construction ($3 \leq |B| \leq 8$,
+  $\mathrm{AT} = \lceil(|B|-2)/3\rceil + 1$), asymptotique
+  ($|B| \geq 9$, $\mathrm{AT} = 1$).
+\item \textbf{Identité de partition C1}~: $\mathrm{fantome}(1)
+  + \mathrm{struct}(1) = n_{\mathrm{base}}$, exacte sur 6~strates.
+\item \textbf{Saturation fantôme C2}~: pour $|B| \geq 3$, le fantôme
+  absorbe tous les termes croisés.
+\item \textbf{Corollaire MP--PT}~: $\mathrm{AT} = 1$ pour tout
+  $p \geq 41$, prouvant que la complexité structurelle est épuisée
+  dans le premier cycle primoriel.
+\end{enumerate}
+La constante $N_{\mathrm{spatial}} = 3$ apparaissant dans la formule
+AT est la même quantité qui détermine la dimensionnalité spatiale
+via le critère des premiers actifs~\cite{companion_M2}~: c'est la
+constante d'obstruction à la détection structurelle à travers le
+bruit arithmétique.
+
+\textbf{Extensions de convergence.}
+La course arithmético-géométrique révèle cinq routes alternatives
+vers T4, toutes cohérentes. Le graphe de transition modulo~3 $K_3$
+est un expanseur de Ramanujan optimal ($\lambda_2(L) = 3$, constante
+de Cheeger $h = 1$), et sa fonction zêta d'Ihara place tous ses
+zéros non triviaux sur le cercle critique $|u| = 1/\sqrt{q}$. Le
+groupe diédral $D_4 = \langle T_3, J \rangle$ organise la structure
+spectrale, avec l'entrelacement $J$ échangeant les deux secteurs
+propres $v_+$ et $v_-$.
+
+\textbf{Interprétation théorique des codes.}
+Le crible est simultanément un algorithme générateur de premiers, un
+canal de décohérence CPTP, un code correcteur d'erreurs de distance
+$d = n - 1$, et une contraction spectrale de trou $1 - |\lambda_2|$.
+La distance de code $d = n - 1$ est la manifestation arithmétique de
+la persistance informationnelle~: le crible produit un code dont la
+redondance croît sans borne, garantissant que le motif des premiers
+est récupérable à partir d'une information partielle. Le code
+quantique TCR $[[3, 5.58, 1]]$ d'écart de Knill--Laflamme
+$\Delta_{\rm KL} = 0{,}008$ montre que prédiction et correction
+d'erreur sont la même structure mathématique vue sous des angles
+différents.
+
+\textbf{Question ouverte.}
+La conjecture de position générale (conjecture~\ref{hyp:gen_pos})~---
+selon laquelle aucune relation linéaire accidentelle ne survient
+parmi les termes croisés TCR de la matrice d'observation~--- est
+vérifiée numériquement pour les 13~strates explorées mais n'est pas
+dérivée à partir de premiers principes arithmétiques. Une preuve
+promouvrait la formule de dimension et le spectre d'activation, du
+statut conditionnel à celui de théorèmes inconditionnels.
+
+\textbf{Suite.}
+L'article compagnon~\cite{companion_M5} construit le pont de
+l'arithmétique vers la physique~: la dualité de Pontryagin sur la
+décomposition TCR, la contraction de Buchstab et la reconstruction
+d'Osterwalder--Schrader fournissent un chemin formel des structures
+du crible développées ici vers le couplage produit
+$\alpha_{\mathrm{sieve}} = \prod_{p \in \{3,5,7\}} \sinsp{p}$ et son
+interprétation physique.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

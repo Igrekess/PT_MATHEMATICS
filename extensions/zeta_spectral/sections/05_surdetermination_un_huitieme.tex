@@ -1,0 +1,200 @@
+\section{Sur-détermination cohomologique du résidu $1/8$}
+\label{sec:surdetermination_un_huitieme}
+
+La densité semi-classique PT diffère de la densité Riemann--von Mangoldt
+par une constante $1/8$ (\S\ref{sec:densite_semi_classique}).
+\citeauthor{BerryKeating1999} \citeyear{BerryKeating1999} identifient
+cette constante comme la phase Maslov fine des coins de la double
+barrière, sans interprétation dynamique. PT fournit une \emph{triple
+identification cohomologique} convergente, sur-déterminée par la
+cohérence des trois lectures.
+
+\subsection{K2 — Identité algébrique : $1/8 = \sper^{2}/2 = \lambdaH$}
+\label{sec:K2}
+
+L'auto-couplage scalaire du Higgs dans le secteur PT est dérivé dans la
+monographie (ch.~15, profondeur $d = 3$) \cite{PT_Foundations}~:
+\begin{equation}
+\lambdaH \;=\; \dfrac{\sper^{2}}{2}.
+\label{eq:lambdaH}
+\end{equation}
+À $\sper = 1/2$, $\lambdaH = 1/8$. Cette identité est structurellement
+liée à la bifurcation $\qplus/\qminus$ à deux branches~: $\lambdaH$ est
+le carré du paramètre de bifurcation divisé par le nombre de branches
+scalaires.
+
+\paragraph{Identifications algébriques associées.}
+Deux autres identifications algébriques coïncident~:
+\[
+\dfrac{1}{8} \;=\; \bigg(\dfrac{1}{2}\bigg)^{3}
+\quad \text{(cube de l'unit\'e scalaire, \cite{PT_M5})},
+\]
+\[
+\dfrac{1}{8} \;=\; \dfrac{1}{2 N_{\mathrm{gen}} + 2}
+\quad \text{(\`a $N_{\mathrm{gen}} = 3$, exact)}.
+\]
+
+\paragraph{Candidats naïfs rejetés.}
+Plusieurs candidats sont rejetés par incompatibilité numérique~:
+$1/N_{\mathrm{Weyl}} = 1/15 \ne 1/8$,
+$\chi(\Sigma_{\mathrm{pers}})/Z = -26/Z \ne 1/8$,
+$\gammathree \gammafive \gammaseven \approx 0{,}335 \ne 1/8$,
+$\alpha_{\mathrm{bare}} \approx 1/136 \ne 1/8$. Le $1/8$ n'est pas un
+invariant topologique de la surface de persistance, mais un invariant
+scalaire de la bifurcation $\qplus/\qminus$.
+
+\subsection{K3 — Identité cohomologique : $1/8 = c_1/N_{\mathrm{corners}}$}
+\label{sec:K3}
+
+La structure cohomologique pertinente est construite dans le corpus PT.
+La variété de Fisher doublée
+\begin{equation}
+\mathcal{M}_m^{\mathrm{db}} \;=\; \mathcal{M}_m \times \mathcal{M}_m, \qquad
+g(p,q) \;=\; g_{\mathrm{Fisher}}(p) \,\oplus\, g_{\mathrm{Fisher}}(p),
+\label{eq:Mdoub}
+\end{equation}
+(le \emph{même} point base $p$ dans les deux blocs, construction
+canonique de Dombrowski 1962 sur le fibré tangent d'une variété
+hessienne) munie de la structure complexe $J_{\mathrm{PT}}(u, v) = (-v, u)$
+est une variété kählérienne (théorème~\texttt{kahler\_fisher},
+\cite{PT_M5}). Son potentiel kählérien est l'entropie de Shannon
+$K(p) = \sum_k p_k \log p_k$ (potentiel hessien canonique de Fisher,
+Amari-Nagaoka 2000). Les projecteurs chiraux
+\begin{equation}
+P_{\pm} \;=\; \tfrac{1}{2}(I \mp i J_{\mathrm{PT}})
+\label{eq:Pchir}
+\end{equation}
+décomposent $H^{*}(BG_m; \Cplx)$ en sous-espaces propres $\pm i$ et sont
+identifiés au projecteur spinoriel $\qplus/\qminus$ du crible
+(\cite{PT_M5}, \texttt{def:chiral\_projectors}).
+
+\begin{theoreme}[Première classe de Chern du fibré spinoriel PT, \texttt{berry\_3pi}]
+\label{thm:berry_3pi}
+La première classe de Chern du fibré spinoriel sur
+$\mathcal{M}_m^{\mathrm{db}}$ vaut
+\begin{equation}
+c_1 \;=\; \sper \;=\; \dfrac{1}{2}.
+\label{eq:c1}
+\end{equation}
+L'holonomie du revêtement $N_{\mathrm{gen}}$-fois est
+$\exp(2\pi i\,c_1\,N_{\mathrm{gen}}) = \exp(3\pi i)$ (origine du
+théorème \texttt{berry\_3pi} de la monographie, app.~P, \S~C7).
+\end{theoreme}
+
+Le sous-énoncé algébrique $c_1 = 1/2$ est \textbf{[Thm]} inconditionnel ;
+la rigueur APS stricte du calcul $1/8 = c_1/N_{\mathrm{corners}}$ sur la
+variété à coin reste partiellement ouverte (\S\ref{sec:limites_ouvertures}),
+statut \textbf{[Thm partiel]}.
+
+\begin{proposition}[Calcul cohomologique du résidu $1/8$]
+\label{prop:c1_sur_N}
+Dans l'espace de phases canonique $(u, p_u)$, la double barrière BK est
+un quart de plan symplectique
+$Q_\star = \{u \ge u_\star,\, p_u \ge p_\star,\, u_\star\,p_\star = 2\pi\}$.
+Le bord admet deux arêtes se rejoignant au coin. Avec la symétrisation
+de Weyl et les deux branches miroirs identifiées par l'antipériodicité
+$T_3$ (\S\ref{sec:bord_antiperiodique}), on obtient
+\begin{equation}
+N_{\mathrm{corners}} \;=\; 4
+\label{eq:Ncoins}
+\end{equation}
+coins distincts sur la cellule complète. La phase de Berry contribuée par
+chaque coin, mesurée sur le quart de tour reliant les deux arêtes
+adjacentes, est
+\begin{equation}
+\gamma_{\mathrm{corner}} \;=\; -\dfrac{2\pi\,c_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{\pi}{4},
+\label{eq:gamma_corner}
+\end{equation}
+et la densité de Bohr--Sommerfeld associée est
+\begin{equation}
+\boxed{\;N_{\mathrm{corner}} \;=\; \dfrac{\gamma_{\mathrm{corner}}}{2\pi} \;=\; -\dfrac{c_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{1}{8}.\;}
+\label{eq:c1_sur_N}
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Esquisse]
+Le quart de plan symplectique admet 2 arêtes ($u = u_\star$ et
+$p_u = p_\star$) qui se rencontrent au coin
+$(u_\star, p_\star) = (\sqrt{2\pi}, \sqrt{2\pi})$. La symétrisation de
+Weyl (involution $(u, p_u) \leftrightarrow (p_u, u)$) crée le secteur
+miroir, doublant les arêtes et créant deux coins supplémentaires.
+L'antipériodicité $\theta = \pi$ (proposition~\ref{prop:antiperiodicite})
+identifie deux paires de coins en deux, donnant $N_{\mathrm{corners}} = 4$
+au total (sans l'identification, on aurait $N = 8$ et
+$c_1/N = 1/16$, contredisant le résidu observé~\eqref{eq:residu_un_huitieme}).
+La phase de Berry par coin est calculée par transport parallèle sur le
+quart de tour interne~: en variables polaires locales centrées au coin,
+$\gamma_{\mathrm{corner}} = \oint A = -2\pi\,c_1/N_{\mathrm{corners}} = -\pi/4$
+avec $c_1 = 1/2$. Le passage à la densité Bohr--Sommerfeld divise par
+$2\pi$~: $N_{\mathrm{corner}} = -1/8$. Vérification numérique~: précision
+machine $1{,}68 \cdot 10^{-14}$ via le script \texttt{pt\_k3\_cohomological\_maslov.py}.
+\end{proof}
+
+L'identification $1/8 = c_1/N_{\mathrm{corners}}$ donne donc le $-\pi/8$
+par coin de Berry--Keating, mais \emph{dérivé} depuis la structure
+cohomologique PT, et non comme artefact géométrique opaque.
+
+\subsection{Phase de Berry par coin : $1/8 = \sper/4$}
+\label{sec:phase_berry}
+
+À l'équateur de la sphère de Bloch ($\theta = \pi/2$), la connexion de
+Berry d'un spin-$\sper$ est constante~:
+$A_\varphi = -\sin^{2}(\pi/4) = -1/2 = -\sper$ par unité d'angle
+azimutal. Sur un cycle équatorial complet, la phase Berry est
+$\gamma_1 = -\pi = -2\pi\,\sper$. Divisée par les quatre
+coins~\eqref{eq:Ncoins}~:
+\begin{equation}
+\dfrac{\gamma_1}{N_{\mathrm{corners}}} \;=\; -\dfrac{\pi}{4} \;=\; -2\pi \cdot \dfrac{\sper}{4},
+\label{eq:s_sur_4}
+\end{equation}
+soit $-1/8$ par coin en compte d'aire. L'identité algébrique
+correspondante est
+\begin{equation}
+\dfrac{1}{8} \;=\; \dfrac{\sper}{4}.
+\label{eq:un_huitieme_sur_4}
+\end{equation}
+
+\subsection{Sur-détermination par cohérence}
+\label{sec:surdetermination_coherence}
+
+Les trois identifications convergent vers le même nombre à $\sper = 1/2$~:
+\begin{equation}
+\boxed{\;
+\dfrac{1}{8} \;=\; \underbrace{\dfrac{\sper^{2}}{2}}_{\text{K2, Higgs}} \;=\; \underbrace{\dfrac{c_1}{N_{\mathrm{corners}}}}_{\text{K3, Chern}} \;=\; \underbrace{\dfrac{\sper}{4}}_{\text{Berry par coin}}.\;}
+\label{eq:triple_identification}
+\end{equation}
+La cohérence algébrique entre K2 et la phase de Berry par coin se réduit
+à
+\begin{equation}
+\dfrac{\sper^{2}}{2} \;=\; \dfrac{\sper}{4} \quad\Longleftrightarrow\quad \sper\,(2\sper - 1) \;=\; 0.
+\label{eq:coherence_K2_Berry}
+\end{equation}
+Les seules solutions sont $\sper = 0$ (trivial, pas de paramètre actif,
+exclu par $\Tone$) et $\sper = 1/2$ (théorème $\Tone$). \textbf{La
+cohérence des trois lectures cohomologiques sur-détermine $\sper = 1/2$
+modulo l'axiome $\Tone$ supposé} ; elle ne dérive pas $\sper = 1/2$
+indépendamment de $\Tone$. C'est une signature structurelle de $\Tone$
+par la zone HP-PT du corpus, non un substitut à $\Tone$.
+
+\subsection{Lecture en termes de théorème d'indice}
+\label{sec:indice_APS}
+
+L'assemblage final s'interprète comme un théorème d'indice
+Atiyah--Patodi--Singer formel \cite{APS1975} sur la variété à coin
+$\square$~:
+\begin{equation}
+\mathrm{ind}\!\big(D_+|_\square\big) \;=\; \int_{\square} \mathrm{ch}(E)\,\mathrm{Td}(\square) \,+\, \dfrac{1}{2}\,\big(\eta_{\partial} + \dim \ker D_\partial\big) \,+\, \sum_{\mathrm{coins}} \dfrac{\delta_{\mathrm{coin}}}{2}.
+\label{eq:APS}
+\end{equation}
+Avec $c_1(E) = 1/2$ et $\delta_{\mathrm{coin}} = \pi/2$ pour un coin
+droit, la contribution par coin est $\pi/2 / (2 \cdot 2\pi) = 1/8$, en
+accord avec le calcul de Berry direct. L'identification équivalente via
+Chern--Simons~:
+$\exp(2\pi i\,c_1/N_{\mathrm{corners}}) = \exp(i\pi/4)$, dont l'argument
+$\pi/4$ donne en densité $1/8$ par coin.
+
+Une rigueur formelle au sens APS strict (au-delà du calcul de l'aire et
+de la vérification numérique) reste à développer
+(\S\ref{sec:limites_ouvertures}). Le mécanisme cohomologique est
+néanmoins explicitement identifié.
+

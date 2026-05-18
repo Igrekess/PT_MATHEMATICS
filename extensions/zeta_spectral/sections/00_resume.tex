@@ -1,0 +1,63 @@
+On construit un modèle spectral canonique du facteur résiduel
+$\Rres(s) = \zeta(s) / \big(\zetaplus(s)\zetaminus(s)\big)$ de la fonction
+zêta de Riemann, à partir de la dynamique de persistance PT. Trois acquis
+principaux sont établis.
+\begin{enumerate}[nosep,leftmargin=*]
+\item Une expression close des amplitudes spectrales
+$\kappap(s) = 1 - (1 - p^{-s})\exp(\Ap\,p^{-s})$ telle que
+$\det(I - \DRop(s))^{-1} = \Rres(s)$, vérifiée à $10^{-12}$ dans
+$\Reop(s) > 1$ ; $\DRop$ est l'opérateur diagonal sur $\ell^{2}(\Primes)$
+associé.
+\item Une formule de trace analytique exacte
+$-d \log \Rres/ds = \sum_p (\log p)\,[1/(p^s - 1) + \Ap\,p^{-s}]$, vérifiée
+à $10^{-26}$, qui se lit comme une formule de trace de Berry--Keating sur
+les longueurs d'orbites $\ell_p = \log p$.
+\item Une trace régularisée opératorielle
+$\Treg(s) = \Tr_{\mathrm{reg}}\!\big[(s - i\,\HPTBK)^{-1}\,\DRop(s)\big]$
+dont les pôles distributionnels sur la ligne critique sont identifiés aux
+zéros non triviaux de $\Rres(s)$. Sur $t \in [10, 200]$, la formule brute
+capture 74 zéros sur 79 à $|\Delta| < 1.5$ (sur $t \in [10, 70]$ : $17/17$),
+avec saturation au-delà de $P_{\max} = 3\,000$. La régularisation explicite
+$R_1$ par lissage gaussien ($\eps = 0.2$) améliore substantiellement la
+précision~: \textbf{$75/79$ zéros à $|\Delta| < 0.5$ et $47/79$ à
+$|\Delta| < 0.1$} sur le même domaine, avec une médiane $|\Delta| = 0.080$
+contre $0.52$ pour la formule brute. Le test étendu à $t \in [10, 500]$
+($269$ zéros) confirme la robustesse~: \textbf{$267/269$ à $|\Delta| < 1.5$
+($99.3\,\%$), $242/269$ à $|\Delta| < 0.5$ ($90.0\,\%$), $139/269$ à
+$|\Delta| < 0.1$ ($51.7\,\%$)}, avec une capture par bande de 100 unités
+qui reste $\ge 86.6\,\%$ à $|\Delta| < 0.5$ sur les cinq sous-bandes --- la
+performance ne s'effondre pas au-delà de $T = 200$.
+\end{enumerate}
+
+La localisation $\Reop(s) = 1/2$ admet quatre lectures équivalentes
+internes à PT~: cellule de Planck symplectique $u_\star\, p_\star = 2\pi$,
+Jacobien de Haar multiplicatif $du = dp/p$, transformation unitaire
+$e^{su/2}$, et condition aux bords antipériodique forcée par l'involution
+$T_3$ du crible $\bmod\,3$. Le résidu numérique $1/8$ qui sépare la densité
+semi-classique PT de la densité de Riemann--von Mangoldt admet une
+sur-détermination cohomologique~: $1/8 = \sper^{2}/2 = \lambdaH$
+(auto-couplage Higgs), $1/8 = c_1/N_{\mathrm{corners}}$ (première classe
+de Chern du fibré spinoriel $\qplus/\qminus$), $1/8 = \sper/4$ (phase de
+Berry par coin de la double barrière). L'identité $\sper^{2}/2 = \sper/4$
+a pour seules solutions $\sper = 0$ et $\sper = 1/2$ ; la valeur $\sper = 0$
+étant exclue par $\Tone$ (axiome PT), la cohérence des deux lectures
+sur-détermine $\sper = 1/2$ sans le dériver indépendamment.
+
+Une prédiction structurellement induite --- $\Delta_N(L \bmod q) = 1/(8q)$
+pour les fonctions $L$ de Dirichlet primitives --- a été testée sur les
+zéros pré-calculés de \texttt{LMFDB} ($q \in \{3,5,7,11\}$, $\sim 140$
+zéros par caractère, $T \le 200$). Le test rejette la prédiction à
+$\chi^{2}(\mathrm{PT}) = 7.49$ contre $\chi^{2}(H_0) = 0.023$ sur quatre
+degrés de liberté. La calibration sur les $50$ premiers zéros de $\zeta$
+montre que le résidu $1/8$ est une identité entre formes asymptotiques
+(entre la densité semi-classique BK et la densité Riemann--von Mangoldt),
+non un décalage mesurable au comptage des zéros. La discipline de
+falsifiabilité du programme en sort renforcée et son domaine de validité
+précisé~: le mécanisme PT décrit ici est spécifique à $\zeta$, pas à la
+famille Dirichlet.
+
+L'article distingue strictement \emph{comprendre} la structure des zéros
+et \emph{prouver} leur localisation~: le programme atteint le premier
+objectif au niveau opératoriel ; le second reste un problème ouvert au
+sens classique, équivalent au prolongement analytique strict de $\Rres(s)$
+hors du demi-plan de convergence.

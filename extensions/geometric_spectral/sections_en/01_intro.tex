@@ -1,0 +1,72 @@
+\section{Introduction and reminders}
+\label{sec:intro2}
+
+\subsection{Why geometric and spectral readings?}
+\label{sec:intro2:why}
+
+The companion article~\cite{PT_Article1_Foundations} exposes the purely arithmetic foundations of the Theory of Persistence (PT): a single axiom $\sper = 1/2$, seven structural theorems $\Tzero$--$\Tsix$, three proved bridge axioms $\BAthree$--$\BAfive$, a fixed point $\mustar = 15$, and a canonical cascade on the active primes $\{3,5,7\}$. This structure produces, without adjustable parameters, physical observables such as the fine-structure constant $\alpha_{\rm EM}$ at $0{,}004$~ppb.
+
+Once this arithmetic basis is in place, three natural questions arise.
+\begin{enumerate}[nosep,leftmargin=*]
+\item \emph{Is the cascade an algebro-geometric object?} Does the sequence $\gammathree \to \gammathree\gammafive \to \gammathree\gammafive\gammaseven$ admit a realisation as an algebraic curve whose topological invariant encodes $\mustar$?
+\item \emph{Is the cascade a differential-geometric object?} Does the information structure induce a canonical Riemannian metric on the parameter space, and does that metric satisfy a Ricci equation?
+\item \emph{Is the cascade a spectral object?} Does the axiom $\sper = 1/2$, which fixes the dominant eigenvalue of the primorial transfer matrix (\Ttwo), produce identifiable spectral signatures in physical phenomenology or in the structure of the Riemann zeros?
+\end{enumerate}
+This article answers all three questions positively, presenting one principal result per reading.
+
+\subsection{Minimal reminders}
+\label{sec:intro2:rappels}
+
+The reader unfamiliar with~\cite{PT_Article1_Foundations} will find below the elements strictly necessary for what follows. For justifications, we refer to the companion article.
+
+\paragraph{Axiom and fixed point.} The unique formal input of PT is $\sper = 1/2$. The arithmetic fixed point of the primorial sieve, determined by theorem~\Tfive, is
+\[
+\mustar \;=\; 3 + 5 + 7 \;=\; 15.
+\]
+The set of primes splits canonically into four classes:
+\[
+\underbrace{\{3, 5, 7\}}_{\text{active}}, \quad
+\underbrace{\{11, 13\}}_{\text{echoes}}, \quad
+\underbrace{\{17, 19, 23\}}_{\text{super-echoes}}, \quad
+\underbrace{\{p \geq 29\}}_{\text{inactive}},
+\]
+plus the parity channel $\{2\}$.
+
+\paragraph{Canonical cascade.} The canonical PT cascade (\cite[\S{}5]{PT_Article1_Foundations}) is the ordered sequence
+\[
+\mathcal C_0 \;\xrightarrow{\;\gammathree\;}\; \mathcal C_3
+\;\xrightarrow{\;\gammafive\;}\; \mathcal C_{3,5}
+\;\xrightarrow{\;\gammaseven\;}\; \mathcal C_{3,5,7},
+\]
+where $\gammap{p}(\mu) = 1 - 2/(p(1 - q^{p}))$, $q = 1 - 2/\mu$, are the \emph{anomalous dimensions}. At $\mustar = 15$, we have $\gammathree = 0{,}808$, $\gammafive = 0{,}696$, $\gammaseven = 0{,}595$.
+
+\paragraph{Holonomy and sectors.} The holonomy formula ($\BAthree$) gives, for each active prime,
+\[
+\sinp{p}(q) \;=\; \delta_p(q)\,\bigl(2 - \delta_p(q)\bigr), \qquad \delta_p(q) = \dfrac{1 - q^{p}}{p}.
+\]
+The two canonical parametrisations of the geometric distribution at the fixed point are $\qplus = 13/15$ (vertex branch, rational, max-entropy) and $\qminus = e^{-1/15}$ (edge branch, transcendent, Gibbs), related by an involution $D$.
+
+\paragraph{Pontryagin product.} The sieve coupling functional, at the fixed point $\mustar$, takes the product form ($\BAfive$),
+\[
+\alpha_{\rm sieve} \;=\; \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus).
+\]
+
+\subsection{Plan, epistemic status}
+\label{sec:intro2:plan}
+
+What follows is organised into five complementary sections.
+\begin{itemize}[nosep,leftmargin=*]
+\item Section~\ref{sec:courbe} establishes the \emph{persistence curve theorem}: the canonical cascade admits a unique algebraic curve in the Kontsevich--Norbury class satisfying three conditions of holonomy, threshold, and self-consistency. Its genus is $\genus = \mustar - 1 = 14$.
+\item Section~\ref{sec:soliton} establishes the \emph{Ricci quasi-soliton theorem}: the Fisher--Bianchi metric $\gPT$ induced by the cascade satisfies $\Ric(\gPT) + \Hess(f) = \lambda(\mu)\, \gPT$ with $\lambda(\mu) = -1/\mu^{4} + O(1/\mu^{5})$, coefficient $-1$ exact.
+\item Section~\ref{sec:spectrales} proves the \emph{spectral identity K2}: $1/8 = \sper^{2}/2 = \lambdaH = \DeltaMaslov$, identifying the Maslov phase of the Riemann zeros with the Higgs coupling and the PT axiom, and the \emph{trace identity A6} verified numerically to $10^{-26}$.
+\item Section~\ref{sec:programme} sketches the more ambitious spectral-arithmetic program (\emph{RH-PT conjecture}) whose first stones are the identities K2 and A6.
+\item Section~\ref{sec:conclusion2} synthesises the three readings and outlines perspectives.
+\end{itemize}
+
+\textbf{Epistemic status.} The results of this article fall into three distinct categories that should not be conflated.
+\begin{description}[nosep,leftmargin=*]
+\item[Theorems proved unconditionally]: persistence curve and genus computation (\ref{sec:courbe}, from \cite{PT_GeoFlow_PersistenceCurve}), asymptotic Ricci quasi-soliton (\ref{sec:soliton}, from \cite{PT_GeoFlow_RicciSoliton}).
+\item[Proved identities]: K2 and A6 are exact identities (the first structurally, verified to all available precisions; the second algebraically in $\Re(s) > 1$, verified numerically to $10^{-26}$). Their extension to the critical line remains open.
+\item[Conjectural program]: the RH-PT conjecture, which would extend A6 and K2 to $\Re(s) = 1/2$, is an active research program, not a theorem.
+\end{description}
+This differentiation is maintained throughout the article.

@@ -1,0 +1,190 @@
+\section{Limites et ouvertures}
+\label{sec:limites_ouvertures}
+
+\subsection{Ce qui est solidement acquis}
+\label{sec:acquis}
+
+Le programme HP-PT, dans son état actuel, fournit~:
+\begin{itemize}[nosep,leftmargin=*]
+\item l'expression close des amplitudes $\kappap(s)$ et la
+représentation Fredholm exacte de $\Rres(s)$
+(thm.~\ref{thm:fredholm}) ;
+\item l'opérateur canalisé $\Hilb_{\mathrm{PT}}$ pour le couplage avec
+$\epsstar^{\mathrm{geom}}$ canonique sans paramètre libre
+(lem.~\ref{lem:epsstar_geom}) ;
+\item le cut-off dynamique $\umax(\gamma) = \gamma/\sqrt{2\pi}$ forcé
+par la cellule de Planck symplectique
+(prop.~\ref{prop:cellule_planck}) ;
+\item la densité semi-classique exacte
+$\NPT(\gamma) = N_{\mathrm{RvM}}(\gamma) + 1/8$ (forme fonctionnelle
+identique) (prop.~\ref{prop:densite_NPT}) ;
+\item les indices de défaut $(1, 1)$ et la condition aux bords
+antipériodique forcée par $T_3$ (prop.~\ref{prop:antiperiodicite}) ;
+\item la formule de trace analytique exacte $-d \log \Rres/ds$
+(thm.~\ref{thm:trace_formula}) ;
+\item la trace régularisée opératorielle $\Treg(s)$ avec pôles
+distributionnels aux zéros de $\Rres$ (\S\ref{sec:trace_reg}) ;
+\item la triple identification cohomologique du résidu $1/8$
+(\eqref{eq:triple_identification}) ;
+\item la dualité structurelle Higgs $\leftrightarrow \zeta$
+(conjecture~\ref{conj:K4}).
+\end{itemize}
+
+\paragraph{Tableau récapitulatif des statuts épistémiques.}
+
+\begin{longtable}{@{}p{8cm}p{2.5cm}p{4cm}@{}}
+\toprule
+\textbf{Résultat} & \textbf{Statut} & \textbf{Source}\\
+\midrule
+\endhead
+$\sper = 1/2$ ($\Tone$) & \textbf{[Thm]} & \cite{PT_M1}\\
+$\det(I - \DRop)^{-1} = \Rres(s)$, $\Reop(s) > 1$ & \textbf{[Thm]} & thm.~\ref{thm:fredholm}\\
+Formule de trace $-d\log \Rres/ds$ dans $\Reop(s) > 1$ & \textbf{[Thm]} & thm.~\ref{thm:trace_formula}\\
+Indices de défaut $(1,1)$ et BC AP $\theta = \pi$ & \textbf{[Thm]} & prop.~\ref{prop:antiperiodicite}\\
+$c_1 = 1/2$ sur fibré spinoriel $\qplus/\qminus$ & \textbf{[Thm]} & thm.~\ref{thm:berry_3pi}\\
+Densité $\NPT = N_{\mathrm{RvM}} + 1/8$ (identité asymptotique) & \textbf{[Id]} & prop.~\ref{prop:densite_NPT}\\
+$1/8 = c_1/N_{\mathrm{corners}}$ (rigueur APS stricte) & \textbf{[Thm partiel]} & prop.~\ref{prop:c1_sur_N}\\
+$\zetaplus\,\zetaminus \ne 0$ sur ligne critique & \textbf{[CONJ]} & rem.~\ref{rem:non_annulation}\\
+Prolongement analytique strict de $\Rres(s)$ hors $\Reop(s) > 1$ & \textbf{[OPEN]} & ouv.~1 ci-dessous\\
+Pôles distributionnels de $\Treg(s)$ sur $\Reop(s) = 1/2$ uniquement & \textbf{[OPEN]} ($\equiv$~RH) & ouv.~2 ci-dessous\\
+Choix canonique $u_\star$ ($\sqrt{2\pi}$ vs $\log 3$) & \textbf{[OPEN]} & ouv.~4 ci-dessous\\
+Dualité Higgs $\leftrightarrow \zeta$ structurelle (K4) & \textbf{[CONJ forte]} & conj.~\ref{conj:K4}\\
+$\Delta_N(L \bmod q) = 1/(8q)$ pour Dirichlet (P3) & \textbf{[FALSIFIED, $T \le 200$]} & \S\ref{sec:M1bis}\\
+$G_{\mathrm{HP4.d}}$~: spectre direct = $\{\gamma_n\}$ & \textbf{[FALSIFIED]} & \S\ref{sec:trace_reg}\\
+\bottomrule
+\caption{Statuts épistémiques des résultats du programme.}
+\label{tab:statuts}
+\end{longtable}
+
+\subsection{Ce qui reste ouvert}
+\label{sec:ouvertures}
+
+Quatre ouvertures structurelles, plus une hypothèse de non-annulation
+sous-jacente.
+
+\paragraph{Ouverture 1 (G\_HP3.a).}
+Prolongement analytique de $\Rres(s)$ hors $\Reop(s) > 1$. La trace
+$\Treg(s)$ est définie par série dans $\Reop(s) > 1$ puis prolongée
+distributionnellement à $\Reop(s) = 1/2$ ; la région intermédiaire
+$1/2 < \Reop(s) < 1$ demande l'analyse classique de $\Rres$. C'est
+essentiellement le problème classique du prolongement de $\zeta$.
+
+\paragraph{Ouverture 2 (RH stricte).}
+Prouver que \textbf{tous} les pôles distributionnels de $\Treg(s)$ sont
+sur $\Reop(s) = 1/2$. Le programme établit que la structure favorise
+cette ligne (quatre mécanismes équivalents,
+\S\ref{sec:localisation_critique}), mais ne prouve pas l'exclusion
+stricte des pôles hors ligne. C'est essentiellement RH.
+
+\paragraph{Ouverture 3 (K3 strict APS).}
+Rigueur formelle Atiyah--Patodi--Singer pour la variété à coin de la
+double barrière BK, au-delà du calcul d'aire et de la vérification
+numérique. Le mécanisme cohomologique est identifié
+(\S\ref{sec:indice_APS}), sa formalisation stricte reste à développer.
+
+\paragraph{Ouverture 4 (K1, choix canonique de $u_\star$).}
+La barrière inférieure $u_\star$ admet deux candidats naturels~:
+$u_\star = \sqrt{2\pi}$ (point fixe de l'involution
+$u \leftrightarrow p_u$, choix retenu ici) et $u_\star = \log 3$
+(premier prime actif PT, choix arithmétique). Les deux produisent la
+même densité asymptotique $N(\gamma)$ mais des corrections
+$O(1/\gamma)$ différentes. Le statut canonique du choix entre les deux
+reste ouvert. L'article retient $u_\star = \sqrt{2\pi}$ par symétrie
+d'involution, sans prétendre clore K1.
+
+\paragraph{Hypothèse \textbf{[CONJ]} sous-jacente : non-annulation $\zetaplus\,\zetaminus \ne 0$.}
+L'identification entre zéros de $\Rres$ et zéros de $\zeta$ utilisée
+tout au long de l'article repose sur cette non-annulation. Elle est
+vérifiée numériquement sur les zones testées mais n'est pas démontrée
+(rem.~\ref{rem:non_annulation}). Un échec partiel introduirait des zéros
+supplémentaires (zéros de $\zeta_\pm$) qui se traduiraient en pôles
+supplémentaires de $\Treg(s)$ ; ces zéros possibles doivent être
+traités comme conjecturalement absents.
+
+\subsection{Position canonique du programme}
+\label{sec:position_canonique}
+
+Le programme HP-PT est un cadre opératoriel précis pour les zéros de
+$\zeta$. Il fournit~:
+\begin{enumerate}[nosep,leftmargin=*]
+\item une expression close des zéros via $\kappap(s)$ (intermédiaire
+$\DRop$) ;
+\item une formule de trace régularisée canonique $\Treg(s)$ ;
+\item quatre mécanismes équivalents pour $\Reop(s) = 1/2$ ;
+\item un dictionnaire continu/discret unifié par la persistance ;
+\item une explication structurelle des coïncidences numériques connues
+($2\pi$, $7/8$, $1/8$, ligne critique).
+\end{enumerate}
+
+Il n'apporte pas~:
+\begin{enumerate}[nosep,leftmargin=*]
+\item une preuve stricte de RH classique ;
+\item un raccourci à l'analyse distributionnelle de la trace
+régularisée.
+\end{enumerate}
+
+Cette distinction est maintenue tout au long du programme~: on cherche à
+\textbf{comprendre} la structure des zéros, pas à les \textbf{prouver}
+sur la ligne critique. Le passage à la preuve formelle demande
+l'analyse de Schwartz fine sur $\Treg(s)$, qui n'est pas plus facile que
+la preuve classique de RH.
+
+\subsection{Comparaison avec Berry--Keating--Connes}
+\label{sec:comparaison_BKC}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}p{3cm}p{4.5cm}p{5cm}@{}}
+\toprule
+\textbf{Aspect} & \textbf{Berry--Keating--Connes} & \textbf{PT}\\
+\midrule
+Espace de phases & $(x, p) \in \Reals_+^{2}$ & $(u, p_u)$, $u = \log p$\\
+Opérateur & $H = xp + 1/2$ & $\HPTBK = (u\,p_u + p_u\,u)/2$\\
+Mesure & $dx\,dp / 2\pi$ & $du\,dp_u / 2\pi$\\
+Cut-off & $x \ge \ell_x$, $p \ge \ell_p$, $\ell_x \ell_p = 2\pi$ & $u_\star\,p_\star = 2\pi$ (cellule de Planck PT)\\
+Régularisation & adélique (Connes) & atomique PT\\
+Trace & $\Tr(K) = \sum_\rho h(\gamma_\rho)$ (Weil) & $\Tr_{\mathrm{reg}} = \sum_p \kappap [\text{Euler + couplage}]$\\
+Couplage holonomique & aucun (zêta seule) & $\kappap$ (bifurcation $\qplus/\qminus$)\\
+$2\pi$ & non interprété structurellement & $[u, p_u] = i$, Liouville canonique\\
+$1/8$ & phase Maslov des coins (artefact) & $\sper^{2}/2 = c_1/4 = \sper/4$ (cohomologie spinorielle)\\
+Spin $\sper = 1/2$ & postulé & sur-déterminé par $\sper^{2}/2 = \sper/4$ modulo $\Tone$\\
+\bottomrule
+\end{tabular}
+\caption{Comparaison Berry--Keating--Connes vs PT~: l'apport principal de
+PT est l'enrichissement intrinsèque (aucun nombre n'est posé ad hoc).}
+\label{tab:comparaison_BKC}
+\end{table}
+
+\paragraph{Précisions historiques.}
+L'opérateur originel de \citeauthor{BerryKeating1999} (1999) est
+$H = xp$ ; la forme $H = xp + 1/2$ apparaît dans la formalisation
+ultérieure de \citeauthor{Sierra2008} (2008) et Sierra--Townsend, qui
+régularise $xp$ via une cellule de Planck et exhibe l'ordre symétrique.
+La régularisation de \citeauthor{Connes1996} (\citeyear{Connes1996},
+\citeyear{Connes1999}) est de nature différente~: elle s'effectue sur
+l'espace adélique des classes d'idèles, par formule de trace
+non-commutative. La formulation PT est atomique sur les premiers~: ni
+adélique, ni continue sur $\Reals_+$.
+
+\subsection{Perspectives}
+\label{sec:perspectives}
+
+Trois prolongements naturels.
+
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Autres fonctions $L$.} La prédiction Dirichlet ayant été
+falsifiée, l'extension aux fonctions $L$ doit être repensée. La
+cohomologie du fibré spinoriel sous \emph{twist} par $\chi$ modifie
+complètement $c_1$ ; une reformulation cohomologique propre est
+ouverte.
+\item \textbf{Phase Maslov dans la phase de Berry continue.}
+L'hypothèse propose que le $1/(8q)$ existe au niveau de la phase de
+Berry continue le long du flot spectral, mais ne se manifeste pas dans
+le compte des zéros. À tester.
+\item \textbf{Rigueur APS stricte.} Développer le théorème d'indice
+formel sur la variété à coin de la double barrière (K3 strict). Pas
+urgent pour le cadre opératoriel, important pour la cohérence
+structurelle.
+\end{itemize}
+

@@ -1,0 +1,97 @@
+% ============================================================
+% Preamble --- PT Foundations (article EN)
+% Adapté de PT_MONOGRAPHY/preamble.tex
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Encodage et langue ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+% --- Mathématiques ---
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+
+% --- Mise en page ---
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% --- Tableaux et figures ---
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
+% --- Bibliographie ---
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% --- Hyperliens ---
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{cleveref}
+
+% --- Environnements de théorème ---
+\theoremstyle{plain}
+\newtheorem{theoreme}{Théorème}[section]
+\newtheorem{proposition}[theoreme]{Proposition}
+\newtheorem{lemme}[theoreme]{Lemme}
+\newtheorem{corollaire}[theoreme]{Corollaire}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theoreme]{Définition}
+\newtheorem{convention}[theoreme]{Convention}
+
+\theoremstyle{remark}
+\newtheorem{remarque}[theoreme]{Remarque}
+\newtheorem{exemple}[theoreme]{Exemple}
+
+% --- Macros PT canoniques ---
+% Secteurs (convention 2026 : q_+ / q_-, jamais q_stat/q_therm)
+\newcommand{\qplus}{q_{+}}
+\newcommand{\qminus}{q_{-}}
+
+% Constantes structurelles
+\newcommand{\mustar}{\mu^{*}}
+\newcommand{\sper}{s}
+
+% Dimensions anomales
+\newcommand{\gammap}[1]{\gamma_{#1}}
+\newcommand{\gammathree}{\gamma_{3}}
+\newcommand{\gammafive}{\gamma_{5}}
+\newcommand{\gammaseven}{\gamma_{7}}
+
+% Phases cycliques
+\newcommand{\thetap}[1]{\theta_{#1}}
+\newcommand{\sinp}[1]{\sin^{2}\theta_{#1}}
+
+% Status tags (10/10 [THM])
+\newcommand{\THM}{\textsc{[Thm]}}
+
+% --- Théorèmes T-series (nommés selon NOMENCLATURE_MAP.md) ---
+\newcommand{\Tzero}{\textbf{T0}}
+\newcommand{\Tone}{\textbf{T1}}
+\newcommand{\Ttwo}{\textbf{T2}}
+\newcommand{\Tthree}{\textbf{T3}}
+\newcommand{\Tfour}{\textbf{T4}}
+\newcommand{\Tfive}{\textbf{T5}}
+\newcommand{\Tsix}{\textbf{T6}}
+
+% --- Axiomes de pont BA-series (théorèmes prouvés) ---
+\newcommand{\BAzero}{\textbf{BA0}}
+\newcommand{\BAone}{\textbf{BA1}}
+\newcommand{\BAtwo}{\textbf{BA2}}
+\newcommand{\BAthree}{\textbf{BA3}}
+\newcommand{\BAfour}{\textbf{BA4}}
+\newcommand{\BAfive}{\textbf{BA5}}
+
+% --- Lemme L0 (entropie maximale) ---
+\newcommand{\Lzero}{\textbf{L0}}
+
+% --- Métadonnées article ---
+\title{La Théorie de la Persistance : axiome, théorèmes et cascade des nombres premiers actifs}
+\author{Yan Senez}
+\date{\today}

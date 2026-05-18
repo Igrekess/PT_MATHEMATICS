@@ -1,0 +1,32 @@
+\section{Table récapitulative des résultats}
+\label{app:resultats}
+
+Le tableau~\ref{tab:resultats} synthétise les résultats principaux de cet article, classés par statut épistémique et avec leurs références.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}p{3cm}p{6cm}p{2cm}p{3.5cm}@{}}
+\toprule
+Étiquette & Énoncé court & Section & Statut \\
+\midrule
+\multicolumn{4}{c}{\textsf{\textbf{Théorèmes prouvés inconditionnellement}}} \\[2pt]
+Th.~Classification (\ref{thm:courbe_classification}) & $S = \{3, 5, 7\}$ unique solution ACA$_{\mathcal P}$ avec $|S| \geq 2$ & \ref{sec:courbe} & \textsc{[Thm]} \\
+Th.~Algébricité (\ref{thm:algebraicite_PT}) & $\Cper$ algébrique, $Y^{2} \in \mathbb Q(x)$ & \ref{sec:courbe} & \textsc{[Thm]} \\
+Th.~Genre (\ref{thm:genre}) & $\genus(\Cper) = \mustar - \lfloor |S|/2 \rfloor = 14$ & \ref{sec:courbe} & \textsc{[Thm]} \\
+Th.~Quasi-soliton (\ref{thm:soliton_PT}) & $\lambda(\mu) = -1/\mu^{4} + O(\mu^{-5})$, coef.\ $-1$ exact & \ref{sec:soliton} & \textsc{[Thm]} \\
+Prop.~Anisotropie (\ref{prop:anisotropy}) & Anisotropie $\Leftrightarrow$ unicité de $\lambda$ & \ref{sec:soliton} & \textsc{[Thm]} \\
+\midrule
+\multicolumn{4}{c}{\textsf{\textbf{Identités prouvées}}} \\[2pt]
+K2 (\ref{thm:K2}) & $1/8 = \sper^{2}/2 = \lambdaH = \DeltaMaslov$ & \ref{sec:spectrales} & \textsc{[Id]} structurelle \\
+A6 (\ref{thm:A6}) & $-d/ds \log R = \sum_p \log p\,[1/(p^{s}{-}1) + A_p p^{-s}]$ & \ref{sec:spectrales} & \textsc{[Id]}, $\Re(s) > 1$ \\
+\midrule
+\multicolumn{4}{c}{\textsf{\textbf{Programme conjectural}}} \\[2pt]
+RH-PT (\ref{conj:RH_PT}) & Pôles de $\mathcal T(s)$ sur $\Re(s) = 1/2$ $\leftrightarrow$ zéros de $\zeta$ & \ref{sec:programme} & \textsc{[Conj]} \\
+$\lambda \leftrightarrow B_0$ & $\lambda(\mu) \sim B_0(\mu)^{-8/3}$ exact & \ref{sec:soliton:perelman} & \textsc{[Conj]} \\
+K3 cohomologique & Dérivation cohomologique unifiée de K2 & \ref{sec:spectrales:K2} & \textsc{[Open]} \\
+\bottomrule
+\end{tabular}
+\caption{Tableau récapitulatif des résultats de l'article. \textsc{[Thm]} = théorème inconditionnel, \textsc{[Id]} = identité prouvée, \textsc{[Conj]} = conjecture, \textsc{[Open]} = problème ouvert.}
+\label{tab:resultats}
+\end{table}

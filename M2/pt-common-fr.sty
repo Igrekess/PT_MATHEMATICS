@@ -1,0 +1,433 @@
+% pt-common-fr.sty -- Jumeau français de pt-common.sty pour les articles PT
+% Source : pt-common.sty (v2, 2026-04-04)
+%
+% Différences vs pt-common.sty :
+%   1. babel chargé en [french] au lieu de [english]
+%   2. Patch \AtBeginDocument{\shorthandoff{:!?;}} : neutralise les
+%      shorthands babel-french qui cassent \cref / \csname (les
+%      caractères `:`, `!`, `?`, `;` deviennent actifs et insèrent du
+%      \penalty incompatible avec la construction de \csname r@<label>...
+%      → essentiel pour tous les articles utilisant cleveref + babel-french)
+%   3. csquotes ajouté (guillemets français corrects)
+%   4. Environnements de théorème renommés en FR (theoreme, lemme, etc.)
+%   5. \GFT renommé pour rendu « TFS » (Théorème Fondamental des Sauts)
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pt-common-fr}[2026/05/15 Persistence Theory common macros — FR v1]
+
+% ============================================================
+% Packages de base
+% ============================================================
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[french]{babel}
+\RequirePackage{csquotes}
+
+% Mathématiques
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{bm}
+\RequirePackage{bbm}
+\RequirePackage{dsfont}
+\RequirePackage{braket}
+
+% Graphiques et figures
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta, calc, positioning, decorations.markings,
+  decorations.pathreplacing, patterns, shapes.geometric, matrix,
+  intersections, fit, backgrounds, chains}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Boîtes de théorème colorées
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+
+% Références
+\RequirePackage{hyperref}
+\RequirePackage[nameinlink]{cleveref}
+
+% PATCH CRITIQUE : neutraliser les shorthands babel-french qui cassent
+% \cref. Sans ceci, tout \cref{label} dans le corps explose avec
+% « Missing \endcsname inserted / Argument of \@firstoffive has an extra } »
+% parce que les caractères `:`, `!`, `?`, `;` sont actifs et insèrent
+% des tokens \penalty dans les arguments de \csname.
+\AtBeginDocument{\shorthandoff{:!?;}}
+
+% Bibliographie
+\RequirePackage[numbers,sort&compress]{natbib}
+
+% Tableaux
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{multirow}
+\RequirePackage{array}
+
+% Divers
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{float}
+\RequirePackage{subcaption}
+\RequirePackage{microtype}
+\RequirePackage{xspace}
+\RequirePackage{needspace}
+\RequirePackage{colortbl}
+\RequirePackage{tabularx}
+\RequirePackage{pdflscape}
+\RequirePackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single}
+\RequirePackage{epigraph}
+\setlength{\epigraphwidth}{0.6\textwidth}
+\setlength{\epigraphrule}{0pt}
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf}
+
+% ============================================================
+% Couleurs par type de preuve
+% ============================================================
+\definecolor{idgreen}{RGB}{46,139,87}
+\definecolor{thmblue}{RGB}{30,70,150}
+\definecolor{reccyan}{RGB}{0,150,180}
+\definecolor{derorange}{RGB}{210,120,20}
+\definecolor{deryellow}{RGB}{180,160,30}
+\definecolor{predred}{RGB}{180,30,30}
+\definecolor{dissgray}{RGB}{120,120,120}
+\definecolor{metapurple}{RGB}{120,60,160}
+\definecolor{derphysred}{RGB}{180,50,50}
+\definecolor{condorange}{RGB}{200,130,0}
+\definecolor{bridgepurple}{RGB}{130,50,170}
+\definecolor{valgray}{RGB}{100,100,100}
+\definecolor{closuregold}{RGB}{180,150,0}
+
+% Couleurs hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=thmblue,
+  citecolor=idgreen,
+  urlcolor=derorange
+}
+
+% ============================================================
+% Boîtes type-théorème (tcolorbox)
+% ============================================================
+\newcommand{\boxtag}[1]{\textnormal{\textsc{#1}}}
+
+\tcbset{ptbox/.style={
+  enhanced, breakable,
+  before={\needspace{5\baselineskip}},
+  before upper={\setlength{\parskip}{0.4em}},
+  fonttitle=\bfseries
+}}
+
+\newtcolorbox{identitybox}[1][]{
+  ptbox, colback=idgreen!5, colframe=idgreen,
+  title={\boxtag{[id]} #1}
+}
+\newtcolorbox{theorembox}[1][]{
+  ptbox, colback=thmblue!5, colframe=thmblue,
+  title={\boxtag{[thm]} #1}
+}
+\newtcolorbox{reconstructedbox}[1][]{
+  ptbox, colback=reccyan!5, colframe=reccyan,
+  title={\boxtag{[rec]} #1}
+}
+\newtcolorbox{derivedphysbox}[1][]{
+  ptbox, colback=derorange!5, colframe=derorange,
+  title={\boxtag{[der-phys]} #1}
+}
+\newtcolorbox{derivedbox}[1][]{
+  ptbox, colback=deryellow!5, colframe=deryellow!80!black,
+  title={\boxtag{[der]} #1}
+}
+\newtcolorbox{predictionbox}[1][]{
+  ptbox, colback=predred!5, colframe=predred,
+  title={\boxtag{[pred]} #1}
+}
+\newtcolorbox{dissolutionbox}[1][]{
+  ptbox, colback=dissgray!5, colframe=dissgray,
+  title={\boxtag{[diss]} #1}
+}
+\newtcolorbox{metabox}[1][]{
+  ptbox, colback=metapurple!5, colframe=metapurple,
+  title={\boxtag{[meta]} #1}
+}
+\newtcolorbox{tradbox}[1][]{
+  ptbox, colback=gray!5, colframe=gray!60,
+  title={\boxtag{[trad]} #1}
+}
+
+% Boîte de statut (sections)
+\newtcolorbox{statusbox}{
+  ptbox, colback=gray!3, colframe=gray!40,
+  title={\boxtag{Statut}}
+}
+
+% Boîte ledger (synthèses)
+\newtcolorbox{ledgerbox}{
+  ptbox, colback=thmblue!3, colframe=thmblue!40,
+  title={}
+}
+
+% Boîte théorème avec preuve (bleu)
+\newtcolorbox{thmbox}[1][]{
+  ptbox, colback=thmblue!5, colframe=thmblue,
+  title={#1}
+}
+
+% Boîte identité (nom alternatif)
+\newtcolorbox{idbox}[1][]{
+  ptbox, colback=idgreen!5, colframe=idgreen,
+  title={\boxtag{[id]} #1}
+}
+
+% Boîte de clôture
+\newtcolorbox{closurebox}[1][]{
+  ptbox, colback=condorange!5, colframe=condorange,
+  title={\boxtag{[closure]} #1}
+}
+
+% Boîte résultat dérivé (style monographe)
+\newtcolorbox{derbox}[1][]{
+  ptbox, colback=derorange!5, colframe=derorange,
+  title={\boxtag{[der]} #1}
+}
+
+% Boîte pont (arithmétique → physique)
+\newtcolorbox{bridgebox}[1][]{
+  ptbox, colback=bridgepurple!5, colframe=bridgepurple,
+  title={\boxtag{[bridge]} #1}
+}
+
+% Boîte résultat conditionnel
+\newtcolorbox{condbox}[1][]{
+  ptbox, colback=condorange!5, colframe=condorange,
+  title={\boxtag{[cond]} #1}
+}
+
+% Boîte validation
+\newtcolorbox{valbox}[1][]{
+  ptbox, colback=valgray!5, colframe=valgray,
+  title={\boxtag{[val]} #1}
+}
+
+% Boîte prédiction (alias de predictionbox)
+\newtcolorbox{predbox}[1][]{
+  ptbox, colback=predred!5, colframe=predred,
+  title={\boxtag{[pred]} #1}
+}
+
+% Boîte clôture PT (or)
+\newtcolorbox{clbox}[1][]{
+  ptbox, colback=closuregold!5, colframe=closuregold,
+  title={\boxtag{[cl]} #1}
+}
+
+% ============================================================
+% Environnements amsthm français
+% ============================================================
+\theoremstyle{plain}
+\newtheorem{theoreme}{Théorème}[section]
+\newtheorem{proposition}[theoreme]{Proposition}
+\newtheorem{lemme}[theoreme]{Lemme}
+\newtheorem{corollaire}[theoreme]{Corollaire}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theoreme]{Définition}
+\newtheorem{exemple}[theoreme]{Exemple}
+\newtheorem{convention}[theoreme]{Convention}
+
+\theoremstyle{remark}
+\newtheorem{remarque}[theoreme]{Remarque}
+\newtheorem{hypothese}[theoreme]{Hypothèse}
+\newtheorem{conjecture}[theoreme]{Conjecture}
+
+% ============================================================
+% Macros personnalisées — notation PT
+% ============================================================
+
+% Paramètre de symétrie
+\newcommand{\spt}{\ensuremath{s}}
+\newcommand{\sper}{\ensuremath{s}}
+\newcommand{\mustar}{\ensuremath{{\mu^{*}}}}
+\newcommand{\qstat}{\ensuremath{q_{+}}}  % alias historique (avril 2026 : rel → +)
+\newcommand{\qrel}{\ensuremath{q_{+}}}   % alias historique
+\newcommand{\qplus}{\ensuremath{q_{+}}}  % canonique (cf. NOMENCLATURE_MAP.md)
+\newcommand{\qtherm}{\ensuremath{q_{-}}} % alias historique (avril 2026 : therm → -)
+\newcommand{\qminus}{\ensuremath{q_{-}}} % canonique
+
+% Objets du crible
+\newcommand{\gn}{\ensuremath{g_n}}
+\newcommand{\pn}{\ensuremath{p_n}}
+\newcommand{\rn}{\ensuremath{r_n}}
+\newcommand{\Tm}{\ensuremath{T_m}}
+\newcommand{\Zm}{\ensuremath{Z_m}}
+\newcommand{\Pact}{\ensuremath{P_{\mathrm{act}}}}
+\newcommand{\delp}[1]{\ensuremath{\delta_{#1}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+
+% Quantités d'information
+\newcommand{\DKL}{\ensuremath{D_{\mathrm{KL}}}}
+\newcommand{\Hent}{\ensuremath{H}}
+\newcommand{\MI}{\ensuremath{I}}
+
+% Angles et couplages
+\newcommand{\sinp}[1]{\ensuremath{\sin^2(\theta_{#1})}}
+\newcommand{\sinsp}[1]{\ensuremath{\sin^2\!\theta_{#1}}}
+\newcommand{\gamp}[1]{\ensuremath{\gamma_{#1}}}
+\newcommand{\alphaEM}{\ensuremath{\alpha_{\mathrm{EM}}}}
+\newcommand{\alphas}{\ensuremath{\alpha_{s}}}
+\newcommand{\sinW}{\ensuremath{\sin^2\theta_W}}
+\newcommand{\Fisher}{\ensuremath{g^F}}
+
+% Profondeur
+\newcommand{\depth}[1]{\ensuremath{d=#1}}
+
+% Tags de statut (universels, en anglais)
+\newcommand{\THMTAG}{\boxtag{[thm]}}
+\newcommand{\IDTAG}{\boxtag{[id]}}
+\newcommand{\DERTAG}{\boxtag{[der]}}
+\newcommand{\BRIDGETAG}{\boxtag{[bridge]}}
+\newcommand{\CONDTAG}{\boxtag{[cond]}}
+\newcommand{\CLTAG}{\boxtag{[closure]}}
+\newcommand{\VALTAG}{\boxtag{[val]}}
+\newcommand{\PREDTAG}{\boxtag{[pred]}}
+\newcommand{\THMRECTAG}{\boxtag{[thm-rec]}}
+\newcommand{\OUVTAG}{\boxtag{[open]}}
+\newcommand{\RECTAG}{\boxtag{[rec]}}
+
+% Notes marginales (no-op en mode article)
+\newcommand{\mTHM}{}
+\newcommand{\mID}{}
+\newcommand{\mDER}{}
+\newcommand{\mCL}{}
+\newcommand{\mVAL}{}
+\newcommand{\mPRED}{}
+\newcommand{\mCOND}{}
+\newcommand{\mBR}{}
+
+% Particules
+\newcommand{\Nc}{\ensuremath{N_c}}
+\newcommand{\nf}{\ensuremath{n_f}}
+\newcommand{\CF}{\ensuremath{C_F}}
+
+% Constantes physiques
+\newcommand{\GN}{\ensuremath{G_N}}
+\newcommand{\GF}{\ensuremath{G_F}}
+\newcommand{\mpl}{\ensuremath{m_{\mathrm{Pl}}}}
+
+% Formatage
+\newcommand{\PT}{\textsc{pt}\xspace}
+\newcommand{\SM}{\textsc{ms}\xspace}    % Modèle Standard (Standard Model)
+\newcommand{\MS}{\textsc{ms}\xspace}    % alias FR
+\newcommand{\GFT}{\textsc{tfs}\xspace}  % Théorème Fondamental des Sauts (FR de GFT)
+\newcommand{\TFS}{\textsc{tfs}\xspace}  % alias FR
+\newcommand{\DIC}{\textsc{dic}\xspace}
+\newcommand{\CD}{\textsc{cd}\xspace}
+
+% Tags de dépendance
+\newcommand{\depTz}{\textsuperscript{\tiny[T0]}}
+\newcommand{\depMu}{\textsuperscript{\tiny[$\mu$]}}
+
+% Étiquettes de statut
+\newcommand{\ptREC}{\boxtag{[rec]}}
+\newcommand{\ptDISS}{\boxtag{[diss]}}
+\newcommand{\ptTRAD}{\boxtag{[trad]}}
+\newcommand{\ptMETA}{\boxtag{[meta]}}
+
+% Raccourci mod
+\newcommand{\smod}[1]{\;\mathrm{mod}\;#1}
+
+% Macro chaîne de dérivation
+\newcommand{\derchain}[2]{%
+  \ensuremath{#1 \;\xrightarrow{\mathrm{PT}}\; #2}}
+
+% Intro de partie (no-op en mode article)
+\newcommand{\partintro}[1]{}
+
+% Référence monographe (Sref)
+\newcommand{\sref}[1]{S#1}
+
+% Cellule d'erreur
+\newcommand{\errorcell}[1]{\textcolor{red}{#1}}
+
+% Raccourci physique
+\newcommand{\alphaphys}{\ensuremath{\alpha_{\mathrm{phys}}}}
+
+% Étiquettes vérifié/attention
+\newcommand{\verifiedlabel}[1]{%
+  \par\smallskip\noindent
+  \textcolor{idgreen}{\rule{2pt}{1em}}\;\textit{#1}%
+  \par\smallskip}
+\newcommand{\cautionlabel}[1]{%
+  \par\smallskip\noindent
+  \textcolor{derorange}{\rule{2pt}{1em}}\;\textit{#1}%
+  \par\smallskip}
+
+% ============================================================
+% Annotations Lean (PT_LEAN cross-references)
+% ============================================================
+%
+%  Marqueurs de statut de formalisation Lean 4 (PT_LEAN/).
+%  Mêmes commandes que dans le préambule de la monographie ;
+%  voir PT_MONOGRAPHY/LEAN_INDEX.md pour la table de correspondance.
+%
+%  Usage type :
+%    \begin{theorem}[T1]\label{thm:T1}\leanProved{PT.Sieve.T1ForbiddenTransitions.T1\_antidiag}
+%      ...
+%    \end{theorem}
+
+\definecolor{leangreen}{RGB}{60,140,40}    % Démontré (sorry-free)
+\definecolor{leanorange}{RGB}{210,120,30}  % Partiel
+\definecolor{leanblue}{RGB}{60,90,170}     % Import externe (Mathlib, Čencov)
+\definecolor{leanred}{RGB}{180,60,60}      % Pas encore formalisé
+
+\newif\ifleanrefsvisible
+\leanrefsvisibletrue  % \leanrefsvisiblefalse pour masquer
+
+% Badges statut (sans identifier)
+\newcommand{\thmLeanProved}{%
+  \ifleanrefsvisible
+    \hfill\textcolor{leangreen}{\ensuremath{\checkmark_{\!L}}}%
+  \fi}
+\newcommand{\thmLeanPartial}{%
+  \ifleanrefsvisible
+    \hfill\textcolor{leanorange}{\ensuremath{\sim_{\!L}}}%
+  \fi}
+\newcommand{\thmLeanExternal}{%
+  \ifleanrefsvisible
+    \hfill\textcolor{leanblue}{\ensuremath{\star_{\!L}}}%
+  \fi}
+\newcommand{\thmLeanTodo}{%
+  \ifleanrefsvisible
+    \hfill\textcolor{leanred}{\ensuremath{\circ_{\!L}}}%
+  \fi}
+
+% Référence Lean en ligne (avec backslash escape `_` -> `\_`)
+\newcommand{\leanref}[1]{%
+  \ifleanrefsvisible
+    \hfill\fbox{\textsf{\scriptsize Lean: \texttt{#1}}}%
+  \fi}
+
+% Combinés : badge + identifier
+\newcommand{\leanProved}[1]{\thmLeanProved\leanref{#1}}
+\newcommand{\leanPartial}[1]{\thmLeanPartial\leanref{#1}}
+\newcommand{\leanExternal}[1]{\thmLeanExternal\leanref{#1}}
+\newcommand{\leanTodo}[1]{\thmLeanTodo\leanref{#1}}
+
+% Légende (à insérer une fois, dans l'introduction)
+\newcommand{\leanLegend}{%
+  \begin{quote}\footnotesize\noindent
+  \textsf{Annotations Lean.} Chaque théorème porte (le cas échéant) un
+  symbole à droite indiquant son statut de formalisation dans le dépôt
+  \texttt{PT\_LEAN} (Lean~4) :
+  \begin{itemize}\setlength{\itemsep}{0pt}
+    \item \textcolor{leangreen}{\ensuremath{\checkmark_{\!L}}} : preuve Lean complète, 0 \texttt{sorry}.
+    \item \textcolor{leanorange}{\ensuremath{\sim_{\!L}}} : partiellement formalisé.
+    \item \textcolor{leanblue}{\ensuremath{\star_{\!L}}} : import externe (Mathlib, Čencov 1982).
+    \item \textcolor{leanred}{\ensuremath{\circ_{\!L}}} : pas encore formalisé.
+  \end{itemize}
+  Table complète : \texttt{LEAN\_INDEX.md} à la racine du dépôt monographe.
+  \end{quote}}
+
+\endinput

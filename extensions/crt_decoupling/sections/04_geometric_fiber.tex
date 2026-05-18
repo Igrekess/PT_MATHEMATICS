@@ -1,0 +1,193 @@
+\section{The geometric fibre: Bianchi I from spectral data}
+\label{sec:geometric_fiber}
+
+This section attaches the emergent Bianchi-I metric $G(\mu)$ to the
+spectrum of the transfer matrix $T_m$. The construction is standard
+in Persistence Theory; we give only the elements needed for
+Lemma~\ref{lem:G_measurable}, whose conclusion enters Step~2 of the
+proof of Theorem~\ref{thm:empirical_invariance}. Readers familiar
+with the holonomy chain in chapter~6 and the metric reconstruction
+in chapter~12 of the monograph~\cite{PT_Monograph} may skip directly
+to Section~\ref{ssec:G_measurability}.
+
+\subsection{Holonomic angles from $T_m$}
+\label{ssec:holonomic_angles}
+
+For each prime~$p$ and each scale $\mu > 0$, the holonomy angle
+$\theta_p(\mu)$ is defined by the geometric identity
+\begin{equation}
+  \cos \theta_p(\mu) \;:=\; 1 - \delta_p(\mu),
+  \qquad
+  \delta_p(\mu) \;:=\; \frac{1 - q(\mu)^p}{p},
+  \label{eq:theta_p_def}
+\end{equation}
+where $q(\mu)$ is one of the two bifurcation values
+$\qplus(\mu) = 1 - 2/\mu$ or $q_-(\mu) = e^{-1/\mu}$ singled out by
+the maximum-entropy lemma L0~\cite[Ch.~3]{PT_Monograph}. As recalled
+in Section~\ref{ssec:emergent_geometry}, the present paper uses the
+couplage branch $q = \qplus$ throughout. By the holonomy theorem
+T6~\cite[Ch.~6,~Thm.~T6]{PT_Monograph}, the squared sine of
+$\theta_p$ admits the closed form
+\begin{equation}
+  \sinp{p}(\mu) \;=\; \delta_p(\mu)\bigl(2 - \delta_p(\mu)\bigr),
+  \label{eq:sin2_T6}
+\end{equation}
+which is the identity used throughout the paper as a function of the
+single argument $\mu$ and the choice of branch.
+
+The interpretation in Persistence Theory is as follows. The cyclic
+group $\mathbb{Z}/p\mathbb{Z}$ is the discrete analogue of a circle
+of $p$ points, and $\theta_p$ is the angle accumulated by the
+holonomy of the modular Fourier transform as the sieve completes one
+cycle on that circle. The active primes $p \in \{3, 5, 7\}$ are the
+primes whose holonomy contributes a non-trivial phase at the
+canonical fixed point $\mustar = 15$; for $p \geq 11$ the
+contribution is exponentially suppressed (the so-called
+\emph{echo primes}, cf.~\cite[Ch.~22]{PT_Monograph}).
+
+\subsection{Anomalous dimensions and scale factors}
+\label{ssec:gamma_a}
+
+The anomalous dimension associated with the holonomy angle
+$\theta_p$ at scale~$\mu$ is the logarithmic derivative
+\begin{equation}
+  \gamp{p}(\mu)
+  \;:=\;
+  -\,\frac{\partial \ln \sinp{p}(\mu)}{\partial \ln \mu}.
+  \label{eq:gamma_def}
+\end{equation}
+By direct differentiation of~\eqref{eq:sin2_T6} and substitution of
+$q = \qplus$,
+\begin{equation}
+  \gamp{p}(\mu)
+  \;=\;
+  \frac{4\,p\,q^{p-1}(1 - \delta_p)\, /\, \mu^2}
+       {(1 - q^p)(2 - \delta_p)} \cdot \mu
+  \;=\;
+  \frac{4\,p\,\qplus(\mu)^{p-1}\,\bigl(1 - \delta_p(\mu)\bigr)}
+       {\mu\,(1 - \qplus(\mu)^p)\,(2 - \delta_p(\mu))}.
+  \label{eq:gamma_explicit}
+\end{equation}
+The corresponding per-channel scale factor is
+\begin{equation}
+  a_p(\mu) \;:=\; \frac{\gamp{p}(\mu)}{\mu},
+  \label{eq:a_p_def}
+\end{equation}
+which at the canonical fixed point $\mustar = 15$ takes the values
+$a_3 \approx 0.0539$, $a_5 \approx 0.0464$,
+$a_7 \approx 0.0397$ on the active primes. Both
+$\gamp{p}$ and $a_p$ are real-analytic functions of $\mu$ on
+$(0, \infty)$, and depend on $\mu$ through the elementary functions
+$\qplus(\mu)$ and $\delta_p(\mu)$ only.
+
+\subsection{The geometric family $\mathcal{G}$}
+\label{ssec:G_family}
+
+The Bianchi-I metric attached to the active primes
+$\{3, 5, 7\}$ is the diagonal $(3+1)$-dimensional Lorentzian metric
+\begin{equation}
+  G(\mu) \;:=\;
+  \mathrm{diag}\bigl(-1,\; a_3(\mu)^2,\; a_5(\mu)^2,\; a_7(\mu)^2\bigr),
+  \qquad
+  \mu \in [\mu_c, \infty),
+  \label{eq:G_def_repeated}
+\end{equation}
+where the lower endpoint $\mu_c \approx 6.97$ is the unique solution
+of $\partial^2 \ln \alpha(\mu) / \partial \mu^2 = 0$ on the
+positive real axis~\cite[Ch.~12,~thm:HH]{PT_Monograph}. For
+$\mu \in (0, \mu_c)$ the signature is Euclidean
+($g_{00} > 0$), and for $\mu \in [\mu_c, \infty)$ it is Lorentzian
+($g_{00} < 0$). Throughout this paper, we restrict to the
+Lorentzian domain; the canonical fixed point of the family is the
+critical point $\mustar = 15$ at which the active primes
+$\{3, 5, 7\}$ are simultaneously the only primes whose anomalous
+dimensions satisfy $\gamp{p}(\mu) > 1/2$, by
+Theorem~T5~\cite[Ch.~8]{PT_Monograph}.
+
+The family $\mathcal{G} := \{ G(\mu) : \mu \in [\mu_c, \infty) \}$
+is the geometric object that enters the conditioning of
+Theorem~\ref{thm:empirical_invariance}: the question is whether the
+empirical inter-channel mutual information depends on the choice of
+$G \in \mathcal{G}$.
+
+\subsection{Measurability of $G$ with respect to the spectral
+$\sigma$-algebra}
+\label{ssec:G_measurability}
+
+We now state and prove the key technical lemma. Recall that the
+spectrum of $T_m$ on the active subspace
+$\mathcal{S}_m = \prod_p \mathcal{S}_p$ is, by
+Theorem~\ref{thm:crt_tensor} and the explicit
+spectrum~\eqref{eq:Tp_spectrum} of each $T_p$, the multiplicative
+orbit $\{\prod_p \lambda^{(p)}_{j_p}\}$ of the per-prime spectra
+$\{1, -1/(p-2)\}$ (with the latter eigenvalue of multiplicity
+$p - 2$). Denote by $\sigma(\mathrm{Spec}(T_m))$ the
+$\sigma$-algebra on $\Omega$ generated by the random variables
+defined as functions of this spectrum --- in particular, every
+function of the holonomy angles $\theta_p$ at any scale $\mu$ is
+in $\sigma(\mathrm{Spec}(T_m))$, since the angles are read off
+directly from the second-largest eigenvalue of each $T_p$.
+
+\begin{lemma}[Spectral Measurability of $G$]
+\label{lem:G_measurable}
+\footnote{Formally verified in Lean~4 + Mathlib as
+\texttt{PT.CrtDecoupling.SpectralReduction.geometric\_spectrally\_measurable}
+(finite-state form); see Section~\ref{ssec:formal_verification}.}
+For every $\mu \in [\mu_c, \infty)$, the geometry $G(\mu)$ is
+measurable with respect to the $\sigma$-algebra generated by the
+spectrum of $T_m$:
+$G(\mu) \in \sigma\bigl(\mathrm{Spec}(T_m)\bigr)$.
+\end{lemma}
+
+\begin{proof}
+We exhibit each entry of $G(\mu)$ as a deterministic function of
+$\mathrm{Spec}(T_m)$ and the parameter $\mu$. The (0,0) entry is the
+constant $-1$, which is trivially measurable. For each active
+prime~$p$ and each $\mu > 0$:
+
+(i) The second-largest eigenvalue of $T_p$ in absolute value is
+$\lambda^{(p)}_1 = -1/(p-2)$ for $p \geq 5$ (cf.\
+Eq.~\eqref{eq:Tp_spectrum}) and $\lambda^{(3)}_1 = -1$. In either
+case it determines $p$ uniquely (and conversely), so the map
+$p \mapsto \lambda_1^{(p)}$ is a bijection between active primes
+and a deterministic finite subset of $\mathrm{Spec}(T_m)$. In
+particular, $p$ itself is measurable with respect to
+$\sigma(\mathrm{Spec}(T_m))$.
+
+(ii) The bifurcation value $\qplus(\mu) = 1 - 2/\mu$ is a
+deterministic function of $\mu$, hence measurable with respect to
+every $\sigma$-algebra. (It is a constant once $\mu$ is fixed.)
+
+(iii) By Eq.~\eqref{eq:theta_p_def}, $\delta_p(\mu)$ is the
+deterministic function $(1 - \qplus(\mu)^p)/p$ of the variables
+identified in (i) and (ii), and is therefore measurable with
+respect to $\sigma(\mathrm{Spec}(T_m))$. By
+Eq.~\eqref{eq:sin2_T6}, $\sinp{p}(\mu)$ is the deterministic
+function $\delta_p(2 - \delta_p)$ of $\delta_p$, hence also
+measurable. By Eq.~\eqref{eq:gamma_explicit}, $\gamp{p}(\mu)$ is a
+deterministic function of $\qplus(\mu)$ and $\delta_p(\mu)$,
+hence measurable.
+
+(iv) By Eq.~\eqref{eq:a_p_def}, $a_p(\mu) = \gamp{p}(\mu)/\mu$ is
+a deterministic function of $\gamp{p}(\mu)$ and $\mu$, hence
+measurable; its square $a_p(\mu)^2$ likewise.
+
+Combining (i)--(iv) for each active prime $p \in \{3, 5, 7\}$, the
+diagonal entries of $G(\mu)$ are all measurable with respect to
+$\sigma(\mathrm{Spec}(T_m))$. The diagonal matrix $G(\mu)$
+itself, being a deterministic function of these entries, is
+therefore measurable with respect to the same $\sigma$-algebra.
+\end{proof}
+
+\begin{remark}[On the meaning of measurability here]
+\label{rmk:measurable_meaning}
+Lemma~\ref{lem:G_measurable} should be read as the statement that
+$G(\mu)$ contains no information beyond the spectral data of
+$T_m$ and the (deterministic) choice of $\mu$. There is no
+``trajectory dependence'' --- no functional of the actual prime
+gap sequence $\{g_n\}$ enters the construction of $G(\mu)$ once
+the spectrum of $T_m$ is fixed. This is the property used in
+Step~2 of the proof of Theorem~\ref{thm:empirical_invariance}, to
+embed $G(\mu)$ into the shift-invariant $\sigma$-algebra
+$\mathcal{I}$ on the path space~$\Omega$.
+\end{remark}

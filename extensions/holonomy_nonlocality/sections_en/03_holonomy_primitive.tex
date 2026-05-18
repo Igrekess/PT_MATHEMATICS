@@ -1,0 +1,163 @@
+\section{The holonomy angle $\theta_p$ as primitive object}
+\label{sec:holonomy_primitive}
+
+This section establishes the fundamental result that distinguishes
+PT from classical gauge theories: under the structural hypotheses
+of PT, the modular holonomy angle $\theta_p$ is the
+\emph{unique} primitive invariant simultaneously satisfying four
+natural conditions, and the classical pair $(A_\mu, F_{\mu\nu})$
+is entirely reconstructible as a derivative of a more primitive
+object --- the scalar persistence potential $S = -\ln \alpha$.
+Position C of the foundational debate is no longer an
+interpretation: it is a structural consequence.
+
+\subsection{Proposition 3.1: $A_\mu$ and $F_{\mu\nu}$ are derived}
+\label{ssec:prop_3_1_en}
+
+\begin{proposition}[Persistence Potential Decomposition]
+\label{prop:A_F_derived_en}
+Let $S(\mu) = -\ln \alpha(\mu)$ be the persistence potential. Then
+\begin{itemize}
+  \item the 4-potential $A_\mu$ is identifiable with the gradient
+  $\partial_\mu S$;
+  \item the field tensor $F_{\mu\nu}$ is identifiable with the
+  antisymmetric components of $\mathrm{Hess}(S)$;
+  \item the metric $g_{\mu\nu}$ is identifiable with the symmetric
+  components of $\mathrm{Hess}(S)$ (Lemma F, ch12 monograph).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof]
+The construction is detailed in chapter~12 of the
+monograph~\cite{PT_Monograph}; we recall here the three key steps.
+
+\textbf{Step 1 (gradient identification).}
+The Fisher metric associated with the stationary distribution
+$\pi_m$ of the sieve is computed as the Hessian of the logarithm
+of the partition function $Z_{\rm Ruelle}$, and the function
+$\alpha(\mu)$ appears as the first eigenfunction of the transfer
+operator. By construction, the gradient
+$\partial_\mu S = -\partial_\mu \ln \alpha$ plays in the PT formalism
+the role played by $A_\mu$ in classical electrodynamics: it enters
+linearly in the interaction term of the effective Lagrangian
+(\S~F3 of the monograph) and undergoes, under modular gauge
+transformations $\theta_p \mapsto \theta_p + 2\pi k$, a phase
+shift compatible with classical gauge invariance.
+
+\textbf{Step 2 (antisymmetric Hessian identification).}
+The antisymmetric components of the Hessian
+$\mathrm{Hess}(S)_{\mu\nu} = \partial_\mu \partial_\nu S$ encode
+the curvatures derived from the scalar potential, and reproduce
+the six degrees of freedom of $F_{\mu\nu} = \partial_\mu A_\nu -
+\partial_\nu A_\mu$ by direct identification. The identity
+$dA = F$ becomes, under PT, the tautological identity
+$d(dS) = 0$ projected onto the antisymmetric components of
+$\mathrm{Hess}(S)$. This projection is non-trivial in the presence
+of the Lorentzian signature $g_{00} < 0$, which separates the
+spatial and temporal components of the Hessian.
+
+\textbf{Step 3 (symmetric Hessian identification).}
+The symmetric components of $\mathrm{Hess}(S)$ reproduce the
+metric $g_{\mu\nu}$ of the emergent spacetime (Bianchi I on the
+active primes $\{3, 5, 7\}$; see Lemma F of
+ch.~12~\cite{PT_Monograph}). This identification is, in itself,
+the content of the metric-reconstruction theorem: the
+spacetime metric of PT \emph{is} the Hessian of the logarithm of
+the partition function, with no new structure introduced.
+\end{proof}
+
+The immediate consequence is that $A_\mu, F_{\mu\nu}, g_{\mu\nu}$
+are all three \emph{derivable from the same scalar potential}
+$S(\mu)$, and that this potential is, in turn, computed from the
+sole field $\{g_n\}$. None of these three objects is therefore
+primary in the PT architecture: they are all three secondary
+relative to $S$, and $S$ is itself secondary relative to
+$\{g_n\}$. This structural observation underwrites the uniqueness
+argument of the following subsection.
+
+\subsection{Proposition 3.2: uniqueness of $\theta_p$ as primitive invariant}
+\label{ssec:prop_3_2_en}
+
+\begin{proposition}[Holonomic Primitiveness]
+\label{prop:theta_p_unique_en}
+The holonomy angle $\theta_p$ is the unique primitive invariant
+simultaneously:
+\begin{enumerate}[label=(\roman*),nosep]
+  \item gauge-invariant,
+  \item sensitive to Aharonov--Bohm,
+  \item bounded,
+  \item PT-definable from BA0 alone.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof]
+We show by exclusion that no other natural invariant
+satisfies the four conditions simultaneously.
+
+\textbf{Exclusion of $A_\mu$.}
+The potential $A_\mu$ violates condition (i): it depends on gauge
+by construction. No natural projection of $A_\mu$ is at once
+gauge-invariant and bounded while remaining sensitive to
+Aharonov--Bohm in the region where $F = 0$. Position A of the
+foundational debate is therefore structurally incompatible with
+the four conditions.
+
+\textbf{Exclusion of $F_{\mu\nu}$.}
+The field tensor $F_{\mu\nu}$ satisfies (i), (iii), (iv) but
+violates condition (ii): it is, by construction, identically zero
+in the interior of an ideal Aharonov--Bohm path, and so cannot
+account for the observed phase shift. Position B of the debate
+must add a supplementary non-local structure to recover sensitivity
+to AB; that added structure is not PT-definable from BA0 alone.
+
+\textbf{Exclusion of arbitrary functions of $\{g_n\}$.}
+An arbitrary function $F[\{g_n\}]$ may satisfy (i), (ii), (iv) but
+generally violates (iii): without a modular parallel-transport
+structure, the function is not naturally bounded and does not
+admit a simple identification with a measurable topological
+invariant. Only functions that reduce to the modular angle
+$\theta_p$ of a CRT channel $\mathbb{Z}/p\mathbb{Z}$ satisfy the
+four conditions simultaneously.
+
+\textbf{Existence and uniqueness.}
+The angle $\theta_p$ defined by the
+identity~\eqref{eq:sin2_theta_en} satisfies (i) (it is
+gauge-invariant because defined as a closed integral),
+(ii) (it is non-zero in every region where the modular connection
+is non-trivial, including in the interior of an AB loop), (iii)
+(it takes values in $[0, \pi]$ by construction), and (iv) (it is
+defined by identity~\eqref{eq:sin2_theta_en}, which uses only
+$\{g_n\}$ via $q(\mu)$). It is the unique primitive invariant
+realising the four conditions.
+\end{proof}
+
+\subsection{The Wu--Yang--Healey position promoted to PT theorem}
+\label{ssec:wu_yang_promoted_en}
+
+Propositions~\ref{prop:A_F_derived_en}
+and~\ref{prop:theta_p_unique_en} have a common reading: position
+C of the foundational debate
+(\S~\ref{ssec:position_C_en}) --- the primacy of holonomy --- is
+no longer, in the PT framework, an interpretive choice among
+others. It is a structural consequence: under the axioms of PT,
+$\theta_p$ is the \emph{unique} primitive invariant available,
+and $A_\mu, F_{\mu\nu}, g_{\mu\nu}$ are all three derived from
+it via the scalar potential $S$.
+
+This status has two immediate consequences. On one hand, PT
+\emph{predicts} that any measurement of $A_\mu$ or $F_{\mu\nu}$
+reduces, in its informational content, to a measurement of
+$\theta_p$ on an active modular channel. No physical information
+is lost by this reduction --- the AB phase is entirely encoded
+in $\theta_3$ (cf.~\S~\ref{ssec:ab_consequence_en}). On the other
+hand, PT \emph{excludes} the ontologies of position A (the reality
+of the potential) and position B (the intrinsic non-locality of
+the field): these ontologies postulate primitive objects that, in
+the PT framework, cannot exist independently of the scalar
+potential $S$ from which they are derived.
+
+Position C becomes thus, under PT, more than an interpretation:
+it is the only framework in which the four natural conditions
+(i)--(iv) of Proposition~\ref{prop:theta_p_unique_en} can be
+satisfied simultaneously. The foundational debate is, in this
+precise measure, adjudicated.

@@ -1,0 +1,137 @@
+\section{Les sept théorèmes structurants \texorpdfstring{$\Tzero$--$\Tsix$}{T0-T6}}
+\label{sec:theoremes}
+
+Cette section énonce, dans l'ordre canonique de la carte de nomenclature~\cite{PT_Monograph}, les sept théorèmes qui structurent l'édifice arithmétique de la Théorie de la Persistance. Pour chacun nous donnons l'énoncé précis, une idée de la preuve, sa conséquence immédiate, et un renvoi au chapitre du monographe contenant la démonstration complète. Les théorèmes \Ttwo{} et \Tfour{} sont prouvés directement dans le corps, leur démonstration étant suffisamment courte ; les autres renvoient au monographe.
+
+L'ordre des théorèmes reflète une logique de dépendance : \Tone{} et \Tthree{} dégagent la structure mod~$3$ du crible ; \Ttwo{} et \Tfour{} en tirent les conséquences spectrales aux modulus successifs ; \Tfive{} identifie le point fixe arithmétique ; \Tsix{} clôt l'unicité de l'objet (le crible d'Ératosthène) ; \Tzero{} consolide la dépendance globale en promouvant l'axiome de pont $\BAzero$ au rang de théorème.
+
+\subsection{\Tzero{} : Théorème du champ dynamique}
+\label{sec:theoremes:T0}
+
+\begin{theoreme}[Théorème du champ dynamique]
+\label{thm:T0}
+Soit $\{a_n\}_{n \geq 1}$ une suite d'entiers positifs satisfaisant les conditions structurelles $U_1$--$U_4$~\cite[ch.~25]{PT_Monograph} (Shore--Johnson, additivité de gap, lifting arithmétique, Aut-invariance). Alors
+\[
+\{a_n\} \;=\; \{g_n\}_{n \geq 1}, \qquad g_n = p_{n+1} - p_n,
+\]
+c'est-à-dire $\{a_n\}$ coïncide nécessairement avec la suite des écarts entre nombres premiers consécutifs.
+\end{theoreme}
+
+\textbf{Idée de preuve.} En partant de l'Aut-invariance et de SJ$_2$ on dérive $R_p = \{0\}$, l'ensemble des résidus stables est réduit au neutre additif. Le crible obtenu est alors multiplicatif ; par l'unicité du crible d'Ératosthène (\Tsix), il est exactement celui d'Ératosthène, dont la suite de sortie est $\{g_n\}$.
+
+\textbf{Conséquence.} $\Tzero$ promeut l'axiome de pont $\BAzero$ \emph{« le champ dynamique fondamental est }$\{g_n\}$\emph{ »} du statut de postulat à celui de théorème. La PT n'a donc aucune sélection arbitraire de champ : la séquence des écarts entre premiers est l'unique candidat compatible avec les conditions structurelles minimales. Démonstration complète : \cite[ch.~25]{PT_Monograph}.
+
+\subsection{\Tone{} : Transitions interdites modulo~$3$}
+\label{sec:theoremes:T1}
+
+\begin{theoreme}[Transitions interdites]
+\label{thm:T1}
+Soit $T_3$ la matrice de transfert du crible des entiers $6$-rugueux (entiers non divisibles ni par~$2$ ni par~$3$) sur les classes résiduelles modulo~$3$. Alors
+\[
+T_3[1,1] \;=\; T_3[2,2] \;=\; 0.
+\]
+Autrement dit : deux écarts consécutifs $g_n, g_{n+1}$ de la suite des entiers $6$-rugueux ne peuvent jamais appartenir à la même classe non nulle modulo~$3$.
+\end{theoreme}
+
+\textbf{Idée de preuve.} Soient $n_1 < n_2 < n_3$ trois entiers $6$-rugueux consécutifs. Supposons que $(n_2 - n_1) \equiv (n_3 - n_2) \pmod 3$ et soit cette classe commune notée $c \in \{1,2\}$. Alors les résidus $n_1 \bmod 3,\, n_2 \bmod 3,\, n_3 \bmod 3$ forment une progression arithmétique de raison $c$ sur $\mathbb{Z}/3\mathbb{Z}$ qui parcourt les trois classes résiduelles. L'un d'eux est donc divisible par~$3$, contradiction avec leur appartenance au crible $6$-rugueux. Démonstration complète : \cite[ch.~01]{PT_Monograph}.
+
+\textbf{Conséquence.} La structure mod~$3$ du crible est strictement asymétrique : seules les transitions $1 \to 2$ et $2 \to 1$ sont autorisées. Ce résultat fonde l'objet de \Tthree{}.
+
+\subsection{\Ttwo{} : Conservation spectrale}
+\label{sec:theoremes:T2}
+
+\begin{theoreme}[Conservation spectrale]
+\label{thm:T2}
+La seconde valeur propre en module de la matrice de transfert $T_{30}$ au modulus primoriel $m = 2 \cdot 3 \cdot 5 = 30$ vaut
+\[
+|\lambda_2(T_{30})| \;=\; \frac{1}{4} \;=\; \sper^2.
+\]
+On définit alors l'exposant de conservation $\alpha_{\rm cons} = \sper^2 = 1/4$ ; il contrôle le taux de convergence exponentielle des fréquences empiriques des écarts $\{g_n\}$ vers la distribution stationnaire géométrique du lemme~\Lzero.
+\end{theoreme}
+
+\begin{proof}[Idée de preuve, complétée dans le corps]
+La matrice $T_{30}$ est $8 \times 8$ (il y a $\phi(30) = 8$ résidus réduits dans $\{1,7,11,13,17,19,23,29\}$). Elle est stochastique par lignes : $\lambda_1 = 1$ correspond à la distribution stationnaire. La factorisation tensorielle CRT donne $\mathrm{spec}(T_{30}) = \mathrm{spec}(T_3) \otimes \mathrm{spec}(T_5)$ par indépendance arithmétique. La seconde valeur propre globale est le produit des secondes valeurs propres des facteurs, dont l'une est issue de l'antidiagonale $T_3$ (\Tthree) et vaut $1/2 = \sper$, l'autre $1/2$ également par symétrie du crible mod~$5$. Donc $|\lambda_2(T_{30})| = \sper \cdot \sper = \sper^2 = 1/4$. La vérification numérique exacte à $10^{-12}$ est dans le monographe~\cite[ch.~03]{PT_Monograph}.
+\end{proof}
+
+\textbf{Conséquence.} $\Ttwo$ identifie le paramètre $\sper$ comme exposant de symétrie spectral du crible : $\sper$ \emph{n'est pas postulé}, il est la racine carrée du gap spectral de la matrice de transfert primorielle. C'est l'argument central justifiant la valeur $\sper = 1/2$.
+
+\subsection{\Tthree{} : Transfert antidiagonal}
+\label{sec:theoremes:T3}
+
+\begin{theoreme}[Transfert antidiagonal]
+\label{thm:T3}
+La matrice de transfert $T_3$ du crible des entiers $6$-rugueux sur $\{1, 2\} \pmod 3$ est l'antidiagonale doublement stochastique
+\[
+T_3 \;=\; \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.
+\]
+Son spectre est $\{1, -1\}$ ; les deux valeurs propres sont de module unité.
+\end{theoreme}
+
+\textbf{Idée de preuve.} Par \Tone, $T_3[1,1] = T_3[2,2] = 0$. La normalisation stochastique impose alors $T_3[1,2] = T_3[2,1] = 1$. La matrice obtenue est l'unique antidiagonale doublement stochastique sur $\{1,2\}$ ; ses valeurs propres sont les racines de $\det(T_3 - \lambda I) = \lambda^2 - 1$. Démonstration complète : \cite[ch.~01]{PT_Monograph}.
+
+\textbf{Conséquence.} $\Tthree$ fixe la forme \emph{exacte} de la matrice de transfert au niveau le plus bas ($p=3$). Cette antidiagonale est la brique fondamentale dont l'argument de \Ttwo{} tire le facteur~$1/2$ du gap spectral primoriel. Elle est aussi à l'origine de la symétrie $\mathbb{Z}_2$ entre les secteurs $\qplus$ et $\qminus$ (\ref{sec:cadre:qpm}).
+
+\subsection{\Tfour{} : Convergence spectrale}
+\label{sec:theoremes:T4}
+
+\begin{theoreme}[Convergence spectrale]
+\label{thm:T4}
+Soit $\alpha_k$ la fraction de transitions mixtes (entre classes résiduelles distinctes) au niveau du crible de profondeur~$k$, défini par élimination des multiples des $k$ premiers nombres premiers. Alors
+\[
+\lim_{k \to \infty} \alpha_k \;=\; \sper \;=\; \frac{1}{2}.
+\]
+La convergence est exponentielle de taux gouverné par $\alpha_{\rm cons} = \sper^2$ (\Ttwo).
+\end{theoreme}
+
+\begin{proof}[Idée de preuve, complétée dans le corps]
+Trois ingrédients spécifiquement PT, plus une compacité classique :
+\begin{itemize}[nosep,leftmargin=*]
+\item annihilation spectrale $r_2(0) = 0$ : la composante d'oscillation longue-portée s'annule à l'origine du spectre ;
+\item dilution CRT : à chaque ajout d'un premier $p$, le poids relatif se contracte d'un facteur $(p-3)/(p-1) < 1$ ;
+\item contraction affine $\rho \approx 0{,}719 < 1$ sur le simplexe stochastique ;
+\item un argument de compacité (théorème de Mertens, classique) garantit que les coefficients spectraux restent bornés.
+\end{itemize}
+La combinaison des trois premiers points donne $f_{\rm bnd} < 1$ et $D(k) > 0$ pour tout $k$, d'où la convergence~\cite[ch.~07]{PT_Monograph}.
+\end{proof}
+
+\textbf{Conséquence.} $\Tfour$ est la version asymptotique de $\Ttwo$ : elle étend la conservation spectrale prouvée à un modulus fini ($m=30$) à la limite profonde du crible. Combinée à $\Ttwo$, elle assure que la valeur $\sper = 1/2$ est \emph{stable} sous l'ajout de niveaux successifs de filtrage.
+
+\subsection{\Tfive{} : Point fixe \texorpdfstring{$\mustar = 15$}{μ*=15}}
+\label{sec:theoremes:T5}
+
+\begin{theoreme}[Point fixe unique]
+\label{thm:T5}
+L'équation cascade réduite~\cite[ch.~08, éq.~(8.3)]{PT_Monograph}, qui exprime l'auto-cohérence du crible sur les premiers actifs impairs, admet une \emph{unique} solution entière positive :
+\[
+\mustar \;=\; 3 + 5 + 7 \;=\; 15.
+\]
+À cette valeur, le paramètre statistique de la branche-sommet vaut $\qplus = 1 - 2/\mustar = 13/15$.
+\end{theoreme}
+
+\textbf{Idée de preuve.} On définit, à $\mu$ fixé, la dimension anomale au premier $p$,
+\[
+\gammap{p}(\mu) \;=\; 1 - \dfrac{2}{p\,(1 - q^{p})}, \qquad q = 1 - \dfrac{2}{\mu},
+\]
+et le critère d'activation $\gammap{p}(\mu) > \sper = 1/2$. À $\mu = 15$, on a $\gammathree = 0{,}808$, $\gammafive = 0{,}696$, $\gammaseven = 0{,}595$ (tous $> 1/2$, donc actifs), tandis que $\gamma_{11} = 0{,}426$ et $\gamma_{13} = 0{,}356$ sont en deçà du seuil (donc inactifs au sens de la cascade). L'équation $\mu = \sum_{p \in \mathcal A(\mu)} p$ avec $\mathcal A(\mu) = \{p \text{ premier impair} : \gammap{p}(\mu) > 1/2\}$ admet une unique solution $\mu = 15$ avec $\mathcal A(15) = \{3, 5, 7\}$. Démonstration complète : \cite[ch.~08]{PT_Monograph}.
+
+\textbf{Conséquence.} $\Tfive$ fixe la \emph{position} du point fixe et désigne les trois premiers actifs. Toute la cascade arithmétique et la taxonomie des nombres premiers (\ref{sec:bridge}) découlent de cet énoncé.
+
+\subsection{\Tsix{} : Unicité complète du crible d'Ératosthène}
+\label{sec:theoremes:T6}
+
+\begin{theoreme}[Unicité complète]
+\label{thm:T6}
+Le crible d'Ératosthène est l'unique crible compatible avec la structure de la PT, au sens des trois caractérisations indépendantes suivantes :
+\begin{enumerate}[nosep,label=\textup{(\arabic*)}]
+\item \textbf{T6a} (unicité par théorie des corps) : $R_p = \{0\}$ pour tout premier $p$, à partir de la seule structure de corps de $\mathbb{Z}/p\mathbb{Z}$ et de la dichotomie des idéaux.
+\item \textbf{T6b} (unicité axiomatique) : sous les axiomes structurels $C_1$--$C_4$~\cite[ch.~02]{PT_Monograph} (cohérence, complétude, minimalité, élimination), le crible d'Ératosthène est l'unique solution ; les quatre axiomes sont $4/4$ indépendants.
+\item \textbf{T6c} (unicité géométrique) : la divergence $D_{\rm KL}$ est l'unique contraste vérifiant la règle de chaîne (Shore--Johnson), et la métrique de Fisher est l'unique métrique riemannienne issue de $D_{\rm KL}$ (\v{C}encov).
+\end{enumerate}
+Les trois caractérisations utilisent des machineries mathématiques \emph{disjointes} (théorie des corps, axiomatique catégorique, géométrie de l'information).
+\end{theoreme}
+
+\textbf{Idée de preuve.} Chaque caractérisation est démontrée séparément : T6a par calcul direct sur $\mathbb{Z}/p\mathbb{Z}$ ; T6b par vérification que C$_1$--C$_4$ excluent toute alternative ; T6c par importation des théorèmes classiques de Shore--Johnson et \v{C}encov. L'indépendance structurelle des trois preuves est elle-même un théorème (\cite[Thm.~T6\_independence, ch.~02]{PT_Monograph}).
+
+\textbf{Conséquence.} $\Tsix$ ferme la question \emph{« pourquoi le crible d'Ératosthène et pas un autre ? »}. C'est l'étape clé qui permet à $\Tzero$ d'identifier $\{g_n\}$ comme champ dynamique unique : sans unicité du crible, $\Tzero$ ne saurait pas vers quel crible converger.
+
+\bigskip\noindent\textbf{Bilan de la section.} Les sept théorèmes $\Tzero$--$\Tsix$ forment un édifice arithmétique fermé : à partir des conditions structurelles minimales $U_1$--$U_4$ et $C_1$--$C_4$, on identifie l'objet unique (\Tsix), son champ dynamique (\Tzero), sa structure mod~$3$ (\Tone, \Tthree), ses propriétés spectrales (\Ttwo, \Tfour) et son point fixe arithmétique (\Tfive). La valeur $\sper = 1/2$ apparaît comme exposant de symétrie spectral du crible primoriel, et $\mustar = 15$ comme l'unique entier positif compatible avec le critère d'activation des premiers actifs $\{3,5,7\}$. La section suivante exploite cet édifice pour dérouler la machinerie physique de la PT.

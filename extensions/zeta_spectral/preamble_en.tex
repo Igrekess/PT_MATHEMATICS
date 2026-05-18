@@ -1,0 +1,124 @@
+% ============================================================
+% Preamble — PT_ZETA (English version)
+% Spectral canonical model of zeta zeros via PT persistence dynamics.
+% Source: article_PT_zeta_FR.md (consolidation 2026-05-15).
+% Mirror of preamble.tex (FR).
+% ============================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Encoding and language ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+% --- Mathematics ---
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{dsfont}
+
+% --- Layout ---
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% --- Tables and figures ---
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
+% --- Bibliography ---
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% --- Hyperlinks ---
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{cleveref}
+
+% --- Theorem environments (English labels, FR env names kept for symmetry) ---
+\theoremstyle{plain}
+\newtheorem{theoreme}{Theorem}[section]
+\newtheorem{proposition}[theoreme]{Proposition}
+\newtheorem{lemme}[theoreme]{Lemma}
+\newtheorem{corollaire}[theoreme]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theoreme]{Definition}
+\newtheorem{convention}[theoreme]{Convention}
+
+\theoremstyle{remark}
+\newtheorem{remarque}[theoreme]{Remark}
+\newtheorem{exemple}[theoreme]{Example}
+\newtheorem{conjecture}[theoreme]{Conjecture}
+
+% --- Canonical PT macros ---
+\newcommand{\qplus}{q_{+}}
+\newcommand{\qminus}{q_{-}}
+\newcommand{\mustar}{\mu^{*}}
+\newcommand{\sper}{s}
+
+\newcommand{\gammap}[1]{\gamma_{#1}}
+\newcommand{\gammathree}{\gamma_{3}}
+\newcommand{\gammafive}{\gamma_{5}}
+\newcommand{\gammaseven}{\gamma_{7}}
+
+\newcommand{\thetap}[1]{\theta_{#1}}
+\newcommand{\sinp}[1]{\sin^{2}\theta_{#1}}
+
+% --- T-series ---
+\newcommand{\Tzero}{\textbf{T0}}
+\newcommand{\Tone}{\textbf{T1}}
+\newcommand{\Ttwo}{\textbf{T2}}
+\newcommand{\Tthree}{\textbf{T3}}
+\newcommand{\Tfour}{\textbf{T4}}
+\newcommand{\Tfive}{\textbf{T5}}
+\newcommand{\Tsix}{\textbf{T6}}
+
+% --- BA-series ---
+\newcommand{\BAzero}{\textbf{BA0}}
+\newcommand{\BAone}{\textbf{BA1}}
+\newcommand{\BAtwo}{\textbf{BA2}}
+\newcommand{\BAthree}{\textbf{BA3}}
+\newcommand{\BAfour}{\textbf{BA4}}
+\newcommand{\BAfive}{\textbf{BA5}}
+
+\newcommand{\Lzero}{\textbf{L0}}
+\newcommand{\THM}{\textsc{[Thm]}}
+
+% --- PT_ZETA-specific macros ---
+\newcommand{\Rres}{R}
+\newcommand{\HBK}{H_{\mathrm{BK}}}
+\newcommand{\HPTBK}{H_{\mathrm{PT\text{-}BK}}}
+\newcommand{\DRop}{D_R}
+\newcommand{\kappap}{\kappa_p}
+\newcommand{\Ap}{A_p}
+\newcommand{\Treg}{T}
+\newcommand{\NRvM}{N_{\mathrm{RvM}}}
+\newcommand{\NPT}{N_{\mathrm{PT}}}
+\newcommand{\lambdaH}{\lambda_H}
+\newcommand{\DeltaMaslov}{\Delta_N^{\mathrm{Maslov}}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\Primes}{\mathcal{P}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Cplx}{\mathbb{C}}
+\newcommand{\Naturals}{\mathbb{N}}
+\newcommand{\Integers}{\mathbb{Z}}
+\newcommand{\zetaplus}{\zeta_{+}}
+\newcommand{\zetaminus}{\zeta_{-}}
+\newcommand{\umax}{u_{\max}}
+\newcommand{\umin}{u_{\min}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\epsstar}{\varepsilon_{*}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Reop}{Re}
+\DeclareMathOperator{\Imop}{Im}
+\DeclareMathOperator{\sgn}{sgn}
+
+% --- Article metadata ---
+\title{Canonical Spectral Model of $\zeta$ Zeros via the Persistence Dynamics of PT}
+\author{Yan Senez\\\texttt{yan.senez@protonmail.com}}
+\date{May 2026}

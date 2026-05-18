@@ -1,0 +1,101 @@
+\section{Lecture algébro-géométrique : la courbe de persistance}
+\label{sec:courbe}
+
+La cascade canonique de la PT (\ref{sec:intro2:rappels}) est une séquence purement combinatoire de raffinements arithmétiques. Cette section montre qu'elle admet une réalisation algébro-géométrique unique : il existe une courbe algébrique dans la classe de Kontsevich--Norbury qui code exactement la cascade des premiers actifs, et son invariant topologique fondamental --- le genre --- s'exprime par la formule remarquable $\genus = \mustar - 1 = 14$. Tous les résultats de cette section sont rigoureusement prouvés dans~\cite{PT_GeoFlow_PersistenceCurve} ; nous en donnons les énoncés et les idées de preuve.
+
+\subsection{Préliminaires : courbes spectrales de Kontsevich--Norbury}
+\label{sec:courbe:KN}
+
+Une \emph{courbe spectrale} au sens de la récursion topologique d'Eynard--Orantin~\cite{EynardOrantin2007} est la donnée d'un quadruplet $(\Sigma, x, y, B)$ où $\Sigma$ est une surface de Riemann, $x$ et $y$ deux fonctions méromorphes sur $\Sigma$, et $B$ une forme bilinéaire (le \emph{noyau de Bergman}). La classe de Kontsevich--Norbury~\cite{Kontsevich1992,Norbury2017}, notée $\mathcal{KN}$, est la sous-classe des courbes spectrales dont la forme univariée $\omega_{0,1} = y\, dx$ détermine, via la récursion topologique, l'ensemble des invariants de Weil--Petersson de l'espace des modules $\overline{\mathcal M}_{g,n}$ des surfaces de Riemann pointées. Le cas archétypique est la courbe d'Airy de Mirzakhani~\cite{Mirzakhani2007}, dont l'univariée fait apparaître la constante $2\pi^{2}/3$ caractéristique des volumes de Weil--Petersson.
+
+\subsection{Trois conditions d'auto-cohérence}
+\label{sec:courbe:conditions}
+
+À une cascade $S = \{p_{(1)}, \dots, p_{(k)}\} \subseteq \mathbb N^{*}$ avec $\mustar(S) := \sum_{p \in S} p > 2$ on associe naturellement une famille de courbes candidates dans $\mathcal{KN}$, paramétrées par une variable complexe $z$ via
+\begin{equation}
+\mu_S(z) \;=\; \dfrac{\mustar(S)}{1 - z^{2}},
+\qquad
+q_S(z) \;=\; 1 - \dfrac{2}{\mu_S(z)},
+\label{eq:param_curve}
+\end{equation}
+et la fonction $y$ définie par le produit cascade
+\begin{equation}
+y_S(z) \;=\; \dfrac{z}{2\pi} \prod_{n \in S} \sin\thetap{n}\bigl(\mu_S(z)\bigr),
+\qquad
+\omega_{0,1}^{\mathcal C_S} \;=\; y_S(z)\,z\,dz.
+\label{eq:y_S}
+\end{equation}
+La paramétrisation~\eqref{eq:param_curve} est rationnelle paire en $z$, à pôles simples en $z = \pm 1$, vérifiant $\mu_S(0) = \mustar(S)$. Le point $z = 0$ est par conséquent le \emph{point d'auto-cohérence} : la valeur du paramètre $\mu$ y est précisément le point fixe arithmétique.
+
+Pour qu'une telle courbe code authentiquement la cascade PT, trois conditions structurelles doivent être imposées simultanément.
+
+\begin{definition}[Conditions ACA$_\mathcal N$ de cascade]
+\label{def:ABC}
+Soit $\mathcal N \subseteq \mathbb N^{*}$ un crible (typiquement $\mathcal N = \{$nombres premiers$\}$, mais d'autres choix sont admissibles), et soit $(S, \mu)$ avec $S \subseteq \mathcal N$ fini et $\mu : \mathbb C \to \widehat{\mathbb C}$ rationnelle paire.
+\begin{enumerate}[nosep,label=\textbf{(\Alph*)}]
+\item \emph{Holonomie polynomiale.} Pour chaque $n \in S$, la phase cyclique vérifie $\sinp{n} = \delta_n(q)(2 - \delta_n(q))$ avec $\delta_n(q) = (1 - q^{n})/n$ (axiome de pont $\BAthree$ de la PT).
+\item \emph{Seuil d'activation.} Le sous-ensemble $S$ coïncide avec l'ensemble des éléments de $\mathcal N$ pour lesquels $\gammap{n}(\mustar) > \sper = 1/2$ (axiome $\BAfour$).
+\item \emph{Auto-cohérence.} Le paramètre vérifie $\mu(0) = \mustar(S) := \sum_{n \in S} n$ (théorème~$\Tfive$).
+\end{enumerate}
+\end{definition}
+
+Sur le crible des nombres premiers $\mathcal N = \mathcal P$, les conditions (A), (B), (C) sont précisément la traduction algébrique des théorèmes et axiomes de pont d'Article~1. Le théorème principal de cette section affirme que ces trois conditions sélectionnent un \emph{unique} sous-ensemble $S$ et que la courbe associée est algébrique.
+
+\subsection{Théorème d'unicité et classification}
+\label{sec:courbe:classification}
+
+\begin{theoreme}[Classification universelle, version simplifiée]
+\label{thm:courbe_classification}
+Soit $\mathcal P$ l'ensemble des nombres premiers. Parmi les sous-ensembles $S \subseteq \mathcal P$ vérifiant les conditions ACA$_{\mathcal P}$ (\ref{def:ABC}), il existe \emph{exactement un} $S$ avec $|S| \geq 2$ et $\mustar(S) \leq 200$~: c'est
+\[
+S \;=\; \{3, 5, 7\}, \qquad \mustar(S) \;=\; 15.
+\]
+\end{theoreme}
+
+\textbf{Idée de preuve.} La condition (B), $\gammap{n}(\mustar) > 1/2$, est très contraignante : combinée à la monotonie décroissante de $\gammap{n}(\mu)$ avec $n$ démontrée dans l'article compagnon~\cite{companion_M2}, elle force $S$ à être contenu dans un segment initial des premiers. La condition (C), $\mustar(S) = \sum_{n \in S} n$, équilibre alors l'effet : un $S$ trop petit ne sature pas la somme, un $S$ trop grand viole le seuil. La recherche numérique exhaustive sur tous les $2406$ sous-ensembles compatibles jusqu'à $\mustar \leq 200$ identifie $S = \{3, 5, 7\}$ comme unique solution avec $|S| \geq 2$~\cite[\S 5]{PT_GeoFlow_PersistenceCurve}. La preuve analytique en complète l'argument pour $\mustar > 200$ via les bornes du théorème des nombres premiers.
+
+\subsection{Forme algébrique explicite}
+\label{sec:courbe:forme}
+
+\begin{theoreme}[Algébricité de la courbe de persistance]
+\label{thm:algebraicite_PT}
+La courbe $\mathcal C_S$ définie par~\eqref{eq:param_curve}--\eqref{eq:y_S} avec $S = \{3, 5, 7\}$ est algébrique : la fonction $y^{2}$ est une fraction rationnelle de $x = z^{2}/2$. Explicitement, en posant $q(x) = (\mustar - 2 + 4x)/\mustar$,
+\begin{equation}
+Y^{2} \;=\; \dfrac{2x}{4\pi^{2}} \prod_{n \in S} \dfrac{(1 - q(x)^{n})\,(2n - 1 + q(x)^{n})}{n^{2}} \;=\; \dfrac{N_S(x)}{2\pi^{2}\,D_S},
+\label{eq:Y_squared}
+\end{equation}
+avec $D_S \in \mathbb N$ et $N_S \in \mathbb Z[x]$ de degré $2 \mustar + 1$. Le polynôme $N_S$ admet $x$ en facteur (multiplicité~$1$, du préfacteur $z^{2} = 2x$) et $(2x - 1)$ en facteur (multiplicité $|S|$, annulation simultanée des $|S|$ facteurs $(1 - q^{n})$ pour $q = 1$).
+\end{theoreme}
+
+\textbf{Idée de preuve.} La paramétrisation $\mu_S(z)$ étant rationnelle paire, $q_S(z) = 1 - 2/\mu_S(z)$ l'est aussi. Chaque $\sin^{2}\thetap{n}(\mu_S(z)) = \delta_n(2 - \delta_n)$ avec $\delta_n = (1 - q^{n})/n$ est rationnel en $q^{n}$, donc en $z^{2}$, donc en $x = z^{2}/2$. Le produit~\eqref{eq:Y_squared} est donc rationnel en $x$. Pour $S = \{3, 5, 7\}$, le degré explicite de $N_S$ vaut $2 \cdot 15 + 1 = 31$ ; le calcul symbolique exact (Python/SymPy, scripts dans~\cite{PT_GeoFlow_PersistenceCurve}) confirme la structure factorielle annoncée.
+
+\subsection{Calcul du genre et conséquence topologique}
+\label{sec:courbe:genre}
+
+\begin{theoreme}[Formule universelle du genre]
+\label{thm:genre}
+Soit $S \subseteq \mathcal P$ une solution des conditions ACA$_{\mathcal P}$ vérifiant les hypothèses du \ref{thm:courbe_classification}. Alors le genre de la courbe algébrique sous-jacente à $\mathcal C_S$ est
+\[
+\boxed{\;\genus(\mathcal C_S) \;=\; \mustar(S) - \lfloor |S|/2 \rfloor.\;}
+\]
+\end{theoreme}
+
+\textbf{Conséquence pour PT.} En appliquant la formule à l'unique solution $S = \{3, 5, 7\}$ de \ref{thm:courbe_classification},
+\begin{equation}
+\boxed{\;\genus(\Cper) \;=\; \mustar - \lfloor 3/2 \rfloor \;=\; 15 - 1 \;=\; 14.\;}
+\label{eq:genus_14}
+\end{equation}
+
+\textbf{Idée de preuve.} On part de la forme explicite~\eqref{eq:Y_squared}, on extrait du polynôme $N_S$ son facteur squarefree $N_S^{\rm sqf}(x) = N_S(x)/(2x - 1)^{|S| - 1}$. Le degré de $N_S^{\rm sqf}$ est $2\mustar + 1 - (|S| - 1) = 2\mustar - |S| + 2$. La courbe hyperelliptique $Y^{2} = N_S^{\rm sqf}(x)$ a alors genre $\lfloor (\deg N_S^{\rm sqf} - 1)/2 \rfloor = \lfloor (2\mustar - |S| + 1)/2 \rfloor = \mustar - \lfloor |S|/2 \rfloor$. Pour $S = \{3, 5, 7\}$, calcul direct : $\genus = 15 - 1 = 14$. Le calcul exhaustif des discriminants des polynômes squarefree est dans~\cite[\S 7]{PT_GeoFlow_PersistenceCurve}.
+
+\subsection{Interprétation : \texorpdfstring{$\mustar$}{μ*} comme invariant topologique}
+\label{sec:courbe:interpretation}
+
+L'identité~\eqref{eq:genus_14} transforme le point fixe arithmétique $\mustar = 15$ d'un simple nombre entier en un \emph{invariant topologique} : c'est le genre, augmenté de $1$, d'une surface de Riemann algébrique canoniquement associée à la cascade. Cette traduction porte trois conséquences importantes.
+
+\begin{enumerate}[nosep,leftmargin=*]
+\item Le triplet $\{3, 5, 7\}$ n'est pas simplement compatible avec l'équation $\mu = \sum_{p \in S} p$ : il est l'unique support d'une courbe algébrique non triviale dans la classe de Kontsevich--Norbury. La rigidité du choix des premiers actifs reçoit ainsi une justification \emph{topologique}, complémentaire de la justification arithmétique fournie par les axiomes $\BAthree$--$\BAfour$.
+\item La cascade PT s'inscrit dans le cadre général de la récursion topologique d'Eynard--Orantin : les invariants $\omega_{g,n}^{\Cper}$ associés héritent des identités classiques (relations de Virasoro, formules d'intersection sur $\overline{\mathcal M}_{g,n}$). Une substitution structurelle Mirzakhani $\to$ persistance, $2\pi^{2}/3 \to (1/2) \sum_{p \in S} \gammap{p}$, transporte les volumes de Weil--Petersson vers les invariants de la PT~\cite[\S 8]{PT_GeoFlow_PersistenceCurve}.
+\item Le genre $14$ est, à la connaissance de l'auteur, le premier invariant topologique strictement non trivial associé à la structure arithmétique de la PT, ouvrant la voie à une étude cohomologique de ses applications.
+\end{enumerate}
+La section suivante développe une seconde lecture, complémentaire, qui équipe l'espace des paramètres $\mu$ d'une métrique riemannienne canonique vérifiant une équation de soliton de Ricci.

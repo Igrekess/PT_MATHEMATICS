@@ -1,0 +1,160 @@
+\section{CRT factorisation at the transfer-matrix level}
+\label{sec:crt_factor}
+
+This section establishes the tensor decomposition of the transfer
+matrix $T_m$ and of its Ruelle measure
+$\pi_m^{\mathrm{Ruelle}}$. The decomposition was anticipated in
+Section~\ref{ssec:transfer_matrix}; here we prove it and verify it
+numerically.
+
+\subsection{The Chinese Remainder Theorem as a ring isomorphism}
+\label{ssec:crt_ring}
+
+For any squarefree integer $m = p_1 \cdots p_k$ with distinct
+primes $p_i$, the map
+\begin{equation}
+  \chi_m \,:\;
+  \mathbb{Z}/m\mathbb{Z}
+  \;\longrightarrow\;
+  \prod_{i=1}^{k} \mathbb{Z}/p_i\mathbb{Z},
+  \qquad
+  r \;\longmapsto\; (r \bmod p_1, \ldots, r \bmod p_k)
+  \label{eq:CRT_iso}
+\end{equation}
+is a ring isomorphism~\cite[Thm.~2.18]{Davenport2000}. We will use
+$\chi_m$ without comment to identify residues mod~$m$ with $k$-tuples
+of residues mod~$p_i$, and conversely.
+
+The identification~\eqref{eq:CRT_iso} restricts to an identification
+of the active subspaces:
+$\chi_m\bigl(\mathcal{S}_m\bigr) = \prod_i \mathcal{S}_{p_i}$, where
+$\mathcal{S}_p = \{1, \ldots, p-1\}$ as in
+Section~\ref{ssec:transfer_matrix}. This is the structural reason
+behind the tensor decomposition that follows: an active residue
+class mod~$m$ is, by CRT, a tuple of active residue classes mod the
+prime factors.
+
+\subsection{The tensor decomposition of $T_m$}
+\label{ssec:Tm_decomposition}
+
+\begin{theorem}[CRT Tensor Factorization]
+\label{thm:crt_tensor}
+\footnote{Formally verified in Lean~4 + Mathlib as
+\texttt{PT.CrtDecoupling.Tensor.crt\_tensor\_factor};
+see Section~\ref{ssec:formal_verification}.}
+For $m = p_1 \cdots p_k$ a product of distinct primes, the
+transfer matrix factorises tensorially:
+\begin{equation}
+  T_m \;=\; \bigotimes_{i=1}^{k} T_{p_i}.
+  \label{eq:Tm_tensor}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Identify $\mathcal{S}_m$ with $\prod_i \mathcal{S}_{p_i}$ via
+$\chi_m$, and write $\mathbf{r} = (r^{(1)}, \ldots, r^{(k)})$,
+$\mathbf{r}' = (r^{(1)\prime}, \ldots, r^{(k)\prime})$ for
+elements of the product. The transition kernel of the prime-sieve
+Markov chain on $\mathcal{S}_m$ is the joint kernel of $k$
+independent prime-sieve chains on the factor spaces: for
+$g \sim \mathrm{Geom}(q)$ a geometric prime gap drawn from the
+sieve dynamics,
+\begin{equation}
+  \Pr\!\bigl[\mathbf{r}' \mid \mathbf{r}\bigr]
+  \;=\;
+  \Pr\!\bigl[g \equiv r^{(i)\prime} - r^{(i)} \pmod{p_i}
+        \text{ for all } i\bigr].
+\end{equation}
+By CRT, the simultaneous congruence
+$g \equiv r^{(i)\prime} - r^{(i)} \pmod{p_i}$ for $i = 1, \ldots, k$
+is equivalent to a single congruence
+$g \equiv \chi_m^{-1}(\mathbf{r}' - \mathbf{r}) \pmod{m}$, so the
+joint kernel splits into a product
+$\prod_i (T_{p_i})_{r^{(i)}, r^{(i)\prime}}$. This is the matrix
+entry of the Kronecker product $\bigotimes_i T_{p_i}$ at the
+indices $(\mathbf{r}, \mathbf{r}')$, which proves
+Eq.~\eqref{eq:Tm_tensor}.
+\end{proof}
+
+The factorisation is well known in the persistence-theory
+literature; see in particular~\cite[eq.~CRT\_factor]{PT_GRAVITON}
+and~\cite[Lemma~G, step~G.2]{PT_Monograph}. We give the short proof
+here for self-containedness and to fix the active-subspace
+convention used throughout the paper.
+
+\subsection{The tensor decomposition of $\pi_m^{\mathrm{Ruelle}}$}
+\label{ssec:pi_decomposition}
+
+\begin{lemma}[Ruelle Factorization]
+\label{lem:pi_factor}
+\footnote{Formally verified in Lean~4 + Mathlib as
+\texttt{PT.CrtDecoupling.Tensor.ruelle\_factor};
+see Section~\ref{ssec:formal_verification}.}
+Let $T_p$ have unique left eigenvector $\pi_p^{\mathrm{Ruelle}}$
+for its Perron eigenvalue $\lambda_0 = 1$, normalised to a
+probability distribution. Then
+\begin{equation}
+  \pi_{m}^{\mathrm{Ruelle}}
+  \;=\;
+  \bigotimes_{i=1}^{k} \pi_{p_i}^{\mathrm{Ruelle}}.
+  \label{eq:pi_factor}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By the Kronecker product rule,
+$(\pi_p \otimes \pi_q)(T_p \otimes T_q) = (\pi_p T_p) \otimes
+(\pi_q T_q) = \pi_p \otimes \pi_q$, so the right-hand side
+of~\eqref{eq:pi_factor} is a left eigenvector of $T_m$ for
+$\lambda = 1$.
+The spectrum of $T_p \otimes T_q$ is
+$\{\lambda_i^{(p)} \lambda_j^{(q)}\}_{i,j}$, and the value~$1$
+is attained uniquely by $(\lambda_0^{(p)}, \lambda_0^{(q)}) =
+(1, 1)$ since each $T_p$ has spectral gap (T4 corpus,
+\cite[Ch.~7]{PT_Monograph}).
+Uniqueness then follows from Perron--Frobenius primitivity, which
+is preserved by tensor products (Appendix~\ref{appssec:tensor_primitive}).
+\end{proof}
+
+For $m = pq$ with $p, q \in \{3, 5, 7\}$ distinct, the
+factorisation~\eqref{eq:pi_factor} reads
+$\pi_{pq}^{\mathrm{Ruelle}} = \pi_p^{\mathrm{Ruelle}} \otimes
+\pi_q^{\mathrm{Ruelle}}$ with each marginal uniform on the
+respective active subspace; this is the form used in the proof of
+Theorem~\ref{thm:ruelle_zero} in Section~\ref{ssec:thm_4_2_proof}.
+
+\subsection{Numerical verification}
+\label{ssec:t2_verification}
+
+The factorisation~\eqref{eq:pi_factor} is verified numerically by
+the test \texttt{T2} of
+script \texttt{scripts/test\_crt\_decoupling.py}. The script
+\begin{enumerate}[itemsep=2pt,leftmargin=*]
+  \item builds $T_3 = \mathrm{antidiag}(1, 1)$ on
+    $\mathcal{S}_3 = \{1, 2\}$ and $T_5$ on
+    $\mathcal{S}_5 = \{1, 2, 3, 4\}$ with off-diagonal entries
+    $1/(p-2)$ as in Eq.~\eqref{eq:Tp_explicit};
+  \item solves the left eigenvector equation $\pi_p T_p = \pi_p$
+    on each factor by augmented least squares
+    at \texttt{mpmath} precision $50$~digits;
+  \item builds $T_{15} = T_3 \otimes T_5$ as an $8 \times 8$
+    Kronecker product, and likewise builds the candidate
+    factorised eigenvector $\pi_3 \otimes \pi_5$;
+  \item independently solves the left eigenvector equation
+    $\pi_{15} T_{15} = \pi_{15}$ at the same precision;
+  \item reports the $L^2$ norm of the residual
+    $\pi_{15}^{\mathrm{direct}} - \pi_3 \otimes \pi_5$ and the
+    KL divergence
+    $\DKL(\pi_{15}^{\mathrm{direct}} \| \pi_3 \otimes \pi_5)$.
+\end{enumerate}
+The observed residual is
+\begin{equation}
+  \bigl\|\,\pi_{15}^{\mathrm{direct}}
+      - \pi_3^{\mathrm{Ruelle}} \otimes \pi_5^{\mathrm{Ruelle}}\,\bigr\|_2
+  \;=\; 5.88 \times 10^{-53}
+  \qquad \text{at 50 dps},
+\end{equation}
+and the KL divergence is zero to the same precision. We record this
+as the numerical witness of
+Lemma~\ref{lem:pi_factor}; see Appendix~\ref{appssec:T2} for the
+full script output.

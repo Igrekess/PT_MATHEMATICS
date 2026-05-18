@@ -1,0 +1,120 @@
+\section{Numerical verification}
+\label{app:numerics}
+
+All numerical results quoted in the main text are produced by a
+single unified script, \texttt{scripts/test\_crt\_decoupling.py},
+which combines the three corpus tests \texttt{T1}, \texttt{T2}
+and \texttt{T3} described below. The script uses
+\texttt{mpmath} at $50$~decimal digits of precision for all
+algebraic computations, and \texttt{numpy} with
+\texttt{rng=np.random.default\_rng(seed=42)} for the empirical
+Monte Carlo block of test~\texttt{T3}. The total runtime is under
+five seconds on a 2024 laptop.
+
+\subsection{T1: closed form for $\mathcal{I}_{p,q}$}
+\label{appssec:T1}
+
+\textbf{Block:} \texttt{T1} of \texttt{scripts/test\_crt\_decoupling.py}.
+
+\textbf{Setup.} The block evaluates the closed
+form~\eqref{eq:closed_form} at $k = 1, 2, \ldots, 7$, with
+$\cos^2(\theta_3, \mustar) \approx 0.7808$ (couplage branch at
+$\mustar = 15$) and $\sin^2(\theta_2, p_1) \approx 0.6914$
+($\qplus(p_1=3) = 1/3$).
+
+\textbf{Result.} The best fits are
+\begin{align*}
+  k_{3,5}^{\mathrm{eff}} &\;=\; 7,
+  &
+  \mathcal{I}^{\mathrm{pred}}_{3,5}
+  &\;=\; 0.132 \text{ bits}
+  &
+  (\text{target } 0.138; \text{ error } 4.5\%),
+  \\[2pt]
+  k_{3,7}^{\mathrm{eff}} &\;=\; 4,
+  &
+  \mathcal{I}^{\mathrm{pred}}_{3,7}
+  &\;=\; 0.306 \text{ bits}
+  &
+  (\text{target } 0.283; \text{ error } 8.1\%).
+\end{align*}
+Both fits lie within the $\pm 20\%$ tolerance of the corpus
+T1~\cite[scripts/]{PT_Monograph}, hence
+\textbf{T1 PASS} (with caveat: see Remark~\ref{rmk:k_interp}).
+The full table at $k = 1, \ldots, 7$ is reproduced in
+Table~\ref{tab:closed_form_check} of
+Section~\ref{ssec:t1_validation}.
+
+\subsection{T2: factorisation of the Ruelle measure}
+\label{appssec:T2}
+
+\textbf{Block:} \texttt{T2} of \texttt{scripts/test\_crt\_decoupling.py}.
+
+\textbf{Setup.} The block builds the transfer matrices
+$T_3 = \mathrm{antidiag}(1, 1)$ on $\mathcal{S}_3 = \{1, 2\}$ and
+$T_5$ on $\mathcal{S}_5 = \{1, 2, 3, 4\}$ with off-diagonal
+entries $1/(p-2) = 1/3$ as in Eq.~\eqref{eq:Tp_explicit}, computes
+their left Perron eigenvectors by augmented least squares at
+$50$~digits of precision, and compares the directly computed
+$\pi_{15}^{\mathrm{Ruelle}}$ to the Kronecker product
+$\pi_3^{\mathrm{Ruelle}} \otimes \pi_5^{\mathrm{Ruelle}}$.
+
+\textbf{Result.}
+\begin{itemize}[itemsep=2pt,leftmargin=*]
+  \item Per-factor stationary distributions:
+    $\pi_3^{\mathrm{Ruelle}} = (1/2, 1/2)$,
+    $\pi_5^{\mathrm{Ruelle}} = (1/4, 1/4, 1/4, 1/4)$.
+  \item Stationarity of $\pi_3 \otimes \pi_5$ under $T_{15}$:
+    $\|(\pi_3 \otimes \pi_5) T_{15} - (\pi_3 \otimes \pi_5)\|_2
+    = 0$ exactly at $50$~dps.
+  \item Direct vs.\ tensor:
+    $\|\pi_{15}^{\mathrm{direct}} - \pi_3 \otimes \pi_5\|_2 =
+    5.88 \times 10^{-53}$ (machine precision at $50$~dps).
+  \item Kullback--Leibler divergence:
+    $\DKL(\pi_{15}^{\mathrm{direct}} \| \pi_3 \otimes \pi_5) =
+    0$ to $50$~dps.
+\end{itemize}
+
+\textbf{T2 PASS.} This is the numerical witness of
+Lemma~\ref{lem:pi_factor}.
+
+\subsection{T3: empirical MI under the product measure}
+\label{appssec:T3}
+
+\textbf{Block:} \texttt{T3} of \texttt{scripts/test\_crt\_decoupling.py}.
+
+\textbf{Setup.} The block draws $N = 10^6$ i.i.d.\ samples from
+$\pi_3 \otimes \pi_5$ using the \texttt{numpy} random generator
+with seed $42$, and estimates the empirical mutual
+information of the two coordinate marginals by direct histogram
+counts.
+
+\textbf{Result.}
+$\mathrm{MI}_{\mathrm{emp}} = 1.45 \times 10^{-6}$ bits,
+to be compared with the finite-sample threshold
+$1/\sqrt{N} \approx 10^{-3}$ bits. The observed value is three
+orders of magnitude below the threshold, consistent with the
+theoretical prediction of exactly zero mutual information under
+the product measure (Theorem~\ref{thm:ruelle_zero}) plus Monte
+Carlo noise.
+
+\textbf{T3 PASS.}
+
+\subsection{Reproducibility}
+\label{appssec:reproducibility}
+
+The script \texttt{scripts/test\_crt\_decoupling.py} prints all
+three blocks T1, T2, T3 to standard output with PASS/FAIL flags
+at the end of each block and a global \texttt{SYNTHESE} at the
+end. Total wall-clock time on a 2024 laptop is under five
+seconds, with the Monte Carlo block T3 dominating ($\sim 4$ s);
+the algebraic blocks T1 and T2 each take well under one second
+at $50$~dps precision.
+
+To reproduce the values quoted above, run
+\begin{quote}
+  \texttt{python3 scripts/test\_crt\_decoupling.py}
+\end{quote}
+from the article root. The script has no command-line arguments
+and requires only \texttt{mpmath} and \texttt{numpy} as
+external dependencies.

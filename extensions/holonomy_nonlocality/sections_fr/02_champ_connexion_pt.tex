@@ -1,0 +1,132 @@
+\section{Le champ unique et la connexion modulaire de PT}
+\label{sec:champ_connexion}
+
+Avant d'évaluer la position C dans le cadre PT
+(Section~\ref{sec:holonomie_primitive}), il faut établir trois
+faits structurels : que la PT admet un unique degré de liberté
+dynamique (\S~\ref{ssec:BA0}), que ce degré de liberté porte
+naturellement une connexion de jauge modulaire
+(\S~\ref{ssec:connexion_jauge}), et que cette connexion induit
+les angles d'holonomie $\theta_p$ par une identité algébrique
+explicite (\S~\ref{ssec:T6_holonomie}). Ces trois faits sont
+établis dans la monographie~\cite{PT_Monograph} et reproduits ici
+sans démonstration.
+
+\subsection{Le champ dynamique unique BA0/T0}
+\label{ssec:BA0}
+
+Le théorème de fermeture T0 du chapitre~25 de la
+monographie~\cite{PT_Monograph} établit que la suite des écarts
+entre nombres premiers consécutifs
+\begin{equation}
+  g_n \;:=\; p_{n+1} - p_n
+  \qquad (n \geq 1)
+  \label{eq:g_n_def_fr}
+\end{equation}
+est l'\emph{unique} degré de liberté dynamique du crible
+d'Eratosthène, sous les conditions structurelles U1--U4
+(anti-diagonalité de $T_3$, identité GFT, géométrie canonique de
+$\mathcal{D}_{\rm KL}$ et Fisher, point fixe $\mustar = 15$). Le
+postulat BA0 de la monographie --- selon lequel
+$\{g_n\}_{n \geq 1}$ est \emph{le} champ dynamique de la théorie ---
+est par conséquent promu de postulat en théorème, et la théorie
+admet \emph{zéro} axiome dynamique au-delà des outils standards
+de la théorie des nombres.
+
+C'est ce constat qui distingue radicalement la PT des théories
+classiques de jauge : alors que ces dernières doivent postuler un
+champ vectoriel $A_\mu$ comme structure primitive de
+l'électrodynamique, la PT déduit \emph{toute} la structure de
+jauge --- y compris l'existence même d'une connexion --- du seul
+champ scalaire $\{g_n\}$ et des contraintes de cohérence
+arithmétique. La connexion de jauge sera, dans ce qui suit, un
+objet \emph{dérivé}, non un postulat.
+
+\subsection{La connexion de jauge modulaire}
+\label{ssec:connexion_jauge}
+
+Pour tout module $m \geq 2$, la récurrence additive
+\begin{equation}
+  r_{n+1}^{(m)} \;=\; \bigl(r_n^{(m)} + g_n\bigr) \bmod m
+  \label{eq:gauge_recursion}
+\end{equation}
+exprime que la trajectoire des résidus modulaires
+$r_n^{(m)} = p_n \bmod m$ est entièrement déterminée par la
+donnée initiale et la suite $\{g_n\}$. Cette récurrence est
+l'\emph{équation de transport parallèle} associée à la connexion
+modulaire de PT : à chaque pas~$n$, le résidu est translaté par
+le « gain de jauge » $g_n \bmod m$, et l'on lit la trajectoire
+comme un transport le long du « temps arithmétique »~$n$.
+
+Le théorème de connexion de jauge \cite[ch.~1, Thm.~gauge]{PT_Monograph}
+formalise cette lecture : la récurrence~\eqref{eq:gauge_recursion}
+définit, pour chaque entier $m$ sans facteur carré
+$m = q_1 \cdots q_k$ produit de premiers distincts, une connexion
+sur le fibré trivial
+$\Omega \times (\mathbb{Z}/m\mathbb{Z}) \to \Omega$ au-dessus de
+l'espace de chemins $\Omega = \mathbb{N}^{\mathbb{N}}$. Par
+décomposition CRT
+\begin{equation}
+  \mathbb{Z}/m\mathbb{Z}
+  \;\cong\;
+  \prod_{i=1}^{k} \mathbb{Z}/q_i\mathbb{Z},
+  \label{eq:CRT_iso_fr}
+\end{equation}
+cette connexion se scinde en $k$ composantes indépendantes, une
+par premier $q_i$, et l'on peut traiter chaque facteur
+$\mathbb{Z}/q_i\mathbb{Z}$ comme un cercle discret de
+$q_i$~points portant sa propre connexion de jauge. C'est cette
+décomposition qui rend la connexion modulaire de PT structuralement
+plus simple qu'une connexion classique sur $\mathbb{R}^4$ : elle
+est, par construction, un produit tensoriel d'objets
+finis-dimensionnels.
+
+\subsection{L'identité d'holonomie T6}
+\label{ssec:T6_holonomie}
+
+Le théorème d'holonomie T6 \cite[ch.~6]{PT_Monograph} donne
+l'expression explicite de l'angle d'holonomie associé au transport
+parallèle le long d'un cycle de la connexion modulaire. Pour
+chaque premier~$p$ et chaque échelle $\mu > 0$,
+\begin{align}
+  \delta_p(\mu) &\;:=\; \frac{1 - q(\mu)^p}{p},
+  &
+  \cos \theta_p(\mu) &\;:=\; 1 - \delta_p(\mu),
+  \label{eq:delta_theta_fr}
+\\
+  \sinp{p}(\mu) &\;=\; \delta_p(\mu)\bigl(2 - \delta_p(\mu)\bigr),
+  &
+  q(\mu) &\;\in\; \{\qplus,\; q_-\},
+  \label{eq:sin2_theta_fr}
+\end{align}
+où $\qplus(\mu) = 1 - 2/\mu$ et $q_-(\mu) = e^{-1/\mu}$ sont les
+deux valeurs canoniques du paramètre $q$ singularisées par la
+bifurcation de maximum-entropie L0 \cite[ch.~3]{PT_Monograph}. Pour
+les questions d'holonomie traitées ici, on adopte la branche
+couplage $q = \qplus$, qui décrit le secteur EM et les leptons.
+
+L'identité~\eqref{eq:sin2_theta_fr} est purement algébrique --- elle
+ne fait intervenir que la définition trigonométrique
+$\sin^2 \theta = 1 - \cos^2 \theta = 1 - (1 - \delta)^2 = \delta
+(2 - \delta)$ --- mais elle a une conséquence frappante : la
+trigonométrie habituelle, et avec elle la constante $\pi$,
+\emph{émerge} de la dynamique modulaire sans avoir été introduite
+au départ. Le cercle continu n'est jamais postulé ; il apparaît
+comme limite continue du cercle discret $\mathbb{Z}/p\mathbb{Z}$
+quand $p \to \infty$, et $\pi$ apparaît via la fonction zêta de
+Riemann $\zeta(2) = \pi^2/6 = \prod_p (1 - 1/p^2)^{-1}$, qui
+relie directement la mesure du cercle continu au crible des
+premiers.
+
+\paragraph{Bilan structural.}
+Les trois éléments établis dans cette section dessinent une
+architecture dans laquelle la connexion de jauge et l'angle
+d'holonomie sont des objets \emph{dérivés}, calculables à partir
+du seul champ scalaire $\{g_n\}$, et non des postulats
+indépendants. La position C du débat fondationnel ---
+l'holonomie comme primitive --- prend, sous PT, un sens
+considérablement plus fort qu'elle n'en a dans la théorie des
+champs sur variété : elle n'est pas une option d'interprétation,
+elle est l'unique sortie d'une construction structurale qui
+n'admet aucun autre choix. C'est ce statut que la section
+suivante formalise.

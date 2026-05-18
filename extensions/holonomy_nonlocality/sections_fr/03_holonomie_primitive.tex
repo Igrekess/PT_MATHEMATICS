@@ -1,0 +1,170 @@
+\section{L'angle d'holonomie $\theta_p$ comme objet primitif}
+\label{sec:holonomie_primitive}
+
+Cette section établit le résultat fondamental qui distingue la
+PT des théories classiques de jauge : sous les hypothèses
+structurales de la PT, l'angle d'holonomie modulaire $\theta_p$
+est l'\emph{unique} invariant primitif satisfaisant
+simultanément quatre conditions naturelles, et le couple
+classique $(A_\mu, F_{\mu\nu})$ est entièrement reconstructible
+comme dérivée d'un objet plus primitif --- le potentiel scalaire
+de persistance $S = -\ln \alpha$. La position C du débat
+fondationnel n'est plus une interprétation : elle est une
+conséquence structurale.
+
+\subsection{Proposition 3.1 : $A_\mu$ et $F_{\mu\nu}$ sont dérivés}
+\label{ssec:prop_3_1}
+
+\begin{proposition}[Décomposition du potentiel de persistance]
+\label{prop:A_F_derives}
+Soit $S(\mu) = -\ln \alpha(\mu)$ le potentiel de persistance. Alors
+\begin{itemize}
+  \item le 4-potentiel $A_\mu$ est identifiable au gradient
+  $\partial_\mu S$ ;
+  \item le tenseur de champ $F_{\mu\nu}$ est identifiable aux
+  composantes antisymétriques de $\mathrm{Hess}(S)$ ;
+  \item la métrique $g_{\mu\nu}$ est identifiable aux composantes
+  symétriques de $\mathrm{Hess}(S)$ (Lemme F, ch12 monographie).
+\end{itemize}
+\end{proposition}
+
+\begin{proof}[Démonstration]
+La construction est détaillée au chapitre~12 de la
+monographie~\cite{PT_Monograph} ; on en retrace ici les trois
+étapes clés.
+
+\textbf{Étape 1 (identification du gradient).}
+La métrique de Fisher associée à la distribution stationnaire
+$\pi_m$ du crible se calcule comme le Hessien du logarithme de la
+fonction de partition $Z_{\rm Ruelle}$, et la fonction
+$\alpha(\mu)$ apparaît comme la première fonction propre du
+transfert. Par construction, le gradient $\partial_\mu S =
+-\partial_\mu \ln \alpha$ joue dans le formalisme PT le rôle que
+joue $A_\mu$ dans l'électrodynamique classique : il intervient
+linéairement dans le terme d'interaction du Lagrangien effectif
+(\S~F3 de la monographie) et il subit, sous les transformations
+de jauge modulaire $\theta_p \mapsto \theta_p + 2\pi k$, un
+déphasage compatible avec l'invariance de jauge classique.
+
+\textbf{Étape 2 (identification du Hessien antisymétrique).}
+Les composantes antisymétriques du Hessien
+$\mathrm{Hess}(S)_{\mu\nu} = \partial_\mu \partial_\nu S$ encodent
+les courbures dérivées du potentiel scalaire, et reproduisent les
+six degrés de liberté de $F_{\mu\nu} = \partial_\mu A_\nu -
+\partial_\nu A_\mu$ par identification directe. L'identité
+$dA = F$ devient, sous PT, l'identité tautologique
+$d(dS) = 0$ projetée sur les composantes antisymétriques de
+$\mathrm{Hess}(S)$. Cette projection est non-triviale en présence
+de la signature lorentzienne $g_{00} < 0$, qui sépare les
+composantes spatiales et temporelles du Hessien.
+
+\textbf{Étape 3 (identification du Hessien symétrique).}
+Les composantes symétriques de $\mathrm{Hess}(S)$ reproduisent la
+métrique $g_{\mu\nu}$ de l'espace-temps émergent (Bianchi I sur
+les premiers actifs $\{3, 5, 7\}$, cf.\ Lemme F du
+ch.~12~\cite{PT_Monograph}). Cette identification est, en
+elle-même, le contenu du théorème de reconstruction métrique :
+la métrique de l'espace-temps de la PT \emph{est} le Hessien du
+logarithme de la fonction de partition, sans nouvelle structure
+introduite.
+\end{proof}
+
+La conséquence immédiate est que $A_\mu, F_{\mu\nu}, g_{\mu\nu}$
+sont tous trois \emph{dérivables du même potentiel scalaire}
+$S(\mu)$, et que ce potentiel est, en retour, calculé à partir du
+seul champ $\{g_n\}$. Aucun de ces trois objets n'est donc
+primaire dans l'architecture PT : ils sont tous trois secondaires
+par rapport à $S$, et $S$ est lui-même secondaire par rapport à
+$\{g_n\}$. C'est sur ce constat structural que repose
+l'argument d'unicité de la sous-section suivante.
+
+\subsection{Proposition 3.2 : unicité de $\theta_p$ comme invariant primitif}
+\label{ssec:prop_3_2}
+
+\begin{proposition}[Primauté holonomique]
+\label{prop:theta_p_unique}
+L'angle d'holonomie $\theta_p$ est l'unique invariant primitif
+simultanément :
+\begin{enumerate}[label=(\roman*),nosep]
+  \item jauge-invariant,
+  \item sensible à Aharonov--Bohm,
+  \item borné,
+  \item PT-définissable depuis BA0 seul.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Démonstration]
+Nous montrons par exclusion qu'aucun autre invariant naturel ne
+satisfait simultanément les quatre conditions.
+
+\textbf{Exclusion de $A_\mu$.}
+Le potentiel $A_\mu$ viole la condition (i) : il dépend de la
+jauge par construction. Aucune projection naturelle de $A_\mu$
+n'est à la fois jauge-invariante et bornée tout en restant
+sensible à Aharonov--Bohm dans la région où $F = 0$. La position
+A du débat fondationnel est donc structurellement incompatible
+avec les quatre conditions.
+
+\textbf{Exclusion de $F_{\mu\nu}$.}
+Le tenseur de champ $F_{\mu\nu}$ satisfait (i), (iii), (iv) mais
+viole la condition (ii) : il est, par construction, identiquement
+nul dans la région intérieure d'un trajet Aharonov--Bohm idéal,
+et ne peut donc pas rendre compte du déphasage observé. La
+position B du débat doit ajouter une structure non-locale
+supplémentaire pour récupérer la sensibilité à AB ; cette
+structure ajoutée n'est pas PT-définissable depuis BA0 seul.
+
+\textbf{Exclusion des fonctions arbitraires de $\{g_n\}$.}
+Une fonction arbitraire $F[\{g_n\}]$ peut satisfaire (i), (ii),
+(iv) mais viole en général (iii) : sans structure de transport
+parallèle modulaire, la fonction n'est pas naturellement bornée
+et n'admet pas d'identification simple avec un invariant
+topologique mesurable. Seules les fonctions qui se réduisent à
+l'angle modulaire $\theta_p$ d'un canal CRT
+$\mathbb{Z}/p\mathbb{Z}$ remplissent les quatre conditions
+simultanément.
+
+\textbf{Existence et unicité.}
+L'angle $\theta_p$ défini par
+l'identité~\eqref{eq:sin2_theta_fr} satisfait (i) (il est
+jauge-invariant car défini comme intégrale fermée), (ii) (il est
+non-nul dans toute région où la connexion modulaire est
+non-triviale, y compris dans la région intérieure d'un cycle
+AB), (iii) (il prend ses valeurs dans $[0, \pi]$ par
+construction), et (iv) (il est défini par
+l'identité~\eqref{eq:sin2_theta_fr}, qui ne fait intervenir que
+$\{g_n\}$ via $q(\mu)$). C'est l'unique invariant primitif qui
+réalise les quatre conditions.
+\end{proof}
+
+\subsection{La position Wu--Yang--Healey promue en théorème PT}
+\label{ssec:wu_yang_promu}
+
+Les Propositions~\ref{prop:A_F_derives}
+et~\ref{prop:theta_p_unique} ont une lecture commune : la
+position C du débat fondationnel
+(\S~\ref{ssec:position_C}) --- la primauté de l'holonomie ---
+n'est plus, dans le cadre PT, un choix d'interprétation parmi
+d'autres. Elle est une conséquence structurale : sous les axiomes
+de la PT, $\theta_p$ est l'\emph{unique} invariant primitif
+disponible, et $A_\mu, F_{\mu\nu}, g_{\mu\nu}$ sont tous trois
+dérivés de ce dernier via le potentiel scalaire $S$.
+
+Ce statut a deux conséquences immédiates. D'une part, la PT
+\emph{prédit} que toute mesure de $A_\mu$ ou $F_{\mu\nu}$ se
+réduit, dans son contenu informationnel, à une mesure de $\theta_p$
+sur un canal modulaire actif. Aucune information physique n'est
+perdue par cette réduction --- la phase AB est intégralement
+encodée dans $\theta_3$ (cf.\ \S~\ref{ssec:ab_consequence}). D'autre
+part, la PT \emph{exclut} les ontologies de la position A (la
+réalité du potentiel) et de la position B (la non-localité
+intrinsèque du champ) : ces ontologies postulent des objets
+primitifs qui, dans le cadre PT, ne peuvent exister
+indépendamment du potentiel scalaire $S$ d'où elles sont dérivées.
+
+La position C devient ainsi, sous PT, plus qu'une interprétation :
+elle est le seul cadre dans lequel les quatre conditions
+naturelles (i)--(iv) de la
+Proposition~\ref{prop:theta_p_unique} peuvent être satisfaites
+simultanément. Le débat fondationnel est, dans cette mesure
+précise, tranché.

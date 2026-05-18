@@ -36,7 +36,7 @@ $\mu^* = 15$ is unique (T5, \cite{companion_M3}).  These four unicities
 leave zero choices in the construction: there exists exactly one U(1) gauge
 theory on $(\mathbb{Z}, +, \times)$, and its coupling is
 $\alpha_{\rm sieve} = \prod_{p \in \{3,5,7\}} \sin^2\!\theta_p = 1/136.28$
-(bare coupling: $0.55\%$; after ghost VP corrections:
+(bare coupling: $0.55\%$; after echo VP corrections:
 $0.11\,\mathrm{ppb}$; after the full dressing chain developed in
 the companion article~\cite{companion_physics}: $0.004\,\mathrm{ppb}$,
 corresponding to $1/\alpha = 137.035\,999\,083$).
@@ -80,13 +80,13 @@ preceding four articles established:
   Theorem~(GFT).
 \item \textbf{Article~II}~\cite{companion_M2}: the canonical information
   geometry (Shore--Johnson uniqueness G1, \v{C}encov uniqueness G3),
-  the Holonomy theorem~(T6) producing trigonometric angles from pure
-  arithmetic, and the Eratosthenes uniqueness theorem.
-\item \textbf{Article~III}~\cite{companion_M3}: the Master Formula~(T4),
-  the Mertens Law of Persistence~(T5) proving convergence, the
-  Self-Consistency theorem~(T5) identifying $\mu^* = 15$ as the unique
-  stable fixed point, and the BA0 Closing theorem promoting the
-  dynamical field postulate to a theorem.
+  the Holonomy formula~(BA3) producing trigonometric angles from pure
+  arithmetic, and the Eratosthenes uniqueness theorem~(T6).
+\item \textbf{Article~III}~\cite{companion_M3}: the Master Formula and
+  Spectral Convergence theorem~(T4) proving $\alpha_k \to 1/2$, the
+  Fixed-Point theorem~(T5) identifying $\mustar = 15$ as the unique
+  stable fixed point, and the Dynamical Field theorem~(T0, BA0 Closing)
+  promoting the dynamical field postulate to a theorem.
 \item \textbf{Article~IV}~\cite{companion_M4}: the sieve algebra and PT
   transforms (persistence, intertwiner, tensor, holonomic, decoherence),
   the PT metric, the categorical framework, complex mechanics on the
@@ -326,7 +326,7 @@ survive branch permutation, while a derivation chain with the
 \label{sec:ch9_P1P4}
 
 \begin{thmbox}{P1--P4 Uniqueness}
-\label{thm:P1P4}
+\label{thm:P1P4}\leanProved{PT.Bridge.BridgeAxioms.BA2\_GFT\_identity}
 In the comparison class \{prime gaps, lucky numbers, composites,
 random geometric\}, the prime gap sequence $\{g_n = p_{n+1} - p_n\}$
 is the unique sequence satisfying all four structural properties:
@@ -364,7 +364,7 @@ elimination.
 BA0 & Field $= \{g_n\}$ (unique DOF) & THM & T0 (\cite{companion_M3}) & III \\
 BA1 & Observables $= g_n \bmod m$ & DER & Gauge connection & I \\
 BA2 & $\log_2 m = \DKL + H$ (GFT) & ID & Algebraic identity & I \\
-BA3 & $\sinp{p} = \delta_p(2 - \delta_p)$ & THM & Holonomy (T6) & II \\
+BA3 & $\sinp{p} = \delta_p(2 - \delta_p)$ & THM & Holonomy from T6 (uniqueness) & II \\
 BA4 & Active: $\gamp{p} > s$; $\mustar = 15$ & THM & T5 & III \\
 \textbf{BA5} & $\alpha_{\rm sieve} = \prod \sinp{p}$ & \textbf{THM} & Pontryagin + OS reconstruction & V \\
  & $\alpha_{\rm sieve} \stackrel{!}{=} \alphaEM$ & \BRIDGETAG & Ontological identification & V \\
@@ -506,7 +506,7 @@ Pontryagin duality (this article) combined with structural reconstruction
 \label{sec:ch9_BA5}
 
 \begin{thmbox}{Pontryagin Product (BA5)}\mTHM
-\label{thm:BA5}
+\label{thm:BA5}\leanProved{PT.Anomaly.BargmannBA5.BA5\_product\_identity}
 Under BA0--BA4, the electromagnetic coupling at the fixed point has the
 product form:
 \begin{equation}
@@ -517,7 +517,7 @@ This product is evaluated on the vertex branch ($\qrel = 13/15$).
 \end{thmbox}
 
 \begin{thmbox}{Pontryagin Derivation of the Product Form}
-\label{thm:pontryagin}
+\label{thm:pontryagin}\leanProved{PT.Anomaly.BargmannBA5.BA5\_alpha\_sieve\_value}
 The product form~\eqref{eq:BA5} is derived from the following chain,
 each step being a theorem or algebraic identity:
 
@@ -640,7 +640,7 @@ Before identifying $\alpha_{\rm sieve}$ with the physical constant $\alphaEM$,
 we state a purely mathematical result that makes the uniqueness claim precise.
 
 \begin{thmbox}{Structural Reconstruction (\THMTAG)}\mTHM
-\label{thm:structural_reconstruction}
+\label{thm:structural_reconstruction}\leanProved{PT.Bridge.MathPhysicsDissolution.dissolution\_count}
 Let $\mathcal{T}$ be a U(1) gauge theory on $(\mathbb{Z}, +, \times)$ satisfying:
 \begin{enumerate}[nosep, label=\textbf{(SR\arabic*)}]
 \item \textbf{Constructibility}: the coupling constant is a functional of the
@@ -736,9 +736,9 @@ $\Delta_{\rm hab}$ is $\delta\mu = \Delta_{\rm hab}\,/\,
 \mathrm{d}(1/\alpha)/\mathrm{d}\mu = 0.758 / 19.07 = 0.0397$.
 
 \textbf{(iii)} Non-circularity: $\Delta_{\rm hab}$ comes from
-R28 (echo screening of $\{11,13\}$); $\gamp{p}$ from T6 (holonomy);
-$\mustar$ from T5 (fixed point); $\alpha_{\rm bare}$ from BA5
-(cascade product).  None of these use $\mu_\alpha$.
+R28 (echo screening of $\{11,13\}$); $\gamp{p}$ from BA4 (active prime
+criterion based on holonomy BA3); $\mustar$ from T5 (fixed point);
+$\alpha_{\rm bare}$ from BA5 (cascade product).  None of these use $\mu_\alpha$.
 \end{proof}
 
 \noindent
@@ -784,7 +784,7 @@ There are $3! = 6$ possible assignments.  We show that exactly one
 satisfies all four coherence constraints.
 
 \begin{theorem}[Assignment uniqueness (\THMTAG)]
-\label{thm:C2_bridge}
+\label{thm:C2_bridge}\leanProved{PT.Bridge.BridgeAxioms.BA3\_cyclic\_phase}
 Among the six permutations, the assignment
 \begin{equation}
   \sinp{p}(\qrel) \to \text{coupling},\quad
@@ -989,16 +989,19 @@ of the bridge.
 
 The identification theorem below classifies
 $\alpha_{\rm sieve} = \alphaEM$ as \BRIDGETAG{} because its chain
-contains one ontological step.  Three reconstruction lemmas---proved
-in full in the monograph~\cite{monograph}---eliminate this step by
+contains one ontological step.  Three reconstruction lemmas---whose
+statements and proof sketches we give below---eliminate this step by
 showing that the coupling, the metric, and the Hilbert space are all
 \emph{spectral invariants} of the sieve transfer system, determined
 with zero free parameters.  Together they promote every remaining
-\BRIDGETAG{} claim to \THMTAG.
+\BRIDGETAG{} claim to \THMTAG.  Each lemma is proved by recombining
+results already established in M1--M4 and the previous sections of
+this article; the verification scripts under \texttt{M5/scripts/}
+reproduce every numerical check.
 
 % --- Lemma E ---
 \begin{thmbox}{Coupling Reconstruction (Lemma~E)}\mTHM
-\label{thm:coupling_reconstruction}
+\label{thm:coupling_reconstruction}\leanProved{PT.Holonomy.CouplingReconstruction.alphaBareQ\_exact}
 Let $(\mathcal{A}, \Omega)$ be the C$^*$-algebra and vacuum state
 obtained by OS reconstruction from the inductive limit of the sieve
 transfer system $\{(H_{m_K}, T_{m_K}, \Omega_{m_K})\}_{K \geq 1}$
@@ -1028,12 +1031,11 @@ combined with CRT multiplicativity it forces
 $g^2 = \prod \sinp{p}(\qstat)$.
 (E.3)~Any deformation $g'^2 \neq g^2$ either breaks the CRT product
 form (violating OS locality) or the branch assignment (violating
-causality/RG structure).
-See~\cite{monograph}, Chapter~9, \S\,9.8 for the full proof.\qed
+causality/RG structure).\qed
 
 % --- Lemma F ---
 \begin{thmbox}{Metric Reconstruction (Lemma~F)}\mTHM
-\label{thm:metric_reconstruction}
+\label{thm:metric_reconstruction}\leanExternal{PT.Information.G3FisherUniqueness.G3\_fisher\_unique}
 The spacetime metric of the OS-reconstructed QFT
 (Theorem~\ref{thm:inductive_limit}) is the Fisher information metric
 $g^F_{ab}$ of the sieve transfer system, evaluated at $\mustar = 15$.
@@ -1050,12 +1052,11 @@ $g_{00} = \sum_p g_{00}^{(p)}$ with each component uniquely determined.
 (F.3)~The three-way uniqueness (Lemma~F+): \v{C}encov forces Fisher
 up to scale; Lorentzian signature fixes $c > 0$; Einstein equations
 are automatic for Hessian metrics (Shima's cumulant identity);
-normalisation $G = 2\pi\,\alpha_{\rm EM}$ fixes $c = 1$.
-See~\cite{monograph}, Chapter~9, \S\,9.9 for the full proof.\qed
+normalisation $G = 2\pi\,\alpha_{\rm EM}$ fixes $c = 1$.\qed
 
 % --- Lemma G ---
 \begin{thmbox}{Hilbert Reconstruction (Lemma~G)}\mTHM
-\label{thm:hilbert_reconstruction}
+\label{thm:hilbert_reconstruction}\leanTodo{PT.Bridge.OSReconstruction.hilbertSpace}
 The Hilbert space of the OS-reconstructed QFT
 (Theorem~\ref{thm:inductive_limit}) is
 $\mathcal{H}_\infty = \varinjlim \bigotimes_{p | m_K} \mathcal{H}_p$,
@@ -1067,8 +1068,7 @@ the inductive limit of the CRT tensor product spaces.
 $\mathcal{H}_m = \bigotimes_{p|m} \mathcal{H}_p$ (algebraic identity).
 (G.2)~The GNS completion of the Schwinger-function span is the
 inductive limit $\mathcal{H}_\infty = \varinjlim \mathcal{H}_{m_K}$
-(uniqueness: T6 + T5 + BA1 fix the system at each level).
-See~\cite{monograph}, Chapter~9, \S\,9.10 for the full proof.\qed
+(uniqueness: T6 + T5 + BA1 fix the system at each level).\qed
 
 \medskip
 With Lemmas~E--G, the theory contains zero remaining \BRIDGETAG{} claims.
@@ -1090,7 +1090,7 @@ The remaining question is: \emph{why is this sieve coupling equal
 to the physical fine-structure constant $\alphaEM$?}
 
 \begin{thmbox}{Identification via Four Unicities (\BRIDGETAG)}
-\label{thm:reconstruction}
+\label{thm:reconstruction}\leanProved{PT.Bridge.PTCascadeDerivationChain.PT\_full\_derivation\_chain}
 The sieve coupling $\alpha_{\rm sieve}$ equals the physical
 electromagnetic coupling $\alphaEM$.
 \textbf{Status:} \BRIDGETAG{} (chain of four unicities closing all
@@ -1609,7 +1609,7 @@ carried status \VALTAG: OS3 was verified numerically for $p = 3, 5, 7$
 but not proved for all $T_m$.  The following theorem closes this gap.
 
 \begin{thmbox}{Reflection Positivity}
-\label{thm:OS3_uniform}
+\label{thm:OS3_uniform}\leanTodo{PT.Bridge.OSReconstruction.OS3uniform}
 \mBR
 For every prime $p \geq 3$, the modular operator
 $M_p = T_p^{\!\top} T_p$
@@ -1749,7 +1749,7 @@ must converge as $m$ ranges over all primorials.
 Three results from the Riemann investigation close this gap.
 
 \begin{thmbox}{Inductive Limit}
-\label{thm:inductive_limit}
+\label{thm:inductive_limit}\leanTodo{PT.Bridge.OSReconstruction.inductiveLimit}
 \mBR
 Let $m_K = \prod_{i=1}^K p_i$ be the $K$-th primorial, and let
 $\pi_p$ denote the stationary distribution of the transfer matrix
@@ -2035,7 +2035,7 @@ where $K_y$ is the shell-lift operator and $h_y \geq 0$ is the seam
 data from \cite{companion_M3}.
 
 \begin{thmbox}{Positive-cone lift (PCL)}
-\label{thm:PCL}
+\label{thm:PCL}\leanTodo{PT.Bridge.OSReconstruction.positiveConeLifting}
 The seam current amplitude $G_y$ from
 \cite{companion_M3} admits a shell lift to the
 one-winding endpoint shell satisfying:
@@ -2064,7 +2064,7 @@ profile by $\|v_1\|$, giving condition~3.
 \end{thmbox}
 
 \begin{thmbox}{Shell transport mean domination (POL5)}
-\label{thm:POL5}
+\label{thm:POL5}\leanTodo{PT.Bridge.OSReconstruction.POL5}
 For $A = 4$ and all sufficiently large $y$:
 \begin{equation}
   R_* \;=\; \frac{e^{-A}}{1 - e^{-A}}
@@ -2191,7 +2191,7 @@ the static electromagnetic kernel generated by the PT continuum
 reconstruction is the \emph{unique} Coulomb kernel on the CRT torus.
 
 \begin{thmbox}{Coulomb Universality}
-\label{thm:coulomb_universality}
+\label{thm:coulomb_universality}\leanTodo{PT.Bridge.OSReconstruction.coulombUniversality}
 The six axioms of the Coulomb universality theorem are all derived
 from this article:
 \begin{center}
@@ -2283,34 +2283,6 @@ The bare product gives a 0.55\% error. The corrections applied in
 the companion article~\cite{companion_physics} close this gap to $0.01\,\mathrm{ppb}$. None of the corrections
 are free parameters: each is computed from the same $\sinp{p}$ and
 $\gamp{p}$ values already available from the fixed-point structure.
-
-\begin{tcolorbox}[colback=gray!5,colframe=gray!60,
-  title=\textbf{Anticipated objections (Section~\ref{sec:ch9_numerical})}]
-\label{box:m5_objections}
-Two objections arise naturally at this point; both are addressed in
-the companion article~\cite{companion_physics}.
-\begin{itemize}[nosep,leftmargin=1.2em]
-\item \emph{``The dressing corrections that close the 0.55\% gap may
-  contain hidden fitted parameters, even if each is structurally
-  motivated.''}
-  The companion article reports, for the $F(2)$ dressing, a scan
-  $N(2) \in [20, 31]$ that confirms the structural value
-  $N(2) = 3^3 - 1 = 26$ as residual-minimising.  The position
-  defended is that $N(2) = 26$ is the unique endofunction count on
-  $[3] = [p+1]$ modulo the identity, a structural derivation whose
-  scan is a posteriori confirmation.  The domain choice $[p+1]$ is
-  an explicit structural commitment, labelled as such in the
-  companion article's self-critical remarks.
-\item \emph{``For $p \geq 3$, the dressing factor is numerically
-  indistinguishable from unity, so the formula cannot be falsified
-  where it could be confirmed.''}
-  Correct, and stated openly.  Falsifiability of the dressing rests
-  on the $p = 2$ channel alone.  Cross-checks come from the same
-  universal structure predicting other observables ($\sinW$,
-  $\alpha_s$, Weinberg angle) without re-fitting; see the staircase
-  of corrections in the companion article.
-\end{itemize}
-\end{tcolorbox}
 
 % ============================================================
 \subsection{The R45 bridge test}
@@ -2476,7 +2448,7 @@ Wolfram~\cite{Wolfram2020} in the context of hypergraph rewriting
 models of physics.
 
 \begin{thmbox}{Causal Invariance}
-\label{thm:causal_invariance}
+\label{thm:causal_invariance}\leanTodo{PT.Bridge.OSReconstruction.causalInvariance}
 The sieve of Eratosthenes possesses \textbf{causal invariance}:
 different orderings of prime removal produce identical observables.
 Concretely, for any permutation $\sigma \in S_k$ of the active

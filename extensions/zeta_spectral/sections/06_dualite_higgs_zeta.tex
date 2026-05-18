@@ -1,0 +1,170 @@
+\section{Dualité Higgs $\leftrightarrow$ zêta}
+\label{sec:dualite_higgs_zeta}
+\label{sec:dualite_higgs}
+
+La triple identification de \S\ref{sec:surdetermination_un_huitieme}
+conduit à une conjecture structurelle inattendue, formulée comme verrou
+K4.
+
+\subsection{Le bifurcateur canonique commun}
+\label{sec:bifurcateur}
+
+\begin{conjecture}[K4, dualité Higgs $\leftrightarrow$ zêta]
+\label{conj:K4}
+Il existe un objet PT canonique $B$, le \emph{bifurcateur}, tel que~:
+\begin{itemize}[nosep,leftmargin=*]
+\item $m_H / v = \mathrm{scale}(B) = \sper = 1/2$ (mode breathing, masse
+  du Higgs) ;
+\item $\Delta_N = \mathrm{coupling}(B) = \sper^{2}/2 = 1/8$ (phase
+  Maslov, secteur HP-PT) ;
+\item $\lambdaH = \mathrm{coupling}(B) = \sper^{2}/2 = 1/8$ (auto-couplage
+  Higgs).
+\end{itemize}
+\end{conjecture}
+
+Le bifurcateur canonique est identifié comme le projecteur spinoriel
+$\qplus/\qminus$ du canal $p = 2$ au point fixe $\mustar = 15$.
+Formellement,
+\begin{equation}
+B \;=\; \Pi_+ : \Hilb \,\to\, \Hilb_{\qplus}, \qquad
+\Pi_+ \;=\; \tfrac{1}{2}\big(I - i J_{\mathrm{PT}}\big),
+\label{eq:bifurcateur}
+\end{equation}
+où $J_{\mathrm{PT}}$ est la structure complexe Kähler-Fisher de
+$\mathcal{M}_m^{\mathrm{db}}$ (cf.~\S\ref{sec:K3}) et $\Hilb = \Hilb_{\qplus}
+\oplus \Hilb_{\qminus}$ la décomposition chirale. L'opérateur miroir
+$\Pi_- = (I + i J_{\mathrm{PT}})/2$ projette sur $\qminus$, et $B$ se
+restreint au canal $p = 2$ (sous-espace propre de la partition binaire
+$\Tsix$).
+
+\subsection{Le canal $p = 2$ porte les deux observables}
+\label{sec:canal_p2}
+
+Le canal $p = 2$ joue trois rôles en PT (\cite{PT_M1})~:
+\begin{itemize}[nosep,leftmargin=*]
+\item opérateur info / anti-info ($\gammap{2} = 0{,}867$, le plus actif) ;
+\item bifurcation $\qplus/\qminus$ (chiralité de la persistance) ;
+\item partition binaire $\log_2 m$ (théorème $\Tsix$, GFT).
+\end{itemize}
+
+Le Higgs habite le canal $p = 2$ (\cite{PT_M5})~:
+il est neutre sous $\mathrm{SU}(3) \times \mathrm{SU}(2) \times \mathrm{U}(1)$,
+les trois jauges habitent $\{3, 5, 7\}$, donc seul $p = 2$ est admissible
+pour $H$.
+
+La phase de Maslov habite aussi le canal $p = 2$~: chaque coin de la
+double barrière BK est un point où le crible bascule
+$\qplus \leftrightarrow \qminus$, ce qui est l'expression
+opératorielle de la partition binaire $p = 2$ ($\Tsix$).
+
+\subsection{Dérivation explicite par la chaîne $\Tone$ + $\Ttwo$ + Haar + Weyl}
+\label{sec:chaine_t1t2haarweyl}
+
+\begin{theoreme}[Identité Higgs--Maslov via la chaîne canonique]
+\label{thm:chaine}
+À $\sper = 1/2$,
+\begin{equation}
+\boxed{\;\dfrac{1}{8} \;=\; \dfrac{\sper^{2}}{2} \;=\; \dfrac{|\lambda_2(T_{30})|}{N_{\mathrm{branches}}\,\qplus/\qminus} \;=\; \dfrac{1/4}{2} \;=\; \lambdaH \;=\; \Delta N_{\mathrm{Maslov}}.\;}
+\label{eq:K4}
+\end{equation}
+\end{theoreme}
+
+\begin{proof}[Esquisse, chaîne en quatre étapes]
+\begin{description}[nosep,leftmargin=*]
+\item[$\Tone$.] $\sper = 1/2$ (théorème, \cite{PT_M1}).
+\item[$\Ttwo$.] $|\lambda_2(T_{30})| = \sper^{2} = 1/4$~: la deuxième
+valeur propre de la matrice de transfert primorielle $T_{30}$ vaut
+$\sper^{2}$ (gap spectral, \cite{PT_M1}).
+\item[Haar.] Shift $\Reop(s_\zeta) \to \Reop(s_\zeta) + 1/2$ par le
+Jacobien de la mesure de Haar multiplicative
+(\S\ref{sec:haar_jacobien}).
+\item[Weyl.] L'ordre symétrique de Weyl divise le compte d'états par~$2$
+(symétrisation $(u, p_u) \leftrightarrow (p_u, u)$ de
+\S\ref{sec:cellule_planck}), ce qui transforme $\sper^{2}$ en
+$\sper^{2}/2$.
+\end{description}
+La composition des quatre étapes donne $|\lambda_2|/2 = \sper^{2}/2 = 1/8$.
+Identifiant le secteur Higgs à $\lambdaH = \sper^{2}/2$ et le secteur HP-PT
+à $\Delta_N^{\mathrm{Maslov}} = \sper^{2}/2$, on obtient \eqref{eq:K4}.
+\end{proof}
+
+La quantité $1/8$ est donc structurellement le gap spectral $\Ttwo$
+divisé par le nombre de branches $\qplus/\qminus$. Les deux lectures
+(Higgs et Maslov) sont deux noms pour le même nombre, généré par le même
+mécanisme.
+
+\subsection{Tests d'isolation}
+\label{sec:isolation}
+
+Aucun autre couplage PT canonique n'égale $1/8$~:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Couplage PT} & \textbf{Valeur} & \textbf{$= 1/8$ ?}\\
+\midrule
+$\alpha_{\mathrm{EM}}$ & $7{,}30 \cdot 10^{-3}$ & non\\
+$\sin^{2}\theta_W$ & $0{,}231$ & non\\
+$G_F$ (GeV$^{-2}$) & $1{,}17 \cdot 10^{-5}$ & non\\
+$\lambdaH$ & $\mathbf{0{,}125}$ & \textbf{oui}\\
+$\Delta N_{\mathrm{Maslov}}$ & $\mathbf{0{,}125}$ & \textbf{oui}\\
+\bottomrule
+\end{tabular}
+\caption{Tests d'isolation : aucun couplage PT autre que $\lambdaH$ et
+$\Delta N_{\mathrm{Maslov}}$ n'égale $1/8$.}
+\label{tab:isolation}
+\end{table}
+
+La coïncidence numérique pure est rejetée. La hiérarchie de spin
+$(\sper, \sper^{2}, \sper^{2}/2)$ est dense jusqu'à $1/8$ et se referme
+algébriquement au-delà ($\sper^{3} = \sper^{2}/2$ à $\sper = 1/2$).
+
+\subsection{Tests numériques quantitatifs}
+\label{sec:tests_higgs}
+
+À l'arbre, $m_H^{\mathrm{tree}} = v \cdot \sper = 123{,}11$ GeV (en
+utilisant $v = 246{,}22$ GeV). Au premier ordre perturbatif PT,
+\begin{equation}
+m_H^{(1)} \;=\; v \cdot \sper \cdot (1 + C_F\,\eps) \;\simeq\; 124{,}65 \text{ GeV},
+\label{eq:mH_1}
+\end{equation}
+puis la valeur complète PT-NLO (avec corrections d'ordre supérieur,
+\cite{PT_M5}) atteint $m_H^{\mathrm{NLO}} = 125{,}287$ GeV,
+où les deux coefficients sont définis intrinsèquement en PT~:
+\begin{itemize}[nosep,leftmargin=*]
+\item $C_F = (N_c^{2} - 1)/(2 N_c) = 4/3$ est le facteur de Casimir de la
+représentation fondamentale de $\mathrm{SU}(N_c)$, avec $N_c = 3$ imposé
+par PT comme seule valeur de $N_c$ pour laquelle l'équation de point
+fixe $\mustar = \sum p_i$ admet une solution sur les premiers actifs
+(théorème $\Tzero$, \cite{PT_M3}). Géométriquement, $C_F$
+compte les transitions permises de la matrice de transfert $T_3$ du
+canal $p = 3$ (7 transitions sur 9 emplacements ;
+\cite{PT_M5}). Statut \textbf{[Thm]} pour la
+dérivation $N_c = 3 \Rightarrow C_F = 4/3$.
+\item $\eps = \alpha_s\,\sper / (2\pi)$ est le petit paramètre PT du
+développement perturbatif à une boucle, qui combine le couplage fort
+$\alpha_s(m_Z) \simeq 0{,}1179$ et le paramètre de bifurcation
+$\sper = 1/2$ avec la normalisation standard $1/(2\pi)$ d'une boucle
+gluonique (\cite{PT_M5}).
+Numériquement $\eps \simeq 9{,}38 \cdot 10^{-3}$ et
+$C_F\,\eps \simeq 1{,}25 \cdot 10^{-2}$. Statut \textbf{[Id]} (identité
+algébrique~: formule perturbative standard avec $\alpha_s$ et $\sper$ pris
+à leurs valeurs PT canoniques, sans paramètre libre).
+\end{itemize}
+
+La valeur expérimentale LHC est $125{,}25$ GeV. L'erreur du premier ordre
+$m_H^{(1)}$ est $\sim 0{,}5\,\%$, et l'erreur PT-NLO complet
+$m_H^{\mathrm{NLO}}$ est $0{,}0295\,\%$.
+
+\subsection{Position finale}
+\label{sec:K4_position}
+
+K4 est établi comme \textbf{conjecture forte structurellement validée}.
+La coïncidence numérique pure est rejetée. Le mécanisme commun est
+identifié~: bifurcation $\qplus/\qminus$ du canal $p = 2$. La chaîne de
+dérivation $\Tone \to \Ttwo \to$~Haar~$\to$~Weyl utilise uniquement des
+théorèmes \textbf{[Thm]} du corpus. La promotion à théorème
+inconditionnel demande la fermeture cohomologique stricte K3
+(actuellement \textbf{[Thm partiel]}, \S\ref{sec:limites_ouvertures}).
+

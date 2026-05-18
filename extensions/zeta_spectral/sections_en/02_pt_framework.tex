@@ -1,0 +1,113 @@
+\section{The PT Framework}
+\label{sec:cadre_pt}
+
+\subsection{The Fundamental Parameter}
+\label{sec:parametre}
+
+The Theory of Persistence (PT) takes as unique arithmetic axiom the
+theorem~$\Tone$ \cite{PT_M1}:
+\[
+\sper \;=\; \tfrac{1}{2}.
+\]
+This parameter plays three distinct roles in the PT corpus, which will be
+progressively identified in the course of the article:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{arithmetic}: $\sper$ is the symmetry parameter of the
+  forbidden transition at the first prime $p = 3$ of the sieve
+  (theorem~$\Tone$, \cite{PT_M1});
+\item \textbf{geometric}: $\sper$ is the threshold $\gammap{p} > 1/2$
+  for activity of a prime in the cascade
+  (theorem~$\Tfive$, \cite{PT_M3});
+\item \textbf{spectral}: $\sper$ is the real part appearing in the
+  Mellin transform on the primes via the Jacobian of the multiplicative
+  Haar measure.
+\end{itemize}
+
+A central reading of the present work is that these three manifestations
+are operator-theoretically identifiable (\S\ref{sec:localisation_critique}).
+
+\subsection{Fixed Point, Active Primes, Bifurcation}
+\label{sec:point_fixe}
+
+The PT sieve admits a unique fixed point $\mustar = 15$. The
+arithmetically active primes at this fixed point are the prime divisors
+$\{3, 5, 7\}$ of $\mustar$; the prime $p = 2$ plays the distinct role of
+parity channel (cf.~\S\ref{sec:dualite_higgs}). At this fixed point, the
+persistence dynamics bifurcates into two conjugate branches $\qplus$
+and $\qminus$ characterised by
+\begin{equation}
+\qplus \;=\; \dfrac{13}{15}, \qquad
+\qminus \;=\; \exp\!\Big(-\dfrac{1}{15}\Big).
+\label{eq:qplusqminus}
+\end{equation}
+This bifurcation is the central object of the zeta programme. It enters
+all the eigen-amplitudes and all the cohomological phases encountered
+below.
+
+\subsection{Multiplicative Haar Measure and Mellin Coordinate}
+\label{sec:haar}
+
+The persistence cascade singles out a single invariant measure on the
+half-line of primes: the multiplicative Haar measure
+\begin{equation}
+du \;=\; \dfrac{dp}{p}, \qquad u \;=\; \log p.
+\label{eq:haar_mult}
+\end{equation}
+This measure is invariant under dilation $p \mapsto \lambda p$, and it is
+the unique measure invariant under the RG flow of PT (theorem~$\Ttwo$,
+double stochasticity of the matrix $T_3$, \cite{PT_M1}). The
+coordinate $u = \log p$ will be called the \emph{Mellin coordinate}
+throughout the article; it carries the measure additively invariant under
+translation $u \mapsto u + c$.
+
+\subsection{Canonical PT Factorisation of $\zeta$}
+\label{sec:factorisation}
+
+For $\Reop(s) > 1$ we define, from the bifurcation amplitudes,
+\begin{equation}
+\delta_p^{\pm} \;=\; \dfrac{1 - q_{\pm}^{p}}{p}, \qquad
+a_p \;=\; \delta_p^{+}\,(2 - \delta_p^{+}), \qquad
+b_p \;=\; \delta_p^{-}\,(2 - \delta_p^{-}),
+\label{eq:apbp}
+\end{equation}
+then
+\begin{equation}
+\zetaplus(s) \;=\; \exp\!\Big(\sum_{p} a_p\,p^{-s}\Big), \qquad
+\zetaminus(s) \;=\; \exp\!\Big(\sum_{p} b_p\,p^{-s}\Big),
+\label{eq:zetapm}
+\end{equation}
+and the \textbf{residual factor}
+\begin{equation}
+\Rres(s) \;=\; \dfrac{\zeta(s)}{\zetaplus(s)\,\zetaminus(s)}.
+\label{eq:Rres_def}
+\end{equation}
+We finally set $\Ap = a_p + b_p$, which will be the effective PT
+amplitude per prime in the sequel. Asymptotically, $\Ap \sim 4/p$ for
+$p \to \infty$.
+
+\paragraph{Canonical writing in holonomy angles.}
+The amplitudes $a_p, b_p$ also write
+\begin{equation}
+a_p \;=\; \sinp{p}(\qplus), \qquad b_p \;=\; \sinp{p}(\qminus),
+\label{eq:apbp_sinp}
+\end{equation}
+that is
+\begin{equation}
+\Ap \;=\; \sinp{p}(\qplus) \,+\, \sinp{p}(\qminus),
+\label{eq:Ap_holonomie}
+\end{equation}
+where $\thetap{p}$ denotes the holonomy angle of the cascade at prime $p$
+(monograph ch.~10, fine structure, \cite{PT_Foundations}). The equivalence
+between the two writings comes from $1 - \delta_p^{\pm} = q_{\pm}^{p}/p$,
+that is
+\[
+\delta_p^{\pm}\,(2 - \delta_p^{\pm}) \;=\; 1 - (1 - \delta_p^{\pm})^{2} \;=\; 1 - (q_{\pm}^{p}/p)^{2} \;=\; \sinp{p}(q_{\pm})
+\]
+on setting $\cos(\thetap{p}, q_{\pm}) = q_{\pm}^{p}/p$.
+
+The zeta programme seeks a canonical spectral model of $\Rres$, under the
+\textbf{conjectural hypothesis} of non-vanishing of
+$\zetaplus\,\zetaminus$ (verified numerically on the tested zones) which
+identifies the non-trivial zeros of $\Rres$ with those of $\zeta$. This
+hypothesis will be recalled at each critical step of the identification.
+

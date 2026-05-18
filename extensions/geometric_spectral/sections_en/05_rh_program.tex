@@ -1,0 +1,54 @@
+\section{Spectral-arithmetic program: the RH-PT conjecture}
+\label{sec:programme}
+
+The identities K2 (\ref{thm:K2_en}) and A6 (\ref{thm:A6_en}) are the cornerstones of a more ambitious research program, in progress~\cite{PT_NewMath_Consolidation}, whose horizon is a PT-native approach to the Riemann Hypothesis. This section sketches the program, rigorously distinguishing what is proved, what is conjectural, and what remains open. \emph{None} of the results of this section is claimed as an unconditional theorem.
+
+\subsection{Residual survival operator}
+\label{sec:programme:operateur}
+
+For each prime $p$ and each complex $s$ with $\Re(s) > 1$, define the residual amplitude
+\[
+\kappa_p(s) \;=\; 1 \;-\; \bigl(1 - p^{-s}\bigr)\,\exp\!\bigl(A_p\, p^{-s}\bigr),
+\]
+where $A_p = \sin^{2}\thetap{p}(\qplus) + \sin^{2}\thetap{p}(\qminus)$. The residual regularised PT zeta function is written as a modified Euler product,
+\[
+\Rres(s) \;=\; \prod_{p} \dfrac{1}{1 - \kappa_p(s)},
+\qquad \Re(s) > 1,
+\]
+which converges absolutely in the half-plane $\Re(s) > 1$. The logarithmic derivative of $\Rres$ produces precisely the A6 trace identity (\eqref{eq:A6_en}). One then defines the \emph{residual survival operator} of PT as the diagonal operator on $\ell^{2}(\mathcal P)$ with spectral symbol $\lambda_p(s) = p^{-s}$; this operator plays, in the PT framework, a role analogous to the semi-classical Hamiltonian $\HBK = xp$ of Berry--Keating~\cite{BerryKeating1999}.
+
+\subsection{Analytic status and critical boundary}
+\label{sec:programme:statut}
+
+\begin{description}[nosep,leftmargin=*]
+\item[Theorem.] The Schur--Fredholm identity associated with the residual survival operator is proved as an \emph{exact operatorial identity} on the Hilbert space $\ell^{2}(\mathcal P)$ in the regime $\Re(s) > 1$~\cite{PT_NewMath_Consolidation}.
+\item[Identity A6.] The logarithmic derivative of $\Rres(s)$ admits the exact decomposition into two components ($-\zeta'/\zeta$ + PT correction $A_p p^{-s}$) in $\Re(s) > 1$, verified numerically to $10^{-25}$ (theorem~\ref{thm:A6_en}).
+\item[Identity K2.] The Maslov phase of the semi-classical quantisation of the Riemann zeros coincides with $\sper^{2}/2 = 1/8$, triple spectral-physical-arithmetic identification (theorem~\ref{thm:K2_en}).
+\item[Conjectural.] The analytic continuation of identity~\eqref{eq:A6_en} to the critical line $\Re(s) = 1/2$ is open. The first edge conditions (Hadamard regularisation, Abel weights, Gaussian smoothing) have been tested numerically~\cite{PT_NewMath_Consolidation} and reproduce the position of the Riemann zeros to all available precisions; but no rigorous analytic proof on the critical line is known to date.
+\end{description}
+
+\subsection{The RH-PT conjecture}
+\label{sec:programme:conjecture}
+
+\begin{conjecture}[RH-PT, spectral-lock conjecture]
+\label{conj:RH_PT_en}
+The distributional distribution of poles of the regularised trace
+\[
+\mathcal T(s) \;:=\; \mathrm{Tr}_{\rm reg}\!\bigl[\,(s - i\,\HBK)^{-1} \cdot D_R(s)\,\bigr]
+\]
+on the critical line $\Re(s) = 1/2$ coincides \emph{exactly} with the set of non-trivial zeros of Riemann's $\zeta$ function.
+\end{conjecture}
+
+The RH-PT conjecture has been tested numerically on 17 zeros, over 12 decades, in multi-precision~\cite[Notes 66--69]{PT_NewMath_Consolidation}. At all available precisions the coincidence is verified, but the epistemic status remains \emph{conjectural}: a rigorous proof on the critical line remains to be provided.
+
+\subsection{What the program would deliver}
+\label{sec:programme:portee}
+
+If the RH-PT conjecture were proved, several classical and new results would follow:
+\begin{enumerate}[nosep,leftmargin=*]
+\item the Riemann Hypothesis itself, as a consequence of the fact that the poles of $\mathcal T$ on the critical line would be in bijective correspondence with the zeros of $\zeta$;
+\item a structural explanation of the position $\Re(s) = 1/2$: the critical line would appear as the \emph{spectral locus} where the PT operator $\HBK$ admits the canonical regularisation;
+\item a precise operatorial framework for the Hilbert--Pólya program, in which the role of the self-adjoint operator is played by the PT residual survival operator.
+\end{enumerate}
+
+\textbf{Caveat.} The RH-PT program belongs to date to \emph{open research}, and its inclusion in this article does not in any way prejudge its resolution. The theorems of sections~\ref{sec:courbe} and~\ref{sec:soliton}, as well as the identities~K2 and~A6 of section~\ref{sec:spectrales}, are \emph{independent} of the RH-PT conjecture and remain valid as such. The present article proposes RH-PT as a \emph{program horizon}, not as an established result.

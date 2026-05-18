@@ -1,0 +1,142 @@
+\section{Numerical Verifications}
+\label{sec:verifications_numeriques}
+
+This section summarises the main numerical verifications of the
+programme. Each line refers to the section that carries its
+derivation or description.
+
+\subsection{Summary table}
+\label{sec:verif_table}
+
+\begin{longtable}{@{}p{6.5cm}p{4.5cm}p{3cm}@{}}
+\toprule
+\textbf{Test} & \textbf{Precision / score} & \textbf{Reference}\\
+\midrule
+\endhead
+Fredholm identity $\det(I - \DRop)^{-1} = \Rres(s)$, $\Reop(s) > 1$
+ & $\sim 2 \cdot 10^{-12}$ & \S\ref{sec:fredholm}\\
+Trace formula $-d\log \Rres/ds = \sum_p (\log p)[1/(p^s-1) + \Ap p^{-s}]$
+ & $\sim 10^{-26}$ & thm.~\ref{thm:trace_formula}\\
+Difference $\NPT - N_{\mathrm{RvM}} = 1/8$ constant over 4 decades
+ & $\sim 10^{-15}$ & \S\ref{sec:densite_semi_classique}\\
+Spectral symmetry $\{\gamma_n, -\gamma_n\}$ (AP BC, $\theta = \pi$)
+ & $5 \cdot 10^{-12}$ & prop.~\ref{prop:antiperiodicite}\\
+Berry phase per corner $-\pi/4$, density $-1/8$
+ & $1.68 \cdot 10^{-14}$ & prop.~\ref{prop:c1_sur_N}\\
+$\epsstar^{\mathrm{geom}}$ vs empirical optimum $W = 24$
+ & $\sim 5\,\%$ global, $\sim 1\,\%$ at $M = 1155, W = 24$
+ & lem.~\ref{lem:epsstar_geom}\\
+Poles of $|\Treg(1/2 + it)|$ (raw formula) on $t \in [10, 70]$
+ & $17/17$ at $|\Delta| < 1.5$
+ & \S\ref{sec:trace_reg}\\
+Poles of $|\Treg(1/2 + it)|$ (raw formula) on $t \in [10, 200]$
+ & $74/79$ at $|\Delta| < 1.5$ (sat.~$P_{\max} = 3\,000$)
+ & \S\ref{sec:trace_reg}\\
+Poles of $|\Treg(1/2 + it)|$ with $R_1(\eps = 0.2)$ on $t \in [10, 200]$
+ & $77/79$ at $|\Delta| < 1.5$, \textbf{$75/79$ at $|\Delta| < 0.5$}, $47/79$ at $|\Delta| < 0.1$
+ & \S\ref{sec:trace_reg}\\
+Poles of $|\Treg(1/2 + it)|$ with $R_1(\eps = 0.2)$ on $t \in [10, 500]$
+ & $267/269$ ($99.3\,\%$), \textbf{$242/269$ ($90.0\,\%$) at $|\Delta| < 0.5$}, $139/269$ ($51.7\,\%$) at $|\Delta| < 0.1$
+ & \S\ref{sec:verif_smearing}\\
+\bottomrule
+\caption{Main numerical verifications of the HP-PT programme.}
+\label{tab:verifs_numeriques}
+\end{longtable}
+
+\subsection{Exact functional form of $\NPT$}
+\label{sec:verif_NPT}
+
+Verification of \eqref{eq:NPT} on
+$\gamma \in \{14, 21, 30, 50, 100, 200, 500, 1000\}$:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+$\gamma$ & $\NPT$ & $N_{\mathrm{RvM}}$ & difference\\
+\midrule
+$14.13$ & $0.5737$ & $0.4487$ & $0.1250$\\
+$21.02$ & $1.6945$ & $1.5695$ & $0.1250$\\
+$50.00$ & $9.5478$ & $9.4228$ & $0.1250$\\
+$100$ & $29.1273$ & $29.0023$ & $0.1250$\\
+$500$ & $269.7117$ & $269.5867$ & $0.1250$\\
+$1\,000$ & $648.7412$ & $648.6162$ & $0.1250$\\
+\bottomrule
+\end{tabular}
+\caption{Difference $\NPT - N_{\mathrm{RvM}}$ constant at $1/8$ over four
+decades, to machine precision ($\le 10^{-15}$).}
+\label{tab:verif_residu}
+\end{table}
+
+\subsection{Distributional capture of zeros}
+\label{sec:verif_capture}
+
+Test on $t \in [10, 70]$ with Abel--Hadamard regularisation $p^{-\eps}$.
+For $\eps \in \{0.6,\,0.4,\,0.2\}$, the modulus $|F_\eps(t)|$
+systematically grows by a factor of $2.7\times$ to $3.3\times$ at
+the zeros of $\zeta$ when $\eps$ goes from $0.6$ to $0.2$ (signature
+of a pole), against $1.4\times$ to $2.3\times$ at neutral points
+(regularity). On $t \in [10, 70]$, $dt = 0.1$, we detect 41-52 local
+peaks depending on $P_{\max} \in [3\,000,\, 100\,000]$; all 17
+reference zeros are within $1.5$ units of a peak ($|\Delta| < 1.5$)
+from $P_{\max} = 3\,000$.
+
+\paragraph{$P_{\max}$ saturation.}
+Capture saturates beyond $P_{\max} = 3\,000$: the median $|\Delta|$
+decreases from $0.49$ ($P_{\max} = 3\,000$) to $0.36$ ($P_{\max} = 30\,000$)
+then stagnates. The same statistic extended to $t \in [10, 200]$
+gives $74/79$ zeros (94\,\%) at $|\Delta| < 1.5$, $38$ at
+$|\Delta| < 0.5$, $7$ at $|\Delta| < 0.1$. The 5 missed zeros
+belong to pairs $(\gamma_n, \gamma_{n+1})$ with gap below the
+intrinsic width of an unregularised peak ($\sim 2\pi/\log\gamma$),
+merged into a single peak. Extreme precision case:
+$\gamma = 146.001$ captured at $|\Delta| = 0.001$. Systematic
+sub-$0.1$ improvement requires applying explicit regularisation
+$R_1$ or $R_2$, not increasing $P_{\max}$.
+
+\subsection{Gaussian smearing regularisation and extended range}
+\label{sec:verif_smearing}
+
+With $\phi_\eps(t) = (\eps \sqrt{2\pi})^{-1} \exp(-t^{2} / 2\eps^{2})$ and
+$\eps \in \{2,\,1,\,0.5\}$, the pole/neutral contrast is more
+pronounced: $8\times$ to $10\times$ at the zeros against $2\times$
+to $3\times$ at neutral points. Gaussian and Abel regularisations
+are equivalent in the distributional sense (different regularising
+kernels), but the former is numerically more sensitive.
+
+\paragraph{Extended range $t \in [10, 500]$ (269 zeros).}
+$R_1$ with $\eps = 0.2$ captures $267/269$ zeros at $|\Delta| < 1.5$,
+$242/269$ at $|\Delta| < 0.5$ and $139/269$ at $|\Delta| < 0.1$.
+The breakdown by band of 100 units is:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Band} & \textbf{Zeros} & \textbf{Capture $|\Delta| < 0.5$}\\
+\midrule
+$[10,\,100]$ & 38 & $100.0\,\%$\\
+$[100,\,200]$ & 41 & $92.0\,\%$\\
+$[200,\,300]$ & 50 & $89.8\,\%$\\
+$[300,\,400]$ & 67 & $87.5\,\%$\\
+$[400,\,500]$ & 73 & $86.6\,\%$\\
+\bottomrule
+\end{tabular}
+\caption{Capture per $100$-unit sub-band, $R_1$ Gaussian smearing
+$\eps = 0.2$. Monotonic but bounded degradation: the performance
+does not collapse with $T$.}
+\label{tab:bandes}
+\end{table}
+
+The floor at $86.6\,\%$ is consistent with the structural limit of
+$55$ merged pairs (gap $< 2\pi/\log\gamma$) out of $269$ zeros, i.e.\
+$20.4\,\%$ of zeros belonging to a pair below the intrinsic model
+resolution.
+
+\paragraph{$\eps$-adaptive strategy tested.}
+An $\eps$-adaptive strategy ($\eps \propto 1/\log\gamma$) was tested
+in two forms: convolution on raw $|F|$ (peak collapse, falsified)
+and convolution on complex $F$ (marginal compromise: median
+$|\Delta|$ reduced to $0.080$ but coverage reduced to $76\,\%$ at
+$|\Delta| < 1.5$). Fixed spectral-weight regularisation ($R_1$,
+$\eps = 0.2$) remains the \textbf{global optimum}.

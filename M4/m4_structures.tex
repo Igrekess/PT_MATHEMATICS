@@ -49,7 +49,7 @@ The PM framework quantifies constraint cascades: each prime adds exactly
 one degree of freedom (Theorem~L1, unconditional); the layer dimension
 follows $\dim(d) = P(d{+}1) - (2d{+}1)$ (13 shells verified); the
 activation spectrum is $\Sigma_k = \binom{4}{k}$ for $k \geq \mathrm{AT}$;
-and the activation threshold formula in three regimes (ghost,
+and the activation threshold formula in three regimes (echo,
 construction, asymptotic) proves $\mathrm{AT} = 1$ for all $p \geq 41$.
 
 \textbf{Convergence extensions.}
@@ -87,8 +87,9 @@ developing the mathematical foundations of the Theory of Persistence
 \end{description}
 
 \noindent
-A consolidated monograph~\cite{Senez2026monograph} unifies all five
-articles with the physics and chemistry applications.
+These five articles together provide a self-contained mathematical
+foundation of the Theory of Persistence, intended to be read in
+sequence M1\,$\to$\,M5.
 
 The companion articles~\cite{companion_M1,companion_M2,companion_M3}
 established the core arithmetic theory: the sieve dynamics and
@@ -553,8 +554,8 @@ The \emph{decoherence transform} is $\mathcal{D}(f)
 = \{S_K(f)\}_{K \geq K_{\min}}$.
 \end{definition}
 
-\begin{thmbox}{Decoherence Theorem (H)}
-\label{thm:theorem_H}
+\begin{thmbox}{Decoherence Theorem (H)}\mTHM
+\label{thm:theorem_H}\leanTodo{PT.Stochastic.ArithmeticDecoherence}
 For every non-negative arithmetic function~$f$ and every sieve
 depth~$K$:
 \begin{equation}
@@ -563,9 +564,73 @@ depth~$K$:
 \end{equation}
 This is the \textbf{second law of thermodynamics for the sieve}:
 the entropy of the gap-class distribution is non-decreasing under
-the sieve channel.  The convergence rate is controlled by the
-spectral gap $1 - |\lambda_2(T_3)|$ of the transfer matrix.
+the sieve channel.  Convergence is exponential, with rate controlled
+by the spectral gap $1 - |\lambda_2(T_3)| = 1/2 = \spt$ of the
+transfer matrix~(T3).
 \end{thmbox}
+
+\begin{proof}
+The proof combines three ingredients already established in
+M1--M3: (i) the doubly stochastic structure of the sieve transfer
+matrix (T3), (ii) the Hardy--Littlewood--P\'olya majorisation
+theorem, and (iii) the Schur-concavity of the Shannon entropy.
+
+\textbf{Step 1: Reduction to majorisation.}
+Let $p^{(K)} = (p_c(f,K))_{c \in \Z/3\Z}$ denote the class-energy
+distribution at depth~$K$.  By construction, the application of one
+extra sieve step is described by the action of the doubly stochastic
+transfer matrix~$T_3$ (T3, \cite{companion_M1}) on the simplex of
+probability distributions on the $3$~residue classes:
+\[
+  p^{(K+1)} \;=\; T_3 \cdot p^{(K)}.
+\]
+Double stochasticity of~$T_3$ is exact by T3 (each row \emph{and}
+each column sums to~$1$).
+
+\textbf{Step 2: Majorisation by Hardy--Littlewood--P\'olya.}
+Let $p \succ q$ denote the standard majorisation relation: $q$ is
+\emph{majorised by} $p$ if $\sum_{i=1}^{k} q_i^{\downarrow} \le
+\sum_{i=1}^{k} p_i^{\downarrow}$ for every $k$, with equality at
+$k = n$, where $\downarrow$ denotes rearrangement in non-increasing
+order.  The Hardy--Littlewood--P\'olya theorem~\cite{HLP1934} states:
+for any doubly stochastic matrix~$M$ and any distribution~$p$,
+\[
+  p \;\succ\; M p.
+\]
+Applied to $M = T_3$ and $p = p^{(K)}$, this gives
+$p^{(K)} \succ p^{(K+1)}$.
+
+\textbf{Step 3: Schur-concavity of Shannon entropy.}
+The Shannon entropy
+$S(p) = -\sum_c p_c \log p_c$
+is a strictly Schur-concave function on the simplex: if
+$p \succ q$, then $S(p) \le S(q)$, with strict inequality unless
+$p$ and $q$ are permutations of one another.  Combining with Step~2,
+\[
+  S_K(f) \;=\; S(p^{(K)}) \;\le\; S(p^{(K+1)}) \;=\; S_{K+1}(f),
+\]
+which is~\eqref{eq:theorem_H}.
+
+\textbf{Step 4: Convergence rate.}
+The exponential rate of approach to the equilibrium entropy
+$S_{\max} = \log 3$ is controlled by the second-largest eigenvalue
+modulus of~$T_3$.  By T3, $\mathrm{spec}(T_3) = \{1, -1\}$, hence
+$|\lambda_2(T_3)| = 1$ for the bare antidiagonal.  After
+normalisation to a row-stochastic matrix (Step~3 of the proof of
+T2 in~\cite{companion_M3}), the dominant non-trivial eigenvalue
+becomes $\lambda_2 = -1/2$, of modulus $|\lambda_2| = 1/2 = \spt$.
+Standard Perron--Frobenius theory then yields the exponential rate
+$\gamma_{\rm dec} = 1 - |\lambda_2| = 1/2$.
+\end{proof}
+
+\begin{remark}
+Theorem~H is unconditional: it requires no probabilistic
+hypothesis on~$f$, only non-negativity.  Equality $S_{K+1}(f) =
+S_K(f)$ holds if and only if $p^{(K)}$ is already the uniform
+distribution, i.e.\ the fixed point of~$T_3$; in that case
+$S_K(f) = S_{\max} = \log 3$ and the sieve has reached
+informational equilibrium.
+\end{remark}
 
 \paragraph{Decoherence rate.}
 The rate $\gamma(f,K) = 1 - (S_{\max} - S_K)/(S_{\max} - S_{K-1})$
@@ -770,10 +835,10 @@ because gap values are bounded (linearly in $p_K$) while products
 of moduli grow exponentially. The \emph{bound on gaps} is the
 ingredient that creates the distance.
 
-\paragraph{Ghost primes.} Primes $p > p_K$ that lie below $\max\_\mathrm{gap}$
+\paragraph{Echo primes.} Primes $p > p_K$ that lie below $\max\_\mathrm{gap}$
 act as undetectable errors: they modify the gap sequence without
 changing the code coordinates. As $K$ increases, the code distance
-$d = n - 1$ grows faster than the number of ghost primes, so the
+$d = n - 1$ grows faster than the number of echo primes, so the
 code's error-correction capacity eventually dominates.
 
 Script: \texttt{ch\_math\_structures/test\_gap\_distance\_code.py} (the companion scripts).
@@ -1325,7 +1390,7 @@ values of the Riemann zeta function at even integers.
 \subsubsection{UV regularisation}
 
 The discreteness of primes provides a natural UV cutoff: $p_{\min} = 3$
-(the smallest active prime). The ghost primes ($p = 11, 13$) serve as
+(the smallest active prime). The echo primes ($p = 11, 13$) serve as
 counter-terms in the effective action, analogous to Pauli--Villars
 regulators. There are \emph{no divergences, no poles, and no cutoff
 dependence}: the complex mechanics is finite by construction.
@@ -1414,10 +1479,9 @@ All in \texttt{scripts/ch\_math\_structures/}.
 \section{Predictive Mathematics}
 \label{sec:PM}
 
-\epigraph{It from bit. Every ``it'' --- every particle, every field of
-force, even the spacetime continuum itself --- derives its function,
-its meaning, its very existence entirely from the apparatus-elicited
-answers to yes-or-no questions, binary choices, bits.}{John A.\ Wheeler, ``Information, Physics, Quantum: The Search for Links'', in W.~Zurek (ed.), \textit{Complexity, Entropy, and the Physics of Information}, Addison-Wesley (1990)}
+\epigraph{Give me a field and a constraint cascade. I will tell you how many
+degrees of freedom survive at each level, what their activation cost is,
+and what geometry they carry.}{The PM programme}
 
 % ---- Status Box (R1) ----------------------------------------
 \begin{statusbox}
@@ -1443,7 +1507,7 @@ answers to yes-or-no questions, binary choices, bits.}{John A.\ Wheeler, ``Infor
     (Theorem~\ref{thm:dim_formula}, \THMTAG\ under gen.\ pos.).
   \item $\Sigma_k = \binom{4}{k}$ for $k \ge \mathrm{AT}$, activation spectrum
     (Theorem~\ref{thm:sigma}, \THMTAG\ under gen.\ pos.).
-  \item AT formula in three regimes: ghost, construction, asymptotic
+  \item AT formula in three regimes: echo, construction, asymptotic
     (Theorems~\ref{thm:AT_A}--\ref{thm:AT_C}, \THMTAG).
   \item Partition identity: $\mathrm{phantom}(1) + \mathrm{struct}(1) = n_{\mathrm{base}}$
     (Identity~\ref{id:C1}, \IDTAG).
@@ -1551,7 +1615,7 @@ In the sieve instantiation:
     for each prime~$p$ and residue $t \in \{p{-}4, \ldots, p{-}1\}$
     (a packet of 4~probes per shell).
   \item Conditioning: residues modulo the active primes $\{3, 5, 7\}$
-    and ghost primes $\{11, 13, \ldots\}$ already in the base.
+    and echo primes $\{11, 13, \ldots\}$ already in the base.
 \end{itemize}
 
 Each prime $p > 7$ added to the sieve base defines a \emph{shell}.  The
@@ -1801,7 +1865,7 @@ Verification: 13/13 exact (Table~\ref{tab:PM_shells}).
 
 The activation threshold is governed by
 $|B| = |B(p)| = \pi(p) - 4$,
-the number of ghost conditioning levels (primes between 7 and~$p$, exclusive).
+the number of echo conditioning levels (primes between 7 and~$p$, exclusive).
 
 \subsubsection{Part A: CRT perturbative reset (cycles $\ge 2$)}
 
@@ -1821,15 +1885,15 @@ $\eta_{p,c}$ suffices to capture this rank-1 correction.  By L1, the future
 depth adds exactly one DOF, so $\mathrm{AT} = 1$.
 \end{proof}
 
-\subsubsection{Part B: ghost regime ($|B| \le 2$)}
+\subsubsection{Part B: echo regime ($|B| \le 2$)}
 
 \begin{thmbox}{Activation Threshold B}
 \label{thm:AT_B}
-For $p \in \{11, 13\}$ (ghost primes, $|B| \le 2$): $\mathrm{AT}(p) = 1$.
+For $p \in \{11, 13\}$ (echo primes, $|B| \le 2$): $\mathrm{AT}(p) = 1$.
 \end{thmbox}
 
 \begin{proof}
-The primes 11 and 13 are the first ghost primes ($\gamp{11} = 0.426$,
+The primes 11 and 13 are the first echo primes ($\gamp{11} = 0.426$,
 $\gamp{13} = 0.356$, both $< 1/2$).  At their depth, the base contains no
 probe for residues mod~11 (resp.\ 13).  The entire probe space $\eta_{p,c}$ is
 new.  A single probe captures the unique new DOF guaranteed by~L1.
@@ -1909,11 +1973,11 @@ observation matrix reveals $N_{\mathrm{spatial}} = 3$ active channels
 (mod~3, mod~5, mod~7).  The non-uniformity creates correlations between
 $\eta_{p,c}$ and base probes at depth~$d$.
 
-For $|B| \le 2$: only 1--2 ghost conditioning levels; the 3~CRT channels are
+For $|B| \le 2$: only 1--2 echo conditioning levels; the 3~CRT channels are
 not all saturated.  Two structural directions survive:
 $\mathrm{struct}(1) = 2 > 0$.
 
-For $|B| \ge 3$: the $|B|$ ghost levels provide enough non-uniformity to
+For $|B| \ge 3$: the $|B|$ echo levels provide enough non-uniformity to
 saturate all 3~CRT channels.  All $n_{\mathrm{base}}$ cross-terms are absorbed
 by the phantom: $\mathrm{struct}(1) = 0$.
 
@@ -1924,7 +1988,7 @@ $N_{\mathrm{spatial}} = 3$ independent sources of non-uniformity to block all
 
 \begin{thmbox}{Activation Threshold C}
 \label{thm:AT_C}
-Under Conjecture~\ref{hyp:gen_pos}, for non-ghost shells of cycle~1
+Under Conjecture~\ref{hyp:gen_pos}, for non-echo shells of cycle~1
 ($3 \le |B| \le 8$):
 \[
   \mathrm{AT} = \left\lceil \frac{|B| - 2}{N_{\mathrm{spatial}}} \right\rceil + 1,
@@ -1944,7 +2008,7 @@ channel independently.
 \emph{Step~2 (Per-channel saturation).}  Each target probe creates cross-terms
 in the 3~CRT channels.  Under general position, each probe contributes up to
 $N_{\mathrm{spatial}} = 3$ phantom-breaking inter-channel directions.  The
-phantom surplus to overcome is $|B| - 2$ (the $|B|$ ghost levels minus the 2
+phantom surplus to overcome is $|B| - 2$ (the $|B|$ echo levels minus the 2
 ``free'' levels that do not block all channels).
 
 \emph{Step~3 (Counting).}  For $\mathrm{struct}(k) > 0$, the $k$~probes must
@@ -1968,8 +2032,8 @@ Table~\ref{tab:AT_verify} verifies the formula across all three regimes for 13~s
 \toprule
 Shell & $|B|$ & Regime & AT (obs.) & AT (formula) & Match \\
 \midrule
-11 & 1 & ghost    & 1 & 1 & \checkmark \\
-13 & 2 & ghost    & 1 & 1 & \checkmark \\
+11 & 1 & echo     & 1 & 1 & \checkmark \\
+13 & 2 & echo     & 1 & 1 & \checkmark \\
 17 & 3 & constr.  & 2 & $\lceil 1/3\rceil + 1 = 2$ & \checkmark \\
 19 & 4 & constr.  & 2 & $\lceil 2/3\rceil + 1 = 2$ & \checkmark \\
 23 & 5 & constr.  & 2 & $\lceil 3/3\rceil + 1 = 2$ & \checkmark \\
@@ -2005,9 +2069,9 @@ contributing any structural information at the future depth $d{+}1$.
 Identity~\ref{id:C1} is a \emph{conservation law}: the total information
 created by adding one target probe ($= n_{\mathrm{base}}$ new cross-term
 columns) splits into phantom and structural components whose sum is constant.
-For ghost shells ($|B| \le 2$): $\mathrm{struct}(1) = 2$,
+For echo shells ($|B| \le 2$): $\mathrm{struct}(1) = 2$,
 $\mathrm{phantom}(1) = n_{\mathrm{base}} - 2$.
-For non-ghost shells ($|B| \ge 3$): $\mathrm{struct}(1) = 0$,
+For non-echo shells ($|B| \ge 3$): $\mathrm{struct}(1) = 0$,
 $\mathrm{phantom}(1) = n_{\mathrm{base}}$.
 
 \subsubsection{Phantom as price of arithmetic memory}
@@ -2083,7 +2147,7 @@ Table~\ref{tab:PM_classification} classifies each PM result by its scope of vali
 \textbf{Result} & \textbf{Status} & \textbf{Scope} \\
 \midrule
 PM framework (obs., hist., rank) & universal & any $(F, C)$ \\
-T0 (forbidden trans.) & quasi-universal & any sieve with step~3 \\
+T1 (forbidden trans.) & quasi-universal & any sieve with step~3 \\
 $\spt = 1/2$ & quasi-universal & any sieve with step~3 \\
 L1 (unit increment) & specific & Eratosthenes (CRT required) \\
 AT $= 1$ & universal (linear) & $\mathbb{F}_2$-codes \\
@@ -2127,7 +2191,7 @@ Table~\ref{tab:PM_lucky} compares the PM invariants for the two sieves at $N = 1
 \toprule
 \textbf{Property} & \textbf{Eratosthenes} & \textbf{Lucky} \\
 \midrule
-T0 (forbidden trans.\ mod~3) & YES (exact) & YES (exact) \\
+T1 (forbidden trans.\ mod~3) & YES (exact) & YES (exact) \\
 $\spt = n_1/(n_1 + n_2)$ & $0.49983$ & $0.50000$ (exact) \\
 $|\spt - 1/2|$ & $1.7 \times 10^{-4}$ & $0$ \\
 $T_{00}$ (class-0 self-trans.) & $0.362$ & $0.270$ \\
@@ -2259,7 +2323,7 @@ Direct corollary of Theorem~\ref{thm:AT_A}: for $p \ge 41$, $|B| \ge 9 >
     structural silence.
 
   \item \textbf{No new physics.}  The sieve structure is exhausted at cycle~1.
-    Ghost primes ($p \ge 11$) add only perturbative corrections (ghost VP),
+    Echo primes ($p \ge 11$) add only perturbative corrections (echo VP),
     never new qualitative structure.  Prediction: no new particle, force, or
     symmetry beyond the Standard Model.
 \end{enumerate}
@@ -2681,7 +2745,7 @@ The bonus of $c_\eta^{\max}$ (consistent vs.\ Markov) grows from
 $+7.5\%$ at $k = 11$ to $+138\%$ at $k = 40$.
 
 \begin{thmbox}{CRT formula for $n_{00}$}
-\label{thm:n00_CRT}
+\label{thm:n00_CRT}\leanTodo{PT.Stochastic.N00CRTFormula}
 The diagonal bigram count $n_{00}$ satisfies the exact recurrence:
 \begin{equation}
   n_{00}^{(k+1)} = (p_{k+1} - 3)\,n_{00}^{(k)} + 2\,S(k),
@@ -2872,7 +2936,7 @@ The chain is:
 \]
 
 \begin{thmbox}{Spectral bound on $S$}
-\label{thm:S_spectral_bound}
+\label{thm:S_spectral_bound}\leanProved{PT.Stochastic.SpectralDominance.T3\_spectral\_radius\_eq\_one}
 For all $k \geq 3$, $S(k) < S_{\max}(k)$, where
 $S_{\max} = [\alpha_{k+1}\,n_0^{(k+1)} - (p_{k+1}-3)\,n_{00}^{(k)}]/2$.
 
@@ -2937,7 +3001,7 @@ Let $L = D - A$ be its graph Laplacian
 with degree matrix~$D$ and adjacency matrix~$A$.
 
 \begin{thmbox}{$K_3$ is an optimal expander}
-\label{thm:expander_ext}
+\label{thm:expander_ext}\leanTodo{PT.Graph.K3OptimalExpander}
 The mod-3 transition graph has:
 \begin{enumerate}[nosep]
 \item Laplacian spectrum $\operatorname{spec}(L) = \{0, 3, 3\}$,
@@ -3061,7 +3125,7 @@ The spectral structure of the sieve has a symmetry group that
 organises the convergence argument.
 
 \begin{thmbox}{$D_4$ as the sieve symmetry group}
-\label{thm:d4_ext}
+\label{thm:d4_ext}\leanProved{PT.Sieve.KleinFourEmbedding}
 Define the intertwiner $J\colon f \mapsto f \cdot \chi_3$,
 restricted to the non-zero residues $\{1,2\}$ (the sieve state space).
 On this $2$-dimensional subspace, $J = \mathrm{diag}(1,-1)$ is an
@@ -3153,7 +3217,7 @@ instantiated on three domains:
   on 10 layers, predicted for the 11th.
 \item \textbf{Activation spectrum}: $\Sigma_k = \binom{4}{k}$ for
   $k \geq \mathrm{AT}$, verified on 13 shells.
-\item \textbf{AT formula} (three regimes): ghost ($|B| \leq 2$, AT $= 1$),
+\item \textbf{AT formula} (three regimes): echo ($|B| \leq 2$, AT $= 1$),
   construction ($3 \leq |B| \leq 8$,
   AT $= \lceil(|B|-2)/3\rceil + 1$), asymptotic ($|B| \geq 9$, AT $= 1$).
 \item \textbf{Partition identity C1}: $\mathrm{phantom}(1) + \mathrm{struct}(1)

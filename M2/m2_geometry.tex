@@ -44,7 +44,7 @@ in $p$; the active prime criterion $\gamma_p > s = 1/2$ selects exactly
 $\{3, 5, 7\}$ at the fixed point $\mustar = 15$, yielding $N_c = 3$.
 The Casimir coefficient $C_F = (N_c^2 - 1)/(2N_c) = 4/3$ is a
 consequence, not an input.  An independent algebraic check gives
-$(N_c - 3)(N_c + 1) = 0$.  Ghost primes ($p \geq 11$) contribute
+$(N_c - 3)(N_c + 1) = 0$.  Echo primes ($p \geq 11$) contribute
 perturbatively as vacuum polarization corrections.
 
 All results follow from $s = 1/2$ and the sieve structure established
@@ -141,8 +141,9 @@ of~\cite{companion_M5}.
 \section{Canonical Information Geometry}
 \label{sec:geometry}
 
-\epigraph{Information geometry is a method of exploring the world of
-information by means of modern geometry.}{Shun-ichi Amari, \textit{Information Geometry and Its Applications}, Springer (2016), Preface}
+\epigraph{Geometry is the branch of mathematics which studies the properties
+of figures. Information geometry is the branch which studies
+the properties of statistical manifolds.}{Shun-ichi Amari}
 
 % ---- Status Box (R1) ----------------------------------------
 \begin{statusbox}
@@ -342,7 +343,7 @@ and yielding the maximum entropy principle is $\DKL$.
 
 \mTHM
 \begin{theorem}[KL Divergence Uniqueness (G1)]
-\label{thm:G1}
+\label{thm:G1}\leanPartial{PT.Information.T6cG1Autonomous.klDivergence\_additive}
 On the sieve state space $\Delta_m$ with the CRT product structure:
 $\DKL$ is the unique $f$-divergence satisfying Shore--Johnson axioms
 SJ1--SJ5 and invariant under CRT factorization.
@@ -385,7 +386,7 @@ satisfies SJ1--SJ5. The uniqueness conclusion is imported.
 \end{remark}
 
 \begin{theorem}[CRT-Autonomous KL Uniqueness (G1$'$)]
-\label{thm:G1_autonomous}
+\label{thm:G1_autonomous}\leanPartial{PT.Information.T6cG1Autonomous.fDivergence\_linear\_term\_vanishes}
 On the sieve state space $\Delta_m$ with CRT product structure, $\DKL$
 is the unique $f$-divergence satisfying additivity under independent subsystems.
 
@@ -441,7 +442,7 @@ the second uses only Csisz\'ar's characterisation.
 
 \mTHM
 \begin{theorem}[Fisher Metric Emergence (G2)]
-\label{thm:G2}
+\label{thm:G2}\leanProved{PT.Information.G2FisherEmergence.hasDerivAt\_klTerm}
 The second-order Taylor expansion of $\DKL$ around the uniform distribution $U_m$
 gives the Fisher information metric:
 \[
@@ -479,7 +480,7 @@ Riemannian metric on $\mathcal{M}_n$ (up to a positive constant).
 
 \mTHM
 \begin{theorem}[Fisher Metric Uniqueness (G3)]
-\label{thm:G3}
+\label{thm:G3}\leanExternal{PT.Information.G3FisherUniqueness.G3\_fisher\_unique}
 On the sieve state space $\Delta_2 = \{(p, 1-p) : p \in (0,1)\}$,
 the Fisher metric $g^F$ is the unique Riemannian metric monotone under
 all sieve Markov maps (including $T_m$ and its marginals).
@@ -778,7 +779,7 @@ classes. This is a purely arithmetic quantity---no physics enters.
 Three primes ($p = 3, 5, 7$) generate significant holonomy at the
 fixed point $\mustar = 15$: their anomalous dimensions $\gamma_p > s = 1/2$.
 Larger primes ($p \geq 11$) have $\gamma_p < s$ and are ``inactive''
-(ghost primes): they generate negligible holonomy and appear only as
+(echo primes): they generate negligible holonomy and appear only as
 perturbative corrections.
 
 $N_c = 3$ follows directly: exactly three primes satisfy the
@@ -968,13 +969,13 @@ See~\cite{companion_M4} for the complex mechanics development.
   \fill[predred] (0.0904, 0.1726) circle (0.4pt);
   \draw[predred, thin] (0.0904, 0.1726) -- (0.20, 0.14);
   \node[right, font=\small, predred] at (0.20, 0.14) {$p=7$};
-  % ghost primes -- also with leader lines
+  % echo primes -- also with leader lines
   \fill[gray] (0.0721, 0.1390) circle (0.35pt);
   \draw[gray, thin] (0.0721, 0.1390) -- (0.20, 0.06);
-  \node[right, font=\scriptsize, gray] at (0.20, 0.06) {$11$ (ghost)};
+  \node[right, font=\scriptsize, gray] at (0.20, 0.06) {$11$ (echo)};
   \fill[gray] (0.0650, 0.1257) circle (0.35pt);
   \draw[gray, thin] (0.0650, 0.1257) -- (0.20, 0.00);
-  \node[right, font=\scriptsize, gray] at (0.20, 0.00) {$13$ (ghost)};
+  \node[right, font=\scriptsize, gray] at (0.20, 0.00) {$13$ (echo)};
   % annotation
   \draw[<->, thin, gray] (0.35, 0) -- (0.35, 0.5275);
   \node[right, font=\scriptsize, gray] at (0.36, 0.26) {$1-(1-\delta)^2$};
@@ -990,7 +991,7 @@ See~\cite{companion_M4} for the complex mechanics development.
 \end{tikzpicture}
 \caption{Holonomy parabola $\sin^2\!\theta_p = \delta_p(2-\delta_p)$.
   Red dots: active primes $\{3,5,7\}$ at $\qrel = 13/15$.
-  Gray dots: ghost primes $\{11,13\}$.
+  Gray dots: echo primes $\{11,13\}$.
   The three active primes cluster near $\delta \approx 0.1$, where
   $\sin^2\!\theta_p \approx 2\delta_p$ (linear regime).}
 \label{fig:holonomy_parabola}
@@ -1013,8 +1014,8 @@ $p$ & $\delta_p$ & $\sinsp{p}$ & $\delta_p$ & $\sinsp{p}$ & $\gamma_p$ & Active?
 3 & 0.1163 & 0.2192 & 0.0604 & 0.1172 & 0.808 & Yes \\
 5 & 0.1022 & 0.1940 & 0.0567 & 0.1102 & 0.696 & Yes \\
 7 & 0.0904 & 0.1726 & 0.0533 & 0.1037 & 0.595 & Yes \\
-11 & 0.0721 & 0.1390 & 0.0472 & 0.0923 & 0.426 & No (ghost) \\
-13 & 0.0650 & 0.1257 & 0.0446 & 0.0872 & 0.356 & No (ghost) \\
+11 & 0.0721 & 0.1390 & 0.0472 & 0.0923 & 0.426 & No (echo) \\
+13 & 0.0650 & 0.1257 & 0.0446 & 0.0872 & 0.356 & No (echo) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1051,7 +1052,7 @@ changes as the sieve level $\mu$ varies. It determines whether prime $p$
 is \emph{active} or \emph{inactive}.
 
 \begin{thmbox}{Anomalous Dimension Monotonicity}
-\label{thm:gamma_monotone}
+\label{thm:gamma_monotone}\leanProved{PT.Holonomy.GammaMonotonicity.gamma\_3\_gt\_gamma\_5}
 At $\mustar = 15$, the anomalous dimension $\gamma_p$ is
 \textbf{strictly decreasing} in $p$ for all integers $p \geq 3$.
 
@@ -1093,10 +1094,10 @@ with step $0.1$.)
 
 \mTHM
 \begin{theorem}[Active Prime Criterion]
-\label{thm:active}
+\label{thm:active}\leanProved{PT.Holonomy.ActivePrimeCriterion.gamma\_3\_active}
 A prime $p$ is \emph{active} at $\mustar = 15$ if and only if
 $\gamma_p > s = 1/2$. The set of active primes is $\{3, 5, 7\}$;
-all primes $p \geq 11$ are inactive (ghost).
+all primes $p \geq 11$ are inactive (echo).
 
 \begin{proof}
 The proof has two parts: exact rational computation for small primes,
@@ -1196,7 +1197,7 @@ satisfying five independent constraints simultaneously:
   When $\gamma_p > 1/2$, the mode relaxes \emph{faster}
   than the geometric mean rate; it is dynamically relevant.
   When $\gamma_p < 1/2$, the mode is exponentially suppressed
-  and contributes only perturbatively (ghost VP).
+  and contributes only perturbatively (echo VP).
 
 \item \textbf{Robustness test.}
   Numerical scan of the self-consistency equation
@@ -1251,7 +1252,7 @@ active set is robust against any perturbation of the threshold smaller
 than $17\%$ of the full $[0,1]$ range.
 Each active prime defines a holonomy angle on the unit circle
 (Figure~\ref{fig:coupling_circle}), whose squared sine gives the
-coupling strength; the threshold separating active from ghost primes
+coupling strength; the threshold separating active from echo primes
 is shown in Figure~\ref{fig:active_threshold}.
 
 % --- Figure: coupling circle ---
@@ -1277,13 +1278,13 @@ is shown in Figure~\ref{fig:active_threshold}.
   \fill[thmblue] ({cos(24.5)},{sin(24.5)}) circle (0.5pt);
   \draw[thmblue, thin] ({cos(24.5)},{sin(24.5)}) -- (0.58, 0.40);
   \node[right, font=\small, thmblue] at (0.58, 0.40) {$\theta_7 = 24.5°$};
-  % ghost primes
+  % echo primes
   \fill[gray] ({cos(21.9)},{sin(21.9)}) circle (0.4pt);
   \draw[gray, thin] ({cos(21.9)},{sin(21.9)}) -- (0.58, 0.22);
-  \node[right, font=\scriptsize, gray] at (0.58, 0.22) {$p\!=\!11$ (ghost)};
+  \node[right, font=\scriptsize, gray] at (0.58, 0.22) {$p\!=\!11$ (echo)};
   \fill[gray] ({cos(20.8)},{sin(20.8)}) circle (0.4pt);
   \draw[gray, thin] ({cos(20.8)},{sin(20.8)}) -- (0.58, 0.10);
-  \node[right, font=\scriptsize, gray] at (0.58, 0.10) {$p\!=\!13$ (ghost)};
+  \node[right, font=\scriptsize, gray] at (0.58, 0.10) {$p\!=\!13$ (echo)};
   % annotation
   \node[font=\small, align=center] at (0.05, 1.08)
     {$\cos\theta_p = 1 - \delta_p$};
@@ -1292,7 +1293,7 @@ is shown in Figure~\ref{fig:active_threshold}.
   Each active prime $p \in \{3,5,7\}$ defines an angle $\theta_p$
   via $\cos\theta_p = 1 - \delta_p$.
   The squared sine $\sin^2\!\theta_p$ is the coupling strength.
-  Ghost primes ($p \geq 11$, gray) lie closer to the axis.}
+  Echo primes ($p \geq 11$, gray) lie closer to the axis.}
 \label{fig:coupling_circle}
 \end{figure}
 
@@ -1324,7 +1325,7 @@ is shown in Figure~\ref{fig:active_threshold}.
   \node[below, font=\small] at (5,-0.02) {$13$};
   % labels
   \node[font=\small, thmblue] at (2,0.88) {\textbf{Active} ($\gamma_p > s$)};
-  \node[font=\small, gray] at (4.5,0.88) {\textbf{Ghost} ($\gamma_p < s$)};
+  \node[font=\small, gray] at (4.5,0.88) {\textbf{Echo} ($\gamma_p < s$)};
   % y-axis ticks
   \foreach \y in {0.2, 0.4, 0.6, 0.8} {
     \draw (-0.05, \y) -- (0.05, \y);
@@ -1333,7 +1334,7 @@ is shown in Figure~\ref{fig:active_threshold}.
 \end{tikzpicture}
 \caption{Anomalous dimensions $\gamma_p$ at $\mustar = 15$.
   The threshold $\gamma_p = s = 1/2$ (orange dashed) separates
-  the three active primes $\{3,5,7\}$ (blue) from the ghost
+  the three active primes $\{3,5,7\}$ (blue) from the echo
   primes $\{11,13,\ldots\}$ (gray). This determines $N_c = 3$.}
 \label{fig:active_threshold}
 \end{figure}
@@ -1410,7 +1411,7 @@ is shown in Figure~\ref{fig:active_threshold}.
 
 \mTHM
 \begin{theorem}[$N_c = 3$]
-\label{thm:Nc_3}
+\label{thm:Nc_3}\leanProved{PT.FixedPoint.T7MuStar.activeAt15\_eq}
 The number of active primes at $\mustar = 15$ is $N_c = 3$.
 
 \begin{proof}
@@ -1469,24 +1470,24 @@ the arithmetic result that $N_c = 3$.
 \end{remark}
 
 % ============================================================
-\subsection{Ghost primes and perturbative corrections}
+\subsection{Echo primes and perturbative corrections}
 \label{sec:ghost}
 
 The inactive primes $\{11, 13, \ldots\}$ are not simply absent.
-They appear as \emph{perturbative corrections} (ghost vacuum polarization).
+They appear as \emph{perturbative corrections} (echo vacuum polarization).
 
-\begin{definition}[Ghost VP weight]
+\begin{definition}[Echo VP weight]
 \label{def:ghost_vp}
-The ghost vacuum polarization weight is:
+The echo vacuum polarization weight is:
 \begin{equation}
-  \beta_{\rm ghost} = \sum_{p \in \{11,13\}} \sinsp{p}(\qrel) \cdot \gamma_p
+  \beta_{\rm echo} = \sum_{p \in \{11,13\}} \sinsp{p}(\qrel) \cdot \gamma_p
   \approx 0.104.
   \label{eq:ghost_vp:ch06}
 \end{equation}
 \end{definition}
 
-The ghost VP contribution to $\alpha_{\rm EM}$ is $\delta\alpha/\alpha
-= -\gamma_3 \cdot \alpha_{\rm bare} \cdot \beta_{\rm ghost} \approx 14\;{\rm ppb}$
+The echo VP contribution to $\alpha_{\rm EM}$ is $\delta\alpha/\alpha
+= -\gamma_3 \cdot \alpha_{\rm bare} \cdot \beta_{\rm echo} \approx 14\;{\rm ppb}$
 (see~\cite{companion_physics}).
 
 % ============================================================
@@ -1597,12 +1598,12 @@ Conditional:
 Identification (THM, four unicities):
   $\sinp{p}$ = coupling constant (\cite{companion_M5}, BA3, closed by G1+G3).
   $N_c = 3$ = QCD colors (\cite{companion_M5}, closed by T5+T6).
-  $\{11,13\}$ = ghost VP counter-terms (\cite{companion_physics}, DER-PHYS).
+  $\{11,13\}$ = echo VP counter-terms (\cite{companion_physics}, DER-PHYS).
 
 Validation:
   $\sinp{p}$ verified by \texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}.
   $N_c = 3$ verified by \texttt{ch06\_holonomy/test\_D07\_sin2\_identity.py}.
-  Ghost VP 14\,ppb verified (\cite{companion_physics}).
+  Echo VP 14\,ppb verified (\cite{companion_physics}).
 \end{ledgerbox}
 
 \medskip\noindent\textbf{Forward connections.}
@@ -1677,8 +1678,8 @@ optimality proof.  A rigorous derivation showing that $\tau = s$ is
 the \emph{only} consistent threshold---rather than merely the most
 natural choice within a wide stability band---remains open.
 
-The ghost primes ($p \geq 11$) contribute perturbatively as vacuum
-polarization corrections.  Whether the ghost VP series converges
+The echo primes ($p \geq 11$) contribute perturbatively as vacuum
+polarization corrections.  Whether the echo VP series converges
 absolutely, and whether it admits a closed-form resummation, are
 questions for future work.
 

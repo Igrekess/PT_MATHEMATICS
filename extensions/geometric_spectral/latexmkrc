@@ -1,0 +1,6 @@
+# latexmkrc — config build PT Foundations
+$pdf_mode = 1;       # pdfLaTeX
+$bibtex_use = 2;     # biber (via biblatex)
+$pdflatex = 'pdflatex -interaction=nonstopmode %O %S';
+$out_dir = '.';
+$clean_ext = 'synctex.gz run.xml bcf';

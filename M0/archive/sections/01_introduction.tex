@@ -1,0 +1,52 @@
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Le problème des paramètres libres du Modèle Standard}
+\label{sec:intro:libres}
+
+Le Modèle Standard de la physique des particules, dans sa formulation à trois générations de fermions et secteur de Higgs minimal, comporte une vingtaine de paramètres numériques sans dérivation théorique : trois constantes de couplage de jauge, la valeur attendue du Higgs et son auto-couplage, neuf masses chargées (trois quarks de type up, trois de type down, trois leptons chargés), trois angles et une phase pour la matrice de mélange des quarks, auxquels s'ajoutent les paramètres analogues du secteur neutrino~\cite{PDG2024}. Ces nombres ne sont pas \emph{prédits} par le modèle : ils sont \emph{mesurés}, puis insérés à la main dans le lagrangien.
+
+Cette situation est philosophiquement insatisfaisante. Le Modèle Standard décrit avec une précision remarquable la phénoménologie des particules connues, mais il ne dit rien de la raison pour laquelle, par exemple, la constante de structure fine vaut $\alpha_{\mathrm{EM}}^{-1} \simeq 137{,}036$ plutôt qu'une autre valeur. La hiérarchie entre les masses des leptons chargés, le ratio $m_t/m_e \simeq 3{,}4 \times 10^5$ entre quark top et électron, ou encore la singulière coïncidence numérique de Koide~\cite{Koide1983} sur les masses leptoniques restent sans explication structurelle.
+
+La Théorie de la Persistance (PT) propose un cadre dans lequel ces nombres ne sont plus des paramètres mais des conséquences. Son ambition est forte ; son risque l'est tout autant : si la structure interne ne reproduit pas les observables, la théorie tombe~\cite{PT_Monograph}.
+
+\subsection{L'axiome de persistance \texorpdfstring{$\sper = 1/2$}{s = 1/2}}
+\label{sec:intro:axiome}
+
+L'unique entrée formelle de la PT est un nombre rationnel : $\sper = 1/2$, appelé \emph{paramètre de persistance}. Conceptuellement, $\sper$ quantifie la fraction symétrique d'information qu'un système conserve lorsqu'on lui impose des contraintes successives.
+
+Pour motiver cette valeur, on peut partir d'une observation arithmétique élémentaire. Soit $p_1, p_2, p_3$ trois nombres premiers consécutifs strictement supérieurs à $3$, et soient $g_1 = p_2 - p_1$ et $g_2 = p_3 - p_2$ leurs écarts. Considérons les classes de ces écarts modulo $3$. Si l'on avait simultanément $g_1 \equiv 1 \pmod 3$ et $g_2 \equiv 1 \pmod 3$, alors $p_1, p_2, p_3$ couvriraient les trois classes résiduelles modulo~$3$, ce qui forcerait l'un d'eux à être divisible par~$3$ --- contradiction. Le même argument exclut la transition $2 \to 2$. La structure mod~$3$ du crible d'Ératosthène est donc \emph{strictement asymétrique} : certaines transitions y sont mathématiquement interdites.
+
+Cette asymétrie observationnelle, formalisée par le théorème~\Tone{} \emph{Transitions interdites} (\ref{sec:theoremes:T1}), conduit à la matrice de transfert antidiagonale $T_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ qui est l'objet du théorème~\Tthree{} \emph{Transfert antidiagonal} (\ref{sec:theoremes:T3}). Sa valeur propre non triviale en norme vaut $|\lambda_2| = 1/2$, ce qui fixe le \emph{taux} de conservation spectrale : le théorème~\Ttwo{} \emph{Conservation spectrale} (\ref{sec:theoremes:T2}) donne alors $\alpha_{\rm cons} = s^2 = 1/4$ et identifie $\sper = 1/2$. L'axiome de pont BA0 affirmant que la séquence des écarts $\{g_n\}$ est le champ dynamique fondamental est promu au statut de théorème~\Tzero{} \emph{Théorème du champ dynamique} (\ref{sec:theoremes:T0}). Ainsi $\sper = 1/2$ peut être posé en entrée d'une déduction \emph{ou} obtenu comme conséquence de la chaîne arithmétique T0--T3 ; dans cet article nous adoptons la première lecture, plus économique.
+
+\subsection{Aperçu : cascade arithmétique et constante de structure fine}
+\label{sec:intro:apercu}
+
+À partir de l'unique input $\sper = 1/2$, la PT construit, via le crible modulo $\{3, 5, 7\}$, une suite de raffinements successifs que nous appellerons \emph{cascade}. Chaque étage de la cascade ajoute un nombre premier actif et produit un facteur de pondération $\gammap{p}$ --- la \emph{dimension anomale} du premier $p$ --- qui mesure la résilience du motif à l'introduction de cette contrainte arithmétique supplémentaire :
+\[
+\sper = 1/2 \;\longrightarrow\; \gammathree \;\longrightarrow\; \gammathree\cdot\gammafive \;\longrightarrow\; \gammathree\cdot\gammafive\cdot\gammaseven.
+\]
+La cascade s'achève à l'étage $\{3,5,7\}$ par un point fixe arithmétique remarquable : la somme
+\[
+\mustar = 3 + 5 + 7 = 15
+\]
+est l'unique valeur compatible avec l'auto-cohérence du crible (théorème \Tfive{}, \ref{sec:theoremes:T5}). Le triplet $\{3, 5, 7\}$ est donc canoniquement distingué : on l'appelle l'ensemble des \emph{premiers actifs}. Les premiers $\{11, 13\}$ se révèlent jouer un rôle structurellement différent --- ils contribuent à une correction infrarouge universelle, et l'on parle d'\emph{échos}. Les premiers $\{17, 19, 23\}$ apparaissent dans certaines corrections dépendantes d'échelle, on parle alors de \emph{super-échos}. Au-delà de $p = 23$, les contributions deviennent négligeables et l'on parle de premiers \emph{inactifs}. Cette taxonomie complète est l'objet de la section~\ref{sec:point_fixe}.
+
+À titre de promesse explicite, mentionnons d'emblée la dérivation que cet article déroulera jusqu'à sa valeur numérique. La formule d'holonomie (axiome de pont BA3, \ref{sec:bridge:BA3}) donne $\sinp{p} = \delta_p(2 - \delta_p)$ pour chaque premier actif $p \in \{3,5,7\}$, et le produit de Pontryagin (BA5, \ref{sec:bridge:BA5}) intègre ces facteurs en une constante de couplage,
+\[
+\alpha_{\rm sieve} \;=\; \prod_{p\in\{3,5,7\}} \sinp{p},
+\]
+dont la correction VP par les premiers échos $\{11,13\}$ et l'identification physique avec QED conduisent à
+\[
+\alpha_{\mathrm{EM}}^{-1} \approx 137{,}036,
+\]
+sans qu'aucun paramètre continûment ajustable n'intervienne dans le calcul (\ref{sec:alphaem}).
+
+\subsection{Plan, conventions et statut des résultats}
+\label{sec:intro:plan}
+
+L'article est organisé comme suit. La section~\ref{sec:cadre} fixe le cadre formel : la catégorie $L^0$ (lemme \Lzero) sur laquelle agit le crible, la définition du crible PT modulo $\{3,5,7\}$, et la convention canonique des secteurs $\qplus, \qminus$. La section~\ref{sec:theoremes} énonce les sept théorèmes structurants $\Tzero$--$\Tsix$ avec leurs idées de preuve, en renvoyant pour les démonstrations complètes aux chapitres correspondants du monographe~\cite{PT_Monograph}. La section~\ref{sec:bridge} introduit les axiomes de pont prouvés BA3 (formule d'holonomie), BA4 (critère d'activation) et BA5 (produit de Pontryagin), et établit la taxonomie complète des premiers : actifs $\{3,5,7\}$, échos $\{11,13\}$, super-échos $\{17,19,23\}$, inactifs $p \geq 29$. La section~\ref{sec:cascade} formalise le principe de cascade arithmétique. La section~\ref{sec:alphaem} déroule la chaîne complète $\sper=1/2 \to \text{T1--T6} \to \text{BA3} \to \text{BA5} \to \alpha_{\rm sieve} \to \alpha_{\mathrm{EM}}$. La section~\ref{sec:conclusion} récapitule, pointe vers le second article de ce programme (lectures géométrique et spectrale de PT) et liste les applications aval non développées ici.
+
+Conventions de notation. Les secteurs duaux du crible sont notés $\qplus$ et $\qminus$, conformément à la convention du paramètre de la loi géométrique en statistique élémentaire. Les dimensions anomales sont notées $\gammap{p}$. Les phases cycliques sur le tore sont notées $\thetap{p}$, leur facteur $\sin^2 \thetap{p}$ apparaissant systématiquement dans les expressions d'holonomie. Le point fixe arithmétique est $\mustar$. Le nommage suit strictement la carte de nomenclature du monographe~\cite{PT_Monograph} : T-series pour les sept théorèmes structurants, BA-series pour les six axiomes de pont prouvés, $\Lzero$ pour le lemme d'entropie maximale, BT-series pour les théorèmes de pont intra-PT. Un glossaire bilingue physique\,\textendash\,mathématique est fourni en annexe.
+
+Statut épistémique. Les sept théorèmes T0--T6 ainsi que les axiomes de pont BA0--BA5 sont, à ce jour, tous démontrés et indexés \textsc{[Thm]} dans le monographe. Le programme PT a en outre fermé en avril~2026 ses dix engagements structurels critiques (compteur \emph{C1--C10}, $10/10\;\textsc{[Thm]}$ après les promotions C2/C4/C5/C7 du 26 avril 2026)~\cite{PT_Monograph}. Cet article est autoportant : il ne suppose pas la lecture du monographe, et il forme avec son article compagnon~\cite{PT_Article2_GeoSpectral} un duo cité-couplé.

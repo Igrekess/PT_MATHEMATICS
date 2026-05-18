@@ -1,0 +1,158 @@
+\section{Auto-correction : prédiction Dirichlet falsifiée}
+\label{sec:auto_correction_dirichlet}
+\label{sec:auto_correction}
+
+La dualité K4 (\S\ref{sec:dualite_higgs_zeta}) suggère une extension
+naturelle aux fonctions $L$ de Dirichlet primitives par factorisation
+Haar $\bmod\,q$. Cette prédiction a été testée et falsifiée. La présente
+section documente le test honnêtement et en tire la reformulation du
+statut du résidu $1/8$.
+
+\subsection{La prédiction P3}
+\label{sec:P3}
+
+Si K4 est structurellement extensible, la formule générique pour la
+phase de Maslov de $L(s, \chi \bmod q)$ serait
+\begin{equation}
+\Delta_N(L \bmod q) \;=\; \sper^{2} \cdot \mathrm{Haar}(\Integers/q\Integers) \cdot \dfrac{1}{N_{\mathrm{branches}}} \;=\; \dfrac{1}{8q}.
+\label{eq:P3}
+\end{equation}
+Prédictions~: $q = 3 : 1/24$, $q = 5 : 1/40$, $q = 7 : 1/56$,
+$q = 11 : 1/88$.
+
+\subsection{Test M1 (mpmath, $T \le 200$, 4 points par $q$)}
+\label{sec:M1}
+
+Premier test, inconclusif~: signal/bruit trop faible (4 points,
+$\sigma_{\mathrm{SE}} \sim 0{,}2$, signal cible $\sim 0{,}04$).
+
+\subsection{Test M1bis (LMFDB, $T \le 200$, ${\sim} 140$ zéros par $q$)}
+\label{sec:M1bis}
+
+Test approfondi sur les zéros pré-calculés de \texttt{LMFDB} pour les
+caractères quadratiques primitifs $q \in \{3, 5, 7, 11\}$ ($a$ parité du
+caractère)~:
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}rrrrrrrr@{}}
+\toprule
+$q$ & $a$ & $N$ zéros & $\langle \Delta_N \rangle$ & SE & $1/(8q)$ & $|t|_{\mathrm{PT}}$ & $|t|_{0}$\\
+\midrule
+3 & 1 & 114 & $-2{,}4 \cdot 10^{-4}$ & $0{,}019$ & $+0{,}042$ & \textbf{2{,}19} & $0{,}01$\\
+5 & 0 & 129 & $-2{,}6 \cdot 10^{-3}$ & $0{,}021$ & $+0{,}025$ & $1{,}34$ & $0{,}13$\\
+7 & 1 & 140 & $+1{,}8 \cdot 10^{-3}$ & $0{,}021$ & $+0{,}018$ & $0{,}77$ & $0{,}09$\\
+11 & 1 & 155 & $-2{,}8 \cdot 10^{-4}$ & $0{,}021$ & $+0{,}011$ & $0{,}55$ & $0{,}01$\\
+\bottomrule
+\end{tabular}
+\caption{Résultats du test M1bis. Le \emph{t-stat} compare la moyenne
+observée à la prédiction PT $+1/(8q)$ (colonne $|t|_{\mathrm{PT}}$) et à
+l'hypothèse nulle $\Delta_N = 0$ (colonne $|t|_{0}$).}
+\label{tab:M1bis}
+\end{table}
+
+Test $\chi^{2}$ discriminatoire sur 4 d.d.l.~:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Hypothèse} & $\chi^{2}$ & $p$-valeur\\
+\midrule
+$H_0$ : $\Delta_N = 0$ & $0{,}023$ & $\approx 1{,}00$\\
+$H_{\mathrm{PT}}$ : $\Delta_N = +1/(8q)$ & $7{,}49$ & $0{,}11$\\
+$H_{-\mathrm{PT}}$ : $\Delta_N = -1/(8q)$ & $7{,}05$ & $0{,}13$\\
+\bottomrule
+\end{tabular}
+\caption{Test $\chi^{2}$ : $H_0$ est préféré par $\sim 300\times$ sur
+$H_{\mathrm{PT}}$. La prédiction P3 est \textbf{effectivement falsifiée}
+à $T \le 200$.}
+\label{tab:chi2_dirichlet}
+\end{table}
+
+\paragraph{Discussion du signe.}
+Sur les quatre valeurs de $q$ testées, PT prédit un décalage strictement
+positif $+1/(8q)$ ; on observe trois décalages négatifs ($q = 3, 5, 11$)
+et un positif ($q = 7$). L'accord en signe seul est donc $1/4$, bien
+en-deçà du $1$ qu'imposerait la prédiction. La falsification n'est pas
+seulement d'amplitude~: la structure de signe elle-même contredit la
+prédiction $+1/(8q) > 0$.
+
+\subsection{Calibration sur $\zeta$}
+\label{sec:calibration_zeta}
+
+Avec la même méthodologie sur les 50 premiers zéros de $\zeta$
+(\cite{Odlyzko1992})~:
+\begin{equation}
+\langle \Delta_N \rangle_\zeta \;=\; +1{,}004 \pm 0{,}028.
+\label{eq:calib_zeta}
+\end{equation}
+Comparaisons~:
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Cible} & \textbf{Valeur} & $t$\\
+\midrule
+Pôle de $\zeta$ seul ($+1$) & $1{,}000$ & $+0{,}15$ (compatible)\\
+Pôle + Maslov ($1 + 1/8 = 1{,}125$) & $1{,}125$ & $-4{,}29$ (rejeté)\\
+Maslov seul ($1/8$) & $0{,}125$ & $+31{,}29$ (rejeté)\\
+\bottomrule
+\end{tabular}
+\caption{Calibration sur $\zeta$~: le $+1$ du pôle absorbe entièrement le
+$1/8$ dans la statistique de comptage.}
+\label{tab:calibration_zeta}
+\end{table}
+
+\subsection{Reformulation du statut du résidu $1/8$}
+\label{sec:reformulation_residu}
+
+\paragraph{Conséquence critique.}
+La proposition~\ref{prop:densite_NPT} affirme que
+$\NPT(\gamma) - N_{\mathrm{RvM}}(\gamma) = 1/8$, vérifié à $10^{-15}$ sur
+quatre décades. Cette différence est entre \textbf{deux formes
+asymptotiques lisses} ($\NPT$ et $N_{\mathrm{RvM}}$), pas un résidu
+mesurable au comptage exact des zéros. Au comptage de zéros réels, le
+$+1/8$ entre PT et RvM est absorbé par les autres termes de la formule
+et n'apparaît pas comme un décalage moyen mesurable. Le $+1$ du pôle de
+$\zeta$ absorbe entièrement le $1/8$ dans la statistique de comptage.
+
+L'identité asymptotique~\eqref{eq:residu_un_huitieme} reste valide en
+tant qu'identité \textbf{asymptotique entre formes}, mais la traduction
+« $1/8$ visible dans le comptage des zéros » est erronée. Cela explique
+a posteriori pourquoi la prédiction $1/(8q)$ a été falsifiée~: elle
+attribuait à Dirichlet un résidu mesurable analogue à celui de $\zeta$,
+alors que même pour $\zeta$ ce résidu n'est pas mesurable au comptage des
+zéros à hauteur $T \sim 200$.
+
+\subsection{Position dans le programme}
+\label{sec:P3_position}
+
+La falsification de P3 ne touche pas la structure HP-PT. Restent
+intacts~:
+\begin{itemize}[nosep,leftmargin=*]
+\item le modèle spectral PT des zéros de $\zeta$ via $\Treg(s)$ :
+$17/17$ zéros capturés à $|\Delta| < 1{,}5$ sur $t \in [10, 70]$,
+$74/79$ sur $t \in [10, 200]$ avec la formule brute, $75/79$ à
+$|\Delta| < 0{,}5$ après régularisation explicite $R_1$ avec
+$\eps = 0{,}2$, et $267/269$ à $|\Delta| < 1{,}5$ étendu à
+$t \in [10, 500]$ ;
+\item l'identification cohomologique
+$1/8 = \sper^{2}/2 = c_1/N_{\mathrm{corners}} = \sper/4$
+pour $\zeta$ ;
+\item la dualité Higgs $\leftrightarrow \zeta$ via le canal $p = 2$
+(conjecture~\ref{conj:K4}) en tant que conjecture forte structurelle
+pour $\zeta$.
+\end{itemize}
+
+Ce qui tombe~: l'extension naturelle à Dirichlet via la mesure de Haar
+$\bmod\,q$. Le mécanisme PT décrit ici est \textbf{spécifique à $\zeta$},
+non à la famille Dirichlet via cette factorisation. Le \emph{ledger} PT
+marque P3 comme \textbf{[FALSIFIED, $T \le 200$]}.
+
+C'est la discipline de falsifiabilité du programme~: une prédiction PT
+testable a été produite par K4, testée, rejetée par les données, et le
+programme se restructure proprement.
+

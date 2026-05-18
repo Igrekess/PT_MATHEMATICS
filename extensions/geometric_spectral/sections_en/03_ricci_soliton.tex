@@ -1,0 +1,98 @@
+\section{Differential reading: the Ricci quasi-soliton}
+\label{sec:soliton}
+
+The PT arithmetic cascade naturally induces, on the parameter space $\mu$, a canonical Riemannian metric. This section establishes that this metric satisfies, asymptotically, the Ricci soliton equation of Hamilton and Perelman, with an explicit and exact coefficient. PT thereby fits into the broad framework of modern differential geometry, and its arithmetic fixed point $\mustar$ receives a geometric reading complementary to the algebraic one in \ref{sec:courbe}. All results are rigorously proved in~\cite{PT_GeoFlow_RicciSoliton}.
+
+\subsection{The Fisher--Bianchi metric induced by the cascade}
+\label{sec:soliton:metric}
+
+Let $\mu > 0$ be the arithmetic parameter and $q = q(\mu) = 1 - 2/\mu$ the vertex-branch parameter. For each active prime $p \in S^{*} := \{3, 5, 7\}$, define the \emph{local Hubble rate}
+\begin{equation}
+H_p(\mu) \;=\; -\dfrac{1}{2\mu^{2}}\,\dfrac{p\,q^{p-1}}{1 - q^{p}},
+\label{eq:Hubble_local_en}
+\end{equation}
+measuring the rate of change of the holonomy phase at prime~$p$ with $\mu$. The \emph{Fisher--Bianchi metric of PT}, denoted $\gPT$, is the Riemannian metric on the model temporal manifold $\mathbb R \times \mathbb R^{|S^{*}|}$ defined, in the gauge $N(\mu) = \mu$, by
+\begin{equation}
+\gPT \;=\; -d\mu^{2} \;+\; \sum_{p \in S^{*}} a_p(\mu)^{2}\, dx_p^{2},
+\qquad
+a_p(\mu) := \exp\!\Bigl(\!\int H_p(\mu)\, d\mu\Bigr).
+\label{eq:gPT_en}
+\end{equation}
+This metric is the PT analogue of a Lorentzian Bianchi~I metric~\cite{ChowKnopf2004}, but its scale factors $a_p(\mu)$ are \emph{not isotropic}: they differ from one active prime to another, which distinguishes $\gPT$ from a Robertson--Walker metric. Precisely this anisotropy will permit the determination of a unique Ricci residue.
+
+The introduction of metric~\eqref{eq:gPT_en} is canonical in the following sense: its scale factors derive directly from the holonomy formula $\BAthree$, and the gauge $N(\mu) = \mu$ is the only one that renders the entropy potential $S = -\ln \alpha_{\rm sieve}$ a \emph{regular} function of the time coordinate (\cite[\S 2]{PT_GeoFlow_RicciSoliton}).
+
+\subsection{The Ricci soliton equation}
+\label{sec:soliton:eq}
+
+Let $f$ be a smooth function on the temporal manifold. The \emph{gradient Ricci soliton} equation of Hamilton and Perelman~\cite{Hamilton1982,Perelman2002} reads
+\begin{equation}
+\Ric(g) + \Hess(f) \;=\; \lambda\, g, \qquad \lambda \in \mathbb R.
+\label{eq:soliton_eq_en}
+\end{equation}
+Stationary solutions ($\lambda = 0$, said \emph{steady}), expanding ($\lambda < 0$), and shrinking ($\lambda > 0$) classify the asymptotic regimes of evolution under the Ricci flow $\partial_t g = -2\,\Ric(g)$. Perelman's geometry systematically studies these solutions and their singularities, in particular in the proof of the Poincaré conjecture~\cite{Perelman2002}.
+
+In the PT setting, we choose $f := S = -\ln \alpha_{\rm sieve}$: the potential function is the negative log of the Pontryagin coupling. Equation~\eqref{eq:soliton_eq_en}, projected onto the purely spatial components $(pp)$, $p \in S^{*}$, gives three equations in two unknowns $(\dot f, \lambda)$. The main theorem exploits this overdetermination.
+
+\subsection{Asymptotic expanding quasi-soliton theorem}
+\label{sec:soliton:thm}
+
+\begin{theoreme}[Asymptotic Ricci quasi-soliton]
+\label{thm:soliton_PT_en}
+Let $\gPT$ be the PT Fisher--Bianchi metric~\eqref{eq:gPT_en} in the gauge $N(\mu) = \mu$, and let $f = S = -\ln \alpha_{\rm sieve}(\mu)$. Imposing compatibility of the three $(pp)$ equations of the soliton equation~\eqref{eq:soliton_eq_en} to determine $\lambda(\mu)$, we have
+\begin{equation}
+\boxed{\;
+\lambda(\mu) \;=\; -\dfrac{1}{\mu^{4}} \;+\; O\!\Bigl(\dfrac{1}{\mu^{5}}\Bigr)
+\quad\text{as } \mu \to \infty.
+\;}
+\label{eq:lambda_main_en}
+\end{equation}
+The coefficient $-1$ of the leading term in $\mu^{-4}$ is \emph{exact} and \emph{independent} of the choice of pair $(p_1, p_2)$ of active primes used to solve the system.
+\end{theoreme}
+
+\textbf{Immediate consequence.} $\lambda < 0$ asymptotically: the PT Fisher--Bianchi metric is an \emph{expanding quasi-soliton} in the sense of Hamilton--Perelman. The qualifier ``quasi-'' refers to the fact that $\lambda(\mu) \to 0$ as $\mu \to \infty$: a strict steady soliton would have $\lambda \equiv 0$, and a strict expanding soliton would have $\lambda$ constant non-zero; PT belongs to an intermediate regime whose deviation from $\lambda = 0$ decreases as $\mu^{-4}$.
+
+\subsection{Proof sketch: anisotropy--uniqueness equivalence}
+\label{sec:soliton:proof}
+
+The determination of $\lambda(\mu)$ rests on a structural equivalence between effective anisotropy of Hubble rates and uniqueness of the $\lambda$ solution.
+
+\begin{proposition}[Anisotropy \texorpdfstring{$\Leftrightarrow$}{<=>} uniqueness of $\lambda$]
+\label{prop:anisotropy_en}
+For the metric $\gPT$ and any $\mu > 0$, the following two properties are equivalent:
+\begin{enumerate}[nosep,label=\textup{(\roman*)}]
+\item There exist $p_1 \neq p_2$ in $S^{*}$ such that $H_{p_1}(\mu) \neq H_{p_2}(\mu)$ (effective anisotropy).
+\item The system of $(pp)$ equations for $p \in S^{*}$ admits a \emph{unique} solution in the unknown $\lambda$.
+\end{enumerate}
+\end{proposition}
+
+\textbf{Proof.} When the $H_p$ are all equal, the system of three $(pp)$ equations reduces to a single equation in two unknowns $(\dot f, \lambda)$: $\lambda$ is then a free degree of freedom. As soon as a single pair $(p_1, p_2)$ with $H_{p_1} \neq H_{p_2}$ appears, the difference of the two equations $(p_1 p_1) - (p_2 p_2)$ eliminates $\dot f$ and provides $\lambda$ explicitly~\cite[\S 4]{PT_GeoFlow_RicciSoliton}. $\square$
+
+\begin{lemme}[Automatic asymptotic anisotropy]
+\label{lem:H_asymptotic_en}
+For $p_1 \neq p_2$ in $S^{*}$,
+\[
+H_{p_1}(\mu) - H_{p_2}(\mu) \;=\; \dfrac{p_2 - p_1}{\mu^{3}} + O\!\bigl(\mu^{-4}\bigr) \;\neq\; 0
+\quad\text{for all } \mu \text{ sufficiently large.}
+\]
+\end{lemme}
+
+\ref{thm:soliton_PT_en} then follows directly: for $\mu \to \infty$, effective anisotropy is automatic (lemma), hence $\lambda$ is unique (proposition), and computing the leading term of the difference of the $(pp)$ equations gives $\lambda(\mu) = -1/\mu^{4} + O(\mu^{-5})$. The independence of the coefficient $-1$ from the choice of $(p_1, p_2)$ results from the system's structure: any choice of pair produces the same linear equation after elimination of $\dot f$, up to terms of order $\mu^{-5}$.
+
+\subsection{Interpretation: residue, dynamics, and link to Perelman}
+\label{sec:soliton:perelman}
+
+\textbf{The residue as a signature of non-trivial dynamics.}
+A strict steady soliton would satisfy $\Ric + \Hess(f) = 0$, that is, the metric would be invariant under the Ricci flow (up to diffeomorphism and reparametrisation). The non-zero residue $\lambda(\mu) \sim -1/\mu^{4}$ of PT shows that the arithmetic cascade is \emph{not} in such an exact equilibrium regime: it evolves slowly towards equilibrium, at a rate decreasing with sieve depth. This is a geometric signature of \emph{non-trivial dynamics}; by cosmological analogy, the residue can be read as an internal ``relaxation time'' of the cascade.
+
+\textbf{Inscription in the Hamilton--Perelman program.}
+Ricci solitons are the central objects of Hamilton's Ricci-flow program, formalised and completed by Perelman~\cite{Perelman2002}. They serve in the classification of Ricci flow singularities and in the proof of the Poincaré and Thurston geometrisation conjectures. Theorem~\ref{thm:soliton_PT_en} thus places PT within this landscape: the arithmetic cascade of active primes appears no longer as a mere count but as a \emph{differential-geometric structure} satisfying a canonical evolution equation.
+
+\textbf{Articulation with the algebraic reading.}
+The two readings of the PT object --- algebraic (\ref{sec:courbe}) and differential (this section) --- do not merely coexist: they are related by a \emph{scale bridge} proved in~\cite[\S 6]{PT_GeoFlow_RicciSoliton}:
+\[
+\lambda(\mu) \;\sim\; B_0(\mu)^{-8/3}, \qquad \mu \to \infty,
+\]
+where $B_0(\mu)$ is the leading coefficient of the topological-recursion invariant $\omega_{1,1}^{\Cper}$ of the persistence curve. The exponent $-8/3$ is verified numerically to $0{,}4\,\%$; its \emph{exact} identification remains an open question that constitutes one of the goals of the spectral program presented in \ref{sec:programme}.
+
+With these two readings in place, the next section develops a third: the spectral reading, which relates the arithmetic axiom $\sper = 1/2$ directly to the spectral signatures of the Higgs coupling and the Riemann zeros.

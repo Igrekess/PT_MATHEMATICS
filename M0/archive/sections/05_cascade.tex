@@ -1,0 +1,66 @@
+\section{Le principe de cascade arithmétique}
+\label{sec:cascade}
+
+Le triplet des premiers actifs $\{3, 5, 7\}$ détermine, à $\mustar = 15$, une suite ordonnée de raffinements arithmétiques que l'on appellera \emph{cascade}. Cette section formalise la notion, exhibe la cascade canonique de la PT, et résume ses propriétés universelles.
+
+\subsection{Définition formelle}
+\label{sec:cascade:def}
+
+\begin{definition}[Cascade arithmétique PT]
+\label{def:cascade}
+Soit $\mathcal A = \{p_{(1)}, p_{(2)}, \ldots, p_{(k)}\}$ un ensemble ordonné de premiers actifs au sens de $\BAfour$, indexé par ordre croissant. La \emph{cascade arithmétique} associée à $\mathcal A$ est la suite de raffinements
+\[
+\mathcal C_0 \;\xrightarrow{\;\gammap{p_{(1)}}\;}\;
+\mathcal C_1 \;\xrightarrow{\;\gammap{p_{(2)}}\;}\;
+\mathcal C_2 \;\xrightarrow{\;\cdots\;}\;
+\mathcal C_{k-1} \;\xrightarrow{\;\gammap{p_{(k)}}\;}\;
+\mathcal C_k,
+\]
+où $\mathcal C_0$ désigne le crible élémentaire (entiers premiers à $2$) et $\mathcal C_j = \pi_{p_{(j)}} \circ \cdots \circ \pi_{p_{(1)}}(\mathcal C_0)$ est la projection composée sur les classes résiduelles modulo le primoriel $p_{(1)} p_{(2)} \cdots p_{(j)}$. Chaque flèche multiplie la \emph{persistance cumulative} du motif par la dimension anomale $\gammap{p_{(j)}}$, le facteur de résilience associé à l'introduction du niveau~$p_{(j)}$.
+\end{definition}
+
+L'amplitude cumulative au pas $j$ vaut donc $\Gamma_j = \prod_{i=1}^{j} \gammap{p_{(i)}}$ ; la cascade se traduit numériquement par la suite des produits partiels $1, \gammap{p_{(1)}}, \gammap{p_{(1)}}\gammap{p_{(2)}}, \ldots$, qui décroît strictement (puisque $\gammap{p} < 1$ pour tout $p$). Le point fixe $\mustar = 15$ joue le rôle d'\emph{attracteur} de la cascade : la séquence des $\Gamma_j$ converge lorsque $k \to \infty$ vers une limite contrôlée par l'exposant de conservation $\alpha_{\rm cons} = \sper^2$ (\Ttwo).
+
+\subsection{La cascade canonique de la PT}
+\label{sec:cascade:canonique}
+
+À $\mustar = 15$, la cascade canonique met en œuvre les trois premiers actifs $\{3, 5, 7\}$ dans cet ordre, dicté par le seuil d'activation décroissant $\gammathree > \gammafive > \gammaseven > 1/2$ :
+\begin{equation}
+\boxed{\;
+\mathcal C_0 \;\xrightarrow{\;\gammathree\;}\; \mathcal C_3
+\;\xrightarrow{\;\gammafive\;}\; \mathcal C_{3,5}
+\;\xrightarrow{\;\gammaseven\;}\; \mathcal C_{3,5,7} \;}
+\label{eq:cascade_canonique}
+\end{equation}
+avec les amplitudes cumulatives
+\[
+\Gamma_1 = \gammathree = 0{,}808, \qquad
+\Gamma_2 = \gammathree\,\gammafive = 0{,}562, \qquad
+\Gamma_3 = \gammathree\,\gammafive\,\gammaseven = 0{,}335.
+\]
+À l'étage final, le primoriel actif vaut $3 \cdot 5 \cdot 7 = 105$ ; combiné au canal de parité ($p = 2$) il donne le primoriel total $M = 210 = 2 \cdot 3 \cdot 5 \cdot 7$ qui apparaît dans la factorisation CRT de $\BAfive$ (\ref{sec:bridge:BA5}).
+
+\textbf{Forcing local de la cascade.} L'agencement~\eqref{eq:cascade_canonique} n'est pas conventionnel : il est forcé localement par la structure géométrique de la PT au point fixe. Plus précisément, deux théorèmes de pont intra-PT~\cite{PT_NewMath_BT} assurent cette rigidité~:
+\begin{itemize}[nosep,leftmargin=*]
+\item BT$_7$ (\emph{Gram-isotropie}) garantit que les trois rôles purs $\{f_3, f_5, f_7\}$ associés aux étages successifs ont un tableau de Gram à diagonale constante et terme hors-diagonale commun : ils sont géométriquement équivalents \emph{en tant qu'éléments du triplet}, et leur ordre n'est dicté que par la grandeur décroissante de $\gammap{p}$ ;
+\item BT$_9$ (\emph{forcing par seuil}) impose que toute déformation de la cascade (par exemple un réordonnancement, ou l'introduction d'un quatrième premier) viole l'auto-cohérence $\BAfour \Leftrightarrow \Tfive$.
+\end{itemize}
+Ainsi la cascade canonique~\eqref{eq:cascade_canonique} est l'unique manière d'ordonner les premiers actifs.
+
+\subsection{Propriétés universelles}
+\label{sec:cascade:univ}
+
+\paragraph{Commutativité du diagramme.}
+La cascade \eqref{eq:cascade_canonique} commute au sens du diagramme universel suivant : pour tout sous-ensemble $\mathcal S \subseteq \{3, 5, 7\}$, le raffinement $\mathcal C_{\mathcal S} = \prod_{p \in \mathcal S} \pi_p (\mathcal C_0)$ ne dépend pas de l'ordre dans lequel les projections sont appliquées (théorème des restes chinois). C'est cette commutativité qui permet l'écriture en produit de Pontryagin (théorème~\ref{thm:BA5}) : seul l'ensemble $\mathcal S$, et non son ordre, intervient dans le couplage final $\alpha_{\rm sieve}$.
+
+\paragraph{Cumulants et conditionnement.}
+À chaque étage~$j$ on peut définir le \emph{cumulant} $\kappa_j = -\log(\Gamma_j/\Gamma_{j-1}) = -\log \gammap{p_{(j)}}$. Pour la cascade canonique :
+\[
+\kappa_1 = 0{,}213, \qquad \kappa_2 = 0{,}363, \qquad \kappa_3 = 0{,}519.
+\]
+Les cumulants sont strictement croissants : chaque nouvel étage \emph{coûte plus} en log-persistance que le précédent. Cette croissance est gouvernée par la décroissance de $\gammap{p}$ avec~$p$ démontrée au théorème~$\BAfour$ ; elle est l'expression quantitative du \og biais de persistance \fg{} introduit en section~\ref{sec:bridge:BA4}.
+
+\paragraph{Point fixe comme attracteur.}
+Définissons la \emph{profondeur effective} de la cascade comme la somme $\mathcal P = \sum_{p \in \mathcal A} p$. Pour la cascade canonique, $\mathcal P = 3 + 5 + 7 = 15 = \mustar$ par construction. Toute extension hypothétique de la cascade par un quatrième premier $p \geq 11$ donnerait $\mathcal P + p \geq 26 > \mustar$, ce qui viole la condition d'auto-cohérence du point fixe (\Tfive). Le point fixe $\mustar$ \emph{est} la profondeur effective de la cascade canonique : c'est une autre manière, plus géométrique, d'exprimer le théorème~\Tfive.
+
+\medskip\noindent\textbf{Bilan.} La cascade canonique de la PT est l'unique séquence ordonnée de raffinements arithmétiques compatible avec la taxonomie des premiers (\Tfive, $\BAfour$) et la rigidité locale des rôles (BT$_7$, BT$_9$). Elle agence les trois facteurs $\sin^2 \thetap{p}$ que la formule produit de Pontryagin~$\BAfive$ combine en un couplage scalaire, la section suivante exploitant cette structure pour déterminer numériquement $\alpha_{\rm EM}$.

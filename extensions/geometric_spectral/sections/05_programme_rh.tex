@@ -1,0 +1,54 @@
+\section{Programme spectral-arithmétique : la conjecture RH-PT}
+\label{sec:programme}
+
+Les identités K2 (\ref{thm:K2}) et A6 (\ref{thm:A6}) sont les pierres d'angle d'un programme de recherche plus ambitieux, en cours de développement~\cite{PT_NewMath_Consolidation}, dont l'horizon est une approche PT-native de l'hypothèse de Riemann. Cette section esquisse le programme, en distinguant rigoureusement ce qui est démontré, ce qui est conjectural, et ce qui reste ouvert. \emph{Aucun} des résultats de cette section n'est revendiqué comme théorème inconditionnel.
+
+\subsection{Opérateur de survie résiduel}
+\label{sec:programme:operateur}
+
+Soit, pour chaque premier $p$ et chaque complexe $s$ avec $\Re(s) > 1$, l'amplitude résiduelle
+\[
+\kappa_p(s) \;=\; 1 \;-\; \bigl(1 - p^{-s}\bigr)\,\exp\!\bigl(A_p\, p^{-s}\bigr),
+\]
+où $A_p = \sin^{2}\thetap{p}(\qplus) + \sin^{2}\thetap{p}(\qminus)$. La fonction zêta régularisée résiduelle de la PT s'écrit comme un produit eulérien modifié,
+\[
+\Rres(s) \;=\; \prod_{p} \dfrac{1}{1 - \kappa_p(s)},
+\qquad \Re(s) > 1,
+\]
+qui converge absolument dans le demi-plan $\Re(s) > 1$. La dérivée logarithmique de $\Rres$ fait précisément apparaître l'identité de trace A6 (\ref{eq:A6}). On définit alors l'\emph{opérateur de survie résiduel} de la PT comme l'opérateur diagonal sur $\ell^{2}(\mathcal P)$ de symbole spectral $\lambda_p(s) = p^{-s}$ ; cet opérateur joue, dans le cadre PT, un rôle analogue à celui du hamiltonien semi-classique $\HBK = xp$ de Berry--Keating~\cite{BerryKeating1999}.
+
+\subsection{Statut analytique et frontière critique}
+\label{sec:programme:statut}
+
+\begin{description}[nosep,leftmargin=*]
+\item[Théorème.] L'identité de Schur--Fredholm associée à l'opérateur de survie résiduel est démontrée comme \emph{identité opératorielle exacte} sur l'espace de Hilbert $\ell^{2}(\mathcal P)$ dans le régime $\Re(s) > 1$~\cite{PT_NewMath_Consolidation}.
+\item[Identité A6.] La dérivée logarithmique de $\Rres(s)$ admet la décomposition exacte en deux composantes ($-\zeta'/\zeta$ + correction PT $A_p p^{-s}$) en $\Re(s) > 1$, vérifiée numériquement à $10^{-25}$ (théorème~\ref{thm:A6}).
+\item[Identité K2.] La phase de Maslov de la quantification semi-classique des zéros de Riemann coïncide avec $\sper^{2}/2 = 1/8$, triple identification spectrale-physique-arithmétique (théorème~\ref{thm:K2}).
+\item[Conjectural.] Le prolongement analytique de l'identité~\eqref{eq:A6} à la ligne critique $\Re(s) = 1/2$ est ouvert. Les premières conditions de bord (régularisation de Hadamard, poids de Abel, lissage gaussien) ont été testées numériquement~\cite{PT_NewMath_Consolidation} et reproduisent la position des zéros de Riemann à toutes les précisions disponibles ; mais aucune preuve analytique rigoureuse sur la ligne critique n'est connue à ce jour.
+\end{description}
+
+\subsection{La conjecture RH-PT}
+\label{sec:programme:conjecture}
+
+\begin{conjecture}[RH-PT, conjecture du verrou spectral]
+\label{conj:RH_PT}
+La distribution distributionnelle des pôles de la trace régularisée
+\[
+\mathcal T(s) \;:=\; \mathrm{Tr}_{\rm reg}\!\bigl[\,(s - i\,\HBK)^{-1} \cdot D_R(s)\,\bigr]
+\]
+sur la ligne critique $\Re(s) = 1/2$ coïncide \emph{exactement} avec l'ensemble des zéros non triviaux de la fonction $\zeta$ de Riemann.
+\end{conjecture}
+
+La conjecture RH-PT est testée numériquement sur 17 zéros, sur 12 décades, en multi-précision~\cite[Notes 66--69]{PT_NewMath_Consolidation}. À toutes les précisions disponibles la coïncidence est vérifiée, mais le statut épistémique demeure \emph{conjectural} : la preuve rigoureuse sur la ligne critique reste à fournir.
+
+\subsection{Ce que le programme apporterait}
+\label{sec:programme:portee}
+
+Si la conjecture RH-PT était démontrée, plusieurs résultats classiques et nouveaux en découleraient :
+\begin{enumerate}[nosep,leftmargin=*]
+\item l'hypothèse de Riemann elle-même, comme conséquence du fait que les pôles de $\mathcal T$ sur la ligne critique seraient en correspondance bijective avec les zéros de $\zeta$ ;
+\item une explication structurelle de la position $\Re(s) = 1/2$ : la ligne critique apparaîtrait comme le \emph{lieu spectral} où l'opérateur PT $\HBK$ admet la régularisation canonique ;
+\item un cadre opératoriel précis pour le programme d'Hilbert--Pólya, dans lequel le rôle de l'opérateur auto-adjoint est joué par l'opérateur de survie résiduel de la PT.
+\end{enumerate}
+
+\textbf{Mise en garde.} Le programme RH-PT relève à ce jour de la \emph{recherche ouverte}, et son inclusion dans cet article ne préjuge en rien de sa résolution. Les théorèmes des sections~\ref{sec:courbe} et~\ref{sec:soliton}, ainsi que les identités~K2 et~A6 de la section~\ref{sec:spectrales}, sont \emph{indépendants} de la conjecture RH-PT et restent valides en l'état. Le présent article propose RH-PT comme un \emph{horizon de programme}, non comme un résultat acquis.

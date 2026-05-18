@@ -1,0 +1,122 @@
+\section{Axiomes de pont \texorpdfstring{$\BAthree$--$\BAfive$}{BA3-BA5} et taxonomie des nombres premiers}
+\label{sec:bridge}
+
+Les sept théorèmes $\Tzero$--$\Tsix$ établissent un édifice purement arithmétique : ils caractérisent le crible d'Ératosthène, sa structure mod~$3$, ses propriétés spectrales et son point fixe $\mustar = 15$. Pour passer de ce socle à la machinerie qui produit les couplages physiques (au premier rang desquels $\alpha_{\rm EM}$), il faut introduire trois axiomes de pont, $\BAthree$ (formule d'holonomie), $\BAfour$ (critère d'activation des premiers) et $\BAfive$ (produit de Pontryagin). Tous les trois sont des \emph{théorèmes prouvés} dans le monographe~\cite[ch.~06, ch.~09]{PT_Monograph}, malgré leur appellation historique d'\og axiomes \fg{} qui reflète leur rôle de pont entre arithmétique et physique.
+
+\subsection{Préambule : $\BAzero$--$\BAtwo$ rappelés}
+\label{sec:bridge:BA012}
+
+Les trois premiers axiomes de pont sont des conséquences directes du noyau $\Tzero$--$\Tsix$ et nous ne les détaillons pas ici :
+\begin{itemize}[nosep,leftmargin=*]
+\item $\BAzero$ \emph{Axiome de champ} affirme que le champ dynamique fondamental est $\{g_n\}$ ; il a été promu au statut de théorème $\Tzero$ (\ref{sec:theoremes:T0}).
+\item $\BAone$ \emph{Axiome d'observable} déclare les observables physiques comme les classes résiduelles $g_n \bmod m$, identifiées à une connexion de jauge sur $\mathbb{Z}/m\mathbb{Z}$.
+\item $\BAtwo$ \emph{Théorème fondamental des écarts} (GFT) est l'identité algébrique
+\[
+\log_2 m \;=\; D_{\mathrm{KL}}\!\left(P \,\|\, U_m\right) + H(P), \qquad P \in \mathcal{P}(\mathbb{Z}/m\mathbb{Z}),
+\]
+déjà rencontrée au lemme~\Lzero{} (\eqref{eq:GFT}, p.~\pageref{eq:GFT}).
+\end{itemize}
+
+\subsection{\texorpdfstring{$\BAthree$}{BA3} : formule d'holonomie}
+\label{sec:bridge:BA3}
+
+\begin{theoreme}[Formule d'holonomie ($\BAthree$)]
+\label{thm:BA3}
+Pour chaque premier $p$ et chaque valeur $q$ du paramètre statistique de la branche-sommet (section~\ref{sec:cadre:qpm}), définissons la \emph{défaillance cyclique}
+\[
+\delta_p(q) \;=\; \dfrac{1 - q^{\,p}}{p}.
+\]
+La phase cyclique de la holonomie modulo~$p$ vérifie alors l'identité algébrique exacte
+\[
+\sinp{p} \;=\; \delta_p(q)\,\bigl(2 - \delta_p(q)\bigr),
+\qquad
+\cos \thetap{p} \;=\; 1 - \delta_p(q).
+\]
+\end{theoreme}
+
+\textbf{Idée de preuve.} L'amplitude d'holonomie sur le tore $T_p = \mathbb{Z}/p\mathbb{Z}$ s'écrit comme l'écart $1 - \cos\thetap{p}$ entre l'identité et la rotation effective. L'identité trigonométrique $\sin^2\theta = 1 - \cos^2\theta = (1 - \cos\theta)(1 + \cos\theta)$ donne alors directement $\sinp{p} = \delta_p(2 - \delta_p)$ avec $\delta_p = 1 - \cos\thetap{p}$. L'expression $\delta_p = (1 - q^p)/p$ découle, elle, du comptage de cycles dans le crible mod~$p$ paramétré par la branche-sommet $q = \qplus$ ; trois dérivations indépendantes en sont données au chapitre~6 du monographe (trigonométrique, combinatoire, fonctionnelle). Démonstration complète : \cite[ch.~06]{PT_Monograph}.
+
+\textbf{Conséquence.} $\BAthree$ fournit la \emph{brique de base} qui apparaîtra dans toutes les expressions de couplage. La constante de structure fine, le mélange faible et la masse électromagnétique des hadrons s'expriment in fine comme combinaisons des $\sinp{p}$ aux premiers actifs.
+
+\subsection{\texorpdfstring{$\BAfour$}{BA4} : critère d'activation des premiers}
+\label{sec:bridge:BA4}
+
+\begin{theoreme}[Critère d'activation ($\BAfour$)]
+\label{thm:BA4}
+Pour chaque premier $p$ et chaque valeur $\mu > 0$, définissons la \emph{dimension anomale}
+\[
+\gammap{p}(\mu) \;=\; 1 - \dfrac{2}{p\,\bigl(1 - q(\mu)^{p}\bigr)},
+\qquad q(\mu) = 1 - \dfrac{2}{\mu}.
+\]
+Le premier $p$ est dit \emph{actif} au point fixe $\mu = \mustar$ si et seulement si $\gammap{p}(\mustar) > \sper = 1/2$. À $\mustar = 15$, l'ensemble des premiers actifs vaut $\mathcal A = \{3, 5, 7\}$ ; pour tout $p \geq 11$, on a $\gammap{p}(\mustar) < 1/2$, donc $p$ n'est pas actif au sens cascade.
+\end{theoreme}
+
+\textbf{Idée de preuve.} La valeur $\gammap{p}$ s'interprète comme le \emph{biais de persistance} d'un cycle de longueur~$p$ : c'est l'écart à la situation d'équilibre informationnel $\gammap{p} = 1/2$ pour laquelle la divergence binaire $D_{\rm KL}^{\rm binaire}$ s'annule. Le seuil $\gammap{p} > 1/2$ est dérivé du critère d'activité spectrale : il sépare les cycles dont la contribution survit asymptotiquement de ceux dont elle s'éteint. À $\mustar = 15$, le calcul donne $\gammathree = 0{,}808$, $\gammafive = 0{,}696$, $\gammaseven = 0{,}595$ (tous strictement supérieurs à $1/2$) et $\gamma_{11} = 0{,}426$, $\gamma_{13} = 0{,}356$, ainsi que la monotonie $\gammap{p}(\mustar) < 1/2$ pour tout $p \geq 11$. Démonstration complète : \cite[ch.~06]{PT_Monograph}.
+
+\textbf{Conséquence.} $\BAfour$ fournit le \emph{critère opératoire} qui partage l'ensemble des nombres premiers en classes : actifs, échos, super-échos, inactifs. Cette partition est l'objet de la sous-section suivante.
+
+\subsection{Taxonomie complète des nombres premiers}
+\label{sec:bridge:taxonomie}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Classe & Premiers & $\gammap{p}(\mustar)$ ou rôle & Référence \\
+\midrule
+\textbf{Actifs} & $\{3, 5, 7\}$ & $\gammap{p} > 1/2$ (cascade) & $\BAfour$, \Tfive{} \\
+\textbf{Échos} & $\{11, 13\}$ & $\gammap{} \in (0,\, 1/2)$, contribution VP & AT$_B$~\cite[ch.~PM]{PT_Monograph} \\
+\textbf{Super-échos} & $\{17, 19, 23\}$ & contribution scale-dependent & AT$_C$~\cite[ch.~PM]{PT_Monograph} \\
+\textbf{Inactifs} & $\{p \geq 29\}$ & $F_{\rm inactive}(p) \approx 0$ & ch.~PM \\
+Canal de parité & $\{2\}$ & involution antipodale $D$ & $\BAtwo$, \Tthree{} \\
+\bottomrule
+\end{tabular}
+\caption{Taxonomie complète des nombres premiers en PT. À $\mustar = 15$ : $\gammathree = 0{,}808$, $\gammafive = 0{,}696$, $\gammaseven = 0{,}595$, $\gamma_{11} = 0{,}426$, $\gamma_{13} = 0{,}356$.}
+\label{tab:taxonomie}
+\end{table}
+
+\paragraph{Premiers actifs $\{3, 5, 7\}$.}
+Ces trois premiers vérifient $\gammap{p}(\mustar) > 1/2$ et leur somme vaut $3 + 5 + 7 = \mustar = 15$ (\Tfive). Ils portent la cascade arithmétique principale (\ref{sec:cascade}). Le \emph{forcing local} de ce triplet, c'est-à-dire l'argument que $\{3, 5, 7\}$ ne peut pas être remplacé par un autre triplet de premiers compatible avec la structure d'auto-cohérence, repose sur deux résultats du pont intra-PT~\cite{PT_NewMath_BT}~:
+\begin{itemize}[nosep,leftmargin=*]
+\item BT$_7$ (\emph{Gram-isotropie des rôles}) : le tableau de Gram du contraste centré des rôles purs $\{\tau, f_3, f_5, f_7\}$ a une diagonale constante et un terme hors-diagonale commun, ce qui interdit toute hiérarchie interne au triplet ;
+\item BT$_9$ (\emph{Forcing par seuil}) : la sélection $\{p : \gammap{p}(\mustar) > 1/2\}$ donne exactement $\{3, 5, 7\}$ au point fixe, et aucune autre valeur de $\mu$ admissible ne fournit un ensemble actif de cardinal trois compatible avec $\BAtwo$.
+\end{itemize}
+
+\paragraph{Premiers échos $\{11, 13\}$.}
+Ils vérifient $0 < \gammap{p}(\mustar) < 1/2$ et sont donc \emph{non actifs au sens cascade}. Toutefois leur contribution à la polarisation du vide est universelle (indépendante du contexte hadronique) : ils interviennent comme corrections infrarouges au couplage $\alpha_{\rm sieve}$ via un seuil d'activation AT$_B$~\cite[ch.~PM]{PT_Monograph} qui fixe AT$(11) = $ AT$(13) = 1$. C'est la convention canonique : \emph{les premiers $\{11, 13\}$ sont les échos, et seulement les échos}.
+
+\paragraph{Premiers super-échos $\{17, 19, 23\}$.}
+Ces trois premiers fournissent des corrections \emph{dépendantes de l'échelle} (typiquement hadroniques) au couplage. Leur contribution est gouvernée par AT$_C$ et apparaît dans le rapport $R_{17,19,23}/R_{11,13}$ à certaines profondeurs du crible. La convention stricte est : super-échos $= \{17, 19, 23\}$, jamais $11$ ni $13$. Lorsque l'on parle de la somme \emph{échos} $+$ \emph{super-échos}, on emploie la formule \og $\beta_{\rm echo}$ étendu \fg.
+
+\paragraph{Premiers inactifs $p \geq 29$.}
+Au-delà de $p = 23$, la contribution collective des premiers est numériquement négligeable :
+\[
+F_{\rm inactive}(\mustar) \;=\; \sum_{p \geq 29} \sinp{p}(\qplus) \cdot \gammap{p}(\mustar) \;\approx\; 0,
+\]
+avec une marge de l'ordre de $10^{-4}$ sur les observables où elle entre. Cette classe ferme la taxonomie : tout premier est soit actif, soit écho, soit super-écho, soit inactif (à l'exception du canal de parité $p = 2$, traité séparément via l'involution antipodale).
+
+\subsection{\texorpdfstring{$\BAfive$}{BA5} : produit de Pontryagin}
+\label{sec:bridge:BA5}
+
+\begin{theoreme}[Produit de Pontryagin ($\BAfive$)]
+\label{thm:BA5}
+Sous $\BAzero$--$\BAfour$, la fonctionnelle multiplicative sur l'algèbre du crible, décomposée par CRT au point fixe $\mustar = 15$, prend la forme produit
+\[
+\boxed{\;
+\alpha_{\rm sieve} \;=\; \prod_{p \in \{3,5,7\}} \sinp{p}(\qplus) \;}
+\]
+évaluée sur la branche-sommet ($\qplus = 13/15$).
+\end{theoreme}
+
+\textbf{Idée de preuve.} La factorisation chinoise donne $\mathbb{Z}/210\mathbb{Z} \cong \mathbb{Z}/2\mathbb{Z} \oplus \mathbb{Z}/3\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/7\mathbb{Z}$. La dualité de Pontryagin~\cite{Wilson1983,Peskin1995} envoie cette somme directe additive sur son dual multiplicatif : chaque caractère de phase au premier~$p$ contribue son carré $\sinp{p}$, et le produit sur les premiers actifs est forcé par l'unicité du caractère multiplicatif sur la somme directe. Le canal de parité ($p = 2$) ne contribue pas au produit principal en raison de l'involution antipodale (\Tthree). Démonstration complète : \cite[ch.~09, Thm.~Pontryagin]{PT_Monograph}.
+
+\textbf{Conséquence.} $\BAfive$ fournit la \emph{recette explicite} qui convertit les trois angles d'holonomie $\thetap{3}, \thetap{5}, \thetap{7}$ (avec $\thetap{p}$ donnée par $\BAthree$) en un couplage scalaire $\alpha_{\rm sieve}$. C'est la dernière étape avant la dérivation numérique de $\alpha_{\rm EM}$ en section~\ref{sec:alphaem}.
+
+\bigskip\noindent\textbf{Bilan de la section.} Les sept théorèmes $\Tzero$--$\Tsix$ ayant fixé l'objet (le crible d'Ératosthène et son point fixe $\mustar$), les trois axiomes de pont prouvés $\BAthree$--$\BAfive$ traduisent cette structure arithmétique en :
+\begin{enumerate}[nosep,label=(\textit{\roman*})]
+\item une formule \emph{algébrique exacte} pour la phase d'holonomie ($\BAthree$) ;
+\item un \emph{critère opératoire} d'activation des premiers ($\BAfour$), qui produit la taxonomie en quatre classes (actifs, échos, super-échos, inactifs) ;
+\item une \emph{forme produit} de Pontryagin pour la fonctionnelle de couplage ($\BAfive$).
+\end{enumerate}
+La section~\ref{sec:cascade} formalise la \emph{cascade} qui agence les trois facteurs $\sin^2$ des premiers actifs en une séquence ordonnée d'amplitudes ; la section~\ref{sec:alphaem} déroule la dérivation numérique jusqu'à $1/\alpha_{\rm EM} \approx 137{,}036$.

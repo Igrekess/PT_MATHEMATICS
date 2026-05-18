@@ -1,0 +1,114 @@
+\section{Introduction}
+\label{sec:intro}
+
+L'hypothèse de Riemann affirme que les zéros non triviaux de la fonction
+$\zeta(s) = \sum_{n \ge 1} n^{-s}$ ont pour partie réelle $1/2$. Au-delà de
+sa formulation arithmétique, cette conjecture est aussi une question sur la
+nature spectrale d'un certain opérateur, dont l'existence est postulée
+depuis Hilbert et Pólya. \textcite{BerryKeating1999} en 1999, puis
+\textcite{Connes1996} en 1996, ont précisé le contenu de cette hypothèse
+spectrale~: il s'agit de l'opérateur de dilatation
+$H = (xp + px)/2$ quantifié sur la demi-droite, dont la quantification
+semi-classique microcanonique reproduit la densité de Riemann--von Mangoldt
+$N(\gamma) \sim (\gamma/2\pi) \log(\gamma / 2\pi e)$
+des zéros.
+
+Le programme présenté ici ne cherche pas une preuve de l'hypothèse de
+Riemann. Il cherche à reconstruire le cadre opératoriel Hilbert--Pólya
+(HP-BK) de manière canonique à partir d'une seule structure interne,
+celle de la Théorie de la Persistance (PT), qui dérive le Modèle Standard
+d'un unique paramètre arithmétique $\sper = 1/2$
+(théorème~$\Tone$, \cite{PT_M1}). Le travail revisite la question RH sous
+trois angles complémentaires.
+
+\paragraph{Premier angle : analytique.}
+On exhibe une factorisation
+$\zeta(s) = \Rres(s)\,\zetaplus(s)\,\zetaminus(s)$, où $\zeta_\pm$ sont
+définies par les amplitudes $a_p, b_p$ issues de la bifurcation
+$\qplus/\qminus$ de PT. Le facteur résiduel $\Rres(s)$ admet une
+représentation Fredholm exacte
+$\det(I - \DRop(s))^{-1} = \Rres(s)$ avec $\DRop$ diagonal et amplitudes
+propres $\kappap(s)$ en forme close (théorème~\ref{thm:fredholm} en
+\S\ref{sec:fredholm}). Cette représentation est démontrée dans
+$\Reop(s) > 1$ et vérifiée numériquement à $10^{-12}$.
+
+\paragraph{Deuxième angle : opératoriel.}
+On identifie l'opérateur canonique
+$\HPTBK = (u\,p_u + p_u\,u)/2$ sur la coordonnée de Mellin $u = \log p$
+avec son cut-off dynamique
+$\umax(\gamma) = \gamma/\sqrt{2\pi}$. Ce cut-off n'est pas postulé ; il
+est forcé par la cellule de Planck symplectique $u_\star\,p_\star = 2\pi$
+de l'espace de phases canonique (\S\ref{sec:cellule_planck}). On prouve
+que la quantification semi-classique microcanonique de cet opérateur, en
+ordre symétrique de Weyl avec double barrière, reproduit la forme
+fonctionnelle exacte de la densité de Riemann--von Mangoldt, à un résidu
+constant $1/8$ près, vérifié à $10^{-15}$ sur quatre décades
+$\gamma \in [14, 10^{3}]$ (\S\ref{sec:densite_semi_classique}).
+
+\paragraph{Troisième angle : spectral et distributionnel.}
+La construction d'une trace régularisée
+$\Treg(s) = \Tr_{\mathrm{reg}}\!\big[(s - i\HPTBK)^{-1}\,\DRop(s)\big]$
+relie l'opérateur canonique au facteur résiduel via la formule de trace
+explicite
+\[
+-\dfrac{d \log \Rres}{ds} \;=\; \sum_{p} (\log p)\,\Big[\,\dfrac{1}{p^s - 1} \,+\, \Ap\,p^{-s}\,\Big],
+\]
+démontrée comme identité analytique exacte dans $\Reop(s) > 1$
+(théorème~\ref{thm:trace_formula}) et prolongée distributionnellement à la
+ligne critique (\S\ref{sec:trace_reg}). La régularisation Hadamard de
+cette trace produit des pôles aux ordonnées $\gamma_n$ des zéros de
+$\Rres$ ; on capture $17$ zéros sur $17$ testés sur $t \in [10, 70]$ à
+$|\Delta| < 1.5$, et $74$ sur $79$ sur $t \in [10, 200]$ ($94\,\%$), avec
+saturation au-delà de $P_{\max} = 3\,000$.
+
+\paragraph{Enrichissement intrinsèque.}
+Le programme se distingue de Berry--Keating--Connes par l'enrichissement
+intrinsèque qu'il fournit. Les nombres apparemment géométriques de la
+construction classique --- le $2\pi$ de la cellule de Planck, le $1/8$ de
+la phase de Maslov des coins (correction WKB de $-\pi/8$ par point
+tournant semi-classique aux coins du domaine d'aire microcanonique,
+cf.~\cite[\S 3]{BerryKeating1999}) --- reçoivent une dérivation propre à
+PT. Le $2\pi$ est la mesure de Liouville canonique sur $(u, p_u)$,
+c'est-à-dire le commutateur $[u, p_u] = i$. Le $1/8$ admet une triple
+lecture cohomologique~:
+\[
+\dfrac{1}{8}
+\;=\; \dfrac{\sper^{2}}{2} \;=\; \lambdaH
+\quad\text{(auto-couplage Higgs, \cite{PT_M5})},
+\]
+\[
+\dfrac{1}{8}
+\;=\; \dfrac{c_1}{N_{\mathrm{corners}}}
+\quad\text{(premi\`ere classe de Chern du fibr\'e spinoriel $\qplus/\qminus$ K\"ahler--Fisher)},
+\]
+\[
+\dfrac{1}{8} \;=\; \dfrac{\sper}{4}
+\quad\text{(phase de Berry par coin)}.
+\]
+La cohérence des trois lectures se réduit à l'équation
+$\sper^{2}/2 = \sper/4$, dont les seules solutions sont $\sper = 0$ et
+$\sper = 1/2$ ; l'axiome $\Tone$ exclut $\sper = 0$, ce qui sur-détermine
+le paramètre PT modulo $\Tone$ supposé (et non comme dérivation
+indépendante de $\Tone$).
+
+\paragraph{Falsification honnête : Dirichlet.}
+Une prédiction issue de ce cadre, la formule
+$\Delta_N(L \bmod q) = 1/(8q)$ pour les fonctions $L$ de Dirichlet
+primitives, a été testée numériquement sur les zéros de \texttt{LMFDB} et
+falsifiée (\S\ref{sec:auto_correction}). Cette falsification est
+documentée explicitement. Elle conduit à reformuler le statut du $1/8$
+établi en \S\ref{sec:densite_semi_classique}~: il s'agit d'une identité
+asymptotique entre formes lisses, non d'un résidu mesurable au comptage
+des zéros. Le mécanisme PT décrit ici est spécifique à $\zeta$, et non à
+la famille Dirichlet via une factorisation naïve par la mesure de Haar
+modulo~$q$.
+
+\paragraph{Position de programme.}
+La distinction maintenue tout au long du texte est la suivante. On
+cherche à comprendre la structure des zéros, à fournir un cadre canonique
+sans paramètre ad hoc, à dériver les coïncidences numériques connues
+($2\pi$, $7/8$, ligne critique) à partir d'une seule structure interne.
+On ne cherche pas à prouver que tous les zéros sont sur la ligne
+critique~: ce verrou ultime (équivalent à RH au sens strict) reste ouvert
+et ne semble pas plus facile que la version classique.
+

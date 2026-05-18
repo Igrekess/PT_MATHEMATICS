@@ -1,0 +1,65 @@
+\documentclass[12pt,a4paper]{article}
+\IfFileExists{pt-common.sty}{\usepackage{pt-common}}{\usepackage{../shared/pt-common}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+\title{\textbf{CRT Decoupling and the Geometric Invariance\\
+of Modular Mutual Information}}
+\author{Yan Senez\\
+\texttt{yan.senez@protonmail.com}}
+\date{May 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove two complementary theorems for the prime-sieve dynamical
+system on $\mathbb{Z}/m\mathbb{Z}$.
+\textbf{(Theorem~4.1, empirical form.)}~The mutual information
+$I_{\pi_m^{\mathrm{emp}}}(\Phi_p\,;\,\Phi_q\,|\,G(\mu))$ between
+observables on disjoint active CRT channels is constant under the
+geometric flow $\mu \in [\mu_c, \infty)$ generating the Bianchi-I
+metric $G(\mu)$ from the spectral data of the transfer matrix
+$T_m$.
+\textbf{(Theorem~4.2, idealised form.)}~Under the Ruelle/MME
+measure $\pi_m^{\mathrm{Ruelle}}$, the same mutual information
+vanishes exactly.
+A closed-form expression for the empirical residual
+$\mathcal{I}_{p,q}$ is derived (Corollary~4.3) and validated
+against the corpus values $\mathrm{MI}(g\bmod 3, g\bmod 5) = 0.138$
+bits and $\mathrm{MI}(g\bmod 3, g\bmod 7) = 0.283$ bits.
+
+The geometric-invariance result has direct consequences for the
+foundational debate on Bell-type non-locality: the observed
+inter-channel correlations are arithmetic, not spatial, and the
+emergent metric $G(\mu)$ does not couple disjoint modular fibres.
+This complements the companion foundational paper
+\cite{PT_HOLONOMY_NONLOCALITY}.
+
+All algebraic results of this paper (Theorems~3.1, 3.2, 6.1, 6.2 and
+Lemma~4.1) are formally verified in Lean~4 + Mathlib under the
+namespace \texttt{PT.CrtDecoupling}; see
+Section~\ref{ssec:formal_verification} for the correspondence table
+and the audit (0~\texttt{sorry}, 0~\texttt{axiom}).
+\end{abstract}
+
+\tableofcontents
+
+\input{sections/01_introduction}
+\input{sections/02_setup}
+\input{sections/03_crt_tensor_factorization}
+\input{sections/04_geometric_fiber}
+\input{sections/05_ergodicity_invariant_sigma}
+\input{sections/06_proofs}
+\input{sections/07_closed_form}
+\input{sections/08_applications}
+
+\appendix
+\input{appendices/A_perron_frobenius}
+\input{appendices/B_numerics}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
