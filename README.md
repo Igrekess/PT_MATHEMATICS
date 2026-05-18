@@ -50,11 +50,21 @@ M5 : physics            (BA0–BA5, α_EM = 1/137, Lemmas E/F/G: all bridges clo
 
 ### Key results
 
-- **M1** — The forbidden-transition theorem (T1) forces s = 1/2. The transfer matrix T₃ = antidiag(1,1) is unique. The GFT identity log₂(m) = D_KL + H holds exactly. *(Companion file [`M1/T1ForbiddenTransitions.lean`](M1/T1ForbiddenTransitions.lean) is a standalone Lean 4 proof of T1; the full and current Lean formalisation of M1–M5 lives in [PT_LEAN](https://github.com/Igrekess/PersistenceTheory/tree/main/pt_lean).)*
+- **M1** — The forbidden-transition theorem (T1) forces s = 1/2. The transfer matrix T₃ = antidiag(1,1) is unique. The GFT identity log₂(m) = D_KL + H holds exactly.
 - **M2** — D_KL is the unique f-divergence (G1, Shore–Johnson). The Fisher metric is the unique monotone Riemannian metric (G3, Čencov). The holonomy angle sin²θ_p = δ_p(2−δ_p) is an algebraic identity.
 - **M3** — The spectral convergence α_k → 1/2 is proved via Gordin decomposition (T4). The unique fixed point μ* = 3+5+7 = 15 is proved by exhaustion (T5). The dynamical field theorem T0 promotes BA0 from postulate to theorem.
 - **M4** — 32 computational tools verified (659/659 PASS). Predictive Mathematics: each prime adds exactly 1 DOF (L1). Theorem H: decoherence monotonicity = 2nd law of the sieve.
 - **M5** — The six bridge axioms BA0–BA5 are all theorems. α_EM = ∏ sin²θ_p = 1/137.036 (0 parameters). Lemmas E, F, G close all remaining bridge claims: coupling (spectral invariant), metric (Hessian of ln Z_Ruelle), Hilbert space (OS reconstruction).
+
+### Lean 4 formalisation
+
+Every article ships a `LEAN.md` index pointing to the canonical kernel-verified
+modules in the [**PT_LEAN**](https://github.com/Igrekess/PersistenceTheory/tree/main/pt_lean)
+package: [M1/LEAN.md](M1/LEAN.md), [M2/LEAN.md](M2/LEAN.md),
+[M3/LEAN.md](M3/LEAN.md), [M4/LEAN.md](M4/LEAN.md), [M5/LEAN.md](M5/LEAN.md).
+M1 additionally ships a standalone Lean snapshot of theorem T1
+([`M1/T1ForbiddenTransitions.lean`](M1/T1ForbiddenTransitions.lean), depends
+only on `Mathlib.Tactic`) as a pedagogical companion.
 
 ---
 
