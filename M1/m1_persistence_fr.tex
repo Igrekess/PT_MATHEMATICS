@@ -2157,16 +2157,19 @@ L'écart de bifurcation (chaleur latente) est~:
 
 \textbf{Branche arête~:} le poids de Gibbs pour un saut de taille $g$
 à température inverse $\beta$ est $e^{-\beta g}$. La valeur
-$\beta = 1/\mustar$ n'est pas postulée mais dérivée ci-dessous depuis
-la condition d'auto-cohérence~: l'unique $\beta$ pour lequel la
-distribution géométrique est Gibbs-cohérente est $\beta = 1/\mustar$.
-Pour la distribution géométrique de paramètre $q$, la condition de
-normalisation Gibbs-pondérée est~:
+$\beta = 1/\mustar$ est \emph{posée}, non dérivée~: c'est l'échelle du
+crible $T_{\rm sieve} = 1/\mustar$, prise comme primitive du secteur
+arête. Pour la distribution géométrique de paramètre $q$, la condition
+de normalisation Gibbs-pondérée est~:
 \[
-  \mathbb{E}[e^{-g/\mustar}] = \frac{(1-q)e^{-1/\mustar}}{1-q\,e^{-1/\mustar}},
+  \mathbb{E}[e^{-\beta g}] = \frac{(1-q)e^{-\beta}}{1-q\,e^{-\beta}},
 \]
-auto-cohérente (égale à $q$ dans la formulation arête) lorsque
-$q = e^{-1/\mustar}$. C'est l'unique paramètre Gibbs-cohérent.
+dont la resommation de chaîne d'arêtes
+$\sum_{n\geq 1}\mathbb{E}^{\,n} = \mathbb{E}/(1-\mathbb{E})$ égale $q$
+exactement lorsque $q = e^{-\beta}$ (équation linéaire, donc racine
+unique). Ceci fixe la \emph{relation} $q \leftrightarrow \beta$ et vaut
+pour \emph{tout} $\beta$~; cela ne sélectionne pas la valeur
+$\beta = 1/\mustar$.
 
 \textbf{Distinction~:} $\qminus \neq \qplus$ ssi $e^{-1/15} \neq 13/15$,
 ce qui est vrai (Taylor~: $e^{-x} = 1 - x + x^2/2 - \ldots$~; en
@@ -2175,14 +2178,32 @@ $x = 1/15$~: $e^{-1/15} \approx 0{,}9355 > 0{,}8\overline{6} = \qplus$).
 \end{proof}
 \end{theoreme}
 
-\begin{remarque}[Dérivation du paramètre de Gibbs]
+\begin{remarque}[Statut du paramètre de Gibbs~: posé]
 \label{rem:gibbs_derivation}
-Le paramètre de Gibbs $\beta = 1/\mustar$ est l'unique température
-inverse satisfaisant la condition de cohérence thermodynamique
-$\partial F / \partial \beta |_{\beta = 1/\mustar} = 0$, où
-$F = -\beta^{-1} \ln Z$ est l'énergie libre de l'opérateur de
-transfert $T_m$. La dérivation complète est donnée dans
-l'article~III~\cite{companion_M3}.
+Aucune condition de ce travail ne force $\beta = 1/\mustar$. Des
+versions antérieures de cette remarque le revendiquaient comme
+l'unique température inverse satisfaisant
+$\partial F/\partial\beta = 0$ avec $F = -\beta^{-1}\ln Z$~; cette
+affirmation est retirée. Pour toute fonction de partition on a
+l'identité $\partial F/\partial\beta = S(\beta)/\beta^{2}$, de sorte
+que $\partial F/\partial\beta = 0$ équivaut exactement à
+$S(\beta) = 0$---entropie nulle, atteinte seulement quand
+$\beta \to \infty$. La condition n'a aucune racine finie, et ne fait
+pas intervenir $\mustar$.
+
+Plus fortement, \emph{aucune condition algébrique ne peut sélectionner}
+$\qminus$. Par Lindemann--Weierstrass, $e^{-1/\mustar}$ est
+transcendant, tandis que les contraintes naturelles de la loi
+géométrique---moments, cumulants, fonction de partition---sont
+rationnelles en $q$ et ont donc des racines algébriques~:
+$\langle k\rangle = \mustar/2$ donne $13/15 = \qplus$, et
+$\langle k\rangle = \mustar$ donne $14/15$. Atteindre un $q$
+transcendant exige d'introduire $\beta$ à la main~; l'entrée partagée
+par les trois voies ci-dessous est donc structurelle, non rédactionnelle.
+
+$\beta = 1/\mustar$ est par conséquent une \emph{primitive posée} du
+secteur arête, validée empiriquement à $\sim 10^{-4}$ contre
+39~observables PDG.
 \end{remarque}
 
 \begin{remarque}[Trois voies indépendantes vers la bifurcation]

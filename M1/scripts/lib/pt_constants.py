@@ -738,7 +738,13 @@ sin2_th23 = gamma[7] - sin2_th13                         # 0.5731
 # EN:   gamma_3 = anomalous dim. of the 1st sieve (color bridge, ~0.808)
 # EN:   POSITIVE sign: gamma_3 governs theta_23 via the color sector
 # EN:   Color AMPLIFIES leptonic CP violation via CRT crossing
-J_PMNS = (4.0 / 3.0) * alpha_nue * (1 + gamma[3] * eps)
+# C_F taken from the derived constant, not written as a literal. Until
+# 2026-07-20 this read `(4.0 / 3.0)`, leaving the prefactor disconnected
+# from N_c: any ablation of N_c left J_PMNS (hence delta_CP) unchanged.
+# Bit-exact substitution (both are 0x1.5555555555555p+0).
+# Status: C_F is derived in PT, but its use HERE -- a colour-singlet
+# leptonic amplitude -- is not; see ch11 (CONDTAG) and test_audit.py R20b.
+J_PMNS = C_F * alpha_nue * (1 + gamma[3] * eps)
 
 # FR: delta_CP PMNS derive de J_PMNS [D16]
 # EN: delta_CP PMNS derived from J_PMNS [D16]

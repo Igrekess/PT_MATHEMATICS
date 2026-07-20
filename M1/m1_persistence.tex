@@ -1988,16 +1988,18 @@ The bifurcation gap (latent heat) is:
 
 \textbf{Edge branch:} the Gibbs weight for a gap of size $g$ at
 inverse temperature $\beta$ is $e^{-\beta g}$. The value
-$\beta = 1/\mustar$ is not assumed but derived below from the
-self-consistency condition: the unique $\beta$ for which the
-geometric distribution is Gibbs-consistent is $\beta = 1/\mustar$.
-For the geometric distribution with parameter $q$, the Gibbs-weighted
-normalization condition is:
+$\beta = 1/\mustar$ is \emph{posited}, not derived: it is the sieve
+scale $T_{\rm sieve} = 1/\mustar$, taken as a primitive of the edge
+sector. For the geometric distribution with parameter $q$, the
+Gibbs-weighted normalization condition is:
 \[
-  \mathbb{E}[e^{-g/\mustar}] = \frac{(1-q)e^{-1/\mustar}}{1-q\,e^{-1/\mustar}},
+  \mathbb{E}[e^{-\beta g}] = \frac{(1-q)e^{-\beta}}{1-q\,e^{-\beta}},
 \]
-which is self-consistent (equals $q$ in the edge formulation) when
-$q = e^{-1/\mustar}$. This is the unique Gibbs-consistent parameter.
+whose edge-chain resummation
+$\sum_{n\geq 1}\mathbb{E}^{\,n} = \mathbb{E}/(1-\mathbb{E})$ equals $q$
+exactly when $q = e^{-\beta}$ (a linear equation, hence a unique root).
+This fixes the \emph{relation} $q \leftrightarrow \beta$ and holds for
+\emph{every} $\beta$; it does not select the value $\beta = 1/\mustar$.
 
 \textbf{Distinctness:} $\qtherm \neq \qrel$ iff $e^{-1/15} \neq 13/15$,
 which is true (Taylor: $e^{-x} = 1 - x + x^2/2 - \ldots$; at $x = 1/15$:
@@ -2005,14 +2007,29 @@ $e^{-1/15} \approx 0.9355 > 0.8\overline{6} = \qrel$). \qed
 \end{proof}
 \end{theorem}
 
-\begin{remark}[Derivation of the Gibbs parameter]
+\begin{remark}[Status of the Gibbs parameter: posited]
 \label{rem:gibbs_derivation}
-The Gibbs parameter $\beta = 1/\mustar$ is the unique inverse
-temperature satisfying the thermodynamic consistency condition
-$\partial F / \partial \beta |_{\beta = 1/\mustar} = 0$, where
-$F = -\beta^{-1} \ln Z$ is the free energy of the transfer operator
-$T_m$.  The full derivation is given in
-Article~III~\cite{companion_M3}.
+No condition in this work forces $\beta = 1/\mustar$. Earlier versions
+of this remark claimed it as the unique inverse temperature satisfying
+$\partial F/\partial\beta = 0$ with $F = -\beta^{-1}\ln Z$; that claim
+is withdrawn. For any partition function one has the identity
+$\partial F/\partial\beta = S(\beta)/\beta^{2}$, so
+$\partial F/\partial\beta = 0$ is exactly $S(\beta) = 0$---zero
+entropy, approached only as $\beta \to \infty$. The condition has no
+finite root, and does not involve $\mustar$.
+
+More strongly, \emph{no algebraic condition can select} $\qminus$. By
+Lindemann--Weierstrass $e^{-1/\mustar}$ is transcendental, whereas the
+natural constraints on the geometric law---its moments, cumulants, and
+partition function---are rational in $q$ and hence have algebraic
+roots: $\langle k\rangle = \mustar/2$ gives $13/15 = \qplus$, and
+$\langle k\rangle = \mustar$ gives $14/15$. Reaching a transcendental
+$q$ requires introducing $\beta$ by hand, so the shared input of the
+three routes below is structural, not editorial.
+
+$\beta = 1/\mustar$ is therefore a \emph{posited primitive} of the edge
+sector, empirically validated to $\sim 10^{-4}$ against 39 PDG
+observables.
 \end{remark}
 
 \begin{remark}[Three independent routes to the bifurcation]

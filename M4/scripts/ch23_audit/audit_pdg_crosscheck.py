@@ -53,8 +53,19 @@ pdg_audit = {
     'sin2_th12':      (0.304, 0.012, '', 'PDG 2024'),
     'sin2_th13':      (0.02220, 0.00068, '', 'PDG 2024'),
     'sin2_th23':      (0.573, 0.016, '', 'PDG 2024'),
-    'delta_CP_PMNS':  (197.0, 25.0, 'deg', 'PDG 2024'),
-    'J_PMNS':         (0.00990, 0.003, '', 'derived from PMNS'),
+    # --- PREDICTIONS, not measurements: excluded from the error statistics.
+    # delta_CP_PMNS: 197.0 was NEVER a PDG value (the label 'PDG 2024' was
+    #   wrong twice over: wrong provenance, and no single value exists).
+    #   NuFIT 6.0 (arXiv:2410.05380, Table 1) publishes two NO variants that
+    #   BRACKET the PT prediction of 197.358 deg:
+    #     IC24, with SK-atm:    177 +19/-20  -> PT at 1.07 sigma
+    #     IC19, without SK-atm: 212 +26/-41  -> PT at 0.36 sigma
+    #   The 3-sigma ranges (96->422 and 124->364) are too wide to test P4.
+    # J_PMNS: 0.00990 was the PT prediction itself, rounded -- comparing it
+    #   with the PT value measured the prediction against itself.
+    #   NuFIT 6.0 best fit is ~0.0017 (1-sigma range contains the PT value).
+    'delta_CP_PMNS':  (197.0, 25.0, 'deg', 'PRED (not measured; see note above)'),
+    'J_PMNS':         (0.00990, 0.003, '', 'PRED (was the PT value itself)'),
     'm_nu3_eV':       (0.0507, 0.002, 'eV', 'PDG 2024 indirect'),
     'Dm31_sq':        (2.51e-3, 0.03e-3, 'eV^2', 'PDG 2024'),
     'Dm21_sq':        (7.42e-5, 0.21e-5, 'eV^2', 'PDG 2024'),
@@ -132,8 +143,12 @@ n_beyond_3sig = 0
 errs = []
 issues = []
 
+# Predictions, not post-dictions: no measurement yet tests them, so they
+# must not enter the error statistics (see the note in pdg_audit above).
+PRED_NOT_MEASURED = {'delta_CP_PMNS', 'J_PMNS'}
+
 for key in pt_vals:
-    if key not in pdg_audit:
+    if key not in pdg_audit or key in PRED_NOT_MEASURED:
         continue
 
     pdg_val, pdg_sig, unit, note = pdg_audit[key]
@@ -257,7 +272,7 @@ print("  Checking each observable against the 0.5% threshold:")
 over_05 = []
 under_05 = 0
 for key in pt_vals:
-    if key not in pdg_audit:
+    if key not in pdg_audit or key in PRED_NOT_MEASURED:
         continue
     pdg_val = pdg_audit[key][0]
     pt_val = pt_vals[key]
