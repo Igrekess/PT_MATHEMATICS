@@ -50,7 +50,7 @@ Lecteur scientifique pressé voulant comprendre la PT en 1 heure. Pont physicien
 
 ## 3. Positionnement épistémique
 
-**Affirmatif strict.** Les sept T0-T6 et les six BA0-BA5 sont tous prouvés (compteur C1-C10 = 10/10 [THM], post-promotions 2026-04-26). La préface s'autorise à énoncer sans preuve uniquement parce que chaque énoncé est rigoureusement démontré dans un M-article compagnon.
+**Affirmatif strict.** Les sept T0-T6 et les six BA0-BA5 sont tous prouvés (compteur C1-C12 = 5 [THM] + 6 [DER]/[COND] + 1 [VAL], requalification B4 du 2026-08-14). La préface s'autorise à énoncer sans preuve uniquement parce que chaque énoncé est rigoureusement démontré dans un M-article compagnon.
 
 ## 4. Nomenclature (canonique, alignée NOMENCLATURE_MAP.md)
 

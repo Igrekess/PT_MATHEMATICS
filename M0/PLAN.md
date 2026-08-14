@@ -218,7 +218,7 @@ Contenu minimal requis :
 \newcommand{\thetap}[1]{\theta_{#1}}
 \newcommand{\sinp}[1]{\sin^{2}\theta_{#1}}
 
-% Status tags (10/10 [THM])
+% Status tags (compteur C1-C12 : 5 [THM] + 6 [DER]/[COND] + 1 [VAL], requalification B4 du 2026-08-14)
 \newcommand{\THM}{\textsc{[Thm]}}
 
 % --- Théorèmes nommés ---
@@ -474,7 +474,7 @@ Structure conforme au SPEC §5 :
 - 1.1 Paramètres libres du MS (~0.7 p)
 - 1.2 L'axiome `s = 1/2` (~0.7 p)
 - 1.3 Aperçu cascade + teaser `α_EM` (~1 p)
-- 1.4 Plan + conventions + statut 10/10 [THM] (~0.6 p)
+- 1.4 Plan + conventions + statut C1-C12 = 5 [THM] + 6 [DER]/[COND] + 1 [VAL] (~0.6 p)
 
 Forme du fichier :
 
@@ -951,7 +951,7 @@ pt_search query="ch26 conclusion synthèse 10/10 [THM]"
 - [ ] **Step 2 :** Rédiger les 4 sous-sections (cf. SPEC §5.8)
 
 - 8.1 Récap (~0.5 p)
-- 8.2 Statut 10/10 [THM] (~0.3 p)
+- 8.2 Statut C1-C12 = 5 [THM] + 6 [DER]/[COND] + 1 [VAL] (~0.3 p)
 - 8.3 Perspectives en une ligne chacune : Yukawa, chimie (`PUBLIC/PT_CHEMISTRY`), NMR, allométrie, cosmologie, BSM (~0.8 p)
 - 8.4 Peer review externe (~0.4 p)
 

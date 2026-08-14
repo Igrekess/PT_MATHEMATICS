@@ -107,8 +107,9 @@ All articles use the canonical PT corpus grid:
 | `[Open]` | Open question |
 | `[Falsified]` | Tested prediction rejected (self-correction) |
 
-The 10 PT commitments C1–C10 are currently at **10/10 [Thm]** (since the
-C2/C4/C5/C7 promotions of 2026-04-26 — see the monograph corpus).
+The PT commitments C1–C12 currently stand at **5 [Thm] + 6 [Der]/[Cond] + 1
+[Val]** (B4 requalification of 2026-08-14 — see the monograph corpus).
+C3, C4, C5, C6, C8 and C12 are [Der]/[Cond], not [Thm].
 
 ---
 
